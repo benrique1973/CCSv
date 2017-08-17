@@ -24,6 +24,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
     public sealed class DetalleCedulaViewModel : ViewModeloBase
         {
+        //17-08-2017
 
             #region Propiedades privadas
 
@@ -196,64 +197,64 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
-        #region tokenRespuestaVistaColumna
+            #region tokenRespuestaVistaColumna
 
-        private string _tokenRespuestaVistaColumna;
-        private string tokenRespuestaVistaColumna
-        {
-            get { return _tokenRespuestaVistaColumna; }
-            set { _tokenRespuestaVistaColumna = value; }
-        }
-
-        #endregion
-
-        #region ViewModel Properties : listaMarcas
-
-        public const string listaMarcasPropertyName = "listaMarcas";
-
-        private ObservableCollection<string> _listaMarcas;
-
-        public ObservableCollection<string> listaMarcas
-        {
-            get
+            private string _tokenRespuestaVistaColumna;
+            private string tokenRespuestaVistaColumna
             {
-                return _listaMarcas;
+                get { return _tokenRespuestaVistaColumna; }
+                set { _tokenRespuestaVistaColumna = value; }
             }
-            set
-            {
-                if (_listaMarcas == value) return;
 
-                _listaMarcas = value;
-                RaisePropertyChanged(listaMarcasPropertyName);
-            }
-        }
+            #endregion
 
+            #region ViewModel Properties : listaMarcas
 
-        #endregion
+            public const string listaMarcasPropertyName = "listaMarcas";
 
-        #region ViewModel Properties : SelectedItems
+            private ObservableCollection<string> _listaMarcas;
 
-        public const string SelectedItemsPropertyName = "SelectedItems";
-
-            private ObservableCollection<CedulaModelo> _SelectedItems;
-
-            public ObservableCollection<CedulaModelo> SelectedItems
+            public ObservableCollection<string> listaMarcas
             {
                 get
                 {
-                    return _SelectedItems;
+                    return _listaMarcas;
                 }
                 set
                 {
-                    if (_SelectedItems == value) return;
+                    if (_listaMarcas == value) return;
 
-                    _SelectedItems = value;
-
-                    RaisePropertyChanged(SelectedItemsPropertyName);
+                    _listaMarcas = value;
+                    RaisePropertyChanged(listaMarcasPropertyName);
                 }
             }
 
-        #endregion
+
+            #endregion
+
+            #region ViewModel Properties : SelectedItems
+
+            public const string SelectedItemsPropertyName = "SelectedItems";
+
+                private ObservableCollection<CedulaModelo> _SelectedItems;
+
+                public ObservableCollection<CedulaModelo> SelectedItems
+                {
+                    get
+                    {
+                        return _SelectedItems;
+                    }
+                    set
+                    {
+                        if (_SelectedItems == value) return;
+
+                        _SelectedItems = value;
+
+                        RaisePropertyChanged(SelectedItemsPropertyName);
+                    }
+                }
+
+            #endregion
 
         //http://stackoverflow.com/questions/14918602/isselected-binding-in-wpf-datagrid
 
