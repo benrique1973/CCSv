@@ -1,0 +1,602 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.Views.Principales.Herramientas.Programas.ModeloView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="768" d:DesignWidth="1366"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"  
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion.Crud"
+                      TitleCaps="False"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+
+                      >
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button x:Name="btnSalir" Command="{Binding SalirCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                        Height="20"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_door_leave}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0" FontWeight="Bold"  VerticalAlignment="Center" Text="Regresar" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+
+    </Controls:MetroWindow.RightWindowCommands>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid IsEnabled="{Binding accesibilidadWindow}" Height="Auto" >
+
+        <Grid.Resources>
+            <conv:FlexibleBooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+            <conv:EnableConverter x:Key="EnableConvertir"/>
+        </Grid.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="Auto" >
+            <StackPanel Orientation="Vertical">
+                <Grid >
+                    <Grid.Resources>
+                        <conv:ConvertByteArrayToBitmapImage x:Key="BinaryImageConverter"/>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="65*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"  HorizontalAlignment="Center" >
+                        <Border BorderThickness="1" Margin="1"
+                 BorderBrush="{DynamicResource AccentColorBrush}">
+                            <Image Name="imgFirma" Margin="5" 
+                           Height="70" Width="50" Stretch="Fill" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Source="{Binding logoFirma, UpdateSourceTrigger=PropertyChanged,
+                           Mode=TwoWay,Converter={StaticResource BinaryImageConverter}}"/>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Border BorderThickness="1" Margin="1"
+                BorderBrush="{DynamicResource AccentColorBrush}">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock TextAlignment="Center"
+                              FontSize="14" 
+                              FontWeight="Bold"
+                              VerticalAlignment="Bottom" 
+                              Text="{Binding razonSocialFirma,
+                              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Width="Auto"
+                              Height="25"
+                            />
+                                <TextBlock TextAlignment="Center"
+                              FontSize="14" 
+                              FontWeight="Bold"
+                              VerticalAlignment="Bottom" 
+                              Text="{Binding encabezadoPantalla, 
+                              ValidatesOnDataErrors=True,
+                              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Width="250"
+                                Height="25"
+                           > Programa de auditoría
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid >
+                    <StackPanel Orientation="Vertical" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderThickness="1" Margin="1"
+                                BorderBrush="{DynamicResource AccentColorBrush}" Grid.Column="0">
+                                <Grid >
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid>
+                                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Cliente: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding nombreCliente, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="150"
+                                                VerticalAlignment="Top"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                        <Grid>
+                                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Elaborador por: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding nombreElabora, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="100"
+                                                VerticalAlignment="Top"/>
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Fecha elaboración: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding fechaEjecucion, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="100"
+                                                VerticalAlignment="Top"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border BorderThickness="1" Margin="1"
+                        BorderBrush="{DynamicResource AccentColorBrush}" Grid.Column="1">
+                                <Grid >
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid>
+                                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,0,1,1.323"
+                                                Text="Período: "
+                                                Width="100"
+                                                VerticalAlignment="Bottom"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding nombreCliente, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="150"
+                                                VerticalAlignment="Top"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                        <Grid>
+                                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Supervisado por: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding nombreElabora, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="100"
+                                                VerticalAlignment="Top"/>
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Fecha supervisión: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding fechaEjecucion, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="100"
+                                                VerticalAlignment="Top"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border BorderThickness="1" Margin="1"
+                        BorderBrush="{DynamicResource AccentColorBrush}" Grid.Column="2">
+                                <Grid >
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid>
+                                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Tipo de auditoría: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="Auto"
+                                                MinHeight="25"
+                                                IsHyphenationEnabled="True"
+                                                HorizontalAlignment="Stretch"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding encabezadoPantalla, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="Auto" MinWidth="250"
+                                                VerticalAlignment="Top"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                        <Grid>
+                                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Aprobado por: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding nombreElabora, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="100"
+                                                VerticalAlignment="Top"/>
+                                                    <TextBlock  
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Left"
+                                                Margin="1,1,1,1"
+                                                Text="Fecha aprobación: "
+                                                Width="100"
+                                                VerticalAlignment="Center"/>
+                                                    <TextBlock
+                                                Height="25"  FontWeight="Bold"
+                                                HorizontalAlignment="Right"
+                                                Margin="1,1,1,1"
+                                                Text="{Binding fechaEjecucion, ValidatesOnDataErrors=True,
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="100"
+                                                VerticalAlignment="Top"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                        </Grid>
+                        <Grid Margin="0">
+                            <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                <DataGrid Grid.Row="1"
+                                    x:Name="dgContenidoProcedimiento"
+                                    AutoGenerateColumns="False"  SelectionMode="Single"
+                                    Margin="1,1,1,1"
+                                    VerticalAlignment="Top"
+                                    VerticalScrollBarVisibility="Auto"
+                                    HorizontalScrollBarVisibility="Auto"
+                                    Width="Auto"
+                                    ItemsSource="{Binding Path= listaDetalleProcedimientos , UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedItem="{Binding currentEntidadDetalle}"
+                                    TextBlock.TextAlignment="Justify"  
+                                    AllowDrop="True"
+                                    CanUserResizeRows="True"
+                                    CanUserSortColumns="True"
+                                    CanUserAddRows="False">
+                                    <DataGrid.Columns >
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= ordenDh , 
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            StringFormat=n2}"
+                                            x:Name="datosOrden" Header="Orden" 
+                                            MinWidth="50"
+                                            Width="60"
+                                            MaxWidth="200"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= descripcionDh , UpdateSourceTrigger=PropertyChanged}"
+                                            x:Name="procecimiento" Header="Elemento" 
+                                            MinWidth="50"
+                                            Width="*"
+                                            IsReadOnly="True" >
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                            <DataGridTextColumn.EditingElementStyle>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="AcceptsReturn" Value="true" />
+                                                    <Setter Property="Margin" Value="5,2,5,0" />
+                                                </Style>
+                                            </DataGridTextColumn.EditingElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= fechaInicio , 
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            StringFormat=n2}"
+                                            x:Name="datosTiempo" Header="Fecha de revisión" 
+                                            MinWidth="50"
+                                            Width="100"
+                                            MaxWidth="200"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= tiempoPlan , 
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            StringFormat=n2}"
+                                            x:Name="datosDependencia" 
+                                            Header="Tiempo plan" 
+                                            MinWidth="50"
+                                            Width="100"
+                                            MaxWidth="150"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn 
+                                           Binding="{Binding Path= horasPlanDh , 
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            StringFormat=n2}"
+                                            x:Name="datosVisita" Header="Tiempo ejecutado" 
+                                            MinWidth="50"
+                                            Width="150"
+                                            MaxWidth="150"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= horasEjecDh , 
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            StringFormat=n2}"
+                                            x:Name="datosHecho" Header="Hecho por" 
+                                            MinWidth="25"
+                                            Width="75"
+                                            MaxWidth="100"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= referenciaPt , UpdateSourceTrigger=PropertyChanged}"
+                                            x:Name="datosPt" Header="Referencia PT" 
+                                            MinWidth="50"
+                                            Width="120"
+                                            MaxWidth="200"
+                                            IsReadOnly="True" />
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= comentarioDh , UpdateSourceTrigger=PropertyChanged}"
+                                            x:Name="comentario" Header="Comentario" 
+                                            MinWidth="50"
+                                            Width="150"
+                                            MaxWidth="200"
+                                            IsReadOnly="True" >
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                            <DataGridTextColumn.EditingElementStyle>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="AcceptsReturn" Value="true" />
+                                                    <Setter Property="Margin" Value="5,2,5,0" />
+                                                </Style>
+                                            </DataGridTextColumn.EditingElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn 
+                                            Binding="{Binding Path= estadoProcedimiento , UpdateSourceTrigger=PropertyChanged}"
+                                            x:Name="datosEstado" Header="Estado" 
+                                            MinWidth="50"
+                                            Width="100"
+                                            MaxWidth="200"
+                                            IsReadOnly="True" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Border>
+                        </Grid>
+
+                        <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                            <Grid HorizontalAlignment="Center">
+                                <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Avance"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Grid>
+                                                <StackPanel Orientation="Vertical">
+                                                    <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Concepto"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="# Procedimientos"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Tiempo en horas"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid>
+                                                <StackPanel Orientation="Vertical">
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Planeado"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                                        Height="23"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Text=""
+                                                        Width="100"
+                                                        VerticalAlignment="Top"/>
+                                                    </Border>
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text=""
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid>
+                                                <StackPanel Orientation="Vertical">
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Ejecución"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text=""
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                    <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                        <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text=""
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                    </Border>
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid>
+                                                <StackPanel Orientation="Vertical">
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Indice %"
+                                            Width="100"
+                                            VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Text="{Binding Path= indiceProcedimientos , 
+                                                        UpdateSourceTrigger=PropertyChanged,
+                                                        StringFormat=n2}"
+                                                        Width="100"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Text="{Binding Path= indiceTiempo , 
+                                                        UpdateSourceTrigger=PropertyChanged,
+                                                        StringFormat=n2}"
+                                                        Width="100"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+    </Controls:MetroWindow>

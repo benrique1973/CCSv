@@ -1,0 +1,657 @@
+﻿<Controls:MetroWindow  x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Ajustes.AjustesCrudView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"          
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="870" d:DesignWidth="800"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                      Top="0"
+                      Left="0"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      SizeToContent="WidthAndHeight"
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                      xmlns:usrBoton="clr-namespace:SGPTWpf.Recursos.controles"
+                       xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas"
+                      TitleCaps="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="5" HorizontalAlignment="Center" IsEnabled="{Binding accesibilidadWindow}">
+        <Grid.Resources>
+            <conv:BooleanConverter x:Key="BooleanConverter"/>
+        </Grid.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="Auto" HorizontalContentAlignment="Center" >
+            <StackPanel IsEnabled="{Binding accesibilidadWindow}">
+                <Border BorderBrush="{DynamicResource AccentColorBrush}" Margin="-5,-5,-5,10"
+                      BorderThickness="2" >
+                    <StackPanel IsEnabled="{Binding accesibilidadWindow}"   Margin="10,0,10,5"
+                                VerticalAlignment="Top" HorizontalAlignment="Center"  MinWidth="150">
+                        <StackPanel HorizontalAlignment="Center"  Visibility="{Binding visibilidadCuerpo}"
+                                    IsEnabled="{Binding accesibilidadCuerpo}" x:Name="GrdDatosCuerpo">
+                            <StackPanel>
+                                <Grid  Margin="0,5,0,0">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Margin="5,0,5,0" Orientation="Horizontal">
+                                            <Grid>
+                                                <TextBlock
+                                                Height="30"
+                                                Margin="0"
+                                                MinWidth="40"
+                                                Width="120"
+                                                MaxWidth="120"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Text="Partida # "/>
+                                            </Grid>
+                                            <Grid>
+                                          <TextBox HorizontalContentAlignment="Right" SpellCheck.IsEnabled="True" 
+                                         IsEnabled="False"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Controls:TextBoxHelper.Watermark="# partida" 
+                                         Margin="10,5,0,5" VerticalAlignment="Top" 
+                                         Width="232"
+                                         MaxLength="100"
+                                         MaxWidth="600"
+                                         MinHeight="30"
+                                         MinWidth="50"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         Text="{Binding numPartida, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                                            </Grid>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Grid>
+                                                <TextBlock
+                                                    Height="30"
+                                                    Margin="10,0,0,0"
+                                                    MinWidth="40"
+                                                    Width="120"
+                                                    MaxWidth="120"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Center"
+                                                    Text="*Fecha de partida"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <DatePicker x:Name="dpkfechapartida"
+                                                    DisplayDateStart="1/01/2012"
+                                                    DisplayDateEnd="12/31/2050"
+                                                    Height="35"
+                                                    Background="Transparent"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="15,5,0,5"
+                                                    VerticalAlignment="Top"
+                                                    Width="232"
+                                                    MinWidth="50"
+                                                    MaxWidth="330"
+                                                    ToolTip="Seleccione la fecha de la partida"
+                                                     Controls:TextBoxHelper.ClearTextButton="True"
+                                                     Controls:TextBoxHelper.Watermark="Fecha de partida"                                 
+                                                     Validation.Error="Validation_Error">
+                                                        <DatePicker.SelectedDate>
+                                                            <Binding Path="fechapartida"
+                                                             StringFormat="dd/MM/yyyy"
+                                                             Mode="TwoWay"
+                                                             UpdateSourceTrigger="PropertyChanged"
+                                                             NotifyOnValidationError="True" 
+                                                             ValidatesOnDataErrors="True">
+                                                                <Binding.ValidationRules>
+                                                                    <reglas:DateAuditoriaRule/>
+                                                                </Binding.ValidationRules>
+                                                            </Binding>
+                                                        </DatePicker.SelectedDate>
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="SelectedDateChanged">
+                                                                <i:InvokeCommandAction Command="{Binding SelectedDatePartidaChangedCommand}"
+                                                            CommandParameter="{Binding ElementName=dpkfechapartida, Path=SelectedDate}" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </DatePicker>
+                                                </Grid>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                </Grid>
+                            </StackPanel>
+                            <Grid  x:Name="GrdCuerpo" >
+                                <WrapPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                        <Grid VerticalAlignment="Center">
+                                            <TextBlock
+                                            Height="30"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="*Título partida"/>
+                                        </Grid>
+                                        <Grid>
+                                         <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                         Validation.Error="Validation_Error"    
+                                         DataContext="{Binding currentDetalleEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Controls:TextBoxHelper.ClearTextButton="True" 
+                                         Controls:TextBoxHelper.Watermark="Ingrese descripción breve de partida" 
+                                         Margin="10,5,0,5" VerticalAlignment="Top" 
+                                         Width="610"
+                                         MaxLength="100"
+                                         MaxWidth="650"
+                                         MinHeight="35"
+                                         MinWidth="50"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding conceptopartida, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                                        </Grid>
+                                    </StackPanel>
+
+                                </WrapPanel>
+                            </Grid>
+                               <Grid x:Name="datosConsulta" >
+                                 <StackPanel Orientation="Vertical"  Width="744">
+                                        <DataGrid Width="743"
+                                            AutoGenerateColumns="False"  SelectionMode="Extended"
+                                            Margin="0"
+                                            Height="330"
+                                            Name="dataGrid"
+                                            BorderThickness="2"
+                                            BorderBrush="{DynamicResource AccentColorBrush}"
+                                            ScrollViewer.CanContentScroll="True" 
+                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                            HorizontalScrollBarVisibility="Auto"
+                                            VerticalScrollBarVisibility="Auto"
+                                            AllowDrop="True"
+                                            CanUserResizeRows="True"
+                                            CanUserSortColumns="True"
+                                            CanUserAddRows="False"
+                                            VerticalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                                            HorizontalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                                            IsEnabled="True"
+                                            GridLinesVisibility="All"
+                                            IsSynchronizedWithCurrentItem="True"
+                                            ItemsSource="{Binding Path= listaMovimientos , UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedItem="{Binding currentMovimientos}">
+                                            <DataGrid.RowStyle>
+                                                <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
+                                                    <Style.Triggers>
+                                                        <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="ELEMENTO">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="RUBRO">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="ELEMENTOS">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="RUBROS">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Elemento">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Rubro">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Elementos">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Rubros">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="CUENTA">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Cuenta">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <MultiTrigger>
+                                                            <MultiTrigger.Conditions>
+                                                                <Condition Property="IsSelected" Value="true" />
+                                                            </MultiTrigger.Conditions>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </MultiTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </DataGrid.RowStyle>
+                                        <DataGrid.Resources>
+                                            <CollectionViewSource x:Key="cuentasLista" Source="{Binding listaNombresCuentas}" />
+                                        </DataGrid.Resources>
+                                        <DataGrid.Columns >
+
+                                            <DataGridTemplateColumn x:Name="ColCuenta" Width="438" >
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock  Text="CUENTA"  />
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock  x:Name="txtnombreCuenta" 
+                                                                Text="{Binding nombreCuenta}"
+                                                                ToolTip="Seleccione la respuesta correspondiente"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                                <DataGridTemplateColumn.CellEditingTemplate >
+                                                    <DataTemplate>
+                                                        <ComboBox x:Name="seleccionNombreCuenta"
+                                                    Height="30"
+                                                    Background="Transparent"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Right"
+                                                    Width="438"
+                                                    MinWidth="50"
+                                                    MaxWidth="500"
+                                                    ItemsSource="{Binding Source={StaticResource cuentasLista}}"
+                                                    Text="{Binding nombreCuenta, UpdateSourceTrigger=LostFocus}"
+                                                    SelectedItem="{Binding nombreCuenta, UpdateSourceTrigger=LostFocus}"
+                                                    IsEditable="False"
+                                                    Controls:TextBoxHelper.Watermark="Seleccione la cuenta"
+                                                    AllowDrop="False" ToolTip="Escoja la cuenta">
+                                                        </ComboBox>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataGridTemplateColumn.CellStyle>
+                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                        <Style.Triggers>
+                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                            <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Cuenta">
+                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </DataTrigger>
+                                                            <MultiTrigger>
+                                                                <MultiTrigger.Conditions>
+                                                                    <Condition Property="IsSelected" Value="true" />
+                                                                </MultiTrigger.Conditions>
+                                                            </MultiTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGridTemplateColumn.CellStyle>
+                                            </DataGridTemplateColumn>
+                                            
+                                            <DataGridTemplateColumn x:Name="ColCargo" Width="150" >
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock  
+                                                 Text="CARGOS" ToolTip="Valor a cargar a la cuenta"  />
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate >
+                                                        <TextBlock  
+                                                        x:Name="txtcargomovimiento" 
+                                                        Text="{Binding Path= cargomovimiento , 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n2}"
+                                                        MinWidth="150"
+                                                        Width="150"
+                                                        MaxWidth="150"
+                                                        Margin="1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ToolTip="Valor cargado en la  cuenta"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                                <DataGridTemplateColumn.CellEditingTemplate >
+                                                    <DataTemplate>
+                                                        <Controls:NumericUpDown 
+                                                                x:Name="txtcargomovimiento"
+                                                                Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                                Margin="1"
+                                                                Minimum="0"
+                                                                Maximum="1000000000"
+                                                                ButtonsAlignment="Left"
+                                                                Height="30"
+                                                                MinWidth="150"
+                                                                Width="150"
+                                                                MaxWidth="150"
+                                                                Interval="0.25"
+                                                                HasDecimals="{Binding tieneDecimales}"
+                                                                Controls:TextBoxHelper.Watermark="Valor a cargar"     
+                                                                Value="{Binding cargomovimiento, StringFormat=n2,
+                                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                                NotifyOnSourceUpdated=True,
+                                                                ValidatesOnDataErrors=True}"
+                                                                ToolTip="Valor a cargar">
+                                                        </Controls:NumericUpDown>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataGridTemplateColumn.CellStyle>
+                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                        <Style.Triggers>
+                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                            <DataTrigger Binding="{Binding abonosActivados}" Value="1">
+                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                <Setter Property="Foreground" Value="Transparent"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding cargomovimiento}" Value="0">
+                                                                <Setter Property="Foreground" Value="Transparent"/>
+                                                            </DataTrigger>                                                            
+                                                            <MultiTrigger>
+                                                                <MultiTrigger.Conditions>
+                                                                    <Condition Property="IsSelected" Value="true" />
+                                                                </MultiTrigger.Conditions>
+                                                            </MultiTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGridTemplateColumn.CellStyle>
+                                            </DataGridTemplateColumn>
+                                            
+                                            <DataGridTemplateColumn x:Name="ColAbono" Width="150" >
+                                                <DataGridTemplateColumn.Header>
+                                                    <TextBlock  
+                                                 Text="ABONOS" ToolTip="Valor a abonar a la cuenta"  />
+                                                </DataGridTemplateColumn.Header>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate >
+                                                        <TextBlock  
+                                                        x:Name="txtabonomovimiento" 
+                                                        Text="{Binding Path= abonomovimiento , 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n2}"
+                                                        MinWidth="150"
+                                                        Width="150"
+                                                        MaxWidth="150"
+                                                        Margin="1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ToolTip="Valor abonado en la  cuenta"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                                <DataGridTemplateColumn.CellEditingTemplate >
+                                                    <DataTemplate>
+                                                        <Controls:NumericUpDown 
+                                                                x:Name="txtabonomovimiento"
+                                                                Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                                Margin="1"
+                                                                Minimum="0"
+                                                                Maximum="1000000000"
+                                                                ButtonsAlignment="Left"
+                                                                Height="30"
+                                                                MinWidth="150"
+                                                                Width="150"
+                                                                MaxWidth="150"
+                                                                Interval="0.25"
+                                                                HasDecimals="{Binding tieneDecimales}"
+                                                                Controls:TextBoxHelper.Watermark="Valor a abonar"     
+                                                                Value="{Binding abonomovimiento, StringFormat=n2,
+                                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                                NotifyOnSourceUpdated=True,
+                                                                ValidatesOnDataErrors=True}"
+                                                                ToolTip="Valor a abonar">
+                                                        </Controls:NumericUpDown>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataGridTemplateColumn.CellStyle>
+                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                        <Style.Triggers>
+                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                            <DataTrigger Binding="{Binding cargosActivados}" Value="1">
+                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                <Setter Property="Foreground" Value="Transparent"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding abonomovimiento}" Value="0">
+                                                                <Setter Property="Foreground" Value="Transparent"/>
+                                                            </DataTrigger>
+                                                            <MultiTrigger>
+                                                                <MultiTrigger.Conditions>
+                                                                    <Condition Property="IsSelected" Value="true" />
+                                                                </MultiTrigger.Conditions>
+                                                            </MultiTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGridTemplateColumn.CellStyle>
+                                            </DataGridTemplateColumn>
+                                                <!--https://social.msdn.microsoft.com/Forums/vstudio/en-US/9e3cb8bc-a860-44e7-b4da-5c8b8d40126d/wpf-datagrid-checkbox-event?forum=wpf-->
+                                            </DataGrid.Columns>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger
+                                                    EventName="SelectionChanged">
+                                                <cmd:EventToCommand 
+                                                    Command="{Binding SelectionCuentaChangedCommand, Mode=TwoWay}"
+                                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>                                            
+                                        </DataGrid>
+
+                                                <StackPanel Orientation="Horizontal" Margin="0">
+                                                <Border BorderThickness="2" BorderBrush="{DynamicResource AccentColorBrush}">
+                                                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                                    <TextBlock
+                                                    Height="35"
+                                                    Margin="286,0,0,0"
+                                                    MinWidth="40"
+                                                    Width="150"
+                                                    MaxWidth="160"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Bottom"
+                                                    Text="Totales en US$"/>
+                                                </Grid>
+                                                </Border>
+                                                <Border BorderThickness="0,2,2,2" BorderBrush="{DynamicResource AccentColorBrush}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                <Border BorderThickness="0,0,2,0" BorderBrush="{DynamicResource AccentColorBrush}">
+                                                    <Grid>
+                                                        <TextBox HorizontalContentAlignment="Right"  SpellCheck.IsEnabled="True" IsEnabled="False"
+                                                             Validation.Error="Validation_Error"    
+                                                             DataContext="{Binding currentDetalleEntidad, ValidatesOnDataErrors=True,
+                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                             VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                             Controls:TextBoxHelper.Watermark="Total cargos" 
+                                                             Margin="0" VerticalAlignment="Top" 
+                                                             Width="150"
+                                                             MaxLength="100"
+                                                             MaxWidth="600"
+                                                             MinHeight="35"
+                                                             MinWidth="50"
+                                                             Height="30"
+                                                             TextWrapping="Wrap"
+                                                             Text="{Binding sumacargopartida,  StringFormat=n2,
+                                                             NotifyOnValidationError=True, Mode=TwoWay,
+                                                             UpdateSourceTrigger=PropertyChanged, 
+                                                             ValidatesOnDataErrors=True}" />
+                                                    </Grid>
+                                                </Border>
+                                                <Grid>
+                                                            <TextBox HorizontalContentAlignment="Right"  SpellCheck.IsEnabled="True" IsReadOnly="True"
+                                                             Validation.Error="Validation_Error"    
+                                                             DataContext="{Binding currentDetalleEntidad, ValidatesOnDataErrors=True,
+                                                             UpdateSourceTrigger=PropertyChanged}"
+                                                             VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                             Controls:TextBoxHelper.Watermark="Total abonos" 
+                                                             Margin="0" VerticalAlignment="Top" 
+                                                             Width="150"
+                                                             MaxLength="100"
+                                                             MaxWidth="600"
+                                                             MinHeight="35"
+                                                             MinWidth="50"
+                                                             Height="30"
+                                                             TextWrapping="Wrap"
+                                                             AcceptsReturn="True"
+                                                             Text="{Binding sumaabonopartida,  StringFormat=n2,
+                                                             NotifyOnValidationError=True, Mode=TwoWay,
+                                                             UpdateSourceTrigger=PropertyChanged, 
+                                                             ValidatesOnDataErrors=True}" />
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Border>
+                                    </StackPanel>
+                                        </StackPanel>    
+                                </Grid>
+                            <Grid  x:Name="GrdCuerpoConclusiones"  >
+                                <WrapPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                        <Grid VerticalAlignment="Center">
+                                            <TextBlock
+                                            Height="30"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Concepto de partida"/>
+                                        </Grid>
+                                        <Grid>
+                                            <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                             Validation.Error="Validation_Error"         
+                                             DataContext="{Binding currentDetalleEntidad, ValidatesOnDataErrors=True}"
+                                             VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                             Controls:TextBoxHelper.ClearTextButton="True" 
+                                             Controls:TextBoxHelper.Watermark="Concepto de  la partida" 
+                                             Margin="10,5,0,5" VerticalAlignment="Top" 
+                                             Width="610"
+                                             MaxWidth="650"
+                                             MaxLength="250"
+                                             MinHeight="30"
+                                             MinWidth="50"
+                                             Height="60"
+                                             TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                             Text="{Binding comentariopartida , 
+                                             NotifyOnValidationError=True, 
+                                             UpdateSourceTrigger=PropertyChanged, 
+                                             ValidatesOnDataErrors=True}" >
+                                            </TextBox>
+                                        </Grid>
+                                    </StackPanel>
+                                    <Grid  x:Name="GrdPadre" >
+                                        <StackPanel Orientation="Horizontal" Margin="0">
+                                            <TextBlock
+                                            Height="30"
+                                            Margin="0,5,0,0"
+                                            MinWidth="40"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Estado partida"/>
+                                            <Grid>
+                                                <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                                 IsEnabled="False"
+                                                 DataContext="{Binding currentDetalleEntidad, ValidatesOnDataErrors=True}"
+                                                 VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                 Controls:TextBoxHelper.Watermark="estado de partida" 
+                                                 Margin="17,5,0,5" VerticalAlignment="Top" 
+                                                 Width="232"
+                                                 MaxLength="100"
+                                                 MaxWidth="600"
+                                                 MinHeight="35"
+                                                 MinWidth="50"
+                                                 Height="30"
+                                                 TextWrapping="Wrap"
+                                                 Text="{Binding aprobadapartida, 
+                                                 NotifyOnValidationError=True, 
+                                                 UpdateSourceTrigger=PropertyChanged, 
+                                                 ValidatesOnDataErrors=True}" />
+                                            </Grid>
+                                            <TextBlock
+                                            Height="30"
+                                            Margin="10,0,0,0"
+                                            MinWidth="40"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="*Clase de partida"/>
+                                            <ComboBox 
+                                            x:Name="comboClase"
+                                             Margin="14,5,0,5" VerticalAlignment="Top" 
+                                             Width="232"
+                                             MaxWidth="330"
+                                             MinHeight="35"
+                                             MinWidth="50"
+                                              HorizontalAlignment="Center"
+                                              Background="Transparent"
+                                              ItemsSource="{Binding listaClasePartidas}" 
+                                              SelectedIndex="0"
+                                              DisplayMemberPath="descripcion" 
+                                              IsEditable="False" Controls:TextBoxHelper.Watermark="Clase de partida"
+                                              AllowDrop="False" >
+                                                <ComboBox.Resources>
+                                                    <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                                </ComboBox.Resources>
+                                                <ComboBox.SelectedItem>
+                                                    <Binding Path="selectedClasePartidaModelo" 
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         Mode="TwoWay"
+                                                         NotifyOnValidationError="True" 
+                                                         ValidatesOnDataErrors="True">
+                                                    </Binding>
+                                                </ComboBox.SelectedItem>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger
+                                                        EventName="SelectionChanged">
+                                                        <cmd:EventToCommand 
+                                                         Command="{Binding SelectionTipoPartidaCommand, Mode=TwoWay}"
+                                                         CommandParameter="{Binding SelectedItem, ElementName=comboClase}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+                                </WrapPanel>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel>
+                             <Grid  x:Name="otros"  >
+                                <WrapPanel Orientation="Horizontal">
+                                    <StackPanel Margin="5,0,5,0">
+                                        <Grid>
+                                            <TextBlock
+                                            Height="30"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Text="*Campo requerido"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Vertical" MinWidth="30" Width="Auto" >
+                        <usrBoton:BotonesCrear HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCrear}"/>
+                        <usrBoton:BotonesConsultar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadConsultar}"/>
+                        <usrBoton:BotonesModificar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadEditar}"/>
+                        <usrBoton:BotonesCopiar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCopiar}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+    </Controls:MetroWindow>
+
+

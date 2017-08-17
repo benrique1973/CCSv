@@ -1,0 +1,289 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.Views.Principales.Herramientas.Normativa.Crud.NormaCrearView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="420" d:DesignWidth="550"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      SizeToContent="WidthAndHeight"
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles"
+                      TitleCaps="False"
+                      xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas" 
+                      xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="5">
+        <StackPanel  IsEnabled="{Binding accesibilidadWindow}">
+        <Grid>
+            <Label Margin="1" Grid.Row="0" x:Name="lblEncabezado" 
+                   HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center"
+                   MinHeight="30"
+                   Content="{Binding encabezadoPantalla, ValidatesOnDataErrors=True}"   
+                   HorizontalAlignment="Center"  Width="Auto"/>
+        </Grid>
+            <StackPanel  IsEnabled="{Binding accesibilidadCuerpo}" x:Name="GrdDatosCuerpo"
+                    VerticalAlignment="Top" HorizontalAlignment="Left"  Grid.Row="1"
+                    >
+                <StackPanel Orientation="Horizontal"                              
+                   IsEnabled="{Binding activarCaptura, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock
+                                Height="35"
+                                Margin="5,5,5,5"
+                                MinWidth="140"
+                                MaxWidth="250"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Nombre abreviado"/>
+                    <TextBox x:Name="txtdescripcionactividad" HorizontalContentAlignment="Left"
+                            DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                             Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalContentAlignment="Top"  HorizontalAlignment="Right" 
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                             Controls:TextBoxHelper.Watermark="Ingrese el nombre abreviado de normativa"
+                             Margin="5,5,5,5" 
+                             VerticalAlignment="Top" 
+                             Width="360"
+                             Height="35"
+                             MinWidth="250"
+                             MinHeight="25"
+                             TextWrapping="Wrap"
+                             Validation.Error="Validation_Error">
+                        <TextBox.Resources>
+                            <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                        </TextBox.Resources>
+                        <Binding Path="descripcion" 
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True"  
+                                                     ValidatesOnDataErrors="True" >
+
+                            <Binding.ValidationRules>
+                                <reglas:NormativaNombreUnico>
+                                    <reglas:NormativaNombreUnico.Wrapper>
+                                        <reglas:WrapperNorma listaNormaSeleccion="{Binding Data.listaEntidadSeleccion, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </reglas:NormativaNombreUnico.Wrapper>
+                                </reglas:NormativaNombreUnico>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                  IsEnabled="{Binding activarCaptura, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock
+                                Height="35"
+                                Margin="5,5,5,5"
+                                MinWidth="140"
+                                MaxWidth="250"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Nombre de normativa"/>
+                    <TextBox x:Name="txtnombrenormativa" HorizontalContentAlignment="Left" 
+                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Top"  HorizontalAlignment="Right" 
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Ingrese el nombre de la normativa" 
+                         Margin="5,5,5,5"
+                         VerticalAlignment="Top" 
+                         Width="360"
+                         Height="55"
+                         MinWidth="250"
+                         MinHeight="35"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         Validation.Error="Validation_Error">
+                        <TextBox.Resources>
+                            <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                        </TextBox.Resources>
+                        <Binding Path="nombrenormativa" 
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True"  
+                                                     ValidatesOnDataErrors="True" >
+                            <Binding.ValidationRules>
+                                <reglas:NormativaNombreLargoUnico >
+                                    <reglas:NormativaNombreLargoUnico.Wrapper>
+                                        <reglas:WrapperNorma listaNormaSeleccion="{Binding Data.listaEntidadSeleccion, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </reglas:NormativaNombreLargoUnico.Wrapper>
+                                </reglas:NormativaNombreLargoUnico>
+                            </Binding.ValidationRules>
+                        </Binding>
+
+
+
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                 IsEnabled="{Binding activarCaptura, UpdateSourceTrigger=PropertyChanged}"           >
+                    <TextBlock
+                                Height="35"
+                                Margin="5,5,5,5"
+                                MinWidth="140"
+                                MaxWidth="250"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="Fecha de emisión"/>
+                    <DatePicker x:Name="dpkfechaemisionnormativa"  
+                          Margin="5,5,5,5"   
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         DisplayDateStart="1/01/1970"
+                         DisplayDateEnd="12/31/2050"
+                         Width="360"
+                         Height="35"
+                         MinWidth="250"
+                         MinHeight="35"
+                         Validation.Error="Validation_Error"
+                     Controls:TextBoxHelper.Watermark="Ingrese la fecha de emisión"                                 
+                     VerticalAlignment="Top" HorizontalAlignment="Left"
+                     SelectedDate="{Binding fechaemisionnormativa, NotifyOnValidationError=True, 
+                     UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" 
+                     DisplayDate="2017-12-31" Text="dd/MM/yyyy">
+                        <DatePicker.BlackoutDates>
+                        </DatePicker.BlackoutDates>
+                    </DatePicker>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                 IsEnabled="{Binding activarCaptura, UpdateSourceTrigger=PropertyChanged}"  >
+                    <TextBlock
+                                Height="35"
+                                Margin="5,5,5,5"
+                                MinWidth="140"
+                                MaxWidth="250"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="Fecha de vigencia"/>
+                    <DatePicker x:Name="dpkfechavigencianormativa"
+                     DisplayDateStart="1/01/1970"
+                     DisplayDateEnd="12/31/2050"
+                         Margin="5,5,5,5"
+                         Width="360"
+                         Height="35"
+                         MinWidth="250"
+                         MinHeight="35"
+                         Validation.Error="Validation_Error"       
+                         DisplayDate="2017-12-31" Text="dd/MM/yyyy"
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Ingrese la fecha de vigencia"                                 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         SelectedDate="{Binding fechavigencianormativa, NotifyOnValidationError=True, 
+                         UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}">
+                        <DatePicker.BlackoutDates>
+                        </DatePicker.BlackoutDates>
+                    </DatePicker>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                     IsEnabled="{Binding activarCaptura}">
+                        <TextBlock
+                                Height="35"
+                                Margin="5,5,5,5"
+                                MinWidth="140"
+                                MaxWidth="250"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Archivo"/>
+                        <Button x:Name="btnBuscar" 
+                         Content="{Binding contenidoControlCarga,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left" 
+                         Margin="5,5,5,5"  
+                         VerticalAlignment="Center"  
+                         Height="35"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         MinWidth="100"
+                         Click="btnBuscar_Click"
+                         IsEnabled="{Binding accesibilidadProceso}"       
+                         />
+                        
+                        <TextBox x:Name="txtRuta" HorizontalAlignment="Right" 
+                         IsReadOnly="True"
+                         Visibility="{Binding visibilidadRuta}" 
+                        Controls:TextBoxHelper.Watermark="{Binding marcaAguaArchivo}" 
+                         MinWidth="250" Height="35" Margin="5,5,5,5" >
+                        </TextBox>
+                        <TextBox x:Name="txtNombreArchivo" HorizontalAlignment="Right" 
+                         IsReadOnly="True"
+                         Visibility="{Binding visibilidadNombre}" 
+                         Text="{Binding nombrearchivonormativa, 
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=PropertyChanged,
+                         ValidatesOnDataErrors=True,
+                         NotifyOnValidationError=True}"
+                         MinWidth="250" Height="35" Margin="5,5,5,5" >
+                        </TextBox>                        
+                    </StackPanel>
+                    <Grid  x:Name="GrdDatosMensaje"
+                HorizontalAlignment="Left" Margin="0,5,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                    Height="20"
+                    Margin="5,5,5,5"
+                    MinWidth="60"
+                    Width="150"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Campo requerido"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            <Grid Visibility="{Binding visibilidadProcesando}" HorizontalAlignment="Left" >
+                <StackPanel Orientation="Horizontal" Margin="0">
+                        <TextBlock
+                                Height="15"
+                                Margin="5,5,5,5"
+                                MinWidth="140"
+                                MaxWidth="250"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="Cargando"/>
+                        <ProgressBar Width="355"
+                         Margin="8"
+                         IsIndeterminate="True"
+                         Value="100"
+                         Foreground="{DynamicResource AccentColorBrush}"          
+                         Height="Auto" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+            <Grid  IsEnabled="{Binding accesibilidadWindow}">
+            <StackPanel Orientation="Vertical" >
+                <usrControl:BotonesCrear HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCrear}" 
+                                         IsEnabled="{Binding activarCrear,
+                                         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <usrControl:BotonesConsultar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadConsultar}" 
+                                         IsEnabled="{Binding activarConsultar,
+                                         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <usrControl:BotonesModificar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadEditar}" 
+                                         IsEnabled="{Binding activarEditar,
+                                         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </Grid>
+        </StackPanel>
+    </Grid>
+
+</Controls:MetroWindow>

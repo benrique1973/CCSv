@@ -1,0 +1,827 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Planificacion.Riesgo.RiesgoViewImpresion"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="816" d:DesignWidth="1123"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                      Top="0"
+                      Left="0"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      
+                      SizeToContent="WidthAndHeight"
+                      IsWindowDraggable="True"  
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion.Crud"
+                      xmlns:usrImpresion="clr-namespace:SGPTWpf.SGPtWpf.Recursos.controles.Impresion"
+                      xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                      AttachedBehaviors:WFBReportes.Name="{Binding Path=ReportesAImpresionMainModel.TypeName}"
+                      TitleCaps="False"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button x:Name="btnSalir" Command="{Binding SalirCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                        Height="20"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_door_leave}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0" FontWeight="Bold"  VerticalAlignment="Center" Text="Regresar" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnImprimir" Command="{Binding ImprimirCommand}" Visibility="{Binding visibilidadImprimir}" >
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                        Height="20"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_printer_blank}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0" FontWeight="Bold"  VerticalAlignment="Center" Text="Imprimir" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+
+    </Controls:MetroWindow.RightWindowCommands>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Height="Auto" HorizontalAlignment="Center" Width="1123">
+
+        <Grid.Resources>
+            <conv:FlexibleBooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+            <conv:EnableConverter x:Key="EnableConvertir"/>
+        </Grid.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="1123" HorizontalContentAlignment="Center" >
+            <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                <Grid HorizontalAlignment="Center" x:Name="gridContenido">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="1100" >
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <usrImpresion:Encabezado
+                            Grid.Row="0" Margin="0"/>
+                        </StackPanel>
+                        <Grid>
+                            <StackPanel Orientation="Vertical" >
+                            <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource AccentColorBrush}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid x:Name="datosConsulta" HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" Grid.Row="1" >
+                                    <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <StackPanel Orientation="Vertical">
+                                                <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Border BorderThickness="1" Margin="0"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                            Height="20"  FontWeight="Bold"
+                                                            HorizontalAlignment="Center"
+                                                            TextAlignment="Center"
+                                                            Margin="0"
+                                                            Text="#"
+                                                            Width="30"
+                                                            VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                            Height="20"  FontWeight="Bold"
+                                                            HorizontalAlignment="Center"
+                                                            TextAlignment="Center"
+                                                            Margin="1,1,1,1"
+                                                            Text="Cuenta"
+                                                            Width="125"
+                                                            VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                            Height="20"  FontWeight="Bold"
+                                                            HorizontalAlignment="Center"
+                                                            TextAlignment="Center"
+                                                            Margin="1,1,1,1"
+                                                            Text="Saldo en US$"
+                                                            Width="93"
+                                                            VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                         <Border BorderThickness="1" Margin="0"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                            Height="20"  FontWeight="Bold"
+                                                            HorizontalAlignment="Center"
+                                                            TextAlignment="Center"
+                                                            Margin="1,1,1,1"
+                                                            Text="Factores de riesgo"
+                                                            Width="120"
+                                                            VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Vertical">
+                                                                <TextBlock  
+                                                                Height="20"  FontWeight="Bold"
+                                                                HorizontalAlignment="Center"
+                                                                TextAlignment="Center"
+                                                                Margin="1,1,1,1"
+                                                                Text="Evaluación cualitativa de riesgos"
+                                                                Width="188"
+                                                                VerticalAlignment="Center"/>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Text="Inherente"
+                                                                        Width="60"
+                                                                        VerticalAlignment="Center"/>
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                    <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Text="Control"
+                                                                        Width="60"
+                                                                        VerticalAlignment="Center"/>
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                    <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Width="60"
+                                                                        Text="Deteccion"
+                                                                        VerticalAlignment="Center"/>
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                </StackPanel>
+
+                                                            </StackPanel>
+                                                            
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Text="Clase de pruebas"
+                                                                        Width="120"
+                                                                        VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                                        Height="45"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        TextWrapping="Wrap"
+                                                                        Text="Procedimientos de auditoría en áreas de riesgo"
+                                                                        Width="130"
+                                                                        VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                            
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Vertical">
+                                                                <TextBlock  
+                                                                Height="20"  FontWeight="Bold"
+                                                                HorizontalAlignment="Center"
+                                                                TextAlignment="Center"
+                                                                Margin="1,1,1,1"
+                                                                Text="Evaluación cuantitativa de riesgos"
+                                                                Width="188"
+                                                                VerticalAlignment="Center"/>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Text="Inherente"
+                                                                        Width="60"
+                                                                        VerticalAlignment="Center"/>
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                    <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Text="Control"
+                                                                        Width="60"
+                                                                        VerticalAlignment="Center"/>
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                    <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                        <StackPanel Orientation="Vertical">
+                                                                            <TextBlock  
+                                                                        Height="20"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        Width="60"
+                                                                        Text="Deteccion"
+                                                                        VerticalAlignment="Center"/>
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                </StackPanel>
+
+                                                            </StackPanel>
+
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="0"
+                                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock  
+                                                                        Height="45"  FontWeight="Bold"
+                                                                        HorizontalAlignment="Center"
+                                                                        TextAlignment="Center"
+                                                                        Margin="1,1,1,1"
+                                                                        TextWrapping="Wrap"
+                                                                        Text="Riesgo de auditoría"
+                                                                        Width="60"
+                                                                        VerticalAlignment="Center"/>
+                                                            </StackPanel>
+
+                                                        </Border>
+                                                    </StackPanel>
+                                                </Border>
+                                                <DataGrid 
+                                                AutoGenerateColumns="False"  SelectionMode="Extended"
+                                                Margin="1,0,0,0"
+                                                Name="dataGrid"
+                                                ScrollViewer.CanContentScroll="True" 
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                HorizontalScrollBarVisibility="Auto"
+                                                Width="1100"
+                                                AllowDrop="False"
+                                                IsReadOnly="True"
+                                                HeadersVisibility="None"
+                                                VerticalScrollBarVisibility="Auto"
+                                                CanUserResizeRows="True"
+                                                CanUserSortColumns="True"
+                                                CanUserAddRows="False"
+                                                VerticalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                                                HorizontalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                                                GridLinesVisibility="All"
+                                                ItemsSource="{Binding Path= lista , UpdateSourceTrigger=PropertyChanged}">
+                                                    <DataGrid.Columns >
+
+                                                        <DataGridTextColumn Header="#" Width="32.5"
+                                                        Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}"
+                                                        x:Name="codCuentaContable">
+                                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                        <DataGridTextColumn Header="Cuenta" Width="130"
+                                                        Binding="{Binding nombredmr,  UpdateSourceTrigger=PropertyChanged}"
+                                                        x:Name="codigoCuentaCatalogo">
+                                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+
+                                                        <DataGridTemplateColumn x:Name="saldoevaluaciondmr" Width="97"  >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <TextBlock  TextWrapping="Wrap"
+                                                                  Text="SALDO" ToolTip="Cifra en balance"  />
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate >
+                                                                    <TextBlock  
+                                                                    x:Name="txtsaldoevaluaciondmr" 
+                                                                    Text="{Binding Path=saldoevaluaciondmr , 
+                                                                    UpdateSourceTrigger= PropertyChanged,
+                                                                    StringFormat=n1}"
+                                                                    MinWidth="30"
+                                                                    Width="Auto"
+                                                                    MaxWidth="100"
+                                                                    Margin="1,1,5,1"
+                                                                    TextWrapping="Wrap"
+                                                                    HorizontalAlignment="Right"
+                                                                    TextAlignment="Right"
+                                                                    ToolTip="% de alcance"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="gfactoresriesgodmr" Width="124">
+                                                            <DataGridTemplateColumn.Header>
+                                                                <TextBlock   TextWrapping="Wrap"
+                                                                Text="FACTORES DE RIESGO" ToolTip="Factores a considerar para el riesgo"  />
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock  
+                                                                    x:Name="txtfactoresriesgodmr" 
+                                                                    Text="{Binding factoresriesgodmr}"
+                                                                    MinHeight="30"
+                                                                    MinWidth="100"
+                                                                    MaxWidth="200"
+                                                                    TextWrapping="Wrap"
+                                                                    ToolTip="Si hubiese factores, ingresarlos"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+
+                                                        <DataGridTemplateColumn x:Name="gRiesgoInherente" Width="64" >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions >
+                                                                        <RowDefinition MinHeight="20" MaxHeight="40" Height="Auto" />
+                                                                        <RowDefinition />
+                                                                    </Grid.RowDefinitions>
+                                                                    <TextBlock  Text="INH"  TextWrapping="Wrap" Grid.Row="2"  />
+                                                                </Grid>
+
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock  x:Name="txtevaluacioninherentedmr" 
+                                                                     Text="{Binding evaluacioninherentedmr}"
+                                                                     ToolTip="Seleccione el riesgo apropiado"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="gRiesgoControl"  Width="64" >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <StackPanel>
+                                                                        <TextBlock  Text="RIESGO"  TextWrapping="Wrap" Margin="1" VerticalAlignment="Top"/>
+                                                                        <TextBlock  Text="CONT"  TextWrapping="Wrap"  Margin="1" VerticalAlignment="Bottom"/>
+                                                                    </StackPanel>
+                                                                </Grid>
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock  x:Name="txtevaluacioncontroldmr" 
+                                                                Text="{Binding evaluacioncontroldmr}"
+                                                                ToolTip="Seleccione el riesgo apropiado"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="gRiesgoCombinado" Width="64">
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions >
+                                                                        <RowDefinition MinHeight="20" MaxHeight="40" Height="Auto" />
+                                                                        <RowDefinition />
+                                                                    </Grid.RowDefinitions>
+                                                                    <TextBlock  Text="DDET"  TextWrapping="Wrap" Grid.Row="2"  />
+                                                                </Grid>
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock  x:Name="txtevaluacioncombinadodmr" 
+                                                                Text="{Binding evaluacioncombinadodmr}"
+                                                                ToolTip="Seleccione el riesgo apropiado"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="gclasespruebasdmr" Width="125">
+                                                            <DataGridTemplateColumn.Header>
+                                                                <TextBlock   TextWrapping="Wrap"
+                                                                Text="CLASE DE PRUEBAS" ToolTip="Tipo de pruebas a aplicar"  />
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock  
+                                                        x:Name="txtclasespruebasdmr" 
+                                                        Text="{Binding clasespruebasdmr}"
+                                                        MinHeight="30"
+                                                        MinWidth="100"
+                                                        MaxWidth="125"
+                                                        TextWrapping="Wrap"
+                                                        ToolTip="Ingrese las clase de pruebas, ingresarlos"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn x:Name="gprocedimientosdmr" Width="135">
+                                                            <DataGridTemplateColumn.Header>
+                                                                <TextBlock   TextWrapping="Wrap"
+                                                                 Text="Procedimientos de Auditoría en Áreas de Riesgo" ToolTip="Tipo de pruebas a aplicar"  />
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock  
+                                                        x:Name="txtprocedimientosdmr" 
+                                                        Text="{Binding procedimientosdmr}"
+                                                        MinHeight="30"
+                                                        MinWidth="100"
+                                                        MaxWidth="300"
+                                                        TextWrapping="Wrap"
+                                                        ToolTip="Ingrese los procedimientos, ingresarlos"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="datosalcanceinherentedmr" Width="64" >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions >
+                                                                        <RowDefinition MinHeight="20" MaxHeight="40" Height="Auto" />
+                                                                        <RowDefinition />
+                                                                    </Grid.RowDefinitions>
+                                                                    <TextBlock  Text="INHER"  TextWrapping="Wrap" Grid.Row="2" ToolTip="Alcance por riesgo inherente"  />
+                                                                </Grid>
+
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate >
+                                                                    <TextBlock  
+                                                        x:Name="txtalcanceinherentedmr" 
+                                                        Text="{Binding Path= alcanceinherentedmr , 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n1}"
+                                                        MinWidth="30"
+                                                        Width="30"
+                                                        MaxWidth="60"
+                                                         Margin="1,1,5,1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ToolTip="Horas aplicadas al procedimiento"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="alcancecontroldmr" Width="65"  >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <StackPanel>
+                                                                        <TextBlock  Text="RIEs"  TextWrapping="Wrap" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                                        <TextBlock  Text="CON"  TextWrapping="Wrap"  Margin="1" VerticalAlignment="Bottom"/>
+                                                                    </StackPanel>
+                                                                </Grid>
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate >
+                                                                    <TextBlock  
+                                                        x:Name="txtalcanceinherentedmr" 
+                                                        Text="{Binding Path= alcancecontroldmr , 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n1}"
+                                                        MinWidth="30"
+                                                        Width="30"
+                                                        MaxWidth="60"
+                                                         Margin="1,1,5,1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ToolTip="% de alcance"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+
+                                                        <DataGridTemplateColumn x:Name="alcancecombinadodmr" Width="64" >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions >
+                                                                        <RowDefinition MinHeight="20" MaxHeight="40" Height="Auto" />
+                                                                        <RowDefinition />
+                                                                    </Grid.RowDefinitions>
+                                                                    <TextBlock  Text="DET"  TextWrapping="Wrap" Grid.Row="2"  />
+                                                                </Grid>
+
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate >
+                                                                    <TextBlock  
+                                                        x:Name="txtalcancecombinadodmr" 
+                                                        Text="{Binding Path= alcancecombinadodmr , 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n1}"
+                                                        MinWidth="30"
+                                                        Width="30"
+                                                        MaxWidth="60"
+                                                         Margin="1,1,5,1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ToolTip="% de alcance"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn x:Name="riesgoAuditoriadmr" Width="64"  >
+                                                            <DataGridTemplateColumn.Header>
+                                                                <Grid>
+                                                                    <StackPanel>
+                                                                        <TextBlock  Text="RI"  TextWrapping="Wrap" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                                        <TextBlock  Text="DE"  TextWrapping="Wrap"  Margin="1" VerticalAlignment="Bottom"/>
+                                                                    </StackPanel>
+                                                                </Grid>
+                                                            </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate >
+                                                                    <TextBlock  
+                                                        x:Name="txtalcanceinherentedmr" 
+                                                        Text="{Binding Path= riesgoAuditoriadmr , 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n1}"
+                                                        MinWidth="30"
+                                                        Width="30"
+                                                        MaxWidth="60"
+                                                        Margin="1,1,5,1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ToolTip="% de riesgo  de auditoría"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </StackPanel>
+                                        </Border>
+                                </Grid>
+                            </Border>
+
+                            <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                <Grid HorizontalAlignment="Center">
+                                    <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock  
+                                            Height="23"
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Evaluación"
+                                            Width="110"
+                                            VerticalAlignment="Top"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Grid>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                            Height="23"
+                                            TextBlock.TextAlignment="Center"                
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Riesgo"
+                                            Width="110"
+                                            VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Text="Inherente"
+                                                        Width="110"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Text="Control"
+                                                        Width="110"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Text="De detección"
+                                                        Width="110"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                            Height="23"
+                                            TextBlock.TextAlignment="Center"                
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Alto"
+                                            Width="110"
+                                            VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacioninherentedmrAlto, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                         BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        TextBlock.TextAlignment="Center"    
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Text="{Binding evaluacioncontroldmrAlto, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                         BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        Height="23"
+                                                        TextBlock.TextAlignment="Center"    
+                                                        HorizontalAlignment="Center"
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Text="{Binding evaluacionDetecciondmrAlto, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                            Height="23"
+                                            TextBlock.TextAlignment="Center"                
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Medio"
+                                            Width="110"
+                                            VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"    
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacioninherentedmrMedio, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"    
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacioncontroldmrMedio, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                        <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                            <TextBlock  
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"    
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacionDetecciondmrMedio, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <StackPanel Orientation="Vertical">
+                                                            <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                <TextBlock  
+                                            Height="23"
+                                            TextBlock.TextAlignment="Center"                    
+                                            HorizontalAlignment="Center"
+                                            Margin="1,1,1,1"
+                                            Text="Bajo"
+                                            Width="110"
+                                            VerticalAlignment="Top"/>
+                                                            </Border>
+                                                            <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                <TextBlock  
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"        
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacioninherentedmrBajo, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                            </Border>
+                                                            <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                <TextBlock 
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"        
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacioncontroldmrBajo, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                            </Border>
+                                                            <Border BorderThickness="1" Margin="1"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                                                <TextBlock 
+                                                        HorizontalAlignment="Center"
+                                                        TextBlock.TextAlignment="Center"        
+                                                        Margin="1,1,1,1"
+                                                        Width="110"
+                                                        Height="23"    
+                                                        Text="{Binding evaluacionDetecciondmrBajo, ValidatesOnDataErrors=True,
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=n1}"
+                                                        VerticalAlignment="Top"/>
+                                                            </Border>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                        </StackPanel>
+                        </Grid>
+                </StackPanel>
+                </Grid>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+
+    </Controls:MetroWindow>
+

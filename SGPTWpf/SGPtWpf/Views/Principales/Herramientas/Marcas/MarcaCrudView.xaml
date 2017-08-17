@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="SGPTWpf.Views.Administracion.Herramientas.MarcaCrudView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    Dialog:DialogParticipation.Register="{Binding}"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    BorderBrush="{DynamicResource AccentColorBrush}"
+                    BorderThickness="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"            
+                    d:DesignHeight="500" d:DesignWidth="800"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles"
+                    xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                    xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                    AttachedBehaviors:WFBMarcas.Name="{Binding Path=MarcasEstandaresMainModel.TypeName}"             
+                    >
+    <Grid Height="Auto" Width="Auto" Margin="1" IsEnabled="{Binding accesibilidadWindow}">
+        <Grid.RowDefinitions >
+            <RowDefinition MinHeight="50" MaxHeight="60" Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <conv:RowToIndexConverter x:Key="RowToIndexConverter"/>
+            <conv:FlexibleBooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+            <conv:EnableConverter x:Key="EnableConvertir"/>
+        </Grid.Resources>
+        <Grid Grid.Row="0">
+            <Border BorderThickness="1"
+                Grid.Row="1"
+                BorderBrush="{DynamicResource AccentColorBrush}">
+                <usrControl:BotonesControles
+            />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                <Grid x:Name="datosConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
+                    <DataGrid
+                        AutoGenerateColumns="False"  SelectionMode="Single"
+                        Margin="1,1,1,0"
+                        Name="dataGrid"
+                        VerticalAlignment="Top"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        ItemsSource="{Binding Path= lista , UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding currentEntidad}"
+                        CanUserAddRows="False">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn 
+                            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, 
+                            Converter={conv:RowToIndexConverter}}"
+                            MinWidth="20"
+                            Width="50"
+                            MaxWidth="100"
+                            Header="#"
+                            x:Name="correlativo"/>
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= marcame, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Marca" x:Name="marcame"
+                                MinWidth="50"
+                                Width="75"
+                                MaxWidth="100"
+                                IsReadOnly="True" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell" BasedOn="{StaticResource MetroDataGridCell}">
+                                        <Setter Property="FontSize" Value="{Binding Path= tamaniotipografiame, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Setter Property="FontFamily" Value="{Binding Path= tipografiame, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Setter Property="FontFamily" Value="{Binding Path= tipografiame, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= significadoMe , UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="significadoMe" Header="Significado"
+                                MinWidth="200"
+                                Width="*"
+                                IsReadOnly="True" >
+                                <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                        <Setter Property="Margin" Value="5,2,5,0" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= inicialesusuario  , UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="usuario" Header="Usuario modifica"
+                                Width="Auto"
+                                MinWidth="130"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= fechahoyme ,StringFormat=d, UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="fechahoyme" Header="Fecha modificación"
+                                MinWidth="140"
+                                Width="Auto"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= tipografiame , UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="tipografiame" Header="Tipo de  letra"
+                                Width="Auto"
+                                MinWidth="100"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= tamaniotipografiame , UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="tamaniotipografiame" Header="Tamaño letra"
+                                Width="Auto"
+                                MinWidth="120"
+                                IsReadOnly="True" />
+                        </DataGrid.Columns>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger
+                                EventName="SelectionChanged,MouseDoubleClick">
+                                <cmd:EventToCommand 
+                                    Command="{Binding SelectionChangedCommand, Mode=TwoWay}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <cmd:EventToCommand 
+                                    Command="{Binding DoubleClickCommand, Mode=TwoWay}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
+

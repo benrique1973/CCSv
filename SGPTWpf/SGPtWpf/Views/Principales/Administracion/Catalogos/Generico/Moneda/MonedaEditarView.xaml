@@ -1,0 +1,101 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.Views.Catalogos.Generico.Moneda.MonedaEditarView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"             
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      d:DesignHeight="282" d:DesignWidth="550"
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles"
+                      TitleCaps="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label x:Name="lblEncabezado" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Datos "   HorizontalAlignment="Center"  Width="Auto"/>
+        </Grid>
+        <Grid Margin="5"  x:Name="GrdDatos" DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="63*"/>
+                <RowDefinition Height="63*"/>
+                <RowDefinition Height="36*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="397*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtElemento" HorizontalContentAlignment="Left" 
+                 VerticalContentAlignment="Top"  HorizontalAlignment="Left" 
+                 Controls:TextBoxHelper.ClearTextButton="True" 
+                 Controls:TextBoxHelper.Watermark="Ingrese símbolo " 
+                 Margin="5" VerticalAlignment="Center" 
+                 Width="350"
+                 Height="35"
+                 MinWidth="350"
+                 MinHeight="35"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True" Grid.Row="1"
+                 Text="{Binding simbolomoneda, 
+                 Mode=TwoWay,
+                 UpdateSourceTrigger=PropertyChanged,
+                 ValidatesOnDataErrors=True,
+                 NotifyOnValidationError=True}" Grid.Column="1"
+                 />
+
+            <TextBox x:Name="txtdescripcion" HorizontalContentAlignment="Left" 
+                 VerticalContentAlignment="Top"  HorizontalAlignment="Left" 
+                 Controls:TextBoxHelper.ClearTextButton="True" 
+                 Controls:TextBoxHelper.Watermark="Ingrese el nombre " 
+                 Margin="5" VerticalAlignment="Center" 
+                 Width="350"
+                 Height="35"
+                 MinWidth="350"
+                 MinHeight="35"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True" Grid.Row="2"
+                 Text="{Binding descripcion, 
+                 Mode=TwoWay,
+                 UpdateSourceTrigger=PropertyChanged,
+                 ValidatesOnDataErrors=True,
+                 NotifyOnValidationError=True}" Grid.Column="1"
+                 
+                 />
+            <Label x:Name="lbldescripcionElemento" Content="*Símbolo  " Grid.Column="0" HorizontalAlignment="Left" Margin="5,10.262,0,0" Grid.Row="1" VerticalAlignment="Center" Height="25" Width="130" />
+            <Label x:Name="lbldescripcion" Content="*Nombre  " Grid.Column="0" HorizontalAlignment="Left" Margin="10,10.262,0,0" Grid.Row="2" VerticalAlignment="Center" Height="25" Width="100" />
+            <Label x:Name="lblmensaje" Content="*Dato requerido  " Grid.Column="0" HorizontalAlignment="Left" Margin="10,2.723,0,8.462" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="150" Grid.ColumnSpan="2" />
+            <i:Interaction.Triggers>
+                <i:EventTrigger
+                    EventName="SelectionChanged">
+                    <cmd:EventToCommand
+                     Command="{Binding SelectionChangedCommand, Mode=TwoWay}"
+                     CommandParameter="{Binding SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+        </Grid>
+
+        <usrControl:BotonesEditar
+            Grid.Row="4" HorizontalAlignment="Center"/>
+    </Grid>
+    </Controls:MetroWindow>

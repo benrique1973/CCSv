@@ -1,0 +1,341 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Documentacion.CatalogoCuentas.CatalogoCuentasCrud"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="450" d:DesignWidth="600"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"  
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      SizeToContent="WidthAndHeight"
+                      IsWindowDraggable="True" 
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                      xmlns:usrBoton="clr-namespace:SGPTWpf.Recursos.controles"
+                      TitleCaps="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid >
+        <StackPanel>
+            <StackPanel 
+            VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <Grid  x:Name="GrdDatosEncabezado"
+                HorizontalAlignment="Center" Margin="0,5,0,0">
+                    <TextBlock
+                    Height="20"
+                    Margin="10,5,5,5"
+                    MinWidth="60"
+                    Width="Auto"
+                    MaxWidth="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Text="{Binding encabezadoPantalla, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid >
+                <Grid x:Name="GrdDatosCuerpo" >
+                <StackPanel>
+                        <Grid  x:Name="GrdDatosElemento"  >
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock
+                    Height="30"
+                    Margin="10,5,5,5"
+                    MinWidth="40"
+                    Width="140"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Tipo de elemento contable"/>
+                        <ComboBox 
+                        x:Name="comboElemento"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+                          HorizontalAlignment="Center"
+                          Background="Transparent"
+                          ItemsSource="{Binding listaElementos}" 
+                          SelectedIndex="0" 
+                          Text="{Binding Path=descripcion, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="descripcion" 
+                          SelectedItem="{Binding selectedElementoContable }"
+                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione el tipo de elemento"
+                          AllowDrop="False"     
+                          MinHeight="30"
+                          IsEnabled="{Binding accesibilidadWindow}"
+                          Validation.Error="Validation_Error"
+                          >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger
+                                    EventName="SelectionChanged">
+                                    <cmd:EventToCommand 
+                                     Command="{Binding SelectionElementoCommand, Mode=TwoWay}"
+                                     CommandParameter="{Binding SelectedItem, ElementName=comboElemento}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                        <Grid  x:Name="GrdDatosClaseCuenta"  >
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock
+                    Height="30"
+                    Margin="10,5,5,5"
+                    MinWidth="40"
+                    Width="140"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Clase cuenta contable"/>
+                                <ComboBox 
+                          x:Name="comboClaseCuenta"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+                          HorizontalAlignment="Center"
+                          Background="Transparent"
+                          ItemsSource="{Binding listaClaseCuenta}" 
+                          SelectedIndex="0" 
+                          Text="{Binding Path=descripcion, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="descripcion" 
+                          SelectedItem="{Binding selectedClaseCuentaModelo }"
+                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la clase de cuenta"
+                          AllowDrop="False"     
+                          MinHeight="30"
+                          IsEnabled="{Binding accesibilidadWindow}"
+                          Validation.Error="Validation_Error"
+                          >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                    EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                     Command="{Binding SelectionClaseCuentaCommand, Mode=TwoWay}"
+                                     CommandParameter="{Binding SelectedItem, ElementName=comboClaseCuenta}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="GrdDatosTipoSaldo"  >
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock
+                    Height="30"
+                    Margin="10,5,5,5"
+                    MinWidth="40"
+                    Width="140"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Clase de saldo de cuenta"/>
+                                <ComboBox 
+                        x:Name="comboSaldo"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+                          HorizontalAlignment="Center"
+                          Background="Transparent"
+                          ItemsSource="{Binding listaTipoSaldoCuenta}" 
+                          SelectedIndex="0" 
+                          Text="{Binding Path=descripcionTSCuenta, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="descripcionTSCuenta" 
+                          SelectedItem="{Binding selectedTipoSaldoCuenta }"
+                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione el tipo de saldo"
+                          AllowDrop="False"     
+                          MinHeight="30"
+                          IsEnabled="{Binding accesibilidadWindow}"
+                          Validation.Error="Validation_Error"
+                          >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                    EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                     Command="{Binding SelectionTipoSaldoCuentaCommand, Mode=TwoWay}"
+                                     CommandParameter="{Binding SelectedItem, ElementName=comboSaldo}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="GrdDatosPadre"  >
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock
+                    Height="30"
+                    Margin="10,5,5,5"
+                    MinWidth="40"
+                    Width="140"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Cuenta/Rubro padre"/>
+                                <ComboBox 
+                        x:Name="comboPadre"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+                          HorizontalAlignment="Center"
+                          Background="Transparent"
+                          ItemsSource="{Binding listaCatalogoCuentasModelo}" 
+                          SelectedIndex="0" 
+                          Text="{Binding Path=descripcioncc, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="descripcioncc" 
+                          SelectedItem="{Binding selectedCuentaPadre }"
+                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la cuenta del que depende"
+                          AllowDrop="False"     
+                          MinHeight="30"
+                          IsEnabled="{Binding accesibilidadWindow}"
+                          Validation.Error="Validation_Error"
+                          >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                    EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                     Command="{Binding SelectionElementoCommand, Mode=TwoWay}"
+                                     CommandParameter="{Binding SelectedItem, ElementName=comboElemento}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                            Height="30"
+                            Margin="10,5,5,5"
+                            MinWidth="40"
+                            Width="140"
+                            MaxWidth="200"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                                Text="{Binding nombreprogramaVista, ValidatesOnDataErrors=True,
+                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Grid  x:Name="GrdDatos" 
+                       DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                       Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox x:Name="txtNombreHerramienta" HorizontalContentAlignment="Left" 
+                         SpellCheck.IsEnabled="True"   Language="es" 
+                         Validation.Error="Validation_Error"
+                         VerticalContentAlignment="Top"  HorizontalAlignment="Left"  
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Ingrese el nombre de la cuenta "
+                         VerticalAlignment="Top" 
+                         Height="50"
+                         MinWidth="350"
+                         MinHeight="15"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True">
+                            <TextBox.Resources>
+                                <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+                            <Binding Path="nombreprograma" 
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True"  
+                                                     ValidatesOnDataErrors="True" >
+
+                                <Binding.ValidationRules>
+                                    <reglas:NombreProgramaUnico>
+                                        <reglas:NombreProgramaUnico.Wrapper>
+                                                <reglas:WrapperPrograma listaEntidadSeleccion="{Binding Data.listaCatalogoCuentasModelo, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                        </reglas:NombreProgramaUnico.Wrapper>
+                                    </reglas:NombreProgramaUnico>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                </Grid>
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Height="30"
+                            Margin="10,5,5,5"
+                            MinWidth="40"
+                            Width="140"
+                            MaxWidth="200"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                                Text="Código contable"/>
+                        <Grid  x:Name="GrdDatosCodigo" 
+                       DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                       Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox x:Name="txtCodigoContable" HorizontalContentAlignment="Left" 
+                         SpellCheck.IsEnabled="False"   Language="es" 
+                         Validation.Error="Validation_Error"
+                         VerticalContentAlignment="Top"  HorizontalAlignment="Left"  
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Ingrese el nombre de la cuenta "
+                         VerticalAlignment="Top" 
+                         Height="30"
+                         MinWidth="350"
+                         MinHeight="15"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+                         TextWrapping="Wrap"
+                         TextAlignment="Right"
+                         AcceptsReturn="False">
+                                <TextBox.Resources>
+                                    <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                </TextBox.Resources>
+                                <Binding Path="nombreprograma" 
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True"  
+                                                     ValidatesOnDataErrors="True" >
+
+                                    <Binding.ValidationRules>
+                                        <reglas:NombreProgramaUnico>
+                                            <reglas:NombreProgramaUnico.Wrapper>
+                                                <reglas:WrapperPrograma listaEntidadSeleccion="{Binding Data.listaCatalogoCuentasModelo, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            </reglas:NombreProgramaUnico.Wrapper>
+                                        </reglas:NombreProgramaUnico>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid  x:Name="GrdDatosMensaje"
+                HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                    Height="20"
+                    Margin="10,5,5,5"
+                    MinWidth="60"
+                    Width="150"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Campo requerido"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Grid x:Name="GrdBotones">
+                <StackPanel Orientation="Vertical" >
+                    <usrBoton:BotonesCrear HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCrear}"/>
+                    <usrBoton:BotonesConsultar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadConsultar}"/>
+                    <usrBoton:BotonesModificar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadEditar}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+    </Controls:MetroWindow>

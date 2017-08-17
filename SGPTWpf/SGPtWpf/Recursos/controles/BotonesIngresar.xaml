@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="SGPTWpf.Recursos.controles.BotonesIngresar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SGPTWpf.Recursos.controles"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"             
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="250">
+    <Grid
+        VerticalAlignment="Top"
+        HorizontalAlignment="Stretch"
+        Height="40"
+        x:Name="Fondo"
+        Background="Transparent"
+        >
+        <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"
+                Command="{Binding IngresarCommand, Mode=TwoWay}" 
+                CommandParameter="{Binding ElementName=This}"
+                Content="Ingresar"  HorizontalAlignment="Left" 
+                VerticalAlignment="Top" Width="100" Margin="15,5,5,5">
+            </Button>
+            <Button Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"
+                Command="{Binding CancelarCommand, Mode=TwoWay}"
+                Content="Cancelar"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Margin="15,5,5,5"
+                />
+        </StackPanel>
+    </Grid>
+</UserControl>

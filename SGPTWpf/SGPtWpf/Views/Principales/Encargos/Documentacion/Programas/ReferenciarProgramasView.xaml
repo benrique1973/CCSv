@@ -1,0 +1,384 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Documentacion.Programas.ReferenciarProgramasView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="460" d:DesignWidth="640"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      SizeToContent="WidthAndHeight"
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Herramientas"
+                      xmlns:usrBoton="clr-namespace:SGPTWpf.Recursos.controles"
+                      xmlns:usrOpciones="clr-namespace:SGPTWpf.SGPtWpf.Recursos.controles.Encargos"
+                      TitleCaps="False"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                      >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid IsEnabled="{Binding accesibilidadWindow}" >
+        <Grid.Resources>
+            <conv:FlexibleBooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+            <conv:EnableConverter x:Key="EnableConvertir"/>
+        </Grid.Resources>
+        <StackPanel x:Name="GrdDatosCuerpo" >
+
+            <StackPanel x:Name="encabezadoCrud" 
+                    Grid.Row="0" Orientation="Vertical" 
+                    Margin="0,5,0,0"
+                    >
+                <TextBlock
+                                Height="23"
+                                HorizontalAlignment="Center"
+                                Margin="10,1,5,1"
+                                Text="{Binding encabezadoPantalla, ValidatesOnDataErrors=True,
+                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Width="Auto" MinWidth="250"
+                                VerticalAlignment="Top"/>
+            </StackPanel>
+            <Grid Visibility="{Binding visibilidadReferencia}">
+
+                <StackPanel>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal"  Margin="0,0,0,0"
+                        Visibility="{Binding visibilidadReferencia}">
+                            <Grid>
+                                <TextBlock
+                                Height="30"
+                                HorizontalAlignment="Left"
+                                Margin="20,5,5,5"
+                                Text="Referencia"
+                                Width="Auto"
+                                MinWidth="130"
+                                MaxWidth="130"
+                                VerticalAlignment="Top"/>
+                            </Grid>
+                            <Grid Margin="16,1,5,1" HorizontalAlignment="Right">
+                                <TextBox
+                         x:Name="txtReferencia"
+                         KeyDown="txtReferenciaKeyDown"
+                         DataContext="{Binding currentEntidadPrograma, ValidatesOnDataErrors=True,
+                         Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SpellCheck.IsEnabled="True"
+                        HorizontalAlignment="Right"
+                         Validation.Error="Validation_Error"
+                         HorizontalContentAlignment="Left" 
+                         VerticalContentAlignment="Top"
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Ingrese la referencia para el documento "
+                         Margin="10,5,5,5" 
+                         VerticalAlignment="Top" 
+                         Width="440"
+                         Height="35"
+                         MinWidth="300"
+                         MinHeight="15"
+                         TextWrapping="Wrap">
+                                    <TextBox.Resources>
+                                        <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                    </TextBox.Resources>
+                                    <Binding Path="referenciaPrograma" 
+                                                         Mode="TwoWay"
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         NotifyOnValidationError="True"  
+                                                         ValidatesOnDataErrors="True" >
+                                        <Binding.ValidationRules>
+                                            <reglas:NombreReferenciaProgramaUnico>
+                                                <reglas:NombreReferenciaProgramaUnico.Wrapper>
+                                                    <reglas:WrapperPrograma listaEntidadSeleccion="{Binding Data.listadoProgramaModelo, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                </reglas:NombreReferenciaProgramaUnico.Wrapper>
+                                            </reglas:NombreReferenciaProgramaUnico>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid Margin="1">
+                            <StackPanel x:Name="ejecucionCrud"
+                            Orientation="Horizontal" 
+                            Margin="0"
+                            Visibility="{Binding visibilidadReferencia}">
+                                <Grid>
+                                    <TextBlock
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="20,5,10,5"
+                                    Text="Fecha de cierre"
+                                    Width="Auto"
+                                    MinWidth="120"
+                                    MaxWidth="300"
+                                    VerticalAlignment="Top"/>
+                                </Grid>
+                                <Grid>
+                                    <DatePicker x:Name="dpkfechaCierrePrograma"
+                                                KeyDown="txtFechaCierreKeyDown"
+                                                DisplayDateStart="1/01/2012"
+                                                DisplayDateEnd="12/31/2050"
+                                                Height="30"
+                                                Background="Transparent"
+                                                HorizontalAlignment="Left"
+                                                Margin="30,5,5,5"
+                                                VerticalAlignment="Top"
+                                                Width="160"
+                                                MinWidth="50"
+                                                MaxWidth="300"
+                                                ToolTip="Seleccione la fecha de cierre, se puede modificar mientras no se cierre el programa"
+                                                 Controls:TextBoxHelper.ClearTextButton="True"
+                                                 Controls:TextBoxHelper.Watermark="Inicio"                                 
+                                                 Validation.Error="Validation_Error">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="fechacierre"
+                                                     StringFormat="dd/MM/yyyy"
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True" 
+                                                     ValidatesOnDataErrors="True">
+                                                <Binding.ValidationRules>
+                                                    <reglas:DateAuditoriaRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock
+                                            HorizontalAlignment="Left"
+                                            Margin="5,5,5,5"
+                                            Width="80" 
+                                            Text="Horas ejecución"
+                                            TextAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Visibility="{Binding visibilidadHoras}"
+                                            Height="30"/>
+                                </Grid>
+                                <Grid Visibility="{Binding visibilidadHoras,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <Controls:NumericUpDown 
+                                                                x:Name="txtHorasEjecucion"
+                                                                Validation.Error="Validation_Error"
+                                                                KeyDown="txtHojasEjecucionKeyDown" 
+                                                                Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                                Margin="10,5,5,5"
+                                                                Minimum="0"
+                                                                Maximum="100"
+                                                                ButtonsAlignment="Left"
+                                                                Height="30"
+                                                                Width="175"
+                                                                IsEnabled="False"
+                                                                DataContext="{Binding currentEntidadPrograma, ValidatesOnDataErrors=True,
+                                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                    
+                                                                Interval="1"
+                                                                Controls:TextBoxHelper.Watermark="Horas ejecución"     
+                                                                Value="{Binding horasejecucionprograma, 
+                                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                                NotifyOnSourceUpdated=True,
+                                                                ValidatesOnDataErrors=True}" ToolTip="Para modificar las  horas lo debe hacer en el detalle">
+                                    </Controls:NumericUpDown>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+            <StackPanel  IsEnabled="{Binding accesibilidadCuerpo}"  >
+                <Grid Margin="1">
+                    <StackPanel x:Name="seleccionCrud"
+                        Orientation="Horizontal" 
+                        Margin="0"
+                        Visibility="{Binding visibilidadCreacion}">
+                        <Grid>
+                            <TextBlock
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="20,5,10,5"
+                                    Text="{Binding tipoProgramaCuestionario, 
+                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Width="Auto"
+                                    MinWidth="120"
+                                    MaxWidth="300"
+                                    VerticalAlignment="Top"/>
+                        </Grid>
+                        <Grid>
+                            <ComboBox x:Name="seleccionComboPrograma"
+                                    Height="30"
+                                    Background="Transparent"
+                                    HorizontalAlignment="Left"
+                                    Margin="30,5,5,5"
+                                    VerticalAlignment="Top"
+                                    Width="160"
+                                    MinWidth="50"
+                                    MaxWidth="300"
+                                    ItemsSource="{Binding listaTipoPrograma}"
+                                    SelectedIndex="0" 
+                                    Text="{Binding Path=SelectedTipoProgramaModelo.descripcion, UpdateSourceTrigger=PropertyChanged}"
+                                    DisplayMemberPath="descripcion" 
+                                    SelectedItem="{Binding SelectedTipoProgramaModelo, 
+                                    NotifyOnValidationError=True, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    ValidatesOnDataErrors=True}"
+                                    IsEditable="False"
+                                    Controls:TextBoxHelper.Watermark="Seleccione el tipo"
+                                    AllowDrop="True"   
+                                    IsEnabled="False"
+                                     />
+                        </Grid>
+                        <Grid>
+                            <TextBlock
+                                            HorizontalAlignment="Left"
+                                            Margin="5,5,5,5"
+                                            Width="80" 
+                                            Text="Horas previstas"
+                                            TextAlignment="Center"
+                                            VerticalAlignment="Top"
+                                            Visibility="{Binding visibilidadHoras}"
+                                            Height="30"/>
+                        </Grid>
+                        <Grid Visibility="{Binding visibilidadHoras,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <Controls:NumericUpDown 
+                                                                Validation.Error="Validation_Error"  
+                                                                Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                                Margin="10,5,5,5"
+                                                                Minimum="0"
+                                                                Maximum="100"
+                                                                ButtonsAlignment="Left"
+                                                                Height="30"
+                                                                Width="175"
+                                                                DataContext="{Binding currentEntidadPrograma, ValidatesOnDataErrors=True,
+                                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                    
+                                                                Interval="1"
+                                                                Controls:TextBoxHelper.Watermark="Horas planeadas"     
+                                                                Value="{Binding horasplanprograma, 
+                                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                                NotifyOnSourceUpdated=True,
+                                                                ValidatesOnDataErrors=True}">
+                            </Controls:NumericUpDown>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel HorizontalAlignment="Center"
+                x:Name="cuerpoCrud" 
+                Grid.Row="2" Orientation="Vertical">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <TextBlock
+                                    Height="20"
+                                    HorizontalAlignment="Left"
+                                    Margin="10,1,1,1"
+                                    Width="Auto"
+                                    MinWidth="150"
+                                    MaxWidth="500"
+                                    Text="{Binding nombreprogramaVista, ValidatesOnDataErrors=True,
+                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    VerticalAlignment="Top"/>
+                        </Grid>
+                        <Grid  x:Name="GrdDatos" 
+                           DataContext="{Binding currentEntidadPrograma, ValidatesOnDataErrors=True,
+                           Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox x:Name="txtNombreHerramienta" HorizontalContentAlignment="Left" 
+                             SpellCheck.IsEnabled="True"   Language="es" 
+                             Validation.Error="Validation_Error"
+                             VerticalContentAlignment="Top"  HorizontalAlignment="Left"  
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                             Controls:TextBoxHelper.Watermark="Ingrese el nombre "
+                             Margin="10,5,5,5" VerticalAlignment="Top" 
+                             Width="600"
+                             Height="50"
+                             MinWidth="350"
+                             MinHeight="15"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True">
+                                <TextBox.Resources>
+                                    <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                </TextBox.Resources>
+                                <Binding Path="nombreprograma" 
+                                                         Mode="TwoWay"
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         NotifyOnValidationError="True"  
+                                                         ValidatesOnDataErrors="True" >
+
+                                    <Binding.ValidationRules>
+                                        <reglas:NombreProgramaUnico>
+                                            <reglas:NombreProgramaUnico.Wrapper>
+                                                <reglas:WrapperPrograma listaEntidadSeleccion="{Binding Data.listadoProgramaModelo, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                            </reglas:NombreProgramaUnico.Wrapper>
+                                        </reglas:NombreProgramaUnico>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="objetivoCrud" HorizontalAlignment="Center"
+                        Grid.Row="3" Orientation="Vertical" 
+                        Margin="0,5,0,0" Visibility="{Binding visibilidadObjetivo}">
+                    <StackPanel Orientation="Vertical" Visibility="{Binding visibilidadCreacion}">
+                        <TextBlock
+                                    Height="23"
+                                    HorizontalAlignment="Left"
+                                    Margin="10,1,1,1"
+                                    Width="150"
+                                    Text="Objetivo :"
+                                    VerticalAlignment="Top"/>
+                        <Grid  x:Name="GrdObjetivo" >
+                            <TextBox 
+                             DataContext="{Binding currentEntidadProgramaDetalle, ValidatesOnDataErrors=True,
+                             Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SpellCheck.IsEnabled="True"
+                             Validation.Error="Validation_Error"
+                             x:Name="txtObjetivoDetalleHerramienta" 
+                             HorizontalContentAlignment="Left" 
+                             VerticalContentAlignment="Top"  HorizontalAlignment="Left"  
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                             Controls:TextBoxHelper.Watermark="Ingrese el objetivo "
+                             Margin="10,5,5,5" VerticalAlignment="Top" 
+                             Width="600"
+                             Height="60"
+                             MinWidth="350"
+                             MinHeight="15"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                                Text="{Binding descripciondp, 
+                                NotifyOnValidationError=True, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                ValidatesOnDataErrors=True}"
+                            />
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel >
+                <Grid Margin="0"  VerticalAlignment="Bottom" HorizontalAlignment="Center" x:Name="botones">
+                    <StackPanel Orientation="Vertical">
+                        <usrBoton:BotonesCrear HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCrear}"/>
+                        <usrBoton:BotonesCopiar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCopiar}"/>
+                        <usrOpciones:BotonesReferenciar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCmdReferenciar}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+    </Controls:MetroWindow>
+

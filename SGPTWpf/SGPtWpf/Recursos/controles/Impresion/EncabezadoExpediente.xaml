@@ -1,0 +1,185 @@
+﻿<UserControl x:Class="SGPTWpf.SGPtWpf.Recursos.controles.Impresion.EncabezadoExpediente"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SGPTWpf.Recursos.controles"
+              xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"             
+             mc:Ignorable="d" HorizontalAlignment="Center"
+             xmlns:usrImpresion="clr-namespace:SGPTWpf.SGPtWpf.Recursos.controles.Impresion"
+             d:DesignHeight="100" d:DesignWidth="624" MinHeight="100" MinWidth="624" Width="624">
+    <UserControl.Resources>
+        <Style
+            x:Key="BotonEstilo"
+            TargetType="{x:Type Button}">
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style
+            x:Key="StackPanelEstilo"
+            TargetType="StackPanel">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="2,0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="datosConsultaEncabezado"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Center"
+        MinHeight="100"
+        Height="Auto"
+        Width="624"
+        Background="Transparent" >
+
+        <StackPanel Orientation="Vertical">
+            <Grid Width="624">
+                <Grid.Resources>
+                    <conv:ConvertByteArrayToBitmapImage x:Key="BinaryImageConverter"/>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid MinWidth="80" MinHeight="70" Grid.Column="0" >
+                    <Border BorderThickness="1" Margin="1"
+                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                        <Image Name="imgFirma"  
+                                       Height="70" Width="80" Stretch="Fill" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Source="{Binding logoFirma, UpdateSourceTrigger=PropertyChanged,
+                                       Mode=TwoWay,Converter={StaticResource BinaryImageConverter}}">
+
+                        </Image>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Border BorderThickness="1" Margin="1"
+                                    BorderBrush="{DynamicResource AccentColorBrush}">
+                        <Grid  DockPanel.Dock="Left" >
+                            <StackPanel Orientation="Vertical" >
+                                <TextBlock TextAlignment="Center"
+                                              FontSize="14" 
+                                              FontWeight="Bold"
+                                              VerticalAlignment="Bottom" 
+                                              Text="{Binding razonSocialFirma,
+                                              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Width="Auto"
+                                              Height="20"/>
+                                <TextBlock TextAlignment="Center"
+                                              FontSize="14" 
+                                              FontWeight="Bold"
+                                              VerticalAlignment="Bottom" 
+                                              Text="{Binding encabezadoPantalla, 
+                                              ValidatesOnDataErrors=True,
+                                              Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          MinWidth="250"
+                                                          Width="Auto"
+                                              Height="20">
+                                </TextBlock>
+                                <TextBlock TextAlignment="Center"
+                                                      DataContext="{Binding currentEncargo, ValidatesOnDataErrors=True}"    
+                                                      FontSize="14" 
+                                                      VerticalAlignment="Bottom" 
+                                                      Text="{Binding descripcionTipoAuditoria, 
+                                                      ValidatesOnDataErrors=True,
+                                                      Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                  MinWidth="250"
+                                                                  Width="Auto"
+                                                      Height="20">
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid >
+
+                <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Margin="0" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="208"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Border BorderThickness="1" Margin="1"
+                                        BorderBrush="{DynamicResource AccentColorBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  
+                                                    Height="25"  FontWeight="Bold"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1,1,1,1"
+                                                    Text="Cliente: "
+                                                    Width="110"
+                                                    VerticalAlignment="Center"/>
+                                    <TextBlock
+                                                    DataContext="{Binding currentEncargo, ValidatesOnDataErrors=True}"    
+                                                    Height="25"  
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1,1,1,1"
+                                                    Text="{Binding razonsocialcliente, ValidatesOnDataErrors=True,
+                                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Width="Auto"
+                                                    MinWidth="30"
+                                                    VerticalAlignment="Top"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Border BorderThickness="1" Margin="1"
+                                            BorderBrush="{DynamicResource AccentColorBrush}">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock  
+                                                    Height="25"  FontWeight="Bold"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1,0,1,1.323"
+                                                    Text="Período:  "
+                                                    Width="50"
+                                                    VerticalAlignment="Bottom"/>
+                                    <TextBlock
+                                                    DataContext="{Binding currentEncargo, ValidatesOnDataErrors=True}"     
+                                                    Height="25"  
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1,1,1,1"
+                                                    Text="{Binding Path= fechainiperauditencargo , StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}"
+                                                    Width="Auto"
+                                                    MinWidth="20"
+                                                    VerticalAlignment="Top"/>
+                                    <TextBlock
+                                                    Height="25"  
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1,1,1,1"
+                                                    Text=" al "
+                                                    Width="Auto"
+                                                    VerticalAlignment="Top"/>
+                                    <TextBlock
+                                                    DataContext="{Binding currentEncargo, ValidatesOnDataErrors=True}"     
+                                                    Height="25"  
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1,1,1,1"
+                                                    Text="{Binding Path= fechafinperauditencargo , StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}"
+                                                    Width="Auto"
+                                                    MinWidth="20"
+                                                    VerticalAlignment="Top"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <Grid>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
+
+
+
+

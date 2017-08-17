@@ -1,0 +1,346 @@
+﻿<Controls:MetroWindow x:Class="SGPTmvvm.Modales.AprobacionInformesTiempoView"
+                         xmlns:ViewModels="clr-namespace:SGPTmvvm.Modales"
+                         xmlns:local="clr-namespace:SGPTmvvm.CustomValidationAttributes"
+                         mc:Ignorable="d" 
+                         SizeToContent="WidthAndHeight"
+                         x:Name="root" 
+                         ShowInTaskbar="True"
+                         ResizeMode="CanMinimize"
+                         WindowStartupLocation="CenterScreen" 
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+                      xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"   
+                      ShowTitleBar="True" 
+                      Title="Aprobacion de informes de tiempo"
+                      
+                      IsMaxRestoreButtonEnabled="True"
+                      IsCloseButtonEnabled="True"
+                      IsMinButtonEnabled="True"
+
+                      SaveWindowPosition="False"
+                      WindowTransitionsEnabled="True"
+                      EnableDWMDropShadow="True"    >
+    <!--<Window      x:Class="SGPTmvvm.Modales.CRUDRolesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModels="clr-namespace:SGPTmvvm.Modales"
+             xmlns:local="clr-namespace:SGPTmvvm.CustomValidationAttributes"
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             Dialog:DialogParticipation.Register="{Binding}"
+             xmlns:Soporte="clr-namespace:Soporte"
+             mc:Ignorable="d" 
+             d:DesignHeight="416.667" d:DesignWidth="450"
+             x:Name="root" 
+             ShowInTaskbar="False"
+             ResizeMode="NoResize"
+             Loaded="Window_Loaded"
+             WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">-->
+
+    <Window.Resources>
+   
+        <!--Este Style RadioButtonList es para que puedan haber radiobottons bindiados-->
+        <Style x:Key="RadioButtonList" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}" >
+                        <Setter Property="Margin" Value="3" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border BorderThickness="0" Background="Transparent">
+                                        <RadioButton 
+                                            Focusable="False"
+                                            IsHitTestVisible="False"
+                                            IsChecked="{TemplateBinding IsSelected}">
+                                            <ContentPresenter />
+                                        </RadioButton>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border BorderThickness="0" Padding="0" BorderBrush="Transparent" Background="Transparent" Name="Bd" SnapsToDevicePixels="True">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--Ojo que este enummmmm si furulo No hay q darle en la nuca-->
+        <local:EnumMatchToBooleanConverterRadioButtonInformes x:Key="enumConverter" />
+
+    </Window.Resources>
+    <Grid>
+        <!--<Soporte:Throbber Visibility="{Binding ThrobberVisible}" RenderTransformOrigin="-2.117,0.017" />-->
+        <!--<Soporte:Throbber Grid.Column="1" HorizontalAlignment="Center" Margin="21,127,0,0" VerticalAlignment="Top" Visibility="{Binding ThrobberVisible}" RenderTransformOrigin="-2.117,0.017"/>-->
+        <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="2" 
+					CornerRadius="0,0,0,0" Margin="1">
+                <Border.BitmapEffect>
+                    <DropShadowBitmapEffect Color="AliceBlue" Opacity="0.5" Direction="270" ShadowDepth="0.7" />
+                </Border.BitmapEffect>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="15"/> <!--Este era para la busqueda, pero solo esta como idea. ponerlo en 75 en caso de utilizar-->
+                        <RowDefinition Height="300"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="15"/>
+                    </Grid.RowDefinitions>
+
+                    <!--<TextBlock x:Name="MessageTextBlock" Grid.Row="0" Text="Aprobacion de informes de tiempo" TextWrapping="Wrap"  HorizontalAlignment="Left" FontSize="20"  Margin="1,13,0,67" Grid.RowSpan="2"/>-->
+                    <!--<ProgressBar Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Name="BarraProgreso"  IsIndeterminate="True"  Height="22" Margin="21,357,0,0" VerticalAlignment="Top" Width="100" Minimum="-10" Maximum="10"/>-->
+                    <!--No borrar para un posible cambio en esta ventana-->
+                    <UniformGrid Grid.Row="1" Grid.Column="0"  Margin="3" Columns="6" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                        <!--No borrar para un posible cambio en esta ventana-->
+                        <!--<ListBox Style="{StaticResource RadioButtonList}" SelectedValuePath="Tag" HorizontalAlignment="Right" SelectedValue="{Binding Path=TipoIP}">
+                            <ListBoxItem Tag="iPendientes">Pendientes</ListBoxItem>
+                            <ListBoxItem Tag="iAprobados">Aprobados</ListBoxItem>
+                            <ListBoxItem Tag="iReprobados">Reprobados</ListBoxItem>
+                        </ListBox>
+                        <Label Content=" Fecha inicio" FontSize="15" HorizontalAlignment="Center" Height="31" Margin="23,0,22.667,0" />
+                        <DatePicker x:Name="dpickBusquedaInicio" IsEnabled="{Binding HabilitardpickBusquedaInicio}"
+                                    DisplayDate="{Binding DateTime.Now()}" 
+                                    Focusable="False" 
+                                    SelectedDate="{Binding FechaBusquedaInicio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    Height="26" Margin="0.333,0,-45.667,0"/>
+
+
+                        <Label  Content=" Fecha fin" FontSize="15" HorizontalAlignment="Right" Height="31" Margin="0,0,-0.333,0"/>
+                        <DatePicker x:Name="dpickBusquedaFin" IsEnabled="{Binding HabilitardpickBusquedaFin}"
+                                    DisplayDate="{Binding DateTime.Now()}" 
+                                    Focusable="False" 
+                                    SelectedDate="{Binding FechaBusquedaFin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    
+                                    Height="26" Margin="0.333,0,-45.667,0"/>
+                        
+                        <Button x:Name="cmdFiltrarBusqueda"  Content="     Filtrar     "  FontSize="16"  ToolTip="Cancela la modificacion de permisos de roles" Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Command="{Binding cmdFiltrar_Click}" Height="40" Margin="61.333,0,0.333,0">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="10"/>
+                            </Button.Effect>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding HabilitarBotonCancelar, Mode=TwoWay}" Value="true"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="true" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>-->
+
+                    </UniformGrid>
+                    <DataGrid Grid.Row="2"
+                        AutoGenerateColumns="False"
+                        Margin="5,1,5,1"
+                        Name="dataGrid"
+                        VerticalAlignment="Top"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        ItemsSource="{Binding Path= InformeactividadesListado , UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding InformeActSelected}"
+                        CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding idia, Mode=TwoWay}"  Header="ID" x:Name="correlativo" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding usuarioNick, Mode=TwoWay}" Header="Auditor" x:Name="auditor" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding fechainicialia, Mode=TwoWay}" x:Name="Finicial" Header="Fecha inicial" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding fechafinalia, Mode=TwoWay}"  x:Name="Ffinal" Header="Fecha final" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding totalhorasia, Mode=TwoWay}"  x:Name="Thoras" Header="Tiempo horas" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding tiempodias, Mode=TwoWay}"  x:Name="Tdias" Header="Tiempo dias" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding observacionesia, Mode=TwoWay}"  x:Name="NObservaciones" Header="Observaciones" IsReadOnly="True"/>
+                            
+                            <DataGridTemplateColumn Header="Aprobar">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <RadioButton GroupName="{Binding Path=idia}" 
+                                                IsChecked="{Binding Path=aprobacionia, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, 
+                                                Converter={StaticResource enumConverter},
+                                                ConverterParameter={x:Static local:TipoEnumerador.A}}" >Aprobar
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <ei:ChangePropertyAction TargetObject="{Binding ElementName=cmdGuardar}" PropertyName="IsEnabled" Value="True"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </RadioButton>
+                              <!--<RadioButton GroupName="{Binding Path=n1}" IsChecked="{Binding Path=aprobacionia, Converter={StaticResource enumConverter}, ConverterParameter={x:Static local:TipoEnumerador.A}}">Aprobado</RadioButton>-->
+                                        <!--<RadioButton IsChecked="{Binding Path=aprobacionia, Converter={StaticResource enumConverter}, ConverterParameter={x:Static local:TipoEnumerador.A}}">Aprobado</RadioButton>-->
+                                        <!--<RadioButton IsChecked="{Binding Path=YourEnumProperty, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:YourEnumType.Enum1}}" />
+                                        <RadioButton IsChecked="{Binding Path=YourEnumProperty, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:YourEnumType.Enum2}}" />-->
+                                        <!--<StackPanel>
+                                            <ListBox Style="{StaticResource RadioButtonList}" SelectedValuePath="Tag" SelectedValue="{Binding Path=InformeactividadesListado.aprobacionia}">
+                                                <ListBoxItem Tag="A" >Aprobar</ListBoxItem>
+                                                <ListBoxItem Tag="R" >Rechazar</ListBoxItem>
+                                                <ListBoxItem Tag="P" >Pendiente</ListBoxItem>
+                                            </ListBox>
+                                        </StackPanel>-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Rechazar">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <RadioButton Content="Rechazado" GroupName="{Binding Path=idia}" IsChecked="{Binding Path=aprobacionia, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}, ConverterParameter={x:Static local:TipoEnumerador.R}}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <ei:ChangePropertyAction TargetObject="{Binding ElementName=cmdGuardar}" PropertyName="IsEnabled" Value="True"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </RadioButton>
+
+                                        <!--<RadioButton GroupName="{Binding QuestionId}" IsChecked="{Binding IsNo, Mode=TwoWay,UpdateSourceTrigger=LostFocus,NotifyOnTargetUpdated=True}" 
+                                         HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                                        <!--Style="{StaticResource MetroFlatButtonRadioSGPt}"-->
+                                        <!--<RadioButton  Content="Rechazar" GroupName="Options2" 
+                                            IsChecked="{Binding Path=aprobacionia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
+                                             Converter={StaticResource enumConverter},
+                                             ConverterParameter={x:Static local:TipoEnumerador.R}}"  />-->
+                                        
+                                        <!--<RadioButton IsChecked="{Binding Path=aprobacionia, Converter={StaticResource enumConverter}, ConverterParameter={x:Static local:TipoEnumerador.R}}">Rechazado</RadioButton>-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Pendiente">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                            <RadioButton GroupName="{Binding Path=idia}" IsChecked="{Binding Path=aprobacionia, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource enumConverter}, ConverterParameter={x:Static local:TipoEnumerador.P}}">Pendiente
+                                            <!--<i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Checked">
+                                                    <ei:ChangePropertyAction TargetObject="{Binding ElementName=cmdGuardar}" PropertyName="IsEnabled" Value="False"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>-->
+                                            </RadioButton>
+
+                                        <!--<RadioButton GroupName="{Binding QuestionId}" IsChecked="{Binding IsNA, Mode=TwoWay,UpdateSourceTrigger=LostFocus,NotifyOnTargetUpdated=True}" 
+                                         HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                                        <!--Style="{DynamicResource RadioButtonStyle1}"-->
+                                            <!--<RadioButton 
+                                                GroupName="Options1"             
+                                                IsChecked="{Binding Path=aprobacionia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
+                                                Converter={StaticResource enumConverter},
+                                                ConverterParameter={x:Static local:TipoEnumerador.P}}">Pendiente</RadioButton>-->
+                                        
+                                        <!--<RadioButton IsChecked="{Binding Path=aprobacionia, Converter={StaticResource enumConverter}, ConverterParameter=P}">Pendiente</RadioButton>-->
+                                        <!--<RadioButton IsChecked="{Binding Path=aprobacionia, Converter={StaticResource enumConverter}, ConverterParameter={x:Static local:TipoEnumerador.P}}">Pendiente</RadioButton>-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>   
+
+
+                            <!--<ListBox Grid.Column="1" Grid.Row="1" Style="{StaticResource RadioButtonList}" SelectedValuePath="Tag" SelectedValue="{Binding Path=TipoIP}">
+                                <ListBoxItem Tag="IpLocal">IP Local</ListBoxItem>
+                                <ListBoxItem Tag="IpPublica">IP Publica</ListBoxItem>
+                            </ListBox>-->
+
+
+                            <!--<DataGridCheckBoxColumn x:Name="AprobarInforme"  Header="Aprobar" 
+                                    Binding="{Binding  aprobado, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding HabilitarPuedeRevisar}"
+                                    ElementStyle="{StaticResource style}" EditingElementStyle="{StaticResource style}" Width="75">
+                            </DataGridCheckBoxColumn>
+                            <DataGridCheckBoxColumn x:Name="RechazarInforme"  Header="Rechazar" 
+                                    Binding="{Binding reprobado, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding HabilitarPuedeAprobar}"
+                                    ElementStyle="{StaticResource style}" EditingElementStyle="{StaticResource style}" Width="75">
+                            </DataGridCheckBoxColumn>-->
+                           
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <UniformGrid Grid.Column="2" Grid.Row="3" Margin="1" Columns="3" HorizontalAlignment="Center"
+								 VerticalAlignment="Stretch">
+                        <Button Grid.Column="4" x:Name="cmdGuardar" IsEnabled="{Binding HabilitarcmdGuardar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Command="{Binding cmdGuardar_Click}" CommandParameter="{Binding ElementName=txtContraseña}" Content="     Aprobar     " Margin="0,0,10,0" FontSize="16"  ToolTip="Guarda el nuevo rol en la base de datos" Opacity="0.9" Background="{DynamicResource AccentColorBrush}">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <!--<Condition Binding="{Binding ElementName=txtNombreRol, Path=(Validation.HasError)}" Value="false" />
+                                                <Condition Binding="{Binding ElementName=txtDescripcionRol, Path=(Validation.HasError)}" Value="false" />
+                                                <Condition Binding="{Binding HabilitartxtNombreRol, Mode=TwoWay}" Value="true"/>-->
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="true" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button x:Name="cmdCancelarRolx"  Content="     Cancelar     " Margin="15,0,0,0" FontSize="16"  ToolTip="Cancela la aprobacion de informes" Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Command="{Binding cmdCancelar_Click}">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <!--<Condition Binding="{Binding HabilitarBotonCancelar, Mode=TwoWay}" Value="true"/>-->
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="true" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button x:Name="cmdConsultar"  Content="     Consultar     " Margin="15,0,0,0" FontSize="16"  ToolTip="Cancela la modificacion de permisos de roles" Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Command="{Binding cmdConsultar_Click}">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <!--<Condition Binding="{Binding HabilitarBotonCancelar, Mode=TwoWay}" Value="true"/>-->
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="true" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+
+
+                    </UniformGrid>
+                    <!--<Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+
+                        --><!--<ProgressBar x:Name="Barrita" Height="15" Value="{Binding Path=valorBarrita, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsIndeterminate="False"  Grid.Row="4" Visibility="{Binding Path=BarraProgresoVisible, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Minimum="0" Maximum="100"/>--><!--
+                        <ProgressBar Grid.Row="0" Value="{Binding ValorDejarseVer, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }" IsIndeterminate="False" Visibility="{Binding DejarseVer, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"/>
+                        <TextBlock x:Name="ProgressTextBlock" Grid.Row="1" Text="{Binding valorProgresoTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="5" HorizontalAlignment="Center" FontSize="14" Foreground="Green"/>
+                        --><!--<Button Grid.Column="2" x:Name="aceptar" Content='Aceptar' Command="{Binding Acepte}"/>
+                        <Button Grid.Column="3" x:Name="declinar" Content='Declinar' Command="{Binding NoAcepte}"/>--><!--
+                    </Grid>-->
+                </Grid>
+            </Border>
+
+
+    </Grid>
+</Controls:MetroWindow>

@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="SGPTWpf.Views.Principales.Administracion.Menus.ClientesView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:local="clr-namespace:SGPTWpf.Views.Principales.Administracion"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    d:DesignHeight="500" d:DesignWidth="800"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion"
+                    xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                    Dialog:DialogParticipation.Register="{Binding}">
+    <!--AttachedBehaviors:WFB.Name="{Binding Path=MainModel.TypeName}"-->
+    <Grid Height="Auto" Width="Auto" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <DockPanel LastChildFill="True" >
+            <!--Template="{DynamicResource BotonesHighLightMenusLaterales}"-->
+            <Grid Width="Auto">
+                <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                    <StackPanel IsEnabled="{Binding HabilitarMenuIzquierdo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                        MinWidth="235" 
+                        Width="Auto">
+                        <Button x:Name="btnExpedientes" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            		    Background="{DynamicResource AccentColorBrush}"  
+                        Style="{StaticResource BotonHighlightedSquareButtonStyleMenusLaterales}"
+            		    Margin="5,3,5,3"
+            		    Content="Expedientes"
+            		    Command="{Binding ExpedientesCommand}" 
+            		    MinWidth="50"
+            		    Width="220"
+            		    Height="35">
+                        </Button>
+                        <Button x:Name="btnEncargos" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            		    Background="{DynamicResource AccentColorBrush}"  
+                        Style="{StaticResource BotonHighlightedSquareButtonStyleMenusLaterales}"      
+            		    Margin="5,3,5,3"
+            		    Content="Encargos"
+            		    Command="{Binding EncargosCommand}" 
+            		    MinWidth="50"
+            		    Height="35"/>
+                        <Button x:Name="btnContactos" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            		    Background="{DynamicResource AccentColorBrush}"  
+                        Style="{StaticResource BotonHighlightedSquareButtonStyleMenusLaterales}"      
+            		    Margin="5,3,5,3"
+            		    Content="Contactos"
+            		    Command="{Binding ContactosCommand}" 
+            		    MinWidth="50"
+            		    Height="35"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <!--Cuerpo-->
+            <!--BorderBrush="{DynamicResource AccentColorBrush}"-->
+            <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                <Grid x:Name="gtiDatos" Height="Auto" Width="Auto" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Cuerpo-->
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                        <Grid x:Name="gtiDatosGrid" Visibility="{Binding HabilitarFrame, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              Height="Auto" Width="Auto" 
+                              Margin="1" VerticalAlignment="Top" 
+                              HorizontalAlignment="Left" >
+                            <Frame x:Name="EditFrame" Visibility="{Binding HabilitarFrame, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   MinHeight="250" MinWidth="350" 
+                                   Height="Auto" Margin="0,0,0,0" 
+                                   Width="Auto" HorizontalAlignment="Left" 
+                                   NavigationUIVisibility="Hidden"/>
+                        </Grid>
+                    </Border>
+                    <!--Fin de cuerpo-->
+
+                    <!--Datagrid de los clientes-->
+                    <DataGrid Visibility="{Binding HabilitarListadoClientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        AutoGenerateColumns="False"  SelectionMode="Single"
+                        Margin="2,1,1,1"
+                        Name="dataGrid"
+                        IsReadOnly="True"
+                        IsEnabled="False"
+                        VerticalAlignment="Top"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        ItemsSource="{Binding Path= ListadoClientes , UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding ClienteSelected}"
+                        CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding idnitcliente, Mode=TwoWay}"  Header="NIT" x:Name="IDCli" IsReadOnly="True"  Width="150" MaxWidth="160" MinWidth="140"/>
+                            <DataGridTextColumn Binding="{Binding razonsocialcliente, Mode=TwoWay}" x:Name="CliRazonSocial" Header="Cliente" IsReadOnly="True"  Width="400" MaxWidth="480" MinWidth="350"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!--Datagrid de los encargos-->
+                    <DataGrid Grid.Row="0" Visibility="{Binding HabilitarListadoEncargos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        AutoGenerateColumns="False"  SelectionMode="Single"
+                        Margin="2,1,1,1"
+                        Name="dataGridEncargos"
+                        IsReadOnly="True"
+                        IsEnabled="False"
+                        VerticalAlignment="Top"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        ItemsSource="{Binding Path= ListadoEncargos, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding EncargoSelected}"
+                        CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding idnitcliente, Mode=TwoWay}"  Header="NIT" x:Name="IDClient" IsReadOnly="True"  Width="150" MaxWidth="160" MinWidth="140"/>
+                            <DataGridTextColumn Binding="{Binding razonsocialcliente, Mode=TwoWay}" x:Name="CliRazonSocialclit" Header="Cliente" IsReadOnly="True"  Width="300" MaxWidth="480" MinWidth="250"/>
+                            <DataGridTextColumn Binding="{Binding nombreTa, Mode=TwoWay}" x:Name="CliTipoAuditoriat" Header="Tipo Auditoria" IsReadOnly="True"  Width="150" MaxWidth="180" MinWidth="120"/>
+
+                            <DataGridTextColumn Binding="{Binding añoencargo, Mode=TwoWay}" x:Name="CliEncargot" Header="Fecha" IsReadOnly="True"  Width="150" MaxWidth="190" MinWidth="120"/>
+                            <DataGridTextColumn Binding="{Binding nombreetapaencargo, Mode=TwoWay}"  Header="Estado" x:Name="NombreEtapaencargot" IsReadOnly="True"  Width="100" MaxWidth="130" MinWidth="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!--<UniformGrid  x:Name="BotonesUno" Grid.Row="1" Columns="4"  HorizontalAlignment="Center"  Visibility="{Binding HabilitarBotonesExpedientes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                        <Button  x:Name="cmdCrearExp" Command="{Binding cmdCrearExp}" Content="Crear" Margin="3" FontSize="16"  ToolTip="Crear." Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                        </Button>
+                        <Button  x:Name="cmdModificarExp" Command="{Binding cmdEditarExp}" Content="Editar" Margin="3" FontSize="16"  ToolTip="Modificar." Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                        </Button>
+                        <Button x:Name="cmdConsultarExp" Command="{Binding cmdConsultarExp}" Content="Consultar" Margin="3" FontSize="16"  ToolTip="Consultar." Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                        </Button>
+
+                        <Button x:Name="cmdEliminarExp" Command="{Binding cmdEliminarExp}" Content="    Eliminar    " Margin="3" FontSize="16"  ToolTip="Eliminar." Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                        </Button>
+                    </UniformGrid>-->
+                </Grid>
+            </Border>
+            <!--Fin de cuerpo-->
+        </DockPanel>
+    </Grid>
+</UserControl>

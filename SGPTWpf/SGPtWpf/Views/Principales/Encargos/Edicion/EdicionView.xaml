@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="SGPTWpf.Views.Principales.Encargos.Edicion.EdicionView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    Dialog:DialogParticipation.Register="{Binding}"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    BorderBrush="{DynamicResource AccentColorBrush}"
+                    BorderThickness="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    d:DesignHeight="500" d:DesignWidth="800"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles"
+                    xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                    xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                    AttachedBehaviors:WFBEncargos.Name="{Binding Path=EncargosCrudMainModel.TypeName}"             
+                    >
+    <Grid Height="Auto" Width="Auto" Margin="1" IsEnabled="{Binding accesibilidadWindow}">
+        <Grid.RowDefinitions >
+            <RowDefinition MinHeight="50" MaxHeight="60" Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <conv:RowToIndexConverter x:Key="RowToIndexConverter"/>
+            <conv:FlexibleBooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+            <conv:EnableConverter x:Key="EnableConvertir"/>
+        </Grid.Resources>
+        <Grid Grid.Row="0">
+            <Border BorderThickness="1"
+                Grid.Row="1"
+                BorderBrush="{DynamicResource AccentColorBrush}">
+                <usrControl:BotonesControles
+            />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                <Grid x:Name="datosConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Height="Auto" Width="Auto">
+                    <DataGrid Grid.Row="1"
+                        AutoGenerateColumns="False"  SelectionMode="Single"
+                        Margin="1,1,1,0"
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        x:Name="dataGrid"
+                        VerticalAlignment="Top"
+                        AllowDrop="True"
+                        CanUserResizeRows="True"
+                        CanUserSortColumns="True"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        ItemsSource="{Binding Path=listaEncargos , UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding currentEntidad}"
+                        CanUserAddRows="False">
+                        <DataGrid.Columns  >
+                            <DataGridTextColumn 
+                                    Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, 
+                                    Converter={conv:RowToIndexConverter}}"
+                                    Header="#"
+                                    x:Name="correlativo"
+                                    >
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Binding="{Binding Path= razonsocialcliente , UpdateSourceTrigger=PropertyChanged}"
+                                Header="Razón social de cliente"
+                                Width="*"
+                                IsReadOnly="True"  />
+
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= descripcionTipoClienteEncargo , UpdateSourceTrigger=PropertyChanged}"
+                                Header="Tipo de cliente" 
+                                MinWidth="50"
+                                Width="250"
+                                MaxWidth="840"
+                                IsReadOnly="True" >
+                                <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                        <Setter Property="Margin" Value="5,2,5,0" />
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= descripcionTipoAuditoria , UpdateSourceTrigger=PropertyChanged}"
+                                Header="Tipo auditoría" 
+                                MinWidth="50"
+                                Width="160"
+                                MaxWidth="300"
+                                IsReadOnly="True" >
+                                <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                        <Setter Property="Margin" Value="5,2,5,0" />
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= descripcionEtapaEncargo , UpdateSourceTrigger=PropertyChanged}"
+                                Header="Etapa" 
+                                MinWidth="50"
+                                Width="160"
+                                MaxWidth="300"
+                                IsReadOnly="True" >
+                                <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                        <Setter Property="Margin" Value="5,2,5,0" />
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= fechainiperauditencargo , StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="fechaInicio" Header="inicio período"
+                                Width="Auto"  
+                                IsReadOnly="True"
+                                />
+                            <DataGridTextColumn 
+                                Binding="{Binding Path= fechafinperauditencargo , StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="fechaFin" Header="fin de período"
+                                Width="Auto"  
+                                IsReadOnly="True"
+                                />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
+

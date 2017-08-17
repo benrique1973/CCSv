@@ -1,0 +1,67 @@
+﻿<Controls:MetroWindow xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer"  
+                      x:Class="SGPTWpf.SGPtmvvm.Reportes.ReportesView"
+                         mc:Ignorable="d" 
+                         SizeToContent="WidthAndHeight"
+                         d:DesignHeight="520" d:DesignWidth="930"
+                         x:Name="root" 
+                         ShowInTaskbar="True"
+                         ResizeMode="CanMinimize"
+                         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"   
+                      xmlns:ViewModels="clr-namespace:SGPTWpf.SGPtmvvm.Reportes"
+                      xmlns:Soporte="clr-namespace:SGPTmvvm.Soporte" 
+                      xmlns:local="clr-namespace:SGPTWpf.SGPtmvvm.Reportes"
+                      
+                      ShowTitleBar="True" 
+                      Title="Reportes"
+                      
+                      IsMaxRestoreButtonEnabled="True"
+                      IsCloseButtonEnabled="True"
+                      IsMinButtonEnabled="True"
+                      
+                      SaveWindowPosition="False"
+                      WindowTransitionsEnabled="True"
+                      EnableDWMDropShadow="True"  >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Control.Resources>
+ 
+    </Control.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!--<Viewer:CrystalReportsViewer local:ReportesViewModel.ReportSource="{Binding Path=DataContext.ReportSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"  />-->
+        <Viewer:CrystalReportsViewer  Name="crystalReportsViewer1" />
+
+        <!--local: ReportesViewModel.ReportSourceBehaviour.ReportSource="{Binding Path=DataContext.ReportSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=FrameworkElement}}"-->
+        
+        <UniformGrid  Grid.Row="2" Columns="1"  HorizontalAlignment="Right"  Margin="15,0,15,0" IsEnabled="{Binding HabilitarBarraControlBotones, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+            <!--<Button  x:Name="cmdCancelar" Command="{Binding cmdCancelar}" Content="Cancelar" Margin="3,10"  ToolTip="Cancela la operacion de carga." Width="120" Height="30" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" IsEnabled="{Binding HabilitarcmdCancelar, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+
+            <!--<Button x:Name="cmdAtras" Command="{Binding cmdAtras}" Content="&lt; Atras" Margin="3"  ToolTip="Atras"  Width="120" Height="30" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" IsEnabled="{Binding HabilitarcmdAtras, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+
+            <!--<Button x:Name="cmdAdelante" Command="{Binding cmdAdelante}" Content="Adelante &gt;" Margin="3" ToolTip="Adelante"   Width="120" Height="30" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" IsEnabled="{Binding HabilitarcmdAdelante, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+
+            <Button x:Name="cmdFinalizar" Command="{Binding cmdFinalizar}" Content="Cerrar" Margin="3" ToolTip="Guardar y continuar"      Width="120" Height="30" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" IsEnabled="{Binding HabilitarcmdFinalizar, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        </UniformGrid>
+    </Grid>
+</Controls:MetroWindow>

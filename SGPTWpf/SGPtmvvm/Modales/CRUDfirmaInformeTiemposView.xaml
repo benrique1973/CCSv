@@ -1,0 +1,379 @@
+﻿<Controls:MetroWindow xmlns:UserControls="clr-namespace:SGPTWpf.SGPtmvvm.UserControls"  xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl"  x:Class="SGPTmvvm.Modales.CRUDfirmaInformeTiemposView"
+                         xmlns:local="clr-namespace:SGPTmvvm.CustomValidationAttributes"
+                         mc:Ignorable="d" 
+                         SizeToContent="WidthAndHeight"
+                         x:Name="root" 
+                         ShowInTaskbar="True"
+                         ResizeMode="CanMinimize"
+                         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"   
+                      xmlns:ViewModels="clr-namespace:SGPTmvvm.Modales"
+                      ShowTitleBar="True" 
+                      Title="Gestion de informes de tiempo"
+                      
+                      IsMaxRestoreButtonEnabled="False"
+                      IsCloseButtonEnabled="True"
+                      IsMinButtonEnabled="True"
+                      SaveWindowPosition="False"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"
+                      WindowTransitionsEnabled="True"
+                      EnableDWMDropShadow="True"    >
+    <!--d:DesignHeight="560" d:DesignWidth="940"-->
+    <!--
+            
+             xmlns:ViewModels="clr-namespace:SGPTmvvm.Modales"
+             xmlns:local="clr-namespace:SGPTmvvm.CustomValidationAttributes"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             mc:Ignorable="d" 
+             
+             x:Name="root" 
+             ShowInTaskbar="False"
+             ResizeMode="NoResize"
+             Loaded="Window_Loaded"
+             Title="Gestion de informes de tiempo"
+             WindowStartupLocation="CenterScreen" WindowStyle="None"-->
+    <Control.Resources>
+        <!--ESte DataTemplate junto con el ItemPanelTemplate es para que puedan haber dos columnas o mas en un combobox personalizado-->
+        <DataTemplate x:Key="advancedComboxItemDataTemplate">
+            <Grid Width="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="A"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--DisplayMemberPath="numerotelefono"-->
+                <TextBlock Text="{Binding razonsocialcliente}" Margin="5" Grid.Column="0" TextAlignment="Left"/>
+                <TextBlock Text="{Binding descripcionTipoAuditoria}" Margin="5" Grid.Column="1" TextAlignment="Left">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, Path=IsSelected}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="{Binding fechainiperauditencargo}" Margin="5" Grid.Column="2" TextAlignment="Left"/>
+                <TextBlock Text="{Binding fechafinperauditencargo}" Margin="5" Grid.Column="3" TextAlignment="Left"/>
+            </Grid>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="advancedComboxItemsPanelTemplate">
+            <StackPanel Grid.IsSharedSizeScope="True" IsItemsHost="True"/>
+        </ItemsPanelTemplate>
+        
+        <FrameworkElement x:Key="DataContextBridge" />
+    </Control.Resources>
+    <!--<Window.Resources>
+        --><!--Este apartado es para poder hacer una Inyeccion de dependencia para poder comparar dos objetos. Por ej. dos fechas--><!--
+        <FrameworkElement x:Key="DataContextBridge" />
+    </Window.Resources>-->
+    <Window.DataContext>
+        <!--Este apartado es para poder hacer una Inyeccion de dependencia para poder comparar dos objetos. Por ej. dos fechas-->
+        <Binding Mode="OneWayToSource" Path="DataContext" Source="{StaticResource DataContextBridge}" />
+    </Window.DataContext>
+    
+    <Grid>
+        <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="2"  
+					CornerRadius="0,0,0,0" Margin="1" >
+            <!--Black-->
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect Color="AliceBlue" Opacity="0.5" Direction="370" ShadowDepth="0.7" />
+            </Border.BitmapEffect>
+            <!--<UserControls:SelectorDeColumnas/>-->
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="260"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="45" />
+
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="2,7,2,2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--<Label Content="Usuario: " FontSize="14" HorizontalAlignment="Right" Height="30" Grid.Column="0"/>-->
+                    <!--<ComboBox  x:Name="cmbUsuario" IsEnabled="{Binding HabilitarcmbRoles}" Text="Seleccione un Usuario" IsEditable="True" IsReadOnly="True" Grid.Column="1"
+                        	ItemsSource="{Binding ListadoUsuarios, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        	DisplayMemberPath="nombreCompleto" 
+                        	SelectedItem="{Binding SelectedUsuarioInforme, Mode=Default}"
+                        	Height="25" />-->
+                    <TextBlock x:Name="MessageTextBlock" Text="{Binding Message, Mode=TwoWay}" Grid.Column="0" Grid.ColumnSpan="6" TextWrapping="Wrap" Margin="1,7,1,0" HorizontalAlignment="Center" FontSize="20" />
+
+                    <!--Sirve para activar el boton guardar no borrar-->
+                    <TextBox Name="txtBanderax" Text="{Binding txtBandera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+                </Grid>
+
+                <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"  Margin="5,1,5,1">
+                    <!--Margin="0,41,0.001,0.333"-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="105"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="* Fecha inicial" FontSize="14" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                    <Label Content="* Fecha final" FontSize="14" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                    <Label Content="* Tarea" FontSize="14" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0"/>
+                    <Label Content=" Cliente" FontSize="14" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0"/>
+                    <Label Content=" Encargo" FontSize="14" HorizontalAlignment="Center" Grid.Column="4" Grid.Row="0"/>
+                    <Label Content="* Tiempo horas" FontSize="14" HorizontalAlignment="Center" Grid.Column="5" Grid.Row="0"/>
+                    <Label Content=" Minutos" FontSize="14" HorizontalAlignment="Center" Grid.Column="6" Grid.Row="0"/>
+                    <Label Content="* Referencia PT" FontSize="14" HorizontalAlignment="Center" Grid.Column="7" Grid.Row="0"/>
+                    <!--<DatePicker x:Name="dpickFechaInicial" IsEnabled="{Binding HabilitardpickFechaInicial}"
+                                    DisplayDate="{Binding DateTime.Now()}" 
+                                    Focusable="False" 
+                                    SelectedDate="{Binding Fechainicialdt, Mode=TwoWay}" 
+                                    Height="25" Grid.Column="0" Grid.Row="1" />-->
+                    <!--<local:Proxy In="{Binding Path=SelectedDate, ElementName=dpickFechaFinal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Out="{Binding ElementName=FechaIniValidation1, Path=FechaFinal}"/>-->
+                    <local:Proxy In="{Binding Fechafinaldt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Out="{Binding ElementName=FechaIniValidation1, Path=FechaFinal}"/>
+                    <DatePicker x:Name="dpickFechaInicial" IsEnabled="{Binding HabilitardpickFechaInicial}" Focusable="False" Grid.Column="0" Grid.Row="1" Height="25">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fechainicialdt" 
+                                Mode="TwoWay" 
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <local:ValidacionFechas x:Name="FechaIniValidation1" Quees="1"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                    
+
+                    <!--<DatePicker x:Name="dpickFechaFinal" IsEnabled="{Binding HabilitardpickFechaFinal}"
+                                    DisplayDate="{Binding DateTime.Now()}" 
+                                    Focusable="False" 
+                                    SelectedDate="{Binding Fechafinaldt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    Height="25" Grid.Column="1" Grid.Row="1" />-->
+                    <local:Proxy In="{Binding Path=SelectedDate, ElementName=dpickFechaInicial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Out="{Binding ElementName=FechaFinValidation1, Path=FechaInicial}"/>
+                    <DatePicker x:Name="dpickFechaFinal" IsEnabled="{Binding HabilitardpickFechaFinal}" Focusable="False"  Grid.Column="1" Grid.Row="1" Height="25">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="Fechafinaldt" 
+                                Mode="TwoWay" 
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <local:ValidacionFechas x:Name="FechaFinValidation1" Quees="2"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+
+
+                    <TextBox x:Name="txtTarea" Grid.Column="2" Grid.Row="1" IsEnabled="{Binding HabilitartxtTarea}" Height="25" >
+                        <Binding Path="Actividaddt" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <local:TextBoxNoVacioValidationRule x:Name="TareaxValidation"  ValidatesOnTargetUpdated="True" Message="Tarea es Requerido"/>
+                                <local:ExcluirChar x:Name="TareaxValidation2"  ValidatesOnTargetUpdated="True" Message="Tarea contiene caracteres no permitidos."/>
+                                <local:ValidacionMenorQue NumeritoMenorIgualQue="30" NumeritoMayorIgualQue="1" EsRequerido="True"  x:Name="tareaxvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima de la tarea es 30"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                    <ComboBox  x:Name="cmbClienteReporte" IsEnabled="{Binding HabilitarcmbRoles}" Text="--Seleccione un Cliente--" IsEditable="True" IsReadOnly="True" 
+                                   ItemsSource="{Binding ClientesListado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   DisplayMemberPath="razonsocialcliente" 
+                                   SelectedItem="{Binding SelectedClienteInforme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="25" Grid.Column="3" Grid.Row="1" />
+                    <ComboBox  x:Name="cmbEncargos" IsEnabled="{Binding HabilitarcmbEncargo}" Text="--Seleccione un encargo--" IsEditable="True" IsReadOnly="True" 
+                                   ItemsSource="{Binding EncargosListado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   SelectedItem="{Binding SelectedEncargoInforme, Mode=TwoWay}"
+                                   Height="25" Grid.Column="4" Grid.Row="1"
+                                   ItemTemplate="{StaticResource advancedComboxItemDataTemplate}"
+                                   ItemsPanel="{StaticResource advancedComboxItemsPanelTemplate}"
+                               />
+                    <!--<TextBox Name="txtTiempoHoras"  Grid.Column="5" Grid.Row="1" IsEnabled="{Binding HabilitartxtTiempoHoras}" Height="25" Margin="1,0.667,-1.333,-0.333">
+                            <TextBox.Text>
+                                <Binding Path="Tiempohorasdt" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                                    <Binding.ValidationRules>
+                                        -->
+                    <!--<local:TextBoxNoVacioValidationRule x:Name="TiempoHorasValidation"  ValidatesOnTargetUpdated="True" Message="Tiempo horas Requeridos"/>-->
+                    <!--
+                                        <local:ValidacionSoloDigitos x:Name="TiempoHorasValidation2"  ValidatesOnTargetUpdated="True" Message="El tiempo contiene caracteres no permitidos."/>
+                                        <local:ValidacionMenorQue NumeritoMenorIgualQue="3" NumeritoMayorIgualQue="1" EsRequerido="True"  x:Name="TiempoHorasvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima del tiempo es 30"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>-->
+                    <local:Proxy In="{Binding TiempoMduracionreunion, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Out="{Binding ElementName=TiempoHorvalidation5, Path=ValorMinutox}"/>
+                    <TextBox x:Name="txtTiempoHoras" Grid.Column="5" Grid.Row="1"  IsEnabled="{Binding HabilitartxtConclusiones}" Height="25" Width="120"
+						controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Ingrese el tiempo en horas">
+                        <Binding Path="TiempoHduracionreunion" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <!--<local:TextBoxNoVacioValidationRule x:Name="TiempoValidation"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>-->
+                                <local:ValidacionNumeroDecimal ValorMayorIgualQue="1" ValorMenorIgualQue="8" EsRequerido="False" x:Name="TiempoValidacion2" ValidatesOnTargetUpdated="True"  />
+                                <local:ValidacionSoloDigitos ValidatesOnTargetUpdated="True" Message="Ingrese solo digitos"/>
+                                <!--<local:ValidacionMenorQue NumeritoMenorIgualQue="1" NumeritoMayorIgualQue="1" EsRequerido="False"  x:Name="REunoinxvalidation4" ValidatesOnTargetUpdated="True" Message="Tamaño min/max"/>-->
+                                <local:ValidacionHorasMinutos EsRequerido="False" Quees="1"  x:Name="TiempoHorvalidation5" ValidatesOnTargetUpdated="True" Message="Tamaño min/max"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+
+                    <local:Proxy In="{Binding TiempoHduracionreunion, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Out="{Binding ElementName=TiempoMinvalidation5, Path=ValorHorax}"/>
+                    <TextBox x:Name="txtTiempoM" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="1" IsEnabled="{Binding HabilitartxtConclusiones}" Height="25" Width="120" 
+						controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Ingrese el tiempo en minutos">
+                        <Binding Path="TiempoMduracionreunion" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <local:ValidacionNumeroDecimal ValorMayorIgualQue="1" ValorMenorIgualQue="59" EsRequerido="False" x:Name="TiempoMinValidacion2" ValidatesOnTargetUpdated="True"  />
+                                <local:ValidacionSoloDigitos ValidatesOnTargetUpdated="True" x:Name="TiempoValid2" Message="Ingrese solo digitos"/>
+                                <local:ValidacionMenorQue NumeritoMenorIgualQue="2" NumeritoMayorIgualQue="1" EsRequerido="False"  x:Name="TiempoMinvalidation4" ValidatesOnTargetUpdated="True" Message="Tamaño max 2 digitos"/>
+                                <local:ValidacionHorasMinutos EsRequerido="False" Quees="2" x:Name="TiempoMinvalidation5" ValidatesOnTargetUpdated="True" Message="Tamaño min/max"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+
+                    <!--<TextBox Name="txtRepitaContraseña"  Grid.Column="1" Height="25">
+                        <TextBox.Text>
+                                <Binding  Path="Repetircontraseniausuario" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                                    <Binding.ValidationRules>
+                                    <local:ValidacionCompareDos  Message="Verifique que las contraseñas sean iguales">
+
+                                        --><!--<local:ContComparaContrasenia DataContext="{Binding 
+                                                                                                Source={StaticResource DataContextBridge}, 
+                                                                                                Path=DataContext}"
+                                                                                                Valux="{Binding Path=Text, ElementName=txtTiempoHoras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+                                        <!--<local:ValidacionCompareDos.ContenedorContraseña>-->
+                                                
+                            <!--<local:ContComparaContrasenia DataContext="{Binding 
+                                                                                                Source={StaticResource DataContextBridge}, 
+                                                                                                Path=DataContext}"
+                                                                                                Valux="{Binding Contraseniausuario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                                                CajaClaves="{Binding Text, ElementName=txtContraseña }"/>-->
+                                            
+                            
+                                                <!--<local:ContComparaContrasenia DataContext="{Binding 
+                                                                                                Source={StaticResource DataContextBridge}, 
+                                                                                                Path=DataContext}"
+                                                                                                Valux="{Binding Path=Password, ElementName=txtcontraseña.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                                                Valux2="{Binding Path=Password, ElementName=txtcontraseña.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+                                            <!--</local:ValidacionCompareDos.ContenedorContraseña>--><!--
+                                        </local:ValidacionCompareDos>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>-->
+
+                            <Button  Height="30" x:Name="cmdReferenciaPt" Grid.Column="7" Grid.Row="1" Command="{Binding cmdReferenciaPT_Click}" Content="Referencia"  FontSize="14" FontWeight="Bold" ToolTip="Referencias a Papeles de Trabajo" Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" IsEnabled="False">
+
+                    </Button>
+
+                </Grid>
+
+                <DataGrid x:Name="dGInforme" Grid.Row="3"
+        		    AutoGenerateColumns="False"
+        		    ItemsSource="{Binding DetalleTiempoListado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        		    HeadersVisibility="Column"
+        		    SelectedItem="{Binding SelectedDetalleInformex, Mode=TwoWay}" 
+        		    SelectionMode="Single"
+        		    CanUserAddRows="False"
+        		    CanUserDeleteRows="False" Margin="5,1,5,1" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding iddt2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="No." IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding fechainicialdt, StringFormat=dd/MM/yyyy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="Fecha inicial" />
+                        <DataGridTextColumn Binding="{Binding fechafinaldt, StringFormat=dd/MM/yyyy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="Fecha final" />
+                        <DataGridTextColumn Width="150" Binding="{Binding actividaddt, Mode=OneTime, UpdateSourceTrigger=PropertyChanged}"  Header="Tarea"/>
+                        <DataGridTextColumn Width="150" Binding="{Binding descripcioncliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="Cliente" />
+                        <DataGridTextColumn Width="300" Binding="{Binding descripcionencargo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="Encargo" />
+                        <DataGridTextColumn Binding="{Binding tiempohorasdt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="Tiempo hrs/min"/>
+                        <DataGridTextColumn Binding="{Binding referenciasNoDisponible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Header="Referencias"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border Grid.Column="0" Grid.Row="4" Grid.RowSpan="3" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1,1,1,1" Background="Transparent"/>
+                <Border Grid.Column="0" Grid.Row="4" Grid.RowSpan="1" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1,1,1,1" Background="Transparent"/>
+                <Border Grid.Column="0" Grid.Row="6" Grid.RowSpan="1" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1,1,1,1" Background="Transparent"/>
+                <UniformGrid x:Name="GridTotales" Grid.Column="0" Grid.Row="4" IsEnabled="{Binding HabilitarGridTelefonos}" Columns="7" HorizontalAlignment="Stretch"  >
+                    <Label Content="Fecha inicio" FontSize="14" HorizontalAlignment="Center" />
+                    <TextBox x:Name="txtInicio"  Text="{Binding FechainicioTotal, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="25" IsReadOnly="True"  FontSize="15" FontWeight="Bold"/>
+                    <Label Content="Fecha final" FontSize="14" HorizontalAlignment="Center" />
+                    <TextBox x:Name="txtFecFinal" Text="{Binding FechafinalTotal, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="150" Height="25" IsReadOnly="True"  FontSize="15" FontWeight="Bold"/>
+                    <Label Content="Total Horas" FontSize="14" HorizontalAlignment="Center" />
+                    <TextBox x:Name="txtTotal" Text="{Binding TotalHoras, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="150" Height="25" IsReadOnly="True" FontSize="15" FontWeight="Bold" />
+                </UniformGrid>
+                <UniformGrid x:Name="GridCorreos" IsEnabled="{Binding HabilitarGridCorreos}" Grid.Column="0" Grid.Row="5"  Columns="6" HorizontalAlignment="Stretch" >
+                    <Button Height="30" x:Name="cmdInsertar" Content="Insertar" Margin="63.667,1,-59.667,2" FontSize="15" Command="{Binding cmdInsertar_Click}" Opacity="0.9"    Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"  IsEnabled="{Binding cmdInsertarHabilitado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Inserta una nueva fila"/>
+                    <Button Height="30" x:Name="cmdEliminar" Content="Eliminar" Margin="63.667,1,-59.667,2" FontSize="15" Command="{Binding cmdEliminar_Click}" Opacity="0.9"    Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"  IsEnabled="{Binding cmdEliminarHabilitado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ToolTip="Eliminar una fila"/>
+                    <Button Height="30" x:Name="cmdModificar" Content="Modificar" Margin="63.667,1,-59.667,2" FontSize="15" Command="{Binding cmdModificar_Click}" Opacity="0.9" Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"  IsEnabled="{Binding cmdModificarHabilitado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Modifica una fila"/>
+                    <Button Height="30" x:Name="cmdAceptar" Content="Aceptar" Margin="63.667,1,-59.667,2" FontSize="15" Command="{Binding cmdAceptar_Click}" Opacity="0.9"       Background="{DynamicResource AccentColorBrush}" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"  Visibility="{Binding cmdAceptarVisible, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ToolTip="Acepta las modificaciones a la fila"/>
+                    <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:CallMethodAction TargetObject="{Binding Items, ElementName=categoriesDataGrid}" MethodName="Refresh"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                    <!--</Button>-->
+                </UniformGrid>
+                <UniformGrid x:Name="GridObservaciones" Grid.Column="0" Grid.Row="6" IsEnabled="{Binding HabilitarGridTelefonos}"    Columns="2" HorizontalAlignment="Stretch">
+                    <Label Content="Observaciones: " FontSize="14" HorizontalAlignment="Left" />
+                    <!--<TextBox x:Name="txtObservaciones"  Text="{Binding ObservacionesX, UpdateSourceTrigger=PropertyChanged}" Height="25" IsReadOnly="False" Margin="-238,5,10,4"/>-->
+
+                    <TextBox x:Name="txtObservaciones" Grid.Column="2" Grid.Row="1" IsEnabled="{Binding HabilitartxtTarea}" Height="25" Margin="-327,8,10,6">
+                        <Binding Path="ObservacionesX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <local:TextBoxNoVacioValidationRule x:Name="ObservacionesValidacion1"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>
+                                <local:ExcluirChar x:Name="OBservacionesValidacion2"  ValidatesOnTargetUpdated="True" Message="OBservaciones contiene caracteres no permitidos."/>
+                                <local:ValidacionMenorQue NumeritoMenorIgualQue="100" NumeritoMayorIgualQue="5" EsRequerido="True"  x:Name="observacionesvalidacion3" ValidatesOnTargetUpdated="True" Message="El rango de longitud de la tarea es [5 - 100]"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                </UniformGrid>
+                <UniformGrid Grid.Row="7"  Columns="2" HorizontalAlignment="Center" Margin="1">
+                    <Button Grid.Column="4" x:Name="cmdGuardar"  Command="{Binding cmdGuardar_Click}" CommandParameter="{Binding ElementName=txtContraseña}" Content="Guardar" Width="150" Margin="15,1,1,1" FontSize="16"  ToolTip="Guarda el nuevo informe en la base de datos" Opacity="0.9" Background="{DynamicResource AccentColorBrush}">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                                <Setter Property="IsEnabled" Value="false" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=txtBanderax, Path=Text}" Value="1" />
+                                            <!--<Condition Binding="{Binding ElementName=txtObservaciones, Path=Text}" Value="1" />-->
+                                            <Condition Binding="{Binding ElementName=txtObservaciones, Path=(Validation.HasError)}" Value="false" />
+
+                                            <!--DetalleTiempoListado-->
+                                            <!--<Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=IsEnabled}" Value="True"/>-->
+                                            <!--<Condition Binding="{Binding ElementName=txtContraseña, Path=Background }" Value="Colors.White" />-->
+
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="IsEnabled" Value="true" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button Grid.Column="5" x:Name="cmdCancelar" Command="{Binding cmdCancelar_Click}" Content="Cancelar" Margin="15,1,5,0" FontSize="16"  Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}"  ToolTip="Ignora los cambios y permite salir">
+                    </Button>
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Controls:MetroWindow>

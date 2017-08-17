@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="SGPTWpf.Views.Principales.Documentos.Consulta.ConsultaView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:local="clr-namespace:SGPTWpf.Views.Principales.Administracion"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    Dialog:DialogParticipation.Register="{Binding}"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    d:DesignHeight="500" d:DesignWidth="800"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion">
+    <Grid  IsEnabled="{Binding accesibilidadWindow}" >
+        <DockPanel LastChildFill="True" >
+            <Grid>
+                <Border BorderThickness="1" 
+                        BorderBrush="{DynamicResource AccentColorBrush}">
+                    <Grid x:Name="gridMenuLateral" HorizontalAlignment="Center" VerticalAlignment="Top" MinHeight="250" MinWidth="150">
+                        <DataGrid
+                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                        HeadersVisibility="None"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        AutoGenerateColumns="False"  SelectionMode="Single"
+                                        Margin="1"
+                                        Name="dataGridMenu"
+                                        Height="Auto"
+                                        BorderThickness="1"
+                                        CanUserAddRows="False"
+                                        CanUserReorderColumns="False"
+                                        CanUserResizeRows="False"
+                                        CanUserResizeColumns="False"
+                                        RowHeight="50"
+                                        Cursor="Hand"
+                                        MinWidth="120"
+                                        MinHeight="300"
+                                        Style="{StaticResource AzureDataGrid}"    
+                                        SelectedItem="{Binding currentEntidad}"
+                                        IsEnabled="True"
+                                        IsReadOnly="True"
+                                        ItemsSource="{Binding Path= lista , 
+                                        UpdateSourceTrigger=PropertyChanged}"> 
+                            <DataGrid.Columns  >
+                                <DataGridTemplateColumn Width="Auto"
+                                x:Name="contenidoMenu" 
+                                IsReadOnly="True">
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate  >
+                                            <Button x:Name="btnOpcionesContenido" 
+                                                 Style="{StaticResource AccentedSquareButtonStyle}"       
+                                                 Margin="5,0,5,0"
+                                                 MinWidth="180"
+                                                 HorizontalAlignment="Left" 
+                                                 VerticalAlignment="Center"           
+                                                 MaxWidth="180"
+                                                 Command="{Binding Path=DataContext.ItemSeleccionadoCommand , UpdateSourceTrigger=PropertyChanged,
+                                                 RelativeSource={RelativeSource AncestorType=UserControl}}"                                            
+                                                 Height="35">
+                                                <TextBlock Text="{Binding descripcion}" 
+                                                    TextAlignment="Center" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!--Cuerpo-->
+            <Grid>
+                <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                    <Grid x:Name="gtiDatos" Height="Auto" Width="Auto" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                        <Frame  x:Name="EditFrame" MinHeight="250" MinWidth="350" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" NavigationUIVisibility="Hidden" />
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!--Fin de cuerpo-->
+        </DockPanel>
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSPortadasCarpetas" targetNamespace="http://tempuri.org/DSPortadasCarpetas.xsd" xmlns:mstns="http://tempuri.org/DSPortadasCarpetas.xsd" xmlns="http://tempuri.org/DSPortadasCarpetas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSPortadasCarpetas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSPortadasCarpetas" msprop:Generator_UserDSName="DSPortadasCarpetas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableEncabezadoCuerpoPortada" msprop:Generator_TableClassName="DataTableEncabezadoCuerpoPortadaDataTable" msprop:Generator_TableVarName="tableDataTableEncabezadoCuerpoPortada" msprop:Generator_TablePropName="DataTableEncabezadoCuerpoPortada" msprop:Generator_RowDeletingName="DataTableEncabezadoCuerpoPortadaRowDeleting" msprop:Generator_RowChangingName="DataTableEncabezadoCuerpoPortadaRowChanging" msprop:Generator_RowEvHandlerName="DataTableEncabezadoCuerpoPortadaRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableEncabezadoCuerpoPortadaRowDeleted" msprop:Generator_UserTableName="DataTableEncabezadoCuerpoPortada" msprop:Generator_RowChangedName="DataTableEncabezadoCuerpoPortadaRowChanged" msprop:Generator_RowEvArgName="DataTableEncabezadoCuerpoPortadaRowChangeEvent" msprop:Generator_RowClassName="DataTableEncabezadoCuerpoPortadaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="logofirmay" msprop:Generator_ColumnVarNameInTable="columnlogofirmay" msprop:Generator_ColumnPropNameInRow="logofirmay" msprop:Generator_ColumnPropNameInTable="logofirmayColumn" msprop:Generator_UserColumnName="logofirmay" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="razonsocialfirmay" msprop:Generator_ColumnVarNameInTable="columnrazonsocialfirmay" msprop:Generator_ColumnPropNameInRow="razonsocialfirmay" msprop:Generator_ColumnPropNameInTable="razonsocialfirmayColumn" msprop:Generator_UserColumnName="razonsocialfirmay" type="xs:string" minOccurs="0" />
+              <xs:element name="encabezadopantallay" msprop:Generator_ColumnVarNameInTable="columnencabezadopantallay" msprop:Generator_ColumnPropNameInRow="encabezadopantallay" msprop:Generator_ColumnPropNameInTable="encabezadopantallayColumn" msprop:Generator_UserColumnName="encabezadopantallay" type="xs:string" minOccurs="0" />
+              <xs:element name="descripciontipoauditoriay" msprop:Generator_ColumnVarNameInTable="columndescripciontipoauditoriay" msprop:Generator_ColumnPropNameInRow="descripciontipoauditoriay" msprop:Generator_ColumnPropNameInTable="descripciontipoauditoriayColumn" msprop:Generator_UserColumnName="descripciontipoauditoriay" type="xs:string" minOccurs="0" />
+              <xs:element name="razonsocialclientey" msprop:Generator_ColumnVarNameInTable="columnrazonsocialclientey" msprop:Generator_ColumnPropNameInRow="razonsocialclientey" msprop:Generator_ColumnPropNameInTable="razonsocialclienteyColumn" msprop:Generator_UserColumnName="razonsocialclientey" type="xs:string" minOccurs="0" />
+              <xs:element name="fechainiperauditencargoy" msprop:Generator_ColumnVarNameInTable="columnfechainiperauditencargoy" msprop:Generator_ColumnPropNameInRow="fechainiperauditencargoy" msprop:Generator_ColumnPropNameInTable="fechainiperauditencargoyColumn" msprop:Generator_UserColumnName="fechainiperauditencargoy" type="xs:string" minOccurs="0" />
+              <xs:element name="fechafinperauditencargoy" msprop:Generator_ColumnVarNameInTable="columnfechafinperauditencargoy" msprop:Generator_ColumnPropNameInRow="fechafinperauditencargoy" msprop:Generator_ColumnPropNameInTable="fechafinperauditencargoyColumn" msprop:Generator_UserColumnName="fechafinperauditencargoy" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DataTable2Key1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTableEncabezadoCuerpoPortada" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

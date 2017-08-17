@@ -1,0 +1,113 @@
+﻿<UserControl xmlns:Modales="clr-namespace:SGPTmvvm.Modales" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:so="clr-namespace:SGPTmvvm.Soporte;assembly="
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+             xmlns:Soporte="clr-namespace:Soporte" x:Class="SGPTmvvm.Vistas.UsuariosView"
+             mc:Ignorable="d" 
+             d:DesignHeight="7000" d:DesignWidth="700">
+    <StackPanel>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="220"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <!--<ColumnDefinition Width="Auto"/>-->
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="MessagesTextBlock" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Administracion de Usuarios" TextWrapping="Wrap" Margin="5" HorizontalAlignment="Right" FontSize="20" />
+            <UniformGrid Grid.Row="1" Grid.Column="0"  Margin="5" Columns="4">
+
+                <!--<Label Content="DUI" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtDUI" Text="{Binding SelectedChangedx.TheUsuariosPersonas.idduipersona, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label Content="Nombres" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtNombre" Text="{Binding SelectedChangedx.TheUsuariosPersonas.nombrespersona}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label Content="Apellidos" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtApellidos" Text="{Binding SelectedChangedx.TheUsuariosPersonas.apellidospersona}" Width="150" Height="25" IsReadOnly="True"/>
+
+                <Label Content="Sexo" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtSexo" Text="{Binding SelectedChangedx.TheUsuariosPersonas.sexopersona, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label Content="Direccion" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtDireccion" Text="{Binding SelectedChangedx.TheUsuariosPersonas.direccionpersona}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label Content="No. AFP" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtAFP" Text="{Binding SelectedChangedx.TheUsuariosPersonas.noafppersona}" Width="150" Height="25" IsReadOnly="True"/>
+
+                <Label Content="No. ISSS" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtISSS" Text="{Binding SelectedChangedx.TheUsuariosPersonas.noissspersona, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label Content="No. NIT" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox  x:Name="txtNIT" Text="{Binding SelectedChangedx.TheUsuariosPersonas.nitpersona}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label Content="Correos" FontSize="15" HorizontalAlignment="Right"/>
+                <ListBox Height="30" ItemsSource="{Binding SelectedChangedx.TheUsuariosPersonas.correos}" DisplayMemberPath="direccioncorreo" />
+
+                <Label  Content="Telefonos" FontSize="15" HorizontalAlignment="Right"/>
+                <ListBox Height="30"  ItemsSource="{Binding SelectedChangedx.TheUsuariosPersonas.telefonos}" DisplayMemberPath="numerotelefono"/>
+                <Label  Content="Rol" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox  x:Name="txtRol" Text="{Binding SelectedChangedx.TheUsuariosPersonas.nombrerol}" Width="150" Height="25" IsReadOnly="True"/>
+                <Label  Content="Jefe Inmediato" FontSize="15" HorizontalAlignment="Right"/>
+                <TextBox x:Name="txtJefe" Text="{Binding SelectedChangedx.TheUsuariosPersonas.nombreusuidusuario}" Width="150" Height="25" IsReadOnly="True"/>-->
+
+            </UniformGrid>
+
+            <!--<DataGrid x:Name="dGUsuarios" Grid.Row="1" Grid.Column="1"
+        		AutoGenerateColumns="False"
+        		ItemsSource="{Binding UsuariosListado}"
+        		HeadersVisibility="Column"
+        		SelectedItem="{Binding SelectedChangedx, Mode=TwoWay}" 
+        		SelectionMode="Single"
+        		CanUserAddRows="False"
+        		CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.idusuario, Mode=TwoWay}"  Header="ID" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.nombrespersona, Mode=TwoWay}"  Header="Nombres" />
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.apellidospersona, Mode=TwoWay}"  Header="Apellidos" />
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.nombrerol, Mode=TwoWay}"  Header="Rol"/>
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.sexopersona, Mode=TwoWay}"  Header="Sexo" />
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.fecharegistrousuario, Mode=TwoWay}"  Header="Registrado" />
+                    <DataGridTextColumn Binding="{Binding TheUsuariosPersonas.estadopersona, Mode=TwoWay}"  Header="Estado" />
+                </DataGrid.Columns>
+            </DataGrid>-->
+
+            <UniformGrid  x:Name="ModalDialogParent" Grid.Row="2" Grid.Column="0" Columns="5"  HorizontalAlignment="Center"  Grid.RowSpan="1" >
+                <Button Height="40" x:Name="cmdNuevoUsuario" Command="{Binding NuevoUsuarioPersona}" Content="Crear" Margin="3,4,3,3.333" FontSize="16"  ToolTip="Guarda el nuevo usuario en la base de datos" Opacity="0.9" Background="#FFC0D4EA">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10"/>
+                    </Button.Effect>
+                </Button>
+                <Button Grid.Column="4" x:Name="cmdModificar" Command="{Binding EditarUsuarioPersona}" Content="Editar" Margin="3" FontSize="16"  ToolTip="Actualizar la informacion del usuario." Opacity="0.9" Background="#FFC0D4EA">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10"/>
+                    </Button.Effect>
+                </Button>
+                <Button Grid.Column="4" x:Name="cmdConsultar" Command="{Binding ConsultarUsuarioPersona}" Content="Consultar" Margin="3" FontSize="16"  ToolTip="Actualizar la informacion del usuario." Opacity="0.9" Background="#FFC0D4EA">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10"/>
+                    </Button.Effect>
+                </Button>
+
+                <Button Grid.Column="4" x:Name="cmdEliminarUsuario" Command="{Binding EliminarUsuarioPersona}" Content="Eliminar" Margin="3" FontSize="16"  ToolTip="Elimina logicamente al usuario actual" Opacity="0.9" Background="#FFC0D4EA">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10"/>
+                    </Button.Effect>
+                </Button>
+                <Button Grid.Column="4" x:Name="cmdPermisos" Command="{Binding PermisosUsuarioPersona}" Content="   Permisos   " Margin="3" FontSize="16"  ToolTip="Gestiona los permisos del usuario actual" Opacity="0.9" Background="#FFC0D4EA">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10"/>
+                    </Button.Effect>
+                </Button>
+
+                <!--<TextBox  x:Name="MessageTextBox" Text="Notificaciones" Margin="3" IsReadOnly="True" />-->
+            </UniformGrid>
+
+            <!--<Modales:CRUDusuariosView x:Name="ModalUsuarios" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="20"/>-->
+
+        </Grid>
+
+        <!--<Soporte:Throbber Grid.Column="1" HorizontalAlignment="Center" Margin="21,127,0,0" VerticalAlignment="Top" Visibility="{Binding ThrobberVisible}" RenderTransformOrigin="-2.117,0.017"/>-->
+        <!--<Modales:CRUDusuariosView x:Name="ModalUsuarios" />-->
+    </StackPanel>
+</UserControl>

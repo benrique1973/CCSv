@@ -1,0 +1,141 @@
+﻿<Controls:MetroWindow x:Class="SGPTmvvm.Modales.AdmonClientes.CRUDclientesContactosEstructuraView"
+                         xmlns:local="clr-namespace:SGPTmvvm.CustomValidationAttributes"
+                         mc:Ignorable="d" 
+                         d:DesignHeight="360" d:DesignWidth="850"
+                         x:Name="root" 
+                         ShowInTaskbar="True"
+                         ResizeMode="CanMinimize"
+                         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"   
+                      xmlns:ViewModels="clr-namespace:SGPTmvvm.Modales"
+                      xmlns:Soporte="clr-namespace:SGPTmvvm.Soporte" 
+                      ShowTitleBar="True" 
+                      Title="Estructura organica cliente"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"
+                      
+                      IsMaxRestoreButtonEnabled="True"
+                      IsCloseButtonEnabled="True"
+                      IsMinButtonEnabled="True"
+                      SaveWindowPosition="False"
+                      WindowTransitionsEnabled="True"
+                      EnableDWMDropShadow="True"    >
+    <Control.Resources>
+        <!--Este conversor es para poder activar o desactivar botones usando el multiDataTrigger-->
+        <local:NotNullToBoolConverter x:Key="NotNullToBoolConverter"/>
+
+    </Control.Resources>
+
+    <Grid>
+        <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="2"  
+					CornerRadius="0,0,0,0" Margin="1" >
+            <!--Black-->
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect Color="AliceBlue" Opacity="0.5" Direction="370" ShadowDepth="0.7" />
+                <!--Black-->
+            </Border.BitmapEffect>
+            <Grid Margin="2,5,2,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition/>
+                    <!--<ColumnDefinition Width="180"/>
+                            <ColumnDefinition/>-->
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock x:Name="MessageTextBlock" Text="{Binding Message, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="1,7,10,0" HorizontalAlignment="Center" FontSize="20" />
+
+                <!--Sirve para activar el boton guardar no borrar-->
+                <TextBox Name="txtBanderax" Text="{Binding txtBandera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+                <Label Content="* Nombre del cargo:  " FontSize="14"        HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                <Label Content="* Dependencia superior:   " FontSize="14"   HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+                <Label Content="* Responsabilidades:   " FontSize="14"      HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+                <Label Content=" Otras Funciones:   " FontSize="14"         HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
+
+                <TextBox x:Name="txtNombreCargo" Grid.Column="1" Grid.Row="1" IsEnabled="{Binding HabilitartxtNumeroCorrespondencia}" Height="25" 
+                             Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese nombre del cargo">
+                    <Binding Path="Nombrecargoeo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                        <Binding.ValidationRules>
+                            <local:TextBoxNoVacioValidationRule x:Name="numerocorrexValidation"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>
+                            <local:ExcluirChar x:Name="numerocorreValidation2"  ValidatesOnTargetUpdated="True" Message="Cargo contiene caracteres no permitidos."/>
+                            <local:ValidacionMenorQue NumeritoMenorIgualQue="20" NumeritoMayorIgualQue="3" EsRequerido="True"  x:Name="numercorrexvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima es 10"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <ComboBox  x:Name="cmbDependencia" IsEnabled="{Binding HabilitarcmbUsuarioRecibe}" Text="--Seleccione un nivel superior--" IsEditable="True" IsReadOnly="True" 
+                                   ItemsSource="{Binding estructuraOListado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   DisplayMemberPath="nombrecargoeo" 
+                                   SelectedItem="{Binding SelectedEstructuraO, Mode=Default, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="30" Grid.Column="1" Grid.Row="2" />
+
+                <TextBox x:Name="txtResponsabilidades" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" IsEnabled="{Binding HabilitartxtAsuntoCorrespondencia}" Height="25" 
+                             Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese responsabilidades">
+                    <Binding Path="Responsabilidadeo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                        <Binding.ValidationRules>
+                            <local:TextBoxNoVacioValidationRule x:Name="AsuntoCartaxValidation"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>
+                            <local:ExcluirChar x:Name="AsuntoCartaValidation2"  ValidatesOnTargetUpdated="True" Message="Tarea contiene caracteres no permitidos."/>
+                            <local:ValidacionMenorQue NumeritoMenorIgualQue="100" NumeritoMayorIgualQue="1" EsRequerido="True"  x:Name="AsuntoCartaxvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima es 100"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+
+                <Soporte:MultiSelectComboBox x:Name="cmbOtrasFunciones"
+                                                 HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Width="316" Height="30" 
+                                                 DefaultText="Seleccione otras funciones" 
+                                                 ItemsSource="{Binding otrasFuncionesListad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 SelectedItems="{Binding SelecteOtrasFunciones, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Path=Text, RelativeSource={RelativeSource Self}}" Grid.Column="1"/>
+                <UniformGrid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Columns="2" HorizontalAlignment="Center" Margin="1,1,1,1">
+                    <Button Grid.Column="4" x:Name="cmdGuardar"  Command="{Binding cmdGuardar_Click}" CommandParameter="{Binding ElementName=txtContraseña}" Content="         Guardar         " Margin="15,5,5,5" FontSize="16"  ToolTip="Guarda la correspondencia en la base de datos" Opacity="0.9" Background="{DynamicResource AccentColorBrush}">
+                        <!--<Button.Effect>
+                                <DropShadowEffect BlurRadius="20"/>
+                            </Button.Effect>-->
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                                <Setter Property="IsEnabled" Value="false" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=txtBanderax, Path=Text}" Value="1" />
+                                            <!--<Condition Binding="{Binding ElementName=txtObservaciones, Path=Text}" Value="1" />-->
+                                            <Condition Binding="{Binding ElementName=txtNombreCargo, Path=(Validation.HasError)}" Value="false" />
+                                            <Condition Binding="{Binding ElementName=txtResponsabilidades, Path=(Validation.HasError)}" Value="false" />
+
+                                            <!--<Condition Binding="{Binding ElementName=cmbDependencia, Path=SelectedItem, Converter={StaticResource NotNullToBoolConverter}}" Value="True"/>-->
+
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="IsEnabled" Value="true" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button Grid.Column="5" x:Name="cmdCancelar" Command="{Binding cmdCancelar_Click}" Content="   Cancelar   " Margin="15,5,5,5" FontSize="16"  Opacity="0.9" ToolTip="Ignora los cambios y permite salir" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+
+                    </Button>
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Controls:MetroWindow>

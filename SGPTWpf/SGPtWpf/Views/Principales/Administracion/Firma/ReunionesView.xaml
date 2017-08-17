@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="SGPTWpf.Views.Principales.Administracion.Firma.ReunionesView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    Dialog:DialogParticipation.Register="{Binding}"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    d:DesignHeight="500" d:DesignWidth="800"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion"
+                    xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                    AttachedBehaviors:WFB.Name="{Binding Path=MainModel.TypeName}"             
+                    >
+    <Grid Height="Auto" Width="Auto" Margin="1">
+        <Grid.RowDefinitions >
+            <RowDefinition MinHeight="50" MaxHeight="60" Height="57" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+            <usrControl:menuTiempo Margin="1,0,0,0"
+            Grid.Row="0"/>
+        </Border>
+        <Grid x:Name="datosConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
+            <DataGrid Grid.Row="1"
+                        AutoGenerateColumns="False"  SelectionMode="Single"
+                        Margin="1,1,1,1"
+                        Name="dataGrid"
+                        VerticalAlignment="Top"
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        ItemsSource="{Binding Path= ReunionesListado, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding ReunionesSelected}"
+                        CanUserAddRows="False">
+
+                <!--<DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding aprobacionreunion}" Value="A">
+                            <Setter Property="Background" Value="PaleGreen"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding aprobacionreunion}" Value="R">
+                            <Setter Property="Background" Value="Red"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding aprobacionreunion}" Value="P">
+                            <Setter Property="Background" Value="Pink"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightSkyBlue"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding idreunion, Mode=TwoWay}"  Header="No." x:Name="IDreu" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding fechareunion, Mode=TwoWay}" x:Name="fechareu" Header="Fecha" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding nombrecliente, Mode=TwoWay}"  x:Name="Clientereu" Header="Cliente" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding asuntoreunion, Mode=TwoWay}"  x:Name="asuntoreu" Header="Asunto" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding tiempoduracionreunion, Mode=TwoWay}"  x:Name="tiemporeu" Header="Tiempo (horas)" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding conclusionesreunion, Mode=TwoWay}"  x:Name="conclureu" Header="Conclusiones" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding estadoreunion2, Mode=TwoWay}"  x:Name="ReuEstado" Header="Estado" IsReadOnly="True"/>
+                </DataGrid.Columns>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger
+                                EventName="SelectionChanged,MouseDoubleClick">
+                        <cmd:EventToCommand 
+                                    Command="{Binding SelectionChangedCommand, Mode=TwoWay}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <cmd:EventToCommand 
+                                    Command="{Binding DoubleClickCommand, Mode=TwoWay}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

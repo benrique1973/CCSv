@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="SGPTWpf.Recursos.controles.Administracion.menuHerramientas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SGPTWpf.Recursos.controles"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"             
+             mc:Ignorable="d" 
+             xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+             d:DesignHeight="50" d:DesignWidth="950">
+    <Grid
+        VerticalAlignment="Bottom"
+        HorizontalAlignment="Center"
+        MinHeight="40"
+        Height="Auto"
+        x:Name="Fondo"
+        MinWidth="750"
+        Width="Auto"
+        Background="Transparent">
+        <WrapPanel FlowDirection="LeftToRight" Orientation="Horizontal" Width="Auto" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <WrapPanel.Resources>
+                <conv:StyleConverter  x:Key="StyleConverter"/>
+            </WrapPanel.Resources>
+            <Button 
+                Command="{Binding ProgramasCommand, Mode=TwoWay}" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="20" 
+                     Height="20"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cabinet_files}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Programas" />
+                </StackPanel>
+                <Button.Style>
+                    <MultiBinding Converter="{StaticResource StyleConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="EstiloProgramas"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Button.Style>
+            </Button>
+            <Button 
+                Command="{Binding CuestionariosCommand, Mode=TwoWay}"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="20" 
+                     Height="20"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_input_question}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Cuestionarios" />
+                </StackPanel>
+                <Button.Style>
+                    <MultiBinding Converter="{StaticResource StyleConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="EstiloCuestionarios"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Button.Style>                
+            </Button>
+
+            <Button 
+                Command="{Binding PlantillasCommand, Mode=TwoWay}"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="20" 
+                     Height="20"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_foot}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Plantillas" />
+                </StackPanel>
+                <Button.Style>
+                    <MultiBinding Converter="{StaticResource StyleConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="EstiloPlantillas"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Button.Style>                
+            </Button>
+            <Button 
+                Command="{Binding NormativaCommand, Mode=TwoWay}"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="20" 
+                     Height="20"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_ruler}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Normativa" />
+                </StackPanel>
+                <Button.Style>
+                    <MultiBinding Converter="{StaticResource StyleConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="EstiloNormativa"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Button.Style>                
+            </Button>
+            <Button 
+                Command="{Binding IndiceCommand, Mode=TwoWay}"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="20" 
+                     Height="20"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_interface_list}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Indice" />
+                </StackPanel>
+                <Button.Style>
+                    <MultiBinding Converter="{StaticResource StyleConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="EstiloIndice"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Button.Style>                
+            </Button>
+            <Button 
+                Command="{Binding MarcasCommand, Mode=TwoWay}"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="20" 
+                     Height="20"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_checkmark_pencil}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Marcas" />
+                </StackPanel>
+                <Button.Style>
+                    <MultiBinding Converter="{StaticResource StyleConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="EstiloMarcas"/>
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Button.Style>                
+            </Button>
+        </WrapPanel>
+    </Grid>
+</UserControl>

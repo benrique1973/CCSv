@@ -1,0 +1,558 @@
+﻿<UserControl x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Notas.NotasView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"             
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    Dialog:DialogParticipation.Register="{Binding}"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    BorderBrush="{DynamicResource AccentColorBrush}"
+                    BorderThickness="1" 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    d:DesignHeight="500" d:DesignWidth="1500"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.SGPtWpf.Recursos.controles.Encargos"
+                    xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                    AttachedBehaviors:WFBNotas.Name="{Binding Path=ECMainModel.TypeName}"
+                    xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores">
+    <Grid Height="Auto" Width="Auto" Margin="1" Grid.Row="0">
+        <Grid.RowDefinitions >
+            <RowDefinition MinHeight="55" MaxHeight="55" Height="55" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <usrControl:BotonesCedulaDetalle
+            Grid.Row="0" Margin="0" 
+                IsEnabled="{Binding accesibilidadWindow}"/>
+            </StackPanel>
+        </Grid>
+        <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel x:Name="datosConsulta" Orientation="Vertical" >
+                <WrapPanel Orientation="Horizontal" Height="Auto" Margin="0,5,0,0">
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Referencia"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding referenciacedula, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Fecha cierre"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding fechacierre, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Usuario cerró"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding usuariocerro, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Fecha supervisión"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding fechasupervision, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Usuario supervisó"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding usuariosuperviso, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Fecha aprobación"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding fechaaprobacion, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="1">
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock
+                                            Height="Auto"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="90"
+                                            MaxWidth="100"
+                                            MinHeight="20"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="Usuario aprobó"/>
+                        </Grid>
+                        <Grid>
+                            <TextBox HorizontalContentAlignment="Left" IsEnabled="False" 
+                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                         Margin="1" VerticalAlignment="Center" 
+                                         Width="Auto"
+                                         MaxWidth="100"
+                                         MinHeight="30"
+                                         MinWidth="100"
+                                         Height="30"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding usuarioaprobo, 
+                                         NotifyOnValidationError=True, 
+                                         UpdateSourceTrigger=PropertyChanged, 
+                                         ValidatesOnDataErrors=True}" />
+                        </Grid>
+
+                    </StackPanel>
+                </WrapPanel>
+                <Grid  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" IsEnabled="{Binding accesibilidadWindow}" >
+                    <Border BorderThickness="1" BorderBrush="Transparent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <DataGrid 
+                        AutoGenerateColumns="False"  SelectionMode="Extended"
+                        Margin="1,0,0,0"
+                        Name="dataGrid"
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        AllowDrop="False"
+                        VerticalScrollBarVisibility="Auto"
+                        CanUserResizeRows="True"
+                        CanUserSortColumns="True"
+                        CanUserAddRows="False"
+                        BorderThickness="1"
+                        BorderBrush="{DynamicResource AccentColorBrush}"   
+                        ItemsSource="{Binding Path= lista , UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding currentEntidadDetalle}"
+                        VerticalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                        HorizontalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                        IsEnabled="True"
+                        GridLinesVisibility="All">
+                            <DataGrid.RowStyle>
+                                <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="true" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Header="#" IsReadOnly="True" 
+                                Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn x:Name="ColNumNota" Width="50" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock  Text="NOTA"  />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtclasepartida" 
+                                                        TextWrapping="Wrap" MinWidth="50" IsEnabled="False"
+                                                                Text="{Binding numnotapt}"
+                                                                ToolTip="Número de nota aclaratoria">
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Header="Referencia PT" MinWidth="100" IsReadOnly="True"  
+                                Binding="{Binding Path= referenciapapel, 
+                                UpdateSourceTrigger=PropertyChanged}">
+                                    <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                            <Setter Property="ToolTip" Value="Papel en  el  que se generó la nota aclaratoria"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn x:Name="ColConcepto" Width="250" IsReadOnly="True">
+                                    <DataGridTemplateColumn.Header>
+                                        <TextBlock  Text="NOTA"  />
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="250" IsEnabled="False"
+                                                                Text="{Binding descripcionnotaspt}"
+                                                                ToolTip="Explicación de la observación">
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Header="Estado nota" MinWidth="100" IsReadOnly="True" 
+                                Binding="{Binding Path= etapaPapelDescripcion, 
+                                UpdateSourceTrigger=PropertyChanged}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                            <Setter Property="IsEnabled"  Value="False" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn MinWidth="1" MaxWidth="1" IsReadOnly="True" >
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn  Width="Auto"
+                                        IsReadOnly="True" MinWidth="0" MaxWidth="110">
+                                    <DataGridTemplateColumn.Header>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock  Text="ACCION"  TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataGridTemplateColumn.Header>                                    
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <Button x:Name="btnOpciones" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource GridAccentedSquareButtonStyleSGPtWpf}"
+                                                        Command="{Binding Path=DataContext.aprobarTareaCommand, UpdateSourceTrigger=PropertyChanged,
+                                                         RelativeSource={RelativeSource AncestorType=UserControl}}"  
+                                                         Margin="1"
+                                                         MinWidth="0" Width="100" MaxWidth="100" 
+                                                         MinHeight="30" MaxHeight="30"
+                                                        ToolTip="Presione si desea dar realizar la acción con el registro">
+                                                <TextBlock Text="{Binding Path=commandButton, UpdateSourceTrigger=PropertyChanged,
+                                                    Mode=TwoWay}" 
+                                                    TextAlignment="Center" />
+                                            </Button>
+                                        </DataTemplate>
+
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellStyle>
+                                        <Style TargetType="{x:Type DataGridCell}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding commandButton}" Value="Cerrar">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding commandButton}" Value="Revisado">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding commandButton}" Value="Aprobado">
+                                                    <Setter Property="IsEnabled" Value="True"/>
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding commandButton}" Value="">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsSelected" Value="true" />
+                                                    </MultiTrigger.Conditions>
+                                                </MultiTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTemplateColumn.CellStyle>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn MinWidth="1" MaxWidth="1" IsReadOnly="True" >
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn x:Name="gfechacierre" >
+                                    <DataGridTemplateColumn.Header>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock  Text="FECHA"  TextWrapping="Wrap" />
+                                                <TextBlock  Text="CREACION"  TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataGridTemplateColumn.Header>
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtfechacierre" 
+                                                                Text="{Binding fechacreadonotaspt}"
+                                                             VerticalAlignment="Center"
+                                                             HorizontalAlignment="Right"                                                    
+                                                                ToolTip="Fecha de creación de nota"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn x:Name="gfechasupervision"  >
+                                    <DataGridTemplateColumn.Header>
+                                        <StackPanel>
+                                            <TextBlock  Text="FECHA"  TextWrapping="Wrap" Grid.Row="0"  />
+                                            <TextBlock  Text="REVISION"  TextWrapping="Wrap" Grid.Row="2"  />
+                                        </StackPanel>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtfechasupervision" 
+                                                                Text="{Binding fechasupervision}"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Right"                                                    
+                                                                ToolTip="Fecha en  que se revisó la nota"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn x:Name="gfechaaprobacion" Width="100" >
+                                    <DataGridTemplateColumn.Header>
+                                        <StackPanel>
+                                            <TextBlock  Text="FECHA"  TextWrapping="Wrap" Grid.Row="0"  />
+                                            <TextBlock  Text="APROBACION"  TextWrapping="Wrap" Grid.Row="2"  />
+                                        </StackPanel>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtfechaaprobacion" 
+                                                                Text="{Binding fechaaprobacion}"
+                                                                 VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Right"             
+                                                                ToolTip="Fecha en  que se avala la nota"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn x:Name="gusuariocerro" Width="70" >
+                                    <DataGridTemplateColumn.Header>
+                                        <Grid>
+                                            <StackPanel>
+                                                <TextBlock  Text="USUARIO"  TextWrapping="Wrap" />
+                                                <TextBlock  Text="CREA"  TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtfechacierre" 
+                                                                Text="{Binding usuariocreo}"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"                                                      
+                                                                ToolTip="Usuario que propone la  nota"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn x:Name="gusuariosuperviso" Width="80"  >
+                                    <DataGridTemplateColumn.Header>
+                                        <StackPanel>
+                                            <TextBlock  Text="USUARIO"  TextWrapping="Wrap" Grid.Row="0"  />
+                                            <TextBlock  Text="REVISOR"  TextWrapping="Wrap" Grid.Row="2"  />
+                                        </StackPanel>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtfechasupervision" 
+                                                                Text="{Binding usuariosuperviso}"
+                                          VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"                                                     
+                                                                ToolTip="Usuario que revisó la nota"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn x:Name="gusuarioaprobo" Width="110"  >
+                                    <DataGridTemplateColumn.Header>
+                                        <StackPanel>
+                                            <TextBlock  Text="USUARIO"  TextWrapping="Wrap" Grid.Row="0"  />
+                                            <TextBlock  Text="APRUEBA"  TextWrapping="Wrap" Grid.Row="2"  />
+                                        </StackPanel>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock  x:Name="txtfechaaprobacion" 
+                                                                Text="{Binding usuarioaprobo}"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"                                                      
+                                                                ToolTip="Usuario que aprueba la nota"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger
+                                EventName="SelectionChanged">
+                                    <cmd:EventToCommand 
+                                    Command="{Binding SelectionChangedCommand, Mode=TwoWay}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <cmd:EventToCommand 
+                                    Command="{Binding DoubleClickCommand, Mode=TwoWay}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DataGrid>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

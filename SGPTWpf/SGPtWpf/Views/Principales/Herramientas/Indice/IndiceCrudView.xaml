@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="SGPTWpf.Views.Administracion.Herramientas.IndiceCrudView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:local="clr-namespace:SGPTWpf.Views.Principales.Administracion"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                    Dialog:DialogParticipation.Register="{Binding}"
+                    xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                    mc:Ignorable="d"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    d:DesignHeight="500" d:DesignWidth="1200"
+                    xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion.Crud"
+                    xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                    AttachedBehaviors:WFBPlantillaIndice.Name="{Binding Path=PlantillaIndiceMainModel.TypeName}"             
+                    xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores">
+    <Grid x:Name="Principal" >
+        <StackPanel >
+            <Grid x:Name="gridMenu" HorizontalAlignment="Left" 
+                  VerticalAlignment="Bottom" Width="auto" 
+                  MinHeight="50" MaxHeight="60" Height="Auto">
+                <Border BorderThickness="1" HorizontalAlignment="Stretch"
+                    BorderBrush="{DynamicResource AccentColorBrush}">
+                    <StackPanel Orientation="Horizontal" >
+                        <usrControl:BotonesHerramientasIndicesPlantilla Margin="0" IsEnabled="{Binding esActivoSubMenu}"/>
+                        <Grid HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock
+                                Height="30"
+                                Margin="15,5,5,0"
+                                MinWidth="50"
+                                Width="Auto"
+                                MaxWidth="80"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="Tipo auditoría"/>
+                                <TextBox x:Name="txttipoAuditoriaModelo" 
+                                 HorizontalContentAlignment="Left" 
+                                 VerticalContentAlignment="Top"  HorizontalAlignment="Right" 
+                                 Controls:TextBoxHelper.Watermark="Tipo auditoría" 
+                                 Margin="5,5,10,5" VerticalAlignment="Top" 
+                                 Width="150"
+                                 IsEnabled="False"
+                                 MaxHeight="165"
+                                 Height="30"
+                                 MinWidth="60"
+                                 MinHeight="25"
+                                 TextWrapping="Wrap"
+                                 Text="{Binding descripcion, 
+                                   NotifyOnValidationError=True, 
+                                  UpdateSourceTrigger=PropertyChanged, 
+                                    Mode=TwoWay, ValidatesOnDataErrors=True}"/>                                
+                                <TextBlock
+                                Height="30"
+                                Margin="15,5,5,0"
+                                MinWidth="20"
+                                Width="40"
+                                MaxWidth="80"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="Usuario"/>
+                                <TextBox x:Name="txtnickUsuarioUsuario" 
+                                 HorizontalContentAlignment="Left" 
+                                 VerticalContentAlignment="Top"  HorizontalAlignment="Right" 
+                                 Controls:TextBoxHelper.Watermark="Usuario que modificó" 
+                                 Margin="5,5,10,5" VerticalAlignment="Top" 
+                                 Width="130"
+                                 IsEnabled="False"
+                                 MaxHeight="165"
+                                 Height="30"
+                                 MinWidth="60"
+                                 MinHeight="25"
+                                 TextWrapping="Wrap"
+                                 Text="{Binding inicialesusuario, 
+                                   NotifyOnValidationError=True, 
+                                  UpdateSourceTrigger=PropertyChanged, 
+                                    Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                                <TextBlock
+                                Height="30"
+                                Margin="15,5,5,0"
+                                MinWidth="20"
+                                Width="80"
+                                MaxWidth="80"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="Nombre índice"/>
+                                <TextBox x:Name="txtNombreIndice" 
+                                 DataContext="{Binding currentEntidad,
+                                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalContentAlignment="Left" 
+                                 VerticalContentAlignment="Top"  HorizontalAlignment="Right" 
+                                 Controls:TextBoxHelper.Watermark="Nombre de índice" 
+                                 Margin="5,5,10,5" VerticalAlignment="Top" 
+                                 Width="165"
+                                 IsEnabled="False"
+                                 MaxHeight="165"
+                                 Height="30"
+                                 MinWidth="60"
+                                 MinHeight="25"
+                                 TextWrapping="Wrap"
+                                 Text="{Binding descripcionpi, 
+                                   NotifyOnValidationError=True, 
+                                  UpdateSourceTrigger=PropertyChanged, 
+                                    Mode=TwoWay, ValidatesOnDataErrors=True}"/>                                
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+            </Grid>
+            <Border BorderThickness="1" 
+                    BorderBrush="{DynamicResource AccentColorBrush}">
+                <DockPanel LastChildFill="True" >
+                    <Border BorderThickness="1" 
+                        BorderBrush="{DynamicResource AccentColorBrush}">
+                        <Grid x:Name="gridMenuLateral" HorizontalAlignment="Center" VerticalAlignment="Top" MinHeight="200" MinWidth="150">
+                            <DataGrid
+                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                        HeadersVisibility="None"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        AutoGenerateColumns="False"  SelectionMode="Single"
+                                        Margin="1"
+                                        Name="dataGridMenuIndice"
+                                        Height="Auto"
+                                        BorderThickness="1"
+                                        CanUserAddRows="False"
+                                        CanUserReorderColumns="False"
+                                        CanUserResizeRows="False"
+                                        CanUserResizeColumns="False"
+                                        RowHeight="50"
+                                        Cursor="Hand"
+                                        MinWidth="120"
+                                        MinHeight="300"
+                                        ItemsSource="{Binding Path= listaIndices , 
+                                        UpdateSourceTrigger=PropertyChanged}"
+                                        Style="{StaticResource AzureDataGrid}"    
+                                        SelectedItem="{Binding currentEntidad}">
+                                <DataGrid.Columns  >
+                                    <DataGridTemplateColumn 
+                                        x:Name="indicesMenu" 
+                                        IsReadOnly="True" 
+                                        Width="auto">
+                                        <DataGridTemplateColumn.CellTemplate >
+                                            <DataTemplate  >
+                                                <Button x:Name="btnOpcionesContenido" 
+                                                 Style="{StaticResource AccentedSquareButtonStyle}"       
+                                                 Margin="5,0,5,0"
+                                                 MinWidth="180"
+                                                 HorizontalAlignment="Left" 
+                                                 VerticalAlignment="Center"           
+                                                 MaxWidth="180"
+                                                 Command="{Binding Path=DataContext.ItemSeleccionadoCommand , UpdateSourceTrigger=PropertyChanged,
+                                                 RelativeSource={RelativeSource AncestorType=UserControl}}"                                            
+
+                                                 Height="35">
+                                                    <TextBlock Text="{Binding descripcionpi}" 
+                                                    TextAlignment="Center" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                    <!--Cuerpo-->
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                        <Grid x:Name="gtiDatos" Height="Auto" Width="Auto" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="150" >
+                            <Frame  x:Name="EditFrame" VerticalAlignment="Top" MinHeight="250" MinWidth="350" Height="Auto" Margin="0" Width="Auto" HorizontalAlignment="Left" NavigationUIVisibility="Hidden"/>
+                        </Grid>
+                    </Border>
+                    <!--Fin de cuerpo-->
+                </DockPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

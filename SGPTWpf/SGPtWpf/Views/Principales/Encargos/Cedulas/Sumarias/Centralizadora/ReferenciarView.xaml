@@ -1,0 +1,329 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Sumarias.Centralizadora.ReferenciarView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="560" d:DesignWidth="640"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      SizeToContent="WidthAndHeight"
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Herramientas"
+                      xmlns:usrBoton="clr-namespace:SGPTWpf.Recursos.controles"
+                      xmlns:usrOpciones="clr-namespace:SGPTWpf.SGPtWpf.Recursos.controles.Encargos"
+                      TitleCaps="False"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                      >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid IsEnabled="{Binding accesibilidadWindow}" >
+        <StackPanel x:Name="GrdDatosCuerpo" >
+
+            <StackPanel x:Name="encabezadoCrud" 
+                    Grid.Row="0" Orientation="Vertical" 
+                    Margin="0,5,0,0"
+                    >
+                <TextBlock
+                                Height="23"
+                                HorizontalAlignment="Center"
+                                Margin="10,1,5,1"
+                                Text="{Binding encabezadoPantalla, ValidatesOnDataErrors=True,
+                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Width="Auto" MinWidth="250"
+                                VerticalAlignment="Top"/>
+            </StackPanel>
+            <Grid >
+                <Border BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1">
+                    <StackPanel>
+                        <Grid  Visibility="{Binding visibilidadReferencia}" IsEnabled="{Binding accesibilidadReferencia}" >
+                            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0">
+                                <Grid>
+                                    <TextBlock
+                                Height="30"
+                                HorizontalAlignment="Left"
+                                Margin="20,5,5,5"
+                                Text="Referencia"
+                                Width="Auto"
+                                MinWidth="130"
+                                MaxWidth="130"
+                                VerticalAlignment="Top"/>
+                                </Grid>
+                                <Grid Margin="16,1,5,1" HorizontalAlignment="Right">
+                                    <TextBox
+                                 x:Name="txtReferencia"
+                                 DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SpellCheck.IsEnabled="True"
+                                HorizontalAlignment="Right"
+                                 Validation.Error="Validation_Error"
+                                 HorizontalContentAlignment="Left" 
+                                 VerticalContentAlignment="Top"
+                                 Controls:TextBoxHelper.ClearTextButton="True"
+                                 Controls:TextBoxHelper.Watermark="Ingrese la referencia"
+                                 Margin="10,5,5,5" 
+                                 VerticalAlignment="Top" 
+                                 Width="330"
+                                 Height="35"
+                                 MinWidth="100"
+                                 MinHeight="15"
+                                 TextWrapping="Wrap" ToolTip="Referencia técnica ha utilizarse en el índice de documentos">
+                                        <TextBox.Resources>
+                                            <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                        </TextBox.Resources>
+                                        <Binding Path="referenciacedula"
+                                                         Mode="TwoWay"
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         NotifyOnValidationError="True"  
+                                                         ValidatesOnDataErrors="True" >
+                                        </Binding>
+                                    </TextBox>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Visibility="{Binding visibilidadFechaCierre}" IsEnabled="{Binding accesibilidadCierre}" >
+                            <Grid Margin="1" >
+                                <StackPanel x:Name="ejecucionCrud"
+                                Orientation="Vertical" 
+                                Margin="0" >
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Grid >
+                                                <TextBlock
+                                        Height="30"
+                                        HorizontalAlignment="Left"
+                                        Margin="20,5,10,5"
+                                        Text="Fecha de cierre"
+                                        Width="Auto"
+                                        MinWidth="120"
+                                        MaxWidth="330"
+                                        VerticalAlignment="Top"/>
+                                            </Grid>
+                                            <Grid>
+                                                <DatePicker x:Name="dpkfechacierre"
+                                                DisplayDateStart="1/01/2012"
+                                                DisplayDateEnd="12/31/2050"
+                                                Height="35"
+                                                Background="Transparent"
+                                                HorizontalAlignment="Left"
+                                                Margin="30,5,5,5"
+                                                VerticalAlignment="Top"
+                                                Width="330"
+                                                MinWidth="50"
+                                                MaxWidth="330"
+                                                ToolTip="Seleccione la fecha de cierre, se puede modificar mientras no se cierre el documento"
+                                                 Controls:TextBoxHelper.ClearTextButton="True"
+                                                 Controls:TextBoxHelper.Watermark="Fecha de cierre"                                 
+                                                 Validation.Error="Validation_Error">
+                                                    <DatePicker.SelectedDate>
+                                                        <Binding Path="fechacierre"
+                                                     StringFormat="dd/MM/yyyy"
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True" 
+                                                     ValidatesOnDataErrors="True">
+                                                            <Binding.ValidationRules>
+                                                                <reglas:DateAuditoriaRule/>
+                                                            </Binding.ValidationRules>
+                                                        </Binding>
+                                                    </DatePicker.SelectedDate>
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                                            <i:InvokeCommandAction Command="{Binding SelectedDateChangedCommand}"
+                                                CommandParameter="{Binding ElementName=dpkfechacierre, Path=SelectedDate}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </DatePicker>
+                                            </Grid>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0">
+                                            <Grid VerticalAlignment="Center" Visibility="{Binding visibilidadConclusiones}">
+                                                <TextBlock
+                                                Height="30"
+                                                HorizontalAlignment="Left"
+                                                Margin="20,5,10,5"
+                                                Text="Conclusiones"
+                                                Width="Auto"
+                                                MinWidth="120"
+                                                MaxWidth="330"
+                                                VerticalAlignment="Top"/>
+                                            </Grid>
+                                            <Grid>
+                                                <TextBox HorizontalContentAlignment="Left" 
+                                             DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                             VerticalContentAlignment="Top"  HorizontalAlignment="Left"
+                                             Controls:TextBoxHelper.ClearTextButton="True" 
+                                             Controls:TextBoxHelper.Watermark="Ingrese las conclusiones de la cédula" 
+                                             Margin="30,5,5,5" VerticalAlignment="Top" 
+                                             Width="330"
+                                             MaxWidth="330"
+                                             MinHeight="30"
+                                             MinWidth="50"
+                                             Height="80"
+                                             TextWrapping="Wrap"
+                                             AcceptsReturn="True"
+                                             Text="{Binding conclusioncedula, 
+                                             NotifyOnValidationError=True, 
+                                             UpdateSourceTrigger=PropertyChanged, 
+                                             ValidatesOnDataErrors=True}" ToolTip="Ingrese la conclusión del área (Indispensable)"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                        <Grid Visibility="{Binding visibilidadFechaSupervision}" IsEnabled="{Binding accesibilidadSupervision}" >
+                            <Grid Margin="1" >
+                                <StackPanel x:Name="skfechasupervision"
+                            Orientation="Horizontal" 
+                            Margin="0" >
+                                    <Grid >
+                                        <TextBlock
+                                        Height="30"
+                                        HorizontalAlignment="Left"
+                                        Margin="20,5,10,5"
+                                        Text="Fecha de revisión"
+                                        Width="Auto"
+                                        MinWidth="120"
+                                        MaxWidth="330"
+                                        VerticalAlignment="Top"/>
+                                    </Grid>
+                                    <Grid>
+                                        <DatePicker x:Name="dpkfechasupervision"
+                                                DisplayDateStart="1/01/2012"
+                                                DisplayDateEnd="12/31/2050"
+                                                Height="35"
+                                                Background="Transparent"
+                                                HorizontalAlignment="Left"
+                                                Margin="30,5,5,5"
+                                                VerticalAlignment="Top"
+                                                Width="330"
+                                                MinWidth="50"
+                                                MaxWidth="330"
+                                                ToolTip="Seleccione la fecha de supervisión, se puede modificar mientras no se cierre el documento"
+                                                 Controls:TextBoxHelper.ClearTextButton="True"
+                                                 Controls:TextBoxHelper.Watermark="Fecha de supervisión"                                 
+                                                 Validation.Error="Validation_Error">
+                                            <DatePicker.SelectedDate>
+                                                <Binding Path="fechasupervision"
+                                                     StringFormat="dd/MM/yyyy"
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True" 
+                                                     ValidatesOnDataErrors="True">
+                                                    <Binding.ValidationRules>
+                                                        <reglas:DateAuditoriaRule/>
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </DatePicker.SelectedDate>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectedDateChanged">
+                                                    <i:InvokeCommandAction Command="{Binding SelectedDateSupervisionChangedCommand}"
+                                                CommandParameter="{Binding ElementName=dpkfechasupervision, Path=SelectedDate}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </DatePicker>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                        <Grid Visibility="{Binding visibilidadFechaAprobacion}" IsEnabled="{Binding accesibilidadAprobacion}" >
+                            <Grid Margin="1" >
+                                <StackPanel x:Name="skfechaaprobacion"
+                            Orientation="Horizontal" 
+                            Margin="0" >
+                                    <Grid >
+                                        <TextBlock
+                                        Height="30"
+                                        HorizontalAlignment="Left"
+                                        Margin="20,5,10,5"
+                                        Text="Fecha de aprobación"
+                                        Width="Auto"
+                                        MinWidth="120"
+                                        MaxWidth="330"
+                                        VerticalAlignment="Top"/>
+                                    </Grid>
+                                    <Grid>
+                                        <DatePicker x:Name="dpkfechaaprobacion"
+                                                DisplayDateStart="1/01/2012"
+                                                DisplayDateEnd="12/31/2050"
+                                                Height="35"
+                                                Background="Transparent"
+                                                HorizontalAlignment="Left"
+                                                Margin="30,5,5,5"
+                                                VerticalAlignment="Top"
+                                                Width="330"
+                                                MinWidth="50"
+                                                MaxWidth="330"
+                                                ToolTip="Seleccione la fecha de aprobación"
+                                                 Controls:TextBoxHelper.ClearTextButton="True"
+                                                 Controls:TextBoxHelper.Watermark="Fecha de cierre"                                 
+                                                 Validation.Error="Validation_Error">
+                                            <DatePicker.SelectedDate>
+                                                <Binding Path="fechaaprobacion"
+                                                     StringFormat="dd/MM/yyyy"
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True" 
+                                                     ValidatesOnDataErrors="True">
+                                                    <Binding.ValidationRules>
+                                                        <reglas:DateAuditoriaRule/>
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </DatePicker.SelectedDate>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectedDateChanged">
+                                                    <i:InvokeCommandAction Command="{Binding SelectedDateAprobacionCommand}"
+                                                CommandParameter="{Binding ElementName=dpkfechaaprobacion, Path=SelectedDate}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </DatePicker>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <StackPanel >
+                <Grid Margin="0"  VerticalAlignment="Bottom" HorizontalAlignment="Center" x:Name="botones">
+                    <StackPanel Orientation="Vertical">
+                        <usrOpciones:BotonesReferenciar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadReferenciar}"/>
+                        <usrOpciones:BotonesCerrar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCerrar}"/>
+                        <usrOpciones:BotonesSupervisar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadSupervisar}"/>
+                        <usrOpciones:BotonesAprobar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadAprobar}"/>
+                        <usrOpciones:BitacoraConsulta HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadConsultar}"/>
+                        <usrOpciones:BotonesEditar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadEditar}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+    </Controls:MetroWindow>
+
+
+
+

@@ -1,0 +1,92 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Administracion.Catalogos.Generico.ClaseCuenta.ClaseCuentaConsultarView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"  
+                      d:DesignHeight="282" d:DesignWidth="550"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles"
+                      TitleCaps="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label x:Name="lblEncabezado" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Datos"   HorizontalAlignment="Center"  Width="Auto"/>
+        </Grid>
+        <Grid Margin="5"  x:Name="GrdDatos"  Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="61*"/>
+                <RowDefinition Height="18*"/>
+                <RowDefinition Height="24*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="397*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="txtid" HorizontalAlignment="Left" 
+                DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                HorizontalContentAlignment="Left" VerticalContentAlignment="Center" 
+                Controls:TextBoxHelper.ClearTextButton="True"
+                Controls:TextBoxHelper.Watermark="Código " 
+                MinHeight="25" Margin="4.862,0,0,0"
+                MinWidth="10"
+                Width="240"
+                VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"
+                Text="{Binding id, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                ValidatesOnDataErrors=True,
+                NotifyOnValidationError=True}"
+                Height="25"
+                IsEnabled="False"     />
+
+            <TextBox x:Name="txtdescripcion" HorizontalContentAlignment="Left"
+                 DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                 VerticalContentAlignment="Top"  HorizontalAlignment="Left" 
+                 Controls:TextBoxHelper.ClearTextButton="True" 
+                 Controls:TextBoxHelper.Watermark="Modique la descripción " 
+                 Margin="4.862,20.554,0,0" VerticalAlignment="Top" 
+                 Width="350"
+                 Height="55"
+                 MinWidth="350"
+                 MinHeight="55"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Grid.Column="1" Grid.Row="1"
+                 Text="{Binding descripcionccuentas, 
+                 UpdateSourceTrigger=PropertyChanged,
+                 ValidatesOnDataErrors=True,
+                 NotifyOnValidationError=True}" Grid.RowSpan="2"
+                 IsEnabled="False" 
+                 />
+            <Label x:Name="lblidcodigo" Content="Código " Grid.Column="0" HorizontalAlignment="Left" Margin="0" Grid.Row="0" VerticalAlignment="Top" Width="140" Height="25" />
+            <Label x:Name="lbldescripcion" Content="Descripción  " Grid.Column="0" HorizontalAlignment="Left" Margin="0" Grid.Row="2" VerticalAlignment="Top" Height="25" Width="100" Grid.RowSpan="2" />
+        </Grid>
+
+        <usrControl:BotonesConsultar
+            Grid.Row="4" HorizontalAlignment="Center"/>
+    </Grid>
+    </Controls:MetroWindow>

@@ -1,0 +1,393 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Documentacion.Balances.DetalleBalance.DetalleBalanceCrudView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="530" d:DesignWidth="650"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"  
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      SizeToContent="WidthAndHeight"
+                      IsWindowDraggable="True" 
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                      xmlns:usrBoton="clr-namespace:SGPTWpf.Recursos.controles"
+                      TitleCaps="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="10,5,5,10" >
+        <StackPanel>
+            <StackPanel IsEnabled="{Binding accesibilidadWindow}"
+            VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <Grid  x:Name="GrdDatosEncabezado"
+                HorizontalAlignment="Center" Margin="5">
+                    <TextBlock
+                    Height="20"
+                    Margin="5,5,5,5"
+                    MinWidth="60"
+                    Width="Auto"
+                    MaxWidth="500"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Text="{Binding encabezadoPantalla, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid >
+                <Grid x:Name="GrdDatosCuerpo" >
+                    <StackPanel>
+                        <Grid  x:Name="GrdDatosClaseCuenta2" IsEnabled="{Binding editarCodigo}"   >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="Digitar código"/>
+                                <Grid  x:Name="GrdDatosCodigo" 
+                                DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <TextBox x:Name="txtCodigoContable" HorizontalContentAlignment="Left" 
+                                     Validation.Error="Validation_Error"
+                                     KeyDown="txtCodigoKeyDown"
+                                            
+                                     SpellCheck.IsEnabled="False"   Language="es" 
+                                     VerticalContentAlignment="Top"  HorizontalAlignment="Left"  
+                                     Controls:TextBoxHelper.ClearTextButton="True"
+                                     Controls:TextBoxHelper.Watermark="Ingrese codigo de la cuenta "
+                                     VerticalAlignment="Top"
+                                     Height="30"
+                                     MinWidth="350"
+                                     MinHeight="15"
+                                      Width="420"
+                                      MaxWidth="420"
+                                      Margin="10,5,0,5"
+                                     TextWrapping="Wrap"
+                                     TextAlignment="Right"
+                                     AcceptsReturn="False">
+                                        <TextBox.Resources>
+                                            <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                        </TextBox.Resources>
+                                        <Binding Path="codigoccdb" 
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True"  
+                                                     ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <reglas:BusquedaCuentaContableUnicoRule>
+                                                    <reglas:BusquedaCuentaContableUnicoRule.Wrapper>
+                                                        <reglas:WrapperCodicoCuentaContable listaEntidadSeleccion="{Binding Data.listaCatalogoCuentasModelo, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </reglas:BusquedaCuentaContableUnicoRule.Wrapper>
+                                                </reglas:BusquedaCuentaContableUnicoRule>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox>
+                                </Grid>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cmd:EventToCommand
+                                                Command="{Binding buscarCuentaCommand, Mode=TwoWay}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid  x:Name="GrdDatosTipoSaldo"  IsEnabled="{Binding editarCodigo}">
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="O seleccione la cuenta"/>
+                                <ComboBox 
+                                    x:Name="comboSaldo"
+                                      Width="420"
+                                      MaxWidth="420"
+                                      Margin="10,5,0,5"
+                                      MinHeight="30"
+                                      HorizontalAlignment="Center"
+                                      Background="Transparent"
+                                      ItemsSource="{Binding listaCatalogoCuentasModelo}" 
+                                      SelectedIndex="0"
+                                      DisplayMemberPath="descripcioncc" 
+                                      IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la cuenta"
+                                      AllowDrop="False"     
+                                      Validation.Error="Validation_Error">
+                                    <ComboBox.Resources>
+                                        <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                    </ComboBox.Resources>
+                                    <ComboBox.SelectedItem>
+                                        <Binding Path="selectedCuentaContable" 
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         Mode="TwoWay"
+                                                         NotifyOnValidationError="True" 
+                                                         ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <reglas:ComboDBCSeleccionCuentaRule ValidatesOnTargetUpdated="False"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </ComboBox.SelectedItem>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                            EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                             Command="{Binding SeleccionCuentaContableCommand, Mode=TwoWay}"
+                                             CommandParameter="{Binding SelectedItem, ElementName=comboSaldo}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="Grdsaldoanteriordb" IsEnabled="{Binding accesibilidadDigitarDatos}" >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Saldo inicial"/>
+                                <TextBlock
+                                Height="30"
+                                Margin="5,10,0,0"
+                                MinWidth="25"
+                                Width="10"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="US$"/>
+                                <Controls:NumericUpDown 
+                                                            x:Name="codSaldoInicial"
+                                                            KeyDown="txtSaldoInicialKeyDown"  
+                                                            Validation.Error="Validation_Error"  
+                                                            Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                            Width="395"
+                                                            MaxWidth="420"
+                                                            Margin="0,5,5,5"
+                                                            MinHeight="30"                                    
+                                                            ButtonsAlignment="Left"
+                                                            HorizontalAlignment="Right"                                    
+                                                            Height="35"
+                                                            StringFormat="N2"
+                                                            DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                    
+                                                            Interval="1"
+                                                            Controls:TextBoxHelper.Watermark="Saldo inicial"     
+                                                            Value="{Binding saldoanteriordb, 
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                            NotifyOnSourceUpdated=True,
+                                                            ValidatesOnDataErrors=True}">
+                                </Controls:NumericUpDown>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cmd:EventToCommand 
+                                                Command="{Binding operarCommand, Mode=TwoWay}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="Grdcargodb" IsEnabled="{Binding accesibilidadDigitarDatos}" >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Cargos"/>
+                                <TextBlock
+                                Height="30"
+                                Margin="5,10,0,0"
+                                MinWidth="25"
+                                Width="10"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="US$"/>
+                                <Controls:NumericUpDown 
+                                                            x:Name="codCargos"
+                                                            KeyDown="txtCargosKeyDown"
+                                                            Validation.Error="Validation_Error"  
+                                                            Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                            Minimum="0"
+                                                            Maximum="1000000000"
+                                                            Width="395"
+                                                            MaxWidth="420"
+                                                            Margin="0,5,5,5"
+                                                            MinHeight="30"                                
+                                                            ButtonsAlignment="Left"
+                                                            HorizontalAlignment="Right"                                    
+                                                            Height="35"
+                                                            StringFormat="N2"
+                                                            DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                    
+                                                            Interval="1"
+                                                            Controls:TextBoxHelper.Watermark="Cargos"     
+                                                            Value="{Binding cargodb, 
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                            NotifyOnSourceUpdated=True,
+                                                            ValidatesOnDataErrors=True}">
+                                </Controls:NumericUpDown>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cmd:EventToCommand 
+                                                Command="{Binding operarCommand, Mode=TwoWay}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="Grdabonodb" IsEnabled="{Binding accesibilidadDigitarDatos}" >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Abonos"/>
+                                <TextBlock
+                                Height="30"
+                                Margin="5,10,0,0"
+                                MinWidth="25"
+                                Width="10"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="US$"/>
+                                <Controls:NumericUpDown 
+                                                            x:Name="codAbonos"
+                                                            KeyDown="txtAbonosKeyDown"
+                                                            Validation.Error="Validation_Error"  
+                                                            Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                            Minimum="0"
+                                                            Maximum="1000000000"
+                                                            Width="395"
+                                                            MaxWidth="420"
+                                                            Margin="0,5,5,5"
+                                                            MinHeight="30"                                   
+                                                            ButtonsAlignment="Left"
+                                                            HorizontalAlignment="Right"                                    
+                                                            Height="35"
+                                                            StringFormat="N2"
+                                                            DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                    
+                                                            Interval="1"
+                                                            Controls:TextBoxHelper.Watermark="Abonos"     
+                                                            Value="{Binding abonodb, 
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                            NotifyOnSourceUpdated=True,
+                                                            ValidatesOnDataErrors=True}">
+                                </Controls:NumericUpDown>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cmd:EventToCommand 
+                                                Command="{Binding operarCommand, Mode=TwoWay}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="Grdsaldofinaldb" IsEnabled="{Binding accesibilidadDigitarDatos}" >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Saldo final"/>
+                                <TextBlock
+                                Height="30"
+                                Margin="5,10,0,0"
+                                MinWidth="25"
+                                Width="10"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="US$"/>
+                                <Controls:NumericUpDown 
+                                                            x:Name="codSaldoFinal"
+                                                            KeyDown="txtSaldoFinalKeyDown"
+                                                            Validation.Error="Validation_Error"  
+                                                            Controls:TextBoxHelper.SelectAllOnFocus="True"
+                                                            Width="395"
+                                                            MaxWidth="420"
+                                                            Margin="0,5,5,5"
+                                                            MinHeight="30"                                   
+                                                            ButtonsAlignment="Left"
+                                                            HorizontalAlignment="Right"                                    
+                                                            Height="35"
+                                                            StringFormat="N2"
+                                                            IsEnabled="False"
+                                                            DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True,
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                                                    
+                                                            Interval="1"
+                                                            Controls:TextBoxHelper.Watermark="Saldo final"     
+                                                            Value="{Binding saldofinaldb, 
+                                                            Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                                            NotifyOnSourceUpdated=True,
+                                                            ValidatesOnDataErrors=True}">
+                                </Controls:NumericUpDown>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <cmd:EventToCommand 
+                                                Command="{Binding verificarCommand, Mode=TwoWay}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid  x:Name="GrdDatosMensaje"
+                HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                    Height="20"
+                    Margin="5,5,5,5"
+                    MinWidth="60"
+                    Width="150"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Campo requerido"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Grid x:Name="GrdBotones" MinHeight="50">
+                <StackPanel Orientation="Vertical" x:Name="spMenu">
+                    <usrBoton:BotonesCrear HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCrear}"/>
+                    <usrBoton:BotonesConsultar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadConsultar}"/>
+                    <usrBoton:BotonesModificar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadEditar}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>

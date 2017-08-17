@@ -1,0 +1,202 @@
+﻿<Controls:MetroWindow x:Name="Principal" 
+                      x:Class="SGPTWpf.Views.Compartidas.PrincipalAlterna"      
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      DataContext="{Binding PrincipalAlternaViewModel, Source={StaticResource Locator}}"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                      Title="Sistema de gestión de papeles de trabajo" 
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"
+                      ShowTitleBar="True" 
+                      IsMaxRestoreButtonEnabled="True"
+                      IsCloseButtonEnabled="True"
+                      IsMinButtonEnabled="True"
+                      SaveWindowPosition="False"
+                      WindowTransitionsEnabled="True"
+                      EnableDWMDropShadow="True"
+                      xmlns:local="clr-namespace:SGPTWpf.Views"
+                      d:DesignHeight="624" d:DesignWidth="1024"
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion" Topmost="True"
+                      Top="0"
+                      xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                      AttachedBehaviors:WFCPrincipal.Name="{Binding Path=PrincipalMainModel.TypeName}"  >
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+
+            <Button x:Name="btnFirma"  ToolTip="Nombre de la firma"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom"  MinWidth="45" Width="Auto" MinHeight="20" Height="20" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="15" 
+                     Height="15"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource  appbar_cabinet_files_variant}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Grid 
+                      x:Name="GrdDatosFirma" 
+                      DataContext="{Binding currentFirma, ValidatesOnDataErrors=True,
+                      Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Margin="3 0 0 0" 
+                                    VerticalAlignment="Center" 
+                                    Text="{Binding razonsocialfirma, 
+                                    NotifyOnValidationError=True, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    ValidatesOnDataErrors=True}"
+                               />
+                    </Grid>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnUsuario"   ToolTip="Nombre del usuario"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom"  MinWidth="45" Width="Auto" MinHeight="20" Height="20" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="15" 
+                     Height="15"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_customerservice}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <Grid 
+                      x:Name="GrdDatos" 
+                      DataContext="{Binding currentUsuario, ValidatesOnDataErrors=True,
+                      Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBlock Margin="3 0 0 0" 
+                                    VerticalAlignment="Center" 
+                                    Text="{Binding nickusuariousuario, 
+                                    NotifyOnValidationError=True, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    ValidatesOnDataErrors=True}"
+                               />
+                    </Grid>
+                </StackPanel>
+            </Button>
+            
+            <Button x:Name="btnSalir" Command="{Binding SalirCommand}" ToolTip="Presione para salir del programa"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="45" Width="Auto" MinHeight="20" Height="20" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="15" 
+                     Height="15"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_door_leave}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Salir" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnTema" BorderBrush="Transparent" Padding="1"
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="45" Width="Auto" MinHeight="20" Height="20">
+                <StackPanel Orientation="Horizontal" Background="Transparent" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            Height="20"  >
+                    <Menu Padding="1" BorderBrush="Transparent" MinWidth="45" Width="Auto" MinHeight="20" Height="20"
+                                VerticalAlignment="Stretch" Background="Transparent" HorizontalAlignment="Stretch"
+                                ToolTip="Guarda sus preferencias de color del tema del aplicativo permanentemente...">
+                        <MenuItem Header="_Tema" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" 
+                                  MinWidth="45" Width="Auto" MinHeight="20" Height="20"
+                                  Background="Transparent" Padding="0" FontSize="11" Foreground="White"
+                                  BorderBrush="Transparent">
+                            <MenuItem.Icon>
+                                <Image Width="15" Height="15" Source="/SGPtWpf/Recursos/Imagenes/flaticon/settings-8.png"/>
+                            </MenuItem.Icon>
+                            <MenuItem ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Verde/Negro" Command="{Binding MenuItem_Click_1}"/>
+                            <MenuItem   ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Verde/Blanco" Command="{Binding MenuItem_Click_2}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Rojo/Negro" Command="{Binding MenuItem_Click_3}"/>
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Rojo/Blanco" Command="{Binding MenuItem_Click_4}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Azul/Negro" Command="{Binding MenuItem_Click_5}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Azul/Blanco" Command="{Binding MenuItem_Click_6}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Purpura/Negro" Command="{Binding MenuItem_Click_7}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Purpura/Blanco" Command="{Binding MenuItem_Click_8}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Anaranjado/Negro" Command="{Binding MenuItem_Click_9}" />
+                            <MenuItem  ItemContainerStyle="{StaticResource MetroMenuItem}" Background="{DynamicResource AccentColorBrush}" 
+                              Header="Anaranjado/Blanco" Command="{Binding MenuItem_Click_10}" />
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnSincronizacion" Margin="1"
+                Command="{Binding SincronizacionCommand}" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="45" Width="Auto" MinHeight="20" Height="20" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Rectangle Width="15" 
+                     Height="15"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cog}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="3 0 0 0" VerticalAlignment="Center" Text="Sincronizar" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <Controls:MetroWindow.Flyouts  >
+        <Controls:FlyoutsControl IsEnabled="True"  >
+            <Controls:Flyout x:Name="fmenuLateral" Header="Configuracion" Position="Left" Theme="Adapt"
+            IsOpen="{Binding Visible, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             />
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+
+
+    <Grid Height="Auto" Width="Auto"
+          IsEnabled="{Binding accesibilidadTab}">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="40" Height="Auto" MaxHeight="60"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="{DynamicResource AccentColorBrush}" Grid.Row="0"
+                   BorderThickness="1">
+            <Grid Grid.Row="0" IsEnabled="{Binding habilitarMenus}" Height="Auto">
+                <usrControl:menuPrincipal/>
+            </Grid>
+        </Border>
+        <Grid x:Name="gPrincipal" Height="Auto" Width="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="1" >
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Border BorderBrush="{DynamicResource AccentColorBrush}" 
+                   BorderThickness="1">
+                <Frame x:Name="PrincipalFrame" BorderBrush="{DynamicResource AccentColorBrush}" HorizontalAlignment="Center" VerticalAlignment="Top"
+                   BorderThickness="1" Height="Auto" Margin="0" MinHeight="300" MinWidth="400" Width="Auto" Grid.Row="1" 
+             NavigationUIVisibility="Hidden"
+             ScrollViewer.CanContentScroll="True" />
+                </Border>
+            </ScrollViewer>
+        </Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger
+             EventName="SelectionChanged">
+                <cmd:EventToCommand 
+             Command="{Binding SelectionChangedCommand, Mode=TwoWay}"/>
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseDoubleClick">
+                <cmd:EventToCommand 
+                 Command="{Binding DobleClickCommand, Mode=TwoWay}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    </Grid>
+
+</Controls:MetroWindow>

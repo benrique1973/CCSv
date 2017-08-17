@@ -1,0 +1,164 @@
+﻿<Controls:MetroWindow  x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Marcas.MarcasImpresionView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="1056" d:DesignWidth="816"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Top="0"
+                      Topmost="True"
+                     Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"  
+                      xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion.Crud"
+                      TitleCaps="False"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:usrImpresion="clr-namespace:SGPTWpf.SGPtWpf.Recursos.controles.Impresion"
+                      xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                      AttachedBehaviors:WFBReportes.Name="{Binding Path=ReportesAImpresionMainModel.TypeName}"
+                       
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button x:Name="btnSalir" Command="{Binding SalirCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                        Height="20"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_door_leave}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0" FontWeight="Bold"  VerticalAlignment="Center" Text="Regresar" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnImprimir" Command="{Binding ImprimirCommand}" Visibility="{Binding visibilidadImprimir}" >
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                        Height="20"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_printer_blank}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0" FontWeight="Bold"  VerticalAlignment="Center" Text="Imprimir" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+
+    </Controls:MetroWindow.RightWindowCommands>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid IsEnabled="{Binding accesibilidadWindow}" Height="Auto" HorizontalAlignment="Center" Width="816">
+
+        <Grid.Resources>
+            <conv:FlexibleBooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+            <conv:EnableConverter x:Key="EnableConvertir"/>
+        </Grid.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="816" HorizontalContentAlignment="Center" >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="624" >
+                <Grid >
+                    <StackPanel Orientation="Vertical" >
+                        <StackPanel Orientation="Horizontal">
+                            <usrImpresion:EncabezadoEstandar
+                            Grid.Row="0" Margin="0"/>
+                        </StackPanel>
+                        <Grid Margin="0">
+                            <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
+                                <DataGrid 
+                        AutoGenerateColumns="False"  SelectionMode="Extended"
+                        Margin="1,0,0,0"
+                        Name="dataGrid"
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        HorizontalScrollBarVisibility="Auto"
+                        Width="Auto"
+                        AllowDrop="True"
+                        VerticalScrollBarVisibility="Auto"
+                        CanUserResizeRows="True"
+                        CanUserSortColumns="True"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding Path= lista , UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding currentEntidadDetalle}">
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Style.Triggers>
+                                                <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsSelected" Value="true" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                </MultiTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns >
+                                        <DataGridTextColumn Header="#" MinWidth="50"
+                            Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Marca" MinWidth="100"
+                            Binding="{Binding marcama,  UpdateSourceTrigger=PropertyChanged}">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="MinWidth"  Value="50" />
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                    <Setter Property="FontSize" Value="{Binding tamaniotipografiama,  UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <Setter Property="FontFamily" Value="{Binding tipografiama,  UpdateSourceTrigger=PropertyChanged}"/>
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+
+                                        <DataGridTextColumn Header="Significado" MinWidth="375" Width="*"
+                                Binding="{Binding Path= significadoma , 
+                                UpdateSourceTrigger=PropertyChanged}">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                            </Border>
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+    </Controls:MetroWindow>
+
+
+
+
+

@@ -1,0 +1,267 @@
+﻿<Controls:MetroWindow x:Class="SGPTmvvm.Modales.CRUDfirmaCorrespondenciaView" 
+                      xmlns:local="clr-namespace:SGPTmvvm.CustomValidationAttributes"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"   
+                      xmlns:ViewModels="clr-namespace:SGPTmvvm.Modales"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"
+                      xmlns:Soporte="clr-namespace:SGPTmvvm.Soporte" 
+                      
+                         mc:Ignorable="d" 
+                      SizeToContent="WidthAndHeight"
+
+                         x:Name="root" 
+                         ShowInTaskbar="True"
+                         ResizeMode="CanMinimize"
+                         WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      ShowTitleBar="True" 
+                      Title="Gestion de correspondencia"
+                      
+                      IsMaxRestoreButtonEnabled="False"
+                      IsCloseButtonEnabled="True"
+                      IsMinButtonEnabled="True"
+                      SaveWindowPosition="False"
+                      WindowTransitionsEnabled="True"
+                      EnableDWMDropShadow="True"   
+                      >
+    <Control.Resources>
+        <!--Este conversor es para poder activar o desactivar botones usando el multiDataTrigger-->
+        <local:NotNullToBoolConverter x:Key="NotNullToBoolConverter"/>
+
+        <Style x:Key="RadioButtonList" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}" >
+                        <Setter Property="Margin" Value="3" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border BorderThickness="0" Background="Transparent">
+                                        <RadioButton 
+                                            Focusable="False"
+                                            IsHitTestVisible="False"
+                                            IsChecked="{TemplateBinding IsSelected}">
+                                            <ContentPresenter />
+                                        </RadioButton>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border BorderThickness="0" Padding="0" BorderBrush="Transparent" Background="Transparent" Name="Bd" SnapsToDevicePixels="True">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Control.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="2"  
+					CornerRadius="0,0,0,0"  Margin="3">
+            <!--Black-->
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect Color="AliceBlue" Opacity="0.5" Direction="370" ShadowDepth="0.7" />
+                <!--Black-->
+            </Border.BitmapEffect>
+            <Grid Margin="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="305"/>
+                    <RowDefinition Height="50"/>
+
+                    <RowDefinition Height="*" />
+                    
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="160"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock x:Name="MessageTextBlock" Text="{Binding Message, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" TextWrapping="Wrap" Margin="1,7,1,0" HorizontalAlignment="Center" FontSize="20" />
+
+                <!--Sirve para activar el boton guardar no borrar-->
+                <TextBox Name="txtBanderax" Text="{Binding txtBandera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+                <Label Content=" Cliente:   " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                <ComboBox  x:Name="cmbClienteCorrespondencia" IsEnabled="{Binding HabilitarcmbClienteCorrespondencia}" Text="--Seleccione un Cliente--" IsEditable="True" IsReadOnly="True" 
+                                   ItemsSource="{Binding ClientesListado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   DisplayMemberPath="razonsocialcliente" 
+                                   SelectedItem="{Binding SelectedCliente, Mode=Default, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="25" Grid.Column="1" Grid.Row="1" />
+                <Label Content="Ultima correspondencia:" FontSize="14" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"/>
+                <TextBox Grid.Row="1" Text="{Binding ultimaCorrespondencia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="3"  Height="30" IsEnabled="False"/>
+                
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="3" IsEnabled="{Binding HabilitarGridCorresp, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="46"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="48"/>
+                        <RowDefinition Height="20"/>
+                        <!--<RowDefinition Height="40"/>-->
+                        <!--<RowDefinition Height="5" />
+                        <RowDefinition Height="45"/>-->
+
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="195"/>
+                        <ColumnDefinition Width="230"/>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="160"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Margin="1" Grid.ColumnSpan="4" Grid.RowSpan="7" />
+                    <Label Content="* Buzon:  " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0"/>
+                    <Label Content="* Numero de correspondencia:" FontSize="14" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+
+                    <Label Content="* Asunto de correspondencia:      " FontSize="14" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                    <Label Content="* Persona firma:        " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+                    <Label Content="* Contacto firma:        " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2"/>
+                    <Label Content="* Tipo correspondencia:  "  FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+                    <Label Content="* Fecha recepcion:   "      FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" />
+                    <Label Content=" Comentario:   " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="5"/>
+                    <!--<Label Content=" Referencia a PT:   " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="6"/>-->
+                    <Label Content=" Cargar PDF:   " FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="6"/>
+
+
+                    <ListBox Grid.Column="3" Grid.Row="0" Style="{StaticResource RadioButtonList}" SelectedValuePath="Tag" VerticalAlignment="Center" SelectedValue="{Binding Path=TipoCorrespondencia}">
+                        <ListBoxItem Tag="cEntrante">Entrante</ListBoxItem>
+                        <ListBoxItem Tag="cSaliente" Content="Saliente"/>
+                    </ListBox>
+
+                    <TextBox x:Name="txtNumeroCorrespondencia" Grid.Column="1" Grid.Row="0" IsEnabled="{Binding HabilitartxtNumeroCorrespondencia}" Height="25" 
+                             Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ej. A-01234; AA-0123" Margin="0,10,80,9.333" ToolTip="Ej: A-999-(Año automatico) Nota: al numero se le agregara el año actual de forma predeterminada">
+                        <Binding Path="Numerocorrespondencia" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <local:TextBoxNoVacioValidationRule x:Name="numerocorrexValidation"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>
+                                <!--<local:ValidacionSoloDigitos x:Name="numerocorreValidation2"  ValidatesOnTargetUpdated="True" Message="Tarea contiene caracteres no permitidos."/>-->
+                                <local:ExcluirChar x:Name="Respuestapistausuariovalidation2" NoPermitir="/;[]{}()*+~^_=!@$%\'&lt;&gt;&amp;" ValidatesOnTargetUpdated="True" Message="El numero correspondencia contienen caracteres no permitidos."/>
+                                <local:ValidacionMenorQue NumeritoMenorIgualQue="7" NumeritoMayorIgualQue="1" EsRequerido="True"  x:Name="numercorrexvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima es 6"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                    <!--<TextBox Grid.Row="1" Name="block1" Margin="150,10,8,5.333" Grid.Column="1" Height="25" Width="50" FontWeight="Bold" VerticalAlignment="Center" Text="{Binding Source={x:Static sys:DateTime.Now},Mode=OneWay, StringFormat='yyyy'}"/>-->
+                    <TextBox Grid.Row="0" Text="{Binding añoCorrespondencia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="155,5,5,5.333" Height="30" IsEnabled="False"/>
+                    
+                    <TextBox x:Name="txtAsuntoCorrespondencia" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" IsEnabled="{Binding HabilitartxtAsuntoCorrespondencia}" Height="25" 
+                             Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese asunto de carta" Margin="0,0,6,0">
+                        <Binding Path="Asuntocorrespondencia" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <local:TextBoxNoVacioValidationRule x:Name="AsuntoCartaxValidation"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>
+                                <local:ExcluirChar x:Name="AsuntoCartaValidation2"  ValidatesOnTargetUpdated="True" Message="Tarea contiene caracteres no permitidos."/>
+                                <local:ValidacionMenorQue NumeritoMenorIgualQue="100" NumeritoMayorIgualQue="1" EsRequerido="True"  x:Name="AsuntoCartaxvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima es 100"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                    <ComboBox  x:Name="cmbUsuarioRecibe" IsEnabled="{Binding HabilitarcmbUsuarioRecibe}" Text="--Seleccione una persona--" IsEditable="True" IsReadOnly="False" 
+                                   ItemsSource="{Binding ListadoUsuarios, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   DisplayMemberPath="nombreCompleto" 
+                                   SelectedItem="{Binding SelectedUsuarioFirma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="25" Grid.Column="1" Grid.Row="2" />
+                    <ComboBox  x:Name="cmbClienteEmite" IsEnabled="{Binding HabilitarcmbClienteEmite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="--Seleccione un contacto--" IsEditable="True" IsReadOnly="False" Margin="0,0,5,0"
+                                   ItemsSource="{Binding ListadoContactos, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   DisplayMemberPath="nombrescontacto" 
+                                   SelectedItem="{Binding SelectedContactoFirma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="25" Grid.Column="3" Grid.Row="2" />
+                    <Button  Height="35" Width="150" HorizontalAlignment="Left"  x:Name="cmdNuevoContacto" IsEnabled="{Binding HabilitarcmdNuevoContacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="3" Command="{Binding cmdNuevoContacto_Click}" Content="Nuevo Contacto"  FontSize="14" ToolTip="Agregar nuevo contacto" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" >
+                    </Button>
+
+                    <ComboBox  x:Name="cmbTipoCorrespondencia"  Text="--Seleccione tipo correspondencia--" IsEditable="True" IsReadOnly="True" 
+                                   ItemsSource="{Binding ListadoTipoCorrespondencia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                   DisplayMemberPath="descripcionct" 
+                                   SelectedItem="{Binding SelectedTipoCorrespondencia, Mode=Default, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="25" Grid.Column="1" Grid.Row="3" />
+                    <DatePicker x:Name="dpickFechaRecepcion" IsEnabled="{Binding HabilitardpickFechaRecepcion}"
+                                    DisplayDate="{Binding DateTime.Now()}" 
+                                    Focusable="False" 
+                                    SelectedDate="{Binding Fecharecepcioncorrespondencia, Mode=TwoWay}" 
+                                    Height="25" Grid.Column="1" Grid.Row="4" />
+
+                    <TextBox x:Name="txtComentario" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" IsEnabled="{Binding HabilitartxtComentario}" Height="25" Margin="0,2,-0.333,2.333"
+                             Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese un comentario">
+                        <Binding Path="Comentariocorrespondencia" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
+                            <Binding.ValidationRules>
+                                <local:TextBoxNoVacioValidationRule x:Name="TareaxValidation"  ValidatesOnTargetUpdated="True" Message="Dato requerido"/>
+                                <local:ExcluirChar x:Name="TareaxValidation2"  ValidatesOnTargetUpdated="True" Message="Contiene caracteres no permitidos."/>
+                                <local:ValidacionMenorQue NumeritoMenorIgualQue="200" NumeritoMayorIgualQue="5" EsRequerido="True"  x:Name="tareaxvalidation4" ValidatesOnTargetUpdated="True" Message="La longitud maxima es 200"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+
+                    <!--<Button  Height="35" Width="150" HorizontalAlignment="Left" x:Name="cmdReferenciaPt" Grid.Column="1" Grid.Row="6" Command="{Binding cmdReferenciaPT_Click}" Content="Referencia PT"  FontSize="14" ToolTip="Referencias a Papeles de Trabajo" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" IsEnabled="False"/>-->
+
+
+
+                    <Button  Height="35" Width="150" HorizontalAlignment="Left"  x:Name="cmdCargarPDF" Grid.Column="1" Grid.Row="6" Command="{Binding cmdCargarPDF_Click}" Content="Cargar PDF"  FontSize="14"  ToolTip="Cargar PDF" Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" >
+
+                    </Button>
+
+                </Grid>
+
+                <UniformGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Columns="2" HorizontalAlignment="Center" Margin="1,1,1,1">
+                    <Button x:Name="cmdGuardar" Width="150" Command="{Binding cmdGuardar_Click}" CommandParameter="{Binding ElementName=txtContraseña}" Content="Guardar" Margin="5,5,15,5" FontSize="16"  ToolTip="Guarda la correspondencia en la base de datos">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyleSGPtWpf}">
+                                <Setter Property="IsEnabled" Value="false" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Text, ElementName=txtBanderax}" Value="1" />
+                                            <!--<Condition Binding="{Binding ElementName=txtObservaciones, Path=Text}" Value="1" />-->
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=txtNumeroCorrespondencia}" Value="false" />
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=txtAsuntoCorrespondencia}" Value="false" />
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=txtComentario}" Value="false" />
+
+                                            <!--<Condition Binding="{Binding SelectedItem, Converter={StaticResource NotNullToBoolConverter}, ElementName=cmbUsuarioRecibe}" Value="True"/>-->
+                                            <Condition Binding="{Binding SelectedItem, Converter={StaticResource NotNullToBoolConverter}, ElementName=cmbTipoCorrespondencia}" Value="True"/>
+                                            <Condition Binding="{Binding SelectedItem, Converter={StaticResource NotNullToBoolConverter}, ElementName=cmbClienteCorrespondencia}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="IsEnabled" Value="true" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="cmdCancelar" Command="{Binding cmdCancelar_Click}" Content="Cancelar" Margin="0,5,15,5" FontSize="16"  Style="{StaticResource AccentedSquareButtonStyleSGPtWpf}" ToolTip="Ignora los cambios y permite salir" />
+                </UniformGrid>
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="11" Grid.RowSpan="5" Margin="2" MaxWidth="700" MaxHeight="500">
+                    <Frame Content="{Binding VistaFramePDF}"/>
+                </StackPanel>
+
+                <!--<Frame  x:Name="EditFrame" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Visibility="{Binding HabilitarFrame, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+            </Grid>
+        </Border>
+    </Grid>
+</Controls:MetroWindow>

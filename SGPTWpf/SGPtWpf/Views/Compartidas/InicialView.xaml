@@ -1,0 +1,96 @@
+﻿<Controls:MetroWindow  x:Class="SGPTWpf.SGPtWpf.Views.Compartidas.InicialView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+                       
+                       
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"             
+                        xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+                        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                       
+                      mc:Ignorable="d"
+                      WindowStartupLocation="CenterScreen"
+                      Topmost="True"
+                      Title="Sistema de gestión de papeles de trabajo" Height="624" Width="1024"
+                        Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"   
+                      DataContext="{Binding InicialViewModel, Source={StaticResource Locator}}"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      IsWindowDraggable="True"
+                      TitleCaps="False"
+                      xmlns:AttachedBehaviors="clr-namespace:SGPTWpf.AttachedBehaviors"
+                      AttachedBehaviors:WFBInicial.Name="{Binding Path=InicialMainModel.TypeName}"  
+                        >
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <!--Acceso directo a Facebook-->
+            <Button ToolTip="Facebook" Name="FacebookButton" Command="{Binding FacebookCommand}">
+                <Rectangle Width="22" Height="22" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                         Visual="{StaticResource appbar_social_facebook}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+            <!--Acceso directo a Twitter-->
+            <Button ToolTip="Twitter" Name="TwitterButton" Command="{Binding TwitterCommand}">
+                <Rectangle Width="22" Height="22" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                         Visual="{StaticResource appbar_twitter_bird}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+            <!--Acceso directo a Google+-->
+            <Button ToolTip="Google+" Name="GoogleButton" Command="{Binding GoogleCommand}">
+                <Rectangle Width="22" Height="22" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                         Visual="{StaticResource appbar_googleplus}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <!--Acceso directo a Login-->
+            <Button ToolTip="Login" Name="LoginButton" Command="{Binding LoguinCommand}">
+                <Rectangle Width="22" Height="22" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                     Visual="{StaticResource appbar_user}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+            <!--Acceso directo a Contactar-->
+            <!--<Button ToolTip="Contactar" Name="ContactButton">
+                <Rectangle Width="22" Height="22" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                     Visual="{StaticResource appbar_email_minimal}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>-->
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid MinHeight="180" MinWidth="500" >
+            <!--<Image Source="/SGPtWpf/Recursos/Imagenes/Iconos/Inicio.png" />-->
+        <Image Source="/SGPtWpf/Recursos/Imagenes/Iconos/Inicio.png" ToolTip="Ingresar" Cursor="Hand">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding LoguinCommand, Mode=OneTime}" />
+            </Image.InputBindings>
+        </Image>
+        </Grid>
+    </Grid>
+    </Controls:MetroWindow>

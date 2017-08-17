@@ -1,0 +1,366 @@
+﻿<Controls:MetroWindow x:Class="SGPTWpf.SGPtWpf.Views.Principales.Encargos.Documentacion.Balances.BalancesCrudView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:reglas="clr-namespace:SGPTWpf.SGPtWpf.Support.Validaciones.Reglas"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"                  
+                      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                      Dialog:DialogParticipation.Register="{Binding}"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:helpers="clr-namespace:SGPTWpf.Helpers"
+                      d:DesignHeight="615" d:DesignWidth="650"
+                      helpers:DialogCloser.DialogResult="{Binding CloseWindowFlag}"
+                      mc:Ignorable="d"
+                      Topmost="True"
+                      MaxHeight="600"
+                      Icon="/SGPtWpf/Recursos/Imagenes/Iconos/CCSV2.png"  
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ShowMinButton="True"
+                      SizeToContent="WidthAndHeight"
+                      IsWindowDraggable="True" 
+                      xmlns:conv ="clr-namespace:SGPTWpf.Support.Conversores"
+                      xmlns:usrBoton="clr-namespace:SGPTWpf.Recursos.controles"
+                      TitleCaps="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SalirCommand}" CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="10,5,5,10" >
+        <StackPanel>
+            <StackPanel  IsEnabled="{Binding accesibilidadWindow}"
+            VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <Grid  x:Name="GrdDatosEncabezado"
+                HorizontalAlignment="Center" Margin="5">
+                    <TextBlock
+                    Height="20"
+                    Margin="5,5,5,5"
+                    MinWidth="60"
+                    Width="Auto"
+                    MaxWidth="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Text="{Binding encabezadoPantalla, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid >
+                <Grid x:Name="GrdDatosCuerpo" >
+                    <StackPanel>
+                        <Grid  x:Name="GrdDatosElemento"  >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                    Height="30"
+                    Margin="5,5,5,5"
+                    MinWidth="40"
+                    Width="140"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Clase de balance"/>
+                                <ComboBox 
+                          x:Name="comboClaseBalance"
+                          Width="420"
+                          MaxWidth="420"
+                          Margin="10,5,0,5"
+                          HorizontalAlignment="Center"
+                          Background="Transparent"
+                          ItemsSource="{Binding listaClaseBalance}" 
+                          SelectedIndex="0" 
+                          DisplayMemberPath="descripcionCb" 
+                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione el tipo de elemento"
+                          AllowDrop="False"     
+                          MinHeight="30"
+                          IsEnabled="{Binding accesibilidadWindow}"
+                          Validation.Error="Validation_Error">
+                                    <ComboBox.Resources>
+                                        <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                    </ComboBox.Resources>
+                                    <ComboBox.SelectedItem>
+                                        <Binding Path="selectedClaseBalance" 
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         Mode="TwoWay"
+                                                         NotifyOnValidationError="True" 
+                                                         ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <reglas:ComboDCBSeleccionClaseBalanceRule ValidatesOnTargetUpdated="False">
+                                                    <reglas:ComboDCBSeleccionClaseBalanceRule.Wrapper>
+                                                        <reglas:WrapperDBCClaseBalance listaDBCClaseBalanceSeleccion="{Binding Data.listaEntidadSeleccionCb, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </reglas:ComboDCBSeleccionClaseBalanceRule.Wrapper>
+                                                </reglas:ComboDCBSeleccionClaseBalanceRule>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </ComboBox.SelectedItem>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                    EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                     Command="{Binding SelectionClaseBalanceCommand, Mode=TwoWay}"
+                                     CommandParameter="{Binding SelectedItem, ElementName=comboClaseBalance}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  x:Name="GrdDatosClaseCuenta2" >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                                Height="30"
+                                Margin="5,5,5,5"
+                                MinWidth="40"
+                                Width="140"
+                                MaxWidth="200"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                Text="*Periodicidad"/>
+                                <ComboBox x:Name="seleccionPeriodo"
+                                        Height="30"
+                                        SelectedIndex="0" 
+                                        Background="Transparent"
+                                        Margin="10,5,0,5"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Right"
+                                        Width="420"
+                                        MinWidth="50"
+                                        MaxWidth="420"
+                                        ItemsSource="{Binding listaPeriodo}"
+                                        DisplayMemberPath="descripcionPeriodo"
+                                        IsEditable="False"
+                                        Controls:TextBoxHelper.Watermark="Seleccione el tipo de elemento"
+                                        AllowDrop="True">
+                                    <ComboBox.Resources>
+                                        <reglas:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                                    </ComboBox.Resources>
+                                    <ComboBox.SelectedItem>
+                                        <Binding Path="selectedPeriodo" 
+                                                         UpdateSourceTrigger="PropertyChanged"
+                                                         NotifyOnValidationError="True" 
+                                                         ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <reglas:ComboDBCSeleccionPeriodicidadRule ValidatesOnTargetUpdated="False">
+                                                    <reglas:ComboDBCSeleccionPeriodicidadRule.Wrapper>
+                                                        <reglas:WrapperDBCPeriodo listaDBCPeriodoSeleccion="{Binding Data.listaEntidadSeleccionPeriodo, Source={StaticResource proxy},Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </reglas:ComboDBCSeleccionPeriodicidadRule.Wrapper>
+                                                </reglas:ComboDBCSeleccionPeriodicidadRule>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </ComboBox.SelectedItem>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                                    EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                                    Command="{Binding SelPeriodoCommand, Mode=TwoWay}"
+                                                    CommandParameter="{Binding SelectedItem, ElementName=seleccionPeriodo}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid  x:Name="GrdDatosTipoSaldo" >
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                                <TextBlock
+                    Height="30"
+                    Margin="5,5,5,5"
+                    MinWidth="40"
+                    Width="140"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Fecha de balance"/>
+                                <DatePicker x:Name="dpkfechabalance"
+                                                 Margin="10,5,0,5"
+                                                 DisplayDateStart="1/01/2012"
+                                                 DisplayDateEnd="12/31/2050"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Right"
+                                                Width="420"
+                                                MinWidth="50"
+                                                MaxWidth="420"                              
+                                                 Controls:TextBoxHelper.ClearTextButton="True"
+                                                 Controls:TextBoxHelper.Watermark="Inicio"                                 
+                                                 Validation.Error="Validation_Error">
+                                    <DatePicker.SelectedDate>
+                                        <Binding Path="fechaDbalancebalance"
+                                                     StringFormat="dd/MM/yyyy"
+                                                     Mode="TwoWay"
+                                                     UpdateSourceTrigger="PropertyChanged"
+                                                     NotifyOnValidationError="True" 
+                                                     ValidatesOnDataErrors="True">
+                                            <Binding.ValidationRules>
+                                                <reglas:DateBalanceRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </DatePicker.SelectedDate>
+                                </DatePicker>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid  x:Name="GrdDatosMensaje"
+                HorizontalAlignment="Left" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                    Height="20"
+                    Margin="5,5,5,5"
+                    MinWidth="60"
+                    Width="150"
+                    MaxWidth="200"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Text="*Campo requerido"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Grid x:Name="GrdBotones" MinHeight="50">
+                <StackPanel Orientation="Vertical"  >
+                    <usrBoton:BotonesCrear HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadCrear}"/>
+                    <usrBoton:BotonesConsultar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadConsultar}"/>
+                    <usrBoton:BotonesModificar HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" Visibility="{Binding visibilidadEditar}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Visibility="{Binding visibilidadBitacora}" Margin="-10,5,-5,-10">
+                <Border BorderThickness="1"
+                Grid.Row="1"
+                BorderBrush="{DynamicResource AccentColorBrush}">
+                    <StackPanel x:Name="GrdBitacora" >
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock
+                            Height="20"
+                            Margin="5,5,5,5"
+                            MinWidth="60"
+                            Width="150"
+                            MaxWidth="200"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            Text="Historial de  cambios"/>
+                        </Grid>
+                        <Grid>
+                            <Border BorderThickness="1"
+                                Grid.Row="1"
+                                BorderBrush="{DynamicResource AccentColorBrush}">
+                                <DataGrid
+                                    AutoGenerateColumns="False"  
+                                    SelectionMode="Extended"
+                                    Margin="1,1,1,0"
+                                    x:Name="dgContenido"
+                                    VerticalAlignment="Top"
+                                    HorizontalScrollBarVisibility="Auto" 
+                                    Width="Auto"
+                                    AllowDrop="True"
+                                    VerticalScrollBarVisibility="Auto"
+                                    CanUserResizeRows="True"
+                                    CanUserSortColumns="True"
+                                    CanUserAddRows="False"
+                                    ItemsSource="{Binding Path= listaBitacora , UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedItem="{Binding currentEntidadBitacora}">
+                                    <DataGrid.RowStyle>
+                                        <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <Style.Triggers>
+                                                <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsSelected" Value="true" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                </MultiTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns >
+                                        <DataGridTextColumn 
+                                Binding="{Binding idCorrelativoBit,  UpdateSourceTrigger=PropertyChanged}"
+                                Header="#"
+                                x:Name="codidCorrelativoBit">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                            <DataGridTextColumn.EditingElementStyle>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="AcceptsReturn" Value="true" />
+                                                    <Setter Property="Margin" Value="5,2,5,0" />
+                                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                                </Style>
+                                            </DataGridTextColumn.EditingElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn 
+                            Binding="{Binding fechahorabitacora,  UpdateSourceTrigger=PropertyChanged}"
+                            Header="Fecha de accion"
+                            x:Name="codfechahorabitacora">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                            <DataGridTextColumn.EditingElementStyle>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="AcceptsReturn" Value="true" />
+                                                    <Setter Property="Margin" Value="5,2,5,0" />
+                                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                                </Style>
+                                            </DataGridTextColumn.EditingElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn 
+                            Binding="{Binding accionbitacora,  UpdateSourceTrigger=PropertyChanged}"
+                            Header="Accion realizada"
+                            x:Name="codaccionbitacora">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                            <DataGridTextColumn.EditingElementStyle>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="AcceptsReturn" Value="true" />
+                                                    <Setter Property="Margin" Value="5,2,5,0" />
+                                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                                </Style>
+                                            </DataGridTextColumn.EditingElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn 
+                                Binding="{Binding Path= inicialesusuariobitacora , UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="codinicialesusuariobitacora" 
+                                Width="Auto"
+                                IsReadOnly="True"
+                                Header="Usuario">
+                                            <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                            <DataGridTextColumn.EditingElementStyle>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="AcceptsReturn" Value="true" />
+                                                    <Setter Property="Margin" Value="5,2,5,0" />
+                                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                                </Style>
+                                            </DataGridTextColumn.EditingElementStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+    </Controls:MetroWindow>
+

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCedulaNotas" targetNamespace="http://tempuri.org/DSCedulaNotas.xsd" xmlns:mstns="http://tempuri.org/DSCedulaNotas.xsd" xmlns="http://tempuri.org/DSCedulaNotas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCedulaNotas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCedulaNotas" msprop:Generator_UserDSName="DSCedulaNotas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableCuerpo" msprop:Generator_TableClassName="DataTableCuerpoDataTable" msprop:Generator_TableVarName="tableDataTableCuerpo" msprop:Generator_TablePropName="DataTableCuerpo" msprop:Generator_RowDeletingName="DataTableCuerpoRowDeleting" msprop:Generator_RowChangingName="DataTableCuerpoRowChanging" msprop:Generator_RowEvHandlerName="DataTableCuerpoRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableCuerpoRowDeleted" msprop:Generator_UserTableName="DataTableCuerpo" msprop:Generator_RowChangedName="DataTableCuerpoRowChanged" msprop:Generator_RowEvArgName="DataTableCuerpoRowChangeEvent" msprop:Generator_RowClassName="DataTableCuerpoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idCorrelativo" msdata:Caption="" msprop:Generator_ColumnVarNameInTable="columnidCorrelativo" msprop:Generator_ColumnPropNameInRow="idCorrelativo" msprop:Generator_ColumnPropNameInTable="idCorrelativoColumn" msprop:Generator_UserColumnName="idCorrelativo" type="xs:int" minOccurs="0" />
+              <xs:element name="numNotasPt" msdata:Caption="" msprop:Generator_ColumnVarNameInTable="columnnumNotasPt" msprop:Generator_ColumnPropNameInRow="numNotasPt" msprop:Generator_ColumnPropNameInTable="numNotasPtColumn" msprop:Generator_UserColumnName="numNotasPt" type="xs:string" minOccurs="0" />
+              <xs:element name="referenciaPapel" msdata:Caption="" msprop:Generator_ColumnVarNameInTable="columnreferenciaPapel" msprop:Generator_ColumnPropNameInRow="referenciaPapel" msprop:Generator_ColumnPropNameInTable="referenciaPapelColumn" msprop:Generator_UserColumnName="referenciaPapel" type="xs:string" minOccurs="0" />
+              <xs:element name="descripcionNotasPt" msdata:Caption="baseLegalHallazgo" msprop:Generator_ColumnVarNameInTable="columndescripcionNotasPt" msprop:Generator_ColumnPropNameInRow="descripcionNotasPt" msprop:Generator_ColumnPropNameInTable="descripcionNotasPtColumn" msprop:Generator_UserColumnName="descripcionNotasPt" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTableEncabezado" msprop:Generator_TableClassName="DataTableEncabezadoDataTable" msprop:Generator_TableVarName="tableDataTableEncabezado" msprop:Generator_TablePropName="DataTableEncabezado" msprop:Generator_RowDeletingName="DataTableEncabezadoRowDeleting" msprop:Generator_RowChangingName="DataTableEncabezadoRowChanging" msprop:Generator_RowEvHandlerName="DataTableEncabezadoRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableEncabezadoRowDeleted" msprop:Generator_UserTableName="DataTableEncabezado" msprop:Generator_RowChangedName="DataTableEncabezadoRowChanged" msprop:Generator_RowEvArgName="DataTableEncabezadoRowChangeEvent" msprop:Generator_RowClassName="DataTableEncabezadoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="logofirmay" msprop:Generator_ColumnVarNameInTable="columnlogofirmay" msprop:Generator_ColumnPropNameInRow="logofirmay" msprop:Generator_ColumnPropNameInTable="logofirmayColumn" msprop:Generator_UserColumnName="logofirmay" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="referenciay" msprop:Generator_ColumnVarNameInTable="columnreferenciay" msprop:Generator_ColumnPropNameInRow="referenciay" msprop:Generator_ColumnPropNameInTable="referenciayColumn" msprop:Generator_UserColumnName="referenciay" type="xs:string" minOccurs="0" />
+              <xs:element name="razonsocialfirmay" msprop:Generator_ColumnVarNameInTable="columnrazonsocialfirmay" msprop:Generator_ColumnPropNameInRow="razonsocialfirmay" msprop:Generator_ColumnPropNameInTable="razonsocialfirmayColumn" msprop:Generator_UserColumnName="razonsocialfirmay" type="xs:string" minOccurs="0" />
+              <xs:element name="encabezadopantallay" msprop:Generator_ColumnVarNameInTable="columnencabezadopantallay" msprop:Generator_ColumnPropNameInRow="encabezadopantallay" msprop:Generator_ColumnPropNameInTable="encabezadopantallayColumn" msprop:Generator_UserColumnName="encabezadopantallay" type="xs:string" minOccurs="0" />
+              <xs:element name="descripciontipoauditoriay" msprop:Generator_ColumnVarNameInTable="columndescripciontipoauditoriay" msprop:Generator_ColumnPropNameInRow="descripciontipoauditoriay" msprop:Generator_ColumnPropNameInTable="descripciontipoauditoriayColumn" msprop:Generator_UserColumnName="descripciontipoauditoriay" type="xs:string" minOccurs="0" />
+              <xs:element name="razonsocialclientey" msprop:Generator_ColumnVarNameInTable="columnrazonsocialclientey" msprop:Generator_ColumnPropNameInRow="razonsocialclientey" msprop:Generator_ColumnPropNameInTable="razonsocialclienteyColumn" msprop:Generator_UserColumnName="razonsocialclientey" type="xs:string" minOccurs="0" />
+              <xs:element name="usuarioejecutoy" msprop:Generator_ColumnVarNameInTable="columnusuarioejecutoy" msprop:Generator_ColumnPropNameInRow="usuarioejecutoy" msprop:Generator_ColumnPropNameInTable="usuarioejecutoyColumn" msprop:Generator_UserColumnName="usuarioejecutoy" type="xs:string" minOccurs="0" />
+              <xs:element name="fechaejecutoy" msprop:Generator_ColumnVarNameInTable="columnfechaejecutoy" msprop:Generator_ColumnPropNameInRow="fechaejecutoy" msprop:Generator_ColumnPropNameInTable="fechaejecutoyColumn" msprop:Generator_UserColumnName="fechaejecutoy" type="xs:string" minOccurs="0" />
+              <xs:element name="fechainiperauditencargoy" msprop:Generator_ColumnVarNameInTable="columnfechainiperauditencargoy" msprop:Generator_ColumnPropNameInRow="fechainiperauditencargoy" msprop:Generator_ColumnPropNameInTable="fechainiperauditencargoyColumn" msprop:Generator_UserColumnName="fechainiperauditencargoy" type="xs:string" minOccurs="0" />
+              <xs:element name="fechafinperauditencargoy" msprop:Generator_ColumnVarNameInTable="columnfechafinperauditencargoy" msprop:Generator_ColumnPropNameInRow="fechafinperauditencargoy" msprop:Generator_ColumnPropNameInTable="fechafinperauditencargoyColumn" msprop:Generator_UserColumnName="fechafinperauditencargoy" type="xs:string" minOccurs="0" />
+              <xs:element name="usuariosupervisoy" msprop:Generator_ColumnVarNameInTable="columnusuariosupervisoy" msprop:Generator_ColumnPropNameInRow="usuariosupervisoy" msprop:Generator_ColumnPropNameInTable="usuariosupervisoyColumn" msprop:Generator_UserColumnName="usuariosupervisoy" type="xs:string" minOccurs="0" />
+              <xs:element name="fechasupervisoy" msprop:Generator_ColumnVarNameInTable="columnfechasupervisoy" msprop:Generator_ColumnPropNameInRow="fechasupervisoy" msprop:Generator_ColumnPropNameInTable="fechasupervisoyColumn" msprop:Generator_UserColumnName="fechasupervisoy" type="xs:string" minOccurs="0" />
+              <xs:element name="usuarioaproboy" msprop:Generator_ColumnVarNameInTable="columnusuarioaproboy" msprop:Generator_ColumnPropNameInRow="usuarioaproboy" msprop:Generator_ColumnPropNameInTable="usuarioaproboyColumn" msprop:Generator_UserColumnName="usuarioaproboy" type="xs:string" minOccurs="0" />
+              <xs:element name="fechaaproboy" msprop:Generator_ColumnVarNameInTable="columnfechaaproboy" msprop:Generator_ColumnPropNameInRow="fechaaproboy" msprop:Generator_ColumnPropNameInTable="fechaaproboyColumn" msprop:Generator_UserColumnName="fechaaproboy" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DataTable2Key1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTableEncabezado" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="DataTableEncabezado_DataTableCuerpo" msdata:parent="DataTableEncabezado" msdata:child="DataTableCuerpo" msdata:parentkey="ID" msdata:childkey="ID" msprop:Generator_UserChildTable="DataTableCuerpo" msprop:Generator_ChildPropName="GetDataTableCuerpoRows" msprop:Generator_UserRelationName="DataTableEncabezado_DataTableCuerpo" msprop:Generator_RelationVarName="relationDataTableEncabezado_DataTableCuerpo" msprop:Generator_UserParentTable="DataTableEncabezado" msprop:Generator_ParentPropName="DataTableEncabezadoRow" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
