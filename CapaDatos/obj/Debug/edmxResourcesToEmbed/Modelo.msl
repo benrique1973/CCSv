@@ -1,0 +1,1926 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SGPTModeloStoreContainer" CdmEntityContainer="SGPTEntidades">
+    <EntitySetMapping Name="actividades">
+      <EntityTypeMapping TypeName="SGPTModelo.actividade">
+        <MappingFragment StoreEntitySet="actividades">
+          <ScalarProperty Name="idcodigoactividad" ColumnName="idcodigoactividad" />
+          <ScalarProperty Name="descripcionactividad" ColumnName="descripcionactividad" />
+          <ScalarProperty Name="sistemaactividad" ColumnName="sistemaactividad" />
+          <ScalarProperty Name="estadoactividad" ColumnName="estadoactividad" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="agendas">
+      <EntityTypeMapping TypeName="SGPTModelo.agenda">
+        <MappingFragment StoreEntitySet="agendas">
+          <ScalarProperty Name="idagenda" ColumnName="idagenda" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="fechacreadoagenda" ColumnName="fechacreadoagenda" />
+          <ScalarProperty Name="fechaterminacionagenda" ColumnName="fechaterminacionagenda" />
+          <ScalarProperty Name="fecharevisionagenda" ColumnName="fecharevisionagenda" />
+          <ScalarProperty Name="fechaaprobacionagenda" ColumnName="fechaaprobacionagenda" />
+          <ScalarProperty Name="encabezadoagenda" ColumnName="encabezadoagenda" />
+          <ScalarProperty Name="descripcionagenda" ColumnName="descripcionagenda" />
+          <ScalarProperty Name="estadoprocesoagenda" ColumnName="estadoprocesoagenda" />
+          <ScalarProperty Name="comentariorespuestaagenda" ColumnName="comentariorespuestaagenda" />
+          <ScalarProperty Name="estadoagenda" ColumnName="estadoagenda" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idusuarioasigna" ColumnName="idusuarioasigna" />
+          <ScalarProperty Name="idusuarioresponable" ColumnName="idusuarioresponable" />
+          <ScalarProperty Name="padreidagenda" ColumnName="padreidagenda" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="asignaciones">
+      <EntityTypeMapping TypeName="SGPTModelo.asignacione">
+        <MappingFragment StoreEntitySet="asignaciones">
+          <ScalarProperty Name="idasignacion" ColumnName="idasignacion" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="fechacreaasignacion" ColumnName="fechacreaasignacion" />
+          <ScalarProperty Name="horasplanasignacion" ColumnName="horasplanasignacion" />
+          <ScalarProperty Name="horasejecucionasignacion" ColumnName="horasejecucionasignacion" />
+          <ScalarProperty Name="preciohoraasignacion" ColumnName="preciohoraasignacion" />
+          <ScalarProperty Name="estadoasignacion" ColumnName="estadoasignacion" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="balances">
+      <EntityTypeMapping TypeName="SGPTModelo.balance">
+        <MappingFragment StoreEntitySet="balances">
+          <ScalarProperty Name="idbalance" ColumnName="idbalance" />
+          <ScalarProperty Name="idcb" ColumnName="idcb" />
+          <ScalarProperty Name="idperiodos" ColumnName="idperiodos" />
+          <ScalarProperty Name="fechasistemabalance" ColumnName="fechasistemabalance" />
+          <ScalarProperty Name="fechabalancebalance" ColumnName="fechabalancebalance" />
+          <ScalarProperty Name="estadobalance" ColumnName="estadobalance" />
+          <ScalarProperty Name="idscbalance" ColumnName="idscbalance" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bitacoras">
+      <EntityTypeMapping TypeName="SGPTModelo.bitacora">
+        <MappingFragment StoreEntitySet="bitacora">
+          <ScalarProperty Name="idbitacora" ColumnName="idbitacora" />
+          <ScalarProperty Name="fechahorabitacora" ColumnName="fechahorabitacora" />
+          <ScalarProperty Name="accionbitacora" ColumnName="accionbitacora" />
+          <ScalarProperty Name="nombretablabitacora" ColumnName="nombretablabitacora" />
+          <ScalarProperty Name="detallebitacora" ColumnName="detallebitacora" />
+          <ScalarProperty Name="idgenericobitacora" ColumnName="idgenericobitacora" />
+          <ScalarProperty Name="idusuariobitacora" ColumnName="idusuariobitacora" />
+          <ScalarProperty Name="idtransaccionbitacora" ColumnName="idtransaccionbitacora" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="catalogocuentas">
+      <EntityTypeMapping TypeName="SGPTModelo.catalogocuenta">
+        <MappingFragment StoreEntitySet="catalogocuentas">
+          <ScalarProperty Name="idcc" ColumnName="idcc" />
+          <ScalarProperty Name="idelementos" ColumnName="idelementos" />
+          <ScalarProperty Name="idsc" ColumnName="idsc" />
+          <ScalarProperty Name="catidcc" ColumnName="catidcc" />
+          <ScalarProperty Name="idccuentas" ColumnName="idccuentas" />
+          <ScalarProperty Name="codigocc" ColumnName="codigocc" />
+          <ScalarProperty Name="descripcioncc" ColumnName="descripcioncc" />
+          <ScalarProperty Name="tiposaldocc" ColumnName="tiposaldocc" />
+          <ScalarProperty Name="fechacreacioncc" ColumnName="fechacreacioncc" />
+          <ScalarProperty Name="estadocc" ColumnName="estadocc" />
+          <ScalarProperty Name="ordencc" ColumnName="ordencc" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cedulacontactos">
+      <EntityTypeMapping TypeName="SGPTModelo.cedulacontacto">
+        <MappingFragment StoreEntitySet="cedulacontactos">
+          <ScalarProperty Name="idccontacto" ColumnName="idccontacto" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="nombresccontacto" ColumnName="nombresccontacto" />
+          <ScalarProperty Name="apellidosccontacto" ColumnName="apellidosccontacto" />
+          <ScalarProperty Name="fechainiciofuncionccontacto" ColumnName="fechainiciofuncionccontacto" />
+          <ScalarProperty Name="fechacesefuncionccontacto" ColumnName="fechacesefuncionccontacto" />
+          <ScalarProperty Name="cargoccontacto" ColumnName="cargoccontacto" />
+          <ScalarProperty Name="estadoccontacto" ColumnName="estadoccontacto" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cedulacorrespondencias">
+      <EntityTypeMapping TypeName="SGPTModelo.cedulacorrespondencia">
+        <MappingFragment StoreEntitySet="cedulacorrespondencias">
+          <ScalarProperty Name="idccorrespondencia" ColumnName="idccorrespondencia" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="numeroccorrespondencia" ColumnName="numeroccorrespondencia" />
+          <ScalarProperty Name="asuntoccorrespondencia" ColumnName="asuntoccorrespondencia" />
+          <ScalarProperty Name="firmaccorrespondencia" ColumnName="firmaccorrespondencia" />
+          <ScalarProperty Name="fecharecepcionccorrespondenc" ColumnName="fecharecepcionccorrespondenc" />
+          <ScalarProperty Name="comentarioccorrespondencia" ColumnName="comentarioccorrespondencia" />
+          <ScalarProperty Name="estadoccorrespondencia" ColumnName="estadoccorrespondencia" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cedularequerimientos">
+      <EntityTypeMapping TypeName="SGPTModelo.cedularequerimiento">
+        <MappingFragment StoreEntitySet="cedularequerimientos">
+          <ScalarProperty Name="idcrequerimiento" ColumnName="idcrequerimiento" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="ordencrequerimiento" ColumnName="ordencrequerimiento" />
+          <ScalarProperty Name="descripcioncrequerimiento" ColumnName="descripcioncrequerimiento" />
+          <ScalarProperty Name="formatocrequerimiento" ColumnName="formatocrequerimiento" />
+          <ScalarProperty Name="estadocrequerimiento" ColumnName="estadocrequerimiento" />
+          <ScalarProperty Name="sistemacrequerimiento" ColumnName="sistemacrequerimiento" />
+          <ScalarProperty Name="fechaentregacrequerimiento" ColumnName="fechaentregacrequerimiento" />
+          <ScalarProperty Name="estadosolicitudcrequerimient" ColumnName="estadosolicitudcrequerimient" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idpapel" ColumnName="idpapel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cedulareuniones">
+      <EntityTypeMapping TypeName="SGPTModelo.cedulareunione">
+        <MappingFragment StoreEntitySet="cedulareuniones">
+          <ScalarProperty Name="idcr" ColumnName="idcr" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="fechacr" ColumnName="fechacr" />
+          <ScalarProperty Name="tiempoduracioncr" ColumnName="tiempoduracioncr" />
+          <ScalarProperty Name="participanteexternocr" ColumnName="participanteexternocr" />
+          <ScalarProperty Name="participantesinternocr" ColumnName="participantesinternocr" />
+          <ScalarProperty Name="asuntocr" ColumnName="asuntocr" />
+          <ScalarProperty Name="conclusionescr" ColumnName="conclusionescr" />
+          <ScalarProperty Name="comentariocr" ColumnName="comentariocr" />
+          <ScalarProperty Name="estadocr" ColumnName="estadocr" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cedulas">
+      <EntityTypeMapping TypeName="SGPTModelo.cedula">
+        <MappingFragment StoreEntitySet="cedulas">
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="idvisita" ColumnName="idvisita" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="idtc" ColumnName="idtc" />
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="titulocedula" ColumnName="titulocedula" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="fechacreadocedula" ColumnName="fechacreadocedula" />
+          <ScalarProperty Name="conclusioncedula" ColumnName="conclusioncedula" />
+          <ScalarProperty Name="objetivocedula" ColumnName="objetivocedula" />
+          <ScalarProperty Name="alcancecedula" ColumnName="alcancecedula" />
+          <ScalarProperty Name="estadocedula" ColumnName="estadocedula" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="referenciacedula" ColumnName="referenciacedula" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="idbalance" ColumnName="idbalance" />
+          <ScalarProperty Name="idbalanceanterior" ColumnName="idbalanceanterior" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="padreidcedula" ColumnName="padreidcedula" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idagenda" ColumnName="idagenda" />
+          <ScalarProperty Name="idnotaspt" ColumnName="idnotaspt" />
+          <ScalarProperty Name="ordencedula" ColumnName="ordencedula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cedulaslegales">
+      <EntityTypeMapping TypeName="SGPTModelo.cedulaslegale">
+        <MappingFragment StoreEntitySet="cedulaslegales">
+          <ScalarProperty Name="idcl" ColumnName="idcl" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="cedidcl" ColumnName="cedidcl" />
+          <ScalarProperty Name="ordencl" ColumnName="ordencl" />
+          <ScalarProperty Name="descripcioncl" ColumnName="descripcioncl" />
+          <ScalarProperty Name="tipoobligacioncl" ColumnName="tipoobligacioncl" />
+          <ScalarProperty Name="frecuenciacl" ColumnName="frecuenciacl" />
+          <ScalarProperty Name="leycl" ColumnName="leycl" />
+          <ScalarProperty Name="articulocl" ColumnName="articulocl" />
+          <ScalarProperty Name="cumplimientocl" ColumnName="cumplimientocl" />
+          <ScalarProperty Name="comentariocl" ColumnName="comentariocl" />
+          <ScalarProperty Name="fecharevisioncl" ColumnName="fecharevisioncl" />
+          <ScalarProperty Name="fechaactualizacioncl" ColumnName="fechaactualizacioncl" />
+          <ScalarProperty Name="fechavencimientocl" ColumnName="fechavencimientocl" />
+          <ScalarProperty Name="estadocl" ColumnName="estadocl" />
+          <ScalarProperty Name="foliocl" ColumnName="foliocl" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clasecuentas">
+      <EntityTypeMapping TypeName="SGPTModelo.clasecuenta">
+        <MappingFragment StoreEntitySet="clasecuentas">
+          <ScalarProperty Name="idccuentas" ColumnName="idccuentas" />
+          <ScalarProperty Name="descripcionccuentas" ColumnName="descripcionccuentas" />
+          <ScalarProperty Name="sistemaccuentas" ColumnName="sistemaccuentas" />
+          <ScalarProperty Name="estadoccuentas" ColumnName="estadoccuentas" />
+          <ScalarProperty Name="padreidccuentas" ColumnName="padreidccuentas" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clasesbalances">
+      <EntityTypeMapping TypeName="SGPTModelo.clasesbalance">
+        <MappingFragment StoreEntitySet="clasesbalance">
+          <ScalarProperty Name="idcb" ColumnName="idcb" />
+          <ScalarProperty Name="descripcioncb" ColumnName="descripcioncb" />
+          <ScalarProperty Name="sistemacb" ColumnName="sistemacb" />
+          <ScalarProperty Name="estadocb" ColumnName="estadocb" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clasificaciones">
+      <EntityTypeMapping TypeName="SGPTModelo.clasificacione">
+        <MappingFragment StoreEntitySet="clasificaciones">
+          <ScalarProperty Name="idclasificacion" ColumnName="idclasificacion" />
+          <ScalarProperty Name="descripcionclasificacion" ColumnName="descripcionclasificacion" />
+          <ScalarProperty Name="sistemaclasificacion" ColumnName="sistemaclasificacion" />
+          <ScalarProperty Name="estadoclasificacion" ColumnName="estadoclasificacion" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="SGPTModelo.cliente">
+        <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="idclasificacion" ColumnName="idclasificacion" />
+          <ScalarProperty Name="idpais" ColumnName="idpais" />
+          <ScalarProperty Name="idcodigoactividad" ColumnName="idcodigoactividad" />
+          <ScalarProperty Name="idsc" ColumnName="idsc" />
+          <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+          <ScalarProperty Name="idmunicipio" ColumnName="idmunicipio" />
+          <ScalarProperty Name="razonsocialcliente" ColumnName="razonsocialcliente" />
+          <ScalarProperty Name="nrccliente" ColumnName="nrccliente" />
+          <ScalarProperty Name="direccioncliente" ColumnName="direccioncliente" />
+          <ScalarProperty Name="actividadcliente" ColumnName="actividadcliente" />
+          <ScalarProperty Name="paginawebcliente" ColumnName="paginawebcliente" />
+          <ScalarProperty Name="fechaconstitucioncliente" ColumnName="fechaconstitucioncliente" />
+          <ScalarProperty Name="estadocliente" ColumnName="estadocliente" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conexiones">
+      <EntityTypeMapping TypeName="SGPTModelo.conexione">
+        <MappingFragment StoreEntitySet="conexiones">
+          <ScalarProperty Name="idconexion" ColumnName="idconexion" />
+          <ScalarProperty Name="idfirma" ColumnName="idfirma" />
+          <ScalarProperty Name="ipconexion" ColumnName="ipconexion" />
+          <ScalarProperty Name="tipoip" ColumnName="tipoip" />
+          <ScalarProperty Name="protocoloconexion" ColumnName="protocoloconexion" />
+          <ScalarProperty Name="puertoconexion" ColumnName="puertoconexion" />
+          <ScalarProperty Name="principalconexion" ColumnName="principalconexion" />
+          <ScalarProperty Name="estadoconexion" ColumnName="estadoconexion" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="tipoinstalacionconexion" ColumnName="tipoinstalacionconexion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="confirmaciones">
+      <EntityTypeMapping TypeName="SGPTModelo.confirmacione">
+        <MappingFragment StoreEntitySet="confirmaciones">
+          <ScalarProperty Name="idconfirmacion" ColumnName="idconfirmacion" />
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="iddb" ColumnName="iddb" />
+          <ScalarProperty Name="saldocuentaconfirmacion" ColumnName="saldocuentaconfirmacion" />
+          <ScalarProperty Name="resultadoobtenidoconfirmacion" ColumnName="resultadoobtenidoconfirmacion" />
+          <ScalarProperty Name="estadoconfirmacion" ColumnName="estadoconfirmacion" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contactoclientes">
+      <EntityTypeMapping TypeName="SGPTModelo.contactocliente">
+        <MappingFragment StoreEntitySet="contactocliente">
+          <ScalarProperty Name="idcontacto" ColumnName="idcontacto" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contactos">
+      <EntityTypeMapping TypeName="SGPTModelo.contacto">
+        <MappingFragment StoreEntitySet="contactos">
+          <ScalarProperty Name="idcontacto" ColumnName="idcontacto" />
+          <ScalarProperty Name="idcargoeo" ColumnName="idcargoeo" />
+          <ScalarProperty Name="nombrescontacto" ColumnName="nombrescontacto" />
+          <ScalarProperty Name="apellidoscontacto" ColumnName="apellidoscontacto" />
+          <ScalarProperty Name="fechainiciofuncioncontacto" ColumnName="fechainiciofuncioncontacto" />
+          <ScalarProperty Name="fechacesefuncioncontacto" ColumnName="fechacesefuncioncontacto" />
+          <ScalarProperty Name="estadocontacto" ColumnName="estadocontacto" />
+          <ScalarProperty Name="observacionescontacto" ColumnName="observacionescontacto" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="correos">
+      <EntityTypeMapping TypeName="SGPTModelo.correo">
+        <MappingFragment StoreEntitySet="correos">
+          <ScalarProperty Name="idcorreo" ColumnName="idcorreo" />
+          <ScalarProperty Name="idfirma" ColumnName="idfirma" />
+          <ScalarProperty Name="idcontacto" ColumnName="idcontacto" />
+          <ScalarProperty Name="idduipersona" ColumnName="idduipersona" />
+          <ScalarProperty Name="direccioncorreo" ColumnName="direccioncorreo" />
+          <ScalarProperty Name="principalcorreo" ColumnName="principalcorreo" />
+          <ScalarProperty Name="estadocorreo" ColumnName="estadocorreo" />
+          <ScalarProperty Name="contraseniacorreo" ColumnName="contraseniacorreo" />
+          <ScalarProperty Name="hostcorreo" ColumnName="hostcorreo" />
+          <ScalarProperty Name="puertocorreo" ColumnName="puertocorreo" />
+          <ScalarProperty Name="sslrequeridocorreo" ColumnName="sslrequeridocorreo" />
+          <ScalarProperty Name="codigosolicitadocorreo" ColumnName="codigosolicitadocorreo" />
+          <ScalarProperty Name="codigoverificadocorreo" ColumnName="codigoverificadocorreo" />
+          <ScalarProperty Name="estadoverificacioncorreo" ColumnName="estadoverificacioncorreo" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="correspondencias">
+      <EntityTypeMapping TypeName="SGPTModelo.correspondencia">
+        <MappingFragment StoreEntitySet="correspondencias">
+          <ScalarProperty Name="idcorrespondencia" ColumnName="idcorrespondencia" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idct" ColumnName="idct" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="usuidusuario" ColumnName="usuidusuario" />
+          <ScalarProperty Name="numerocorrespondencia" ColumnName="numerocorrespondencia" />
+          <ScalarProperty Name="asuntocorrespondencia" ColumnName="asuntocorrespondencia" />
+          <ScalarProperty Name="firmacorrespondencia" ColumnName="firmacorrespondencia" />
+          <ScalarProperty Name="fecharecepcioncorrespondencia" ColumnName="fecharecepcioncorrespondencia" />
+          <ScalarProperty Name="comentariocorrespondencia" ColumnName="comentariocorrespondencia" />
+          <ScalarProperty Name="aprobacioncorrespondencia" ColumnName="aprobacioncorrespondencia" />
+          <ScalarProperty Name="fechacreadocorrespondencia" ColumnName="fechacreadocorrespondencia" />
+          <ScalarProperty Name="fechaaprobacioncorrespondenci" ColumnName="fechaaprobacioncorrespondenci" />
+          <ScalarProperty Name="salientecorrespondencia" ColumnName="salientecorrespondencia" />
+          <ScalarProperty Name="estadocorrespondencia" ColumnName="estadocorrespondencia" />
+          <ScalarProperty Name="archivocorrespondencia" ColumnName="archivocorrespondencia" />
+          <ScalarProperty Name="nombrefilecorrespondencia" ColumnName="nombrefilecorrespondencia" />
+          <ScalarProperty Name="idcontactofirmacorrespondencia" ColumnName="idcontactofirmacorrespondencia" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="correspondenciatipos">
+      <EntityTypeMapping TypeName="SGPTModelo.correspondenciatipos">
+        <MappingFragment StoreEntitySet="correspondenciatipos">
+          <ScalarProperty Name="idct" ColumnName="idct" />
+          <ScalarProperty Name="descripcionct" ColumnName="descripcionct" />
+          <ScalarProperty Name="sistemact" ColumnName="sistemact" />
+          <ScalarProperty Name="estadoct" ColumnName="estadoct" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="costohistoricohoras">
+      <EntityTypeMapping TypeName="SGPTModelo.costohistoricohora">
+        <MappingFragment StoreEntitySet="costohistoricohoras">
+          <ScalarProperty Name="idchh" ColumnName="idchh" />
+          <ScalarProperty Name="idasignacion" ColumnName="idasignacion" />
+          <ScalarProperty Name="costochh" ColumnName="costochh" />
+          <ScalarProperty Name="fechacreadochh" ColumnName="fechacreadochh" />
+          <ScalarProperty Name="estadochh" ColumnName="estadochh" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cronogramas">
+      <EntityTypeMapping TypeName="SGPTModelo.cronograma">
+        <MappingFragment StoreEntitySet="cronogramas">
+          <ScalarProperty Name="idcronograma" ColumnName="idcronograma" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="fechaprogramadacronograma" ColumnName="fechaprogramadacronograma" />
+          <ScalarProperty Name="fechafinalcronograma" ColumnName="fechafinalcronograma" />
+          <ScalarProperty Name="horastotalesplaneadascronogr" ColumnName="horastotalesplaneadascronogr" />
+          <ScalarProperty Name="fechacreadocronograma" ColumnName="fechacreadocronograma" />
+          <ScalarProperty Name="estadocronograma" ColumnName="estadocronograma" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departamentos">
+      <EntityTypeMapping TypeName="SGPTModelo.departamento">
+        <MappingFragment StoreEntitySet="departamentos">
+          <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+          <ScalarProperty Name="idpais" ColumnName="idpais" />
+          <ScalarProperty Name="nombredepartamento" ColumnName="nombredepartamento" />
+          <ScalarProperty Name="sistemadepartamento" ColumnName="sistemadepartamento" />
+          <ScalarProperty Name="estadodepartamento" ColumnName="estadodepartamento" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="designaciones">
+      <EntityTypeMapping TypeName="SGPTModelo.designacione">
+        <MappingFragment StoreEntitySet="designaciones">
+          <ScalarProperty Name="iddesignacion" ColumnName="iddesignacion" />
+          <ScalarProperty Name="idchh" ColumnName="idchh" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="iddc" ColumnName="iddc" />
+          <ScalarProperty Name="fechacreadadesignacion" ColumnName="fechacreadadesignacion" />
+          <ScalarProperty Name="horasplandesignacion" ColumnName="horasplandesignacion" />
+          <ScalarProperty Name="horasejecuciondesignacion" ColumnName="horasejecuciondesignacion" />
+          <ScalarProperty Name="estadodesignacion" ColumnName="estadodesignacion" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallebalances">
+      <EntityTypeMapping TypeName="SGPTModelo.detallebalance">
+        <MappingFragment StoreEntitySet="detallebalances">
+          <ScalarProperty Name="iddb" ColumnName="iddb" />
+          <ScalarProperty Name="idcc" ColumnName="idcc" />
+          <ScalarProperty Name="idbalance" ColumnName="idbalance" />
+          <ScalarProperty Name="saldoanteriordb" ColumnName="saldoanteriordb" />
+          <ScalarProperty Name="cargodb" ColumnName="cargodb" />
+          <ScalarProperty Name="abonodb" ColumnName="abonodb" />
+          <ScalarProperty Name="saldofinaldb" ColumnName="saldofinaldb" />
+          <ScalarProperty Name="estadodb" ColumnName="estadodb" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="comentariodb" ColumnName="comentariodb" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallecedulas">
+      <EntityTypeMapping TypeName="SGPTModelo.detallecedula">
+        <MappingFragment StoreEntitySet="detallecedulas">
+          <ScalarProperty Name="iddc" ColumnName="iddc" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="idpartida" ColumnName="idpartida" />
+          <ScalarProperty Name="padreiddc" ColumnName="padreiddc" />
+          <ScalarProperty Name="codigocontabledc" ColumnName="codigocontabledc" />
+          <ScalarProperty Name="saldoactualdc" ColumnName="saldoactualdc" />
+          <ScalarProperty Name="m1dc" ColumnName="m1dc" />
+          <ScalarProperty Name="m2dc" ColumnName="m2dc" />
+          <ScalarProperty Name="saldoanteriordc" ColumnName="saldoanteriordc" />
+          <ScalarProperty Name="m3dc" ColumnName="m3dc" />
+          <ScalarProperty Name="m4dc" ColumnName="m4dc" />
+          <ScalarProperty Name="aumentodc" ColumnName="aumentodc" />
+          <ScalarProperty Name="disminuciondc" ColumnName="disminuciondc" />
+          <ScalarProperty Name="m5dc" ColumnName="m5dc" />
+          <ScalarProperty Name="m6dc" ColumnName="m6dc" />
+          <ScalarProperty Name="m7dc" ColumnName="m7dc" />
+          <ScalarProperty Name="m8dc" ColumnName="m8dc" />
+          <ScalarProperty Name="saldofinaldc" ColumnName="saldofinaldc" />
+          <ScalarProperty Name="m9dc" ColumnName="m9dc" />
+          <ScalarProperty Name="m10dc" ColumnName="m10dc" />
+          <ScalarProperty Name="fechacreadodc" ColumnName="fechacreadodc" />
+          <ScalarProperty Name="ordendc" ColumnName="ordendc" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="claseregistro" ColumnName="claseregistro" />
+          <ScalarProperty Name="filasoperadas" ColumnName="filasoperadas" />
+          <ScalarProperty Name="signooperacion" ColumnName="signooperacion" />
+          <ScalarProperty Name="idcc" ColumnName="idcc" />
+          <ScalarProperty Name="iddb" ColumnName="iddb" />
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="estadodc" ColumnName="estadodc" />
+          <ScalarProperty Name="nombrecuenta" ColumnName="nombrecuenta" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="cargoreajuste" ColumnName="cargoreajuste" />
+          <ScalarProperty Name="abonoreajuste" ColumnName="abonoreajuste" />
+          <ScalarProperty Name="m11dc" ColumnName="m11dc" />
+          <ScalarProperty Name="m12dc" ColumnName="m12dc" />
+          <ScalarProperty Name="m13dc" ColumnName="m13dc" />
+          <ScalarProperty Name="m14dc" ColumnName="m14dc" />
+          <ScalarProperty Name="m15dc" ColumnName="m15dc" />
+          <ScalarProperty Name="observaciondc" ColumnName="observaciondc" />
+          <ScalarProperty Name="cargoreclasificacion" ColumnName="cargoreclasificacion" />
+          <ScalarProperty Name="abonoreclasificacion" ColumnName="abonoreclasificacion" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idnotaspt" ColumnName="idnotaspt" />
+          <ScalarProperty Name="idagenda" ColumnName="idagenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallecronogramas">
+      <EntityTypeMapping TypeName="SGPTModelo.detallecronograma">
+        <MappingFragment StoreEntitySet="detallecronogramas">
+          <ScalarProperty Name="iddc" ColumnName="iddc" />
+          <ScalarProperty Name="idpa" ColumnName="idpa" />
+          <ScalarProperty Name="idvisita" ColumnName="idvisita" />
+          <ScalarProperty Name="idcronograma" ColumnName="idcronograma" />
+          <ScalarProperty Name="actividaddc" ColumnName="actividaddc" />
+          <ScalarProperty Name="fechaprogramadacronograma" ColumnName="fechaprogramadacronograma" />
+          <ScalarProperty Name="fechafinaldc" ColumnName="fechafinaldc" />
+          <ScalarProperty Name="horasplaneadasdc" ColumnName="horasplaneadasdc" />
+          <ScalarProperty Name="fechacreadodc" ColumnName="fechacreadodc" />
+          <ScalarProperty Name="estadodc" ColumnName="estadodc" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallecuestionarios">
+      <EntityTypeMapping TypeName="SGPTModelo.detallecuestionario">
+        <MappingFragment StoreEntitySet="detallecuestionarios">
+          <ScalarProperty Name="iddc" ColumnName="iddc" />
+          <ScalarProperty Name="idtrcdc" ColumnName="idtrcdc" />
+          <ScalarProperty Name="idpapelesdc" ColumnName="idpapelesdc" />
+          <ScalarProperty Name="idprogramadc" ColumnName="idprogramadc" />
+          <ScalarProperty Name="descripciondc" ColumnName="descripciondc" />
+          <ScalarProperty Name="fechacreadodc" ColumnName="fechacreadodc" />
+          <ScalarProperty Name="ordendc" ColumnName="ordendc" />
+          <ScalarProperty Name="estadoprocedimientodc" ColumnName="estadoprocedimientodc" />
+          <ScalarProperty Name="comentariodc" ColumnName="comentariodc" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="idvisitadc" ColumnName="idvisitadc" />
+          <ScalarProperty Name="idtprocedimientodc" ColumnName="idtprocedimientodc" />
+          <ScalarProperty Name="idpadredc" ColumnName="idpadredc" />
+          <ScalarProperty Name="estadodc" ColumnName="estadodc" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="idcedulas" ColumnName="idcedulas" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="iddcedulas" ColumnName="iddcedulas" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalledocumentos">
+      <EntityTypeMapping TypeName="SGPTModelo.detalledocumento">
+        <MappingFragment StoreEntitySet="detalledocumentos">
+          <ScalarProperty Name="iddd" ColumnName="iddd" />
+          <ScalarProperty Name="iddocumento" ColumnName="iddocumento" />
+          <ScalarProperty Name="descripciondd" ColumnName="descripciondd" />
+          <ScalarProperty Name="estadodd" ColumnName="estadodd" />
+          <ScalarProperty Name="sistemadd" ColumnName="sistemadd" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalleherramientas">
+      <EntityTypeMapping TypeName="SGPTModelo.detalleherramienta">
+        <MappingFragment StoreEntitySet="detalleherramientas">
+          <ScalarProperty Name="iddh" ColumnName="iddh" />
+          <ScalarProperty Name="idusuariodh" ColumnName="idusuariodh" />
+          <ScalarProperty Name="idtprocedimiento" ColumnName="idtprocedimiento" />
+          <ScalarProperty Name="idherramienta" ColumnName="idherramienta" />
+          <ScalarProperty Name="descripciondh" ColumnName="descripciondh" />
+          <ScalarProperty Name="descripcionbyteadh" ColumnName="descripcionbyteadh" />
+          <ScalarProperty Name="fechacreadodh" ColumnName="fechacreadodh" />
+          <ScalarProperty Name="sistemadh" ColumnName="sistemadh" />
+          <ScalarProperty Name="estadodh" ColumnName="estadodh" />
+          <ScalarProperty Name="ordendh" ColumnName="ordendh" />
+          <ScalarProperty Name="horasplandh" ColumnName="horasplandh" />
+          <ScalarProperty Name="idvisitadh" ColumnName="idvisitadh" />
+          <ScalarProperty Name="iddhprincipaldh" ColumnName="iddhprincipaldh" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallematrizriesgos">
+      <EntityTypeMapping TypeName="SGPTModelo.detallematrizriesgo">
+        <MappingFragment StoreEntitySet="detallematrizriesgos">
+          <ScalarProperty Name="iddmr" ColumnName="iddmr" />
+          <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+          <ScalarProperty Name="idmaterialidad" ColumnName="idmaterialidad" />
+          <ScalarProperty Name="idmr" ColumnName="idmr" />
+          <ScalarProperty Name="codigocontabledmr" ColumnName="codigocontabledmr" />
+          <ScalarProperty Name="nombredmr" ColumnName="nombredmr" />
+          <ScalarProperty Name="saldoevaluaciondmr" ColumnName="saldoevaluaciondmr" />
+          <ScalarProperty Name="factoresriesgodmr" ColumnName="factoresriesgodmr" />
+          <ScalarProperty Name="evaluacioninherentedmr" ColumnName="evaluacioninherentedmr" />
+          <ScalarProperty Name="evaluacioncontroldmr" ColumnName="evaluacioncontroldmr" />
+          <ScalarProperty Name="evaluacioncombinadodmr" ColumnName="evaluacioncombinadodmr" />
+          <ScalarProperty Name="justificaevaluadmr" ColumnName="justificaevaluadmr" />
+          <ScalarProperty Name="clasespruebasdmr" ColumnName="clasespruebasdmr" />
+          <ScalarProperty Name="procedimientosdmr" ColumnName="procedimientosdmr" />
+          <ScalarProperty Name="alcanceinherentedmr" ColumnName="alcanceinherentedmr" />
+          <ScalarProperty Name="alcancecontroldmr" ColumnName="alcancecontroldmr" />
+          <ScalarProperty Name="alcancecombinadodmr" ColumnName="alcancecombinadodmr" />
+          <ScalarProperty Name="justificaalcancedmr" ColumnName="justificaalcancedmr" />
+          <ScalarProperty Name="materialidaddmr" ColumnName="materialidaddmr" />
+          <ScalarProperty Name="estadodmr" ColumnName="estadodmr" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="ordencc" ColumnName="ordencc" />
+          <ScalarProperty Name="iddp" ColumnName="iddp" />
+          <ScalarProperty Name="iddc" ColumnName="iddc" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalleplantillaindices">
+      <EntityTypeMapping TypeName="SGPTModelo.detalleplantillaindice">
+        <MappingFragment StoreEntitySet="detalleplantillaindice">
+          <ScalarProperty Name="iddpi" ColumnName="iddpi" />
+          <ScalarProperty Name="idtei" ColumnName="idtei" />
+          <ScalarProperty Name="idpi" ColumnName="idpi" />
+          <ScalarProperty Name="detiddpi" ColumnName="detiddpi" />
+          <ScalarProperty Name="descripciondpi" ColumnName="descripciondpi" />
+          <ScalarProperty Name="ordendpi" ColumnName="ordendpi" />
+          <ScalarProperty Name="referenciadpi" ColumnName="referenciadpi" />
+          <ScalarProperty Name="obligatoriodpi" ColumnName="obligatoriodpi" />
+          <ScalarProperty Name="sistemadpi" ColumnName="sistemadpi" />
+          <ScalarProperty Name="estadodpi" ColumnName="estadodpi" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalleprogramas">
+      <EntityTypeMapping TypeName="SGPTModelo.detalleprograma">
+        <MappingFragment StoreEntitySet="detalleprogramas">
+          <ScalarProperty Name="iddp" ColumnName="iddp" />
+          <ScalarProperty Name="idtprocedimientodp" ColumnName="idtprocedimientodp" />
+          <ScalarProperty Name="idprogramadp" ColumnName="idprogramadp" />
+          <ScalarProperty Name="idpapelesdp" ColumnName="idpapelesdp" />
+          <ScalarProperty Name="descripciondp" ColumnName="descripciondp" />
+          <ScalarProperty Name="fechacreadodp" ColumnName="fechacreadodp" />
+          <ScalarProperty Name="ordendp" ColumnName="ordendp" />
+          <ScalarProperty Name="fechainidp" ColumnName="fechainidp" />
+          <ScalarProperty Name="fechafindp" ColumnName="fechafindp" />
+          <ScalarProperty Name="horaplandp" ColumnName="horaplandp" />
+          <ScalarProperty Name="horaejecdp" ColumnName="horaejecdp" />
+          <ScalarProperty Name="estadoprocedimientodp" ColumnName="estadoprocedimientodp" />
+          <ScalarProperty Name="comentariodp" ColumnName="comentariodp" />
+          <ScalarProperty Name="estadodp" ColumnName="estadodp" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="idvisitadp" ColumnName="idvisitadp" />
+          <ScalarProperty Name="idpadredp" ColumnName="idpadredp" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="iddcedulas" ColumnName="iddcedulas" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idnotaspt" ColumnName="idnotaspt" />
+          <ScalarProperty Name="idagenda" ColumnName="idagenda" />
+          <ScalarProperty Name="idusuarioejecuto" ColumnName="idusuarioejecuto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallesmafs">
+      <EntityTypeMapping TypeName="SGPTModelo.detallesmaf">
+        <MappingFragment StoreEntitySet="detallesmaf">
+          <ScalarProperty Name="iddetallemaf" ColumnName="iddetallemaf" />
+          <ScalarProperty Name="idmaf" ColumnName="idmaf" />
+          <ScalarProperty Name="idratio" ColumnName="idratio" />
+          <ScalarProperty Name="analisisdetallemaf" ColumnName="analisisdetallemaf" />
+          <ScalarProperty Name="indicedetallemaf" ColumnName="indicedetallemaf" />
+          <ScalarProperty Name="riesgodetallemaf" ColumnName="riesgodetallemaf" />
+          <ScalarProperty Name="cadenadetallemaf" ColumnName="cadenadetallemaf" />
+          <ScalarProperty Name="indcomparadetallemaf" ColumnName="indcomparadetallemaf" />
+          <ScalarProperty Name="cadenacomparatdetallemaf" ColumnName="cadenacomparatdetallemaf" />
+          <ScalarProperty Name="estadodetallemaf" ColumnName="estadodetallemaf" />
+          <ScalarProperty Name="sistemadetallemaf" ColumnName="sistemadetallemaf" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalletiempoes">
+      <EntityTypeMapping TypeName="SGPTModelo.detalletiempo">
+        <MappingFragment StoreEntitySet="detalletiempo">
+          <ScalarProperty Name="iddt" ColumnName="iddt" />
+          <ScalarProperty Name="idia" ColumnName="idia" />
+          <ScalarProperty Name="idchh" ColumnName="idchh" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="actividaddt" ColumnName="actividaddt" />
+          <ScalarProperty Name="fechainicialdt" ColumnName="fechainicialdt" />
+          <ScalarProperty Name="fechafinaldt" ColumnName="fechafinaldt" />
+          <ScalarProperty Name="tiempohorasdt" ColumnName="tiempohorasdt" />
+          <ScalarProperty Name="comentariosdt" ColumnName="comentariosdt" />
+          <ScalarProperty Name="estadodt" ColumnName="estadodt" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documentos">
+      <EntityTypeMapping TypeName="SGPTModelo.documento">
+        <MappingFragment StoreEntitySet="documentos">
+          <ScalarProperty Name="iddocumento" ColumnName="iddocumento" />
+          <ScalarProperty Name="descripciondocumento" ColumnName="descripciondocumento" />
+          <ScalarProperty Name="estadodocumento" ColumnName="estadodocumento" />
+          <ScalarProperty Name="sistemadocumento" ColumnName="sistemadocumento" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="elementos">
+      <EntityTypeMapping TypeName="SGPTModelo.elemento">
+        <MappingFragment StoreEntitySet="elementos">
+          <ScalarProperty Name="idelementos" ColumnName="idelementos" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="descripcionelementos" ColumnName="descripcionelementos" />
+          <ScalarProperty Name="fechacreacionelementos" ColumnName="fechacreacionelementos" />
+          <ScalarProperty Name="sistemaelementos" ColumnName="sistemaelementos" />
+          <ScalarProperty Name="estadoelementos" ColumnName="estadoelementos" />
+          <ScalarProperty Name="idscelementos" ColumnName="idscelementos" />
+          <ScalarProperty Name="codigoelemento" ColumnName="codigoelemento" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="padreidelemento" ColumnName="padreidelemento" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encargos">
+      <EntityTypeMapping TypeName="SGPTModelo.encargo">
+        <MappingFragment StoreEntitySet="encargos">
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="idta" ColumnName="idta" />
+          <ScalarProperty Name="fechacreadoencargo" ColumnName="fechacreadoencargo" />
+          <ScalarProperty Name="tipoclienteencargo" ColumnName="tipoclienteencargo" />
+          <ScalarProperty Name="etapaencargo" ColumnName="etapaencargo" />
+          <ScalarProperty Name="costoejecucionencargo" ColumnName="costoejecucionencargo" />
+          <ScalarProperty Name="honorariosencargo" ColumnName="honorariosencargo" />
+          <ScalarProperty Name="fechainiperauditencargo" ColumnName="fechainiperauditencargo" />
+          <ScalarProperty Name="fechafinperauditencargo" ColumnName="fechafinperauditencargo" />
+          <ScalarProperty Name="estadoencargo" ColumnName="estadoencargo" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estructuraestadofinancieros">
+      <EntityTypeMapping TypeName="SGPTModelo.estructuraestadofinanciero">
+        <MappingFragment StoreEntitySet="estructuraestadofinancieros">
+          <ScalarProperty Name="ideef" ColumnName="ideef" />
+          <ScalarProperty Name="descripcioneef" ColumnName="descripcioneef" />
+          <ScalarProperty Name="estadoeef" ColumnName="estadoeef" />
+          <ScalarProperty Name="sistemaeef" ColumnName="sistemaeef" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estructurasorganicas">
+      <EntityTypeMapping TypeName="SGPTModelo.estructurasorganica">
+        <MappingFragment StoreEntitySet="estructurasorganicas">
+          <ScalarProperty Name="idcargoeo" ColumnName="idcargoeo" />
+          <ScalarProperty Name="estidcargoeo" ColumnName="estidcargoeo" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="nombrecargoeo" ColumnName="nombrecargoeo" />
+          <ScalarProperty Name="responsabilidadeo" ColumnName="responsabilidadeo" />
+          <ScalarProperty Name="funcionadicionaleo" ColumnName="funcionadicionaleo" />
+          <ScalarProperty Name="estadoeo" ColumnName="estadoeo" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="firmas">
+      <EntityTypeMapping TypeName="SGPTModelo.firma">
+        <MappingFragment StoreEntitySet="firmas">
+          <ScalarProperty Name="idfirma" ColumnName="idfirma" />
+          <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+          <ScalarProperty Name="idpais" ColumnName="idpais" />
+          <ScalarProperty Name="idmunicipio" ColumnName="idmunicipio" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="razonsocialfirma" ColumnName="razonsocialfirma" />
+          <ScalarProperty Name="representantefirma" ColumnName="representantefirma" />
+          <ScalarProperty Name="nitfirma" ColumnName="nitfirma" />
+          <ScalarProperty Name="nrcfirma" ColumnName="nrcfirma" />
+          <ScalarProperty Name="direccionfirma" ColumnName="direccionfirma" />
+          <ScalarProperty Name="numerocvpafirma" ColumnName="numerocvpafirma" />
+          <ScalarProperty Name="fechainscripcioncvpafirma" ColumnName="fechainscripcioncvpafirma" />
+          <ScalarProperty Name="fechacreadofirma" ColumnName="fechacreadofirma" />
+          <ScalarProperty Name="urlfirma" ColumnName="urlfirma" />
+          <ScalarProperty Name="logofirma" ColumnName="logofirma" />
+          <ScalarProperty Name="estadofirma" ColumnName="estadofirma" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="formulas">
+      <EntityTypeMapping TypeName="SGPTModelo.formula">
+        <MappingFragment StoreEntitySet="formulas">
+          <ScalarProperty Name="idformula" ColumnName="idformula" />
+          <ScalarProperty Name="idratio" ColumnName="idratio" />
+          <ScalarProperty Name="idtd" ColumnName="idtd" />
+          <ScalarProperty Name="descriptorformula" ColumnName="descriptorformula" />
+          <ScalarProperty Name="sistemaformula" ColumnName="sistemaformula" />
+          <ScalarProperty Name="estadoformula" ColumnName="estadoformula" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="formulasaplicadas">
+      <EntityTypeMapping TypeName="SGPTModelo.formulasaplicada">
+        <MappingFragment StoreEntitySet="formulasaplicadas">
+          <ScalarProperty Name="idfa" ColumnName="idfa" />
+          <ScalarProperty Name="idcc" ColumnName="idcc" />
+          <ScalarProperty Name="idratio" ColumnName="idratio" />
+          <ScalarProperty Name="descriptorfa" ColumnName="descriptorfa" />
+          <ScalarProperty Name="sistemafa" ColumnName="sistemafa" />
+          <ScalarProperty Name="estadofa" ColumnName="estadofa" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hallazgos">
+      <EntityTypeMapping TypeName="SGPTModelo.hallazgo">
+        <MappingFragment StoreEntitySet="hallazgos">
+          <ScalarProperty Name="idhallazgo" ColumnName="idhallazgo" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="detidcedula" ColumnName="detidcedula" />
+          <ScalarProperty Name="idcorrespondencia" ColumnName="idcorrespondencia" />
+          <ScalarProperty Name="descripcionhallazgo" ColumnName="descripcionhallazgo" />
+          <ScalarProperty Name="referenciahallazgo" ColumnName="referenciahallazgo" />
+          <ScalarProperty Name="fechacreadohallazgo" ColumnName="fechacreadohallazgo" />
+          <ScalarProperty Name="baselegalhallazgo" ColumnName="baselegalhallazgo" />
+          <ScalarProperty Name="recomendacionhallazgo" ColumnName="recomendacionhallazgo" />
+          <ScalarProperty Name="respuestaclientehallazgo" ColumnName="respuestaclientehallazgo" />
+          <ScalarProperty Name="fecharespclientehallazgo" ColumnName="fecharespclientehallazgo" />
+          <ScalarProperty Name="estadohallazgo" ColumnName="estadohallazgo" />
+          <ScalarProperty Name="titulohallazgo" ColumnName="titulohallazgo" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="herramientas">
+      <EntityTypeMapping TypeName="SGPTModelo.herramienta">
+        <MappingFragment StoreEntitySet="herramientas">
+          <ScalarProperty Name="idherramienta" ColumnName="idherramienta" />
+          <ScalarProperty Name="idtp" ColumnName="idtp" />
+          <ScalarProperty Name="idth" ColumnName="idth" />
+          <ScalarProperty Name="nombreherramienta" ColumnName="nombreherramienta" />
+          <ScalarProperty Name="fechacreadoherramienta" ColumnName="fechacreadoherramienta" />
+          <ScalarProperty Name="autorizadoporherramienta" ColumnName="autorizadoporherramienta" />
+          <ScalarProperty Name="horasplanherramienta" ColumnName="horasplanherramienta" />
+          <ScalarProperty Name="estadoherramienta" ColumnName="estadoherramienta" />
+          <ScalarProperty Name="sistemaherramienta" ColumnName="sistemaherramienta" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="historicoscontrasenias">
+      <EntityTypeMapping TypeName="SGPTModelo.historicoscontrasenia">
+        <MappingFragment StoreEntitySet="historicoscontrasenias">
+          <ScalarProperty Name="idhc" ColumnName="idhc" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="fechacreacionhc" ColumnName="fechacreacionhc" />
+          <ScalarProperty Name="contraseniahc" ColumnName="contraseniahc" />
+          <ScalarProperty Name="estadohc" ColumnName="estadohc" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="indices">
+      <EntityTypeMapping TypeName="SGPTModelo.index">
+        <MappingFragment StoreEntitySet="indices">
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="idmr" ColumnName="idmr" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idmaf" ColumnName="idmaf" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+          <ScalarProperty Name="indidindice" ColumnName="indidindice" />
+          <ScalarProperty Name="descripcionindice" ColumnName="descripcionindice" />
+          <ScalarProperty Name="ordenindice" ColumnName="ordenindice" />
+          <ScalarProperty Name="referenciaindice" ColumnName="referenciaindice" />
+          <ScalarProperty Name="obligatorioindice" ColumnName="obligatorioindice" />
+          <ScalarProperty Name="sistemaindice" ColumnName="sistemaindice" />
+          <ScalarProperty Name="estadoindice" ColumnName="estadoindice" />
+          <ScalarProperty Name="idtcindice" ColumnName="idtcindice" />
+          <ScalarProperty Name="idteiindice" ColumnName="idteiindice" />
+          <ScalarProperty Name="idgenericoindice" ColumnName="idgenericoindice" />
+          <ScalarProperty Name="tablaindice" ColumnName="tablaindice" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idagenda" ColumnName="idagenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="informeactividades">
+      <EntityTypeMapping TypeName="SGPTModelo.informeactividade">
+        <MappingFragment StoreEntitySet="informeactividades">
+          <ScalarProperty Name="idia" ColumnName="idia" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="usuidusuario" ColumnName="usuidusuario" />
+          <ScalarProperty Name="fechainicialia" ColumnName="fechainicialia" />
+          <ScalarProperty Name="fechafinalia" ColumnName="fechafinalia" />
+          <ScalarProperty Name="totalhorasia" ColumnName="totalhorasia" />
+          <ScalarProperty Name="observacionesia" ColumnName="observacionesia" />
+          <ScalarProperty Name="aprobacionia" ColumnName="aprobacionia" />
+          <ScalarProperty Name="fechaaprobacionia" ColumnName="fechaaprobacionia" />
+          <ScalarProperty Name="estadoia" ColumnName="estadoia" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="legalnormas">
+      <EntityTypeMapping TypeName="SGPTModelo.legalnorma">
+        <MappingFragment StoreEntitySet="legalnormas">
+          <ScalarProperty Name="idln" ColumnName="idln" />
+          <ScalarProperty Name="descripcionln" ColumnName="descripcionln" />
+          <ScalarProperty Name="estadoln" ColumnName="estadoln" />
+          <ScalarProperty Name="sistemaln" ColumnName="sistemaln" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="marcasauditorias">
+      <EntityTypeMapping TypeName="SGPTModelo.marcasauditoria">
+        <MappingFragment StoreEntitySet="marcasauditoria">
+          <ScalarProperty Name="idma" ColumnName="idma" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="marcama" ColumnName="marcama" />
+          <ScalarProperty Name="significadoma" ColumnName="significadoma" />
+          <ScalarProperty Name="fechahoyme" ColumnName="fechahoyme" />
+          <ScalarProperty Name="tipografiama" ColumnName="tipografiama" />
+          <ScalarProperty Name="tamaniotipografiama" ColumnName="tamaniotipografiama" />
+          <ScalarProperty Name="estadoma" ColumnName="estadoma" />
+          <ScalarProperty Name="sistemama" ColumnName="sistemama" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="ordenma" ColumnName="ordenma" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="marcasestandares">
+      <EntityTypeMapping TypeName="SGPTModelo.marcasestandare">
+        <MappingFragment StoreEntitySet="marcasestandares">
+          <ScalarProperty Name="idme" ColumnName="idme" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="marcame" ColumnName="marcame" />
+          <ScalarProperty Name="significadome" ColumnName="significadome" />
+          <ScalarProperty Name="fechahoyme" ColumnName="fechahoyme" />
+          <ScalarProperty Name="tipografiame" ColumnName="tipografiame" />
+          <ScalarProperty Name="tamaniotipografiame" ColumnName="tamaniotipografiame" />
+          <ScalarProperty Name="estadome" ColumnName="estadome" />
+          <ScalarProperty Name="sistemame" ColumnName="sistemame" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="materialidads">
+      <EntityTypeMapping TypeName="SGPTModelo.materialidad">
+        <MappingFragment StoreEntitySet="materialidad">
+          <ScalarProperty Name="idmaterialidad" ColumnName="idmaterialidad" />
+          <ScalarProperty Name="descripcionmaterialidad" ColumnName="descripcionmaterialidad" />
+          <ScalarProperty Name="sistemamaterialidad" ColumnName="sistemamaterialidad" />
+          <ScalarProperty Name="estadomaterialidad" ColumnName="estadomaterialidad" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="padreidmaterialidad" ColumnName="padreidmaterialidad" />
+          <ScalarProperty Name="valormaterialidad" ColumnName="valormaterialidad" />
+          <ScalarProperty Name="idbalance" ColumnName="idbalance" />
+          <ScalarProperty Name="iddb" ColumnName="iddb" />
+          <ScalarProperty Name="porcentajematerialidad" ColumnName="porcentajematerialidad" />
+          <ScalarProperty Name="fechacreado" ColumnName="fechacreado" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="usuariocreo" ColumnName="usuariocreo" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matrizanalisisfinancieroes">
+      <EntityTypeMapping TypeName="SGPTModelo.matrizanalisisfinanciero">
+        <MappingFragment StoreEntitySet="matrizanalisisfinanciero">
+          <ScalarProperty Name="idmaf" ColumnName="idmaf" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="descripcionmaf" ColumnName="descripcionmaf" />
+          <ScalarProperty Name="estadomaf" ColumnName="estadomaf" />
+          <ScalarProperty Name="fechaevaluacionmaf" ColumnName="fechaevaluacionmaf" />
+          <ScalarProperty Name="referenciamaf" ColumnName="referenciamaf" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matrizriesgos">
+      <EntityTypeMapping TypeName="SGPTModelo.matrizriesgo">
+        <MappingFragment StoreEntitySet="matrizriesgos">
+          <ScalarProperty Name="idmr" ColumnName="idmr" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idbalance" ColumnName="idbalance" />
+          <ScalarProperty Name="fechasistemamr" ColumnName="fechasistemamr" />
+          <ScalarProperty Name="fechaevaluacionmr" ColumnName="fechaevaluacionmr" />
+          <ScalarProperty Name="estadomr" ColumnName="estadomr" />
+          <ScalarProperty Name="referenciamr" ColumnName="referenciamr" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="monedas">
+      <EntityTypeMapping TypeName="SGPTModelo.moneda">
+        <MappingFragment StoreEntitySet="monedas">
+          <ScalarProperty Name="idmoneda" ColumnName="idmoneda" />
+          <ScalarProperty Name="nombremoneda" ColumnName="nombremoneda" />
+          <ScalarProperty Name="simbolomoneda" ColumnName="simbolomoneda" />
+          <ScalarProperty Name="sistemamoneda" ColumnName="sistemamoneda" />
+          <ScalarProperty Name="estadomoneda" ColumnName="estadomoneda" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movimientos">
+      <EntityTypeMapping TypeName="SGPTModelo.movimiento">
+        <MappingFragment StoreEntitySet="movimientos">
+          <ScalarProperty Name="idmovimiento" ColumnName="idmovimiento" />
+          <ScalarProperty Name="idcc" ColumnName="idcc" />
+          <ScalarProperty Name="idpartida" ColumnName="idpartida" />
+          <ScalarProperty Name="cargomovimiento" ColumnName="cargomovimiento" />
+          <ScalarProperty Name="abonomovimiento" ColumnName="abonomovimiento" />
+          <ScalarProperty Name="estadomovimiento" ColumnName="estadomovimiento" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="municipios">
+      <EntityTypeMapping TypeName="SGPTModelo.municipio">
+        <MappingFragment StoreEntitySet="municipios">
+          <ScalarProperty Name="idmunicipio" ColumnName="idmunicipio" />
+          <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+          <ScalarProperty Name="nombremunicipio" ColumnName="nombremunicipio" />
+          <ScalarProperty Name="sistemamunicipio" ColumnName="sistemamunicipio" />
+          <ScalarProperty Name="estadomunicipio" ColumnName="estadomunicipio" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="normativas">
+      <EntityTypeMapping TypeName="SGPTModelo.normativa">
+        <MappingFragment StoreEntitySet="normativas">
+          <ScalarProperty Name="idnormativa" ColumnName="idnormativa" />
+          <ScalarProperty Name="idln" ColumnName="idln" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="nombrenormativa" ColumnName="nombrenormativa" />
+          <ScalarProperty Name="nombreabreviadonormativa" ColumnName="nombreabreviadonormativa" />
+          <ScalarProperty Name="fechaemisionnormativa" ColumnName="fechaemisionnormativa" />
+          <ScalarProperty Name="fechavigencianormativa" ColumnName="fechavigencianormativa" />
+          <ScalarProperty Name="fechacreadonormativa" ColumnName="fechacreadonormativa" />
+          <ScalarProperty Name="binarionormativa" ColumnName="binarionormativa" />
+          <ScalarProperty Name="ordennormativa" ColumnName="ordennormativa" />
+          <ScalarProperty Name="sistemanormativa" ColumnName="sistemanormativa" />
+          <ScalarProperty Name="estadonormativa" ColumnName="estadonormativa" />
+          <ScalarProperty Name="nombrearchivonormativa" ColumnName="nombrearchivonormativa" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notaspts">
+      <EntityTypeMapping TypeName="SGPTModelo.notaspt">
+        <MappingFragment StoreEntitySet="notaspt">
+          <ScalarProperty Name="idnotaspt" ColumnName="idnotaspt" />
+          <ScalarProperty Name="descripcionnotaspt" ColumnName="descripcionnotaspt" />
+          <ScalarProperty Name="fechacreadonotaspt" ColumnName="fechacreadonotaspt" />
+          <ScalarProperty Name="idusuariocreador" ColumnName="idusuariocreador" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="estadonota" ColumnName="estadonota" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="numnotapt" ColumnName="numnotapt" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="obligacioneslegales">
+      <EntityTypeMapping TypeName="SGPTModelo.obligacioneslegale">
+        <MappingFragment StoreEntitySet="obligacioneslegales">
+          <ScalarProperty Name="idol" ColumnName="idol" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="oblidol" ColumnName="oblidol" />
+          <ScalarProperty Name="idnormativa" ColumnName="idnormativa" />
+          <ScalarProperty Name="descripcionol" ColumnName="descripcionol" />
+          <ScalarProperty Name="tipoobligacionol" ColumnName="tipoobligacionol" />
+          <ScalarProperty Name="frecuenciaol" ColumnName="frecuenciaol" />
+          <ScalarProperty Name="articulool" ColumnName="articulool" />
+          <ScalarProperty Name="ordenol" ColumnName="ordenol" />
+          <ScalarProperty Name="estadool" ColumnName="estadool" />
+          <ScalarProperty Name="sistemaol" ColumnName="sistemaol" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="opcionesroles">
+      <EntityTypeMapping TypeName="SGPTModelo.opcionesrole">
+        <MappingFragment StoreEntitySet="opcionesroles">
+          <ScalarProperty Name="idor" ColumnName="idor" />
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+          <ScalarProperty Name="nombreopcionor" ColumnName="nombreopcionor" />
+          <ScalarProperty Name="crearor" ColumnName="crearor" />
+          <ScalarProperty Name="eliminaror" ColumnName="eliminaror" />
+          <ScalarProperty Name="consultaror" ColumnName="consultaror" />
+          <ScalarProperty Name="editaror" ColumnName="editaror" />
+          <ScalarProperty Name="impresionor" ColumnName="impresionor" />
+          <ScalarProperty Name="exportacionor" ColumnName="exportacionor" />
+          <ScalarProperty Name="revisaror" ColumnName="revisaror" />
+          <ScalarProperty Name="aprobaror" ColumnName="aprobaror" />
+          <ScalarProperty Name="estadoor" ColumnName="estadoor" />
+          <ScalarProperty Name="sistemaor" ColumnName="sistemaor" />
+          <ScalarProperty Name="menuor" ColumnName="menuor" />
+          <ScalarProperty Name="submenuor" ColumnName="submenuor" />
+          <ScalarProperty Name="subsubmenuor" ColumnName="subsubmenuor" />
+          <ScalarProperty Name="mostrarenmenuor" ColumnName="mostrarenmenuor" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paises">
+      <EntityTypeMapping TypeName="SGPTModelo.pais">
+        <MappingFragment StoreEntitySet="paises">
+          <ScalarProperty Name="idpais" ColumnName="idpais" />
+          <ScalarProperty Name="nombrepais" ColumnName="nombrepais" />
+          <ScalarProperty Name="sistemapais" ColumnName="sistemapais" />
+          <ScalarProperty Name="estadopais" ColumnName="estadopais" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="papeles">
+      <EntityTypeMapping TypeName="SGPTModelo.papele">
+        <MappingFragment StoreEntitySet="papeles">
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idcronograma" ColumnName="idcronograma" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="nombrepapeles" ColumnName="nombrepapeles" />
+          <ScalarProperty Name="fechaeditadopapeles" ColumnName="fechaeditadopapeles" />
+          <ScalarProperty Name="pdfpapeles" ColumnName="pdfpapeles" />
+          <ScalarProperty Name="estadopapeles" ColumnName="estadopapeles" />
+          <ScalarProperty Name="idencargopapeles" ColumnName="idencargopapeles" />
+          <ScalarProperty Name="referenciapapeles" ColumnName="referenciapapeles" />
+          <ScalarProperty Name="idnitclientepapeles" ColumnName="idnitclientepapeles" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="tipoarchivopapeles" ColumnName="tipoarchivopapeles" />
+          <ScalarProperty Name="binariopapeles" ColumnName="binariopapeles" />
+          <ScalarProperty Name="nombrepdf" ColumnName="nombrepdf" />
+          <ScalarProperty Name="nombrebinario" ColumnName="nombrebinario" />
+          <ScalarProperty Name="referencia" ColumnName="referencia" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="iddocumento" ColumnName="iddocumento" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="partidas">
+      <EntityTypeMapping TypeName="SGPTModelo.partida">
+        <MappingFragment StoreEntitySet="partidas">
+          <ScalarProperty Name="idpartida" ColumnName="idpartida" />
+          <ScalarProperty Name="idcedula" ColumnName="idcedula" />
+          <ScalarProperty Name="idbalance" ColumnName="idbalance" />
+          <ScalarProperty Name="idtp" ColumnName="idtp" />
+          <ScalarProperty Name="numeropartida" ColumnName="numeropartida" />
+          <ScalarProperty Name="conceptopartida" ColumnName="conceptopartida" />
+          <ScalarProperty Name="fechapartida" ColumnName="fechapartida" />
+          <ScalarProperty Name="fechasistemapartida" ColumnName="fechasistemapartida" />
+          <ScalarProperty Name="aprobadapartida" ColumnName="aprobadapartida" />
+          <ScalarProperty Name="elaboradapartida" ColumnName="elaboradapartida" />
+          <ScalarProperty Name="comentariopartida" ColumnName="comentariopartida" />
+          <ScalarProperty Name="clienteaplicopartida" ColumnName="clienteaplicopartida" />
+          <ScalarProperty Name="sumacargopartida" ColumnName="sumacargopartida" />
+          <ScalarProperty Name="sumaabonopartida" ColumnName="sumaabonopartida" />
+          <ScalarProperty Name="estadopartida" ColumnName="estadopartida" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="referenciapapel" ColumnName="referenciapapel" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="periodos">
+      <EntityTypeMapping TypeName="SGPTModelo.periodo">
+        <MappingFragment StoreEntitySet="periodos">
+          <ScalarProperty Name="idperiodos" ColumnName="idperiodos" />
+          <ScalarProperty Name="periodicidadperiodos" ColumnName="periodicidadperiodos" />
+          <ScalarProperty Name="sistemaperiodos" ColumnName="sistemaperiodos" />
+          <ScalarProperty Name="estadoperiodos" ColumnName="estadoperiodos" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permisosrolesusuarios">
+      <EntityTypeMapping TypeName="SGPTModelo.permisosrolesusuario">
+        <MappingFragment StoreEntitySet="permisosrolesusuarios">
+          <ScalarProperty Name="idpru" ColumnName="idpru" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+          <ScalarProperty Name="nombreopcionpru" ColumnName="nombreopcionpru" />
+          <ScalarProperty Name="crearpru" ColumnName="crearpru" />
+          <ScalarProperty Name="eliminarpru" ColumnName="eliminarpru" />
+          <ScalarProperty Name="consultarpru" ColumnName="consultarpru" />
+          <ScalarProperty Name="editarpru" ColumnName="editarpru" />
+          <ScalarProperty Name="impresionpru" ColumnName="impresionpru" />
+          <ScalarProperty Name="exportacionpru" ColumnName="exportacionpru" />
+          <ScalarProperty Name="revisarpru" ColumnName="revisarpru" />
+          <ScalarProperty Name="aprobarpru" ColumnName="aprobarpru" />
+          <ScalarProperty Name="estadopru" ColumnName="estadopru" />
+          <ScalarProperty Name="menupru" ColumnName="menupru" />
+          <ScalarProperty Name="submenupru" ColumnName="submenupru" />
+          <ScalarProperty Name="subsubmenupru" ColumnName="subsubmenupru" />
+          <ScalarProperty Name="mostrarenmenupru" ColumnName="mostrarenmenupru" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personas">
+      <EntityTypeMapping TypeName="SGPTModelo.persona">
+        <MappingFragment StoreEntitySet="personas">
+          <ScalarProperty Name="idduipersona" ColumnName="idduipersona" />
+          <ScalarProperty Name="nombrespersona" ColumnName="nombrespersona" />
+          <ScalarProperty Name="apellidospersona" ColumnName="apellidospersona" />
+          <ScalarProperty Name="sexopersona" ColumnName="sexopersona" />
+          <ScalarProperty Name="direccionpersona" ColumnName="direccionpersona" />
+          <ScalarProperty Name="noafppersona" ColumnName="noafppersona" />
+          <ScalarProperty Name="noissspersona" ColumnName="noissspersona" />
+          <ScalarProperty Name="nitpersona" ColumnName="nitpersona" />
+          <ScalarProperty Name="estadopersona" ColumnName="estadopersona" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pistas">
+      <EntityTypeMapping TypeName="SGPTModelo.pista">
+        <MappingFragment StoreEntitySet="pistas">
+          <ScalarProperty Name="idpista" ColumnName="idpista" />
+          <ScalarProperty Name="descripcionpista" ColumnName="descripcionpista" />
+          <ScalarProperty Name="sistemapista" ColumnName="sistemapista" />
+          <ScalarProperty Name="estadopista" ColumnName="estadopista" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plantillaindices">
+      <EntityTypeMapping TypeName="SGPTModelo.plantillaindice">
+        <MappingFragment StoreEntitySet="plantillaindice">
+          <ScalarProperty Name="idpi" ColumnName="idpi" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idta" ColumnName="idta" />
+          <ScalarProperty Name="descripcionpi" ColumnName="descripcionpi" />
+          <ScalarProperty Name="sistemapi" ColumnName="sistemapi" />
+          <ScalarProperty Name="estadopi" ColumnName="estadopi" />
+          <ScalarProperty Name="fechacreadopi" ColumnName="fechacreadopi" />
+          <ScalarProperty Name="idtcpi" ColumnName="idtcpi" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plantillas">
+      <EntityTypeMapping TypeName="SGPTModelo.plantilla">
+        <MappingFragment StoreEntitySet="plantillas">
+          <ScalarProperty Name="idplantilla" ColumnName="idplantilla" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="iddd" ColumnName="iddd" />
+          <ScalarProperty Name="nombreplantilla" ColumnName="nombreplantilla" />
+          <ScalarProperty Name="comentarioplantilla" ColumnName="comentarioplantilla" />
+          <ScalarProperty Name="versionplantilla" ColumnName="versionplantilla" />
+          <ScalarProperty Name="fechacreadoplantilla" ColumnName="fechacreadoplantilla" />
+          <ScalarProperty Name="tipoarchivoplantilla" ColumnName="tipoarchivoplantilla" />
+          <ScalarProperty Name="ficherobinarioplantilla" ColumnName="ficherobinarioplantilla" />
+          <ScalarProperty Name="sistemaplantilla" ColumnName="sistemaplantilla" />
+          <ScalarProperty Name="estadoplantilla" ColumnName="estadoplantilla" />
+          <ScalarProperty Name="nombrearchivoplantilla" ColumnName="nombrearchivoplantilla" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="procesosauditorias">
+      <EntityTypeMapping TypeName="SGPTModelo.procesosauditoria">
+        <MappingFragment StoreEntitySet="procesosauditoria">
+          <ScalarProperty Name="idpa" ColumnName="idpa" />
+          <ScalarProperty Name="descripcionpa" ColumnName="descripcionpa" />
+          <ScalarProperty Name="estadopa" ColumnName="estadopa" />
+          <ScalarProperty Name="sistemapa" ColumnName="sistemapa" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="programas">
+      <EntityTypeMapping TypeName="SGPTModelo.programa">
+        <MappingFragment StoreEntitySet="programas">
+          <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+          <ScalarProperty Name="idthprograma" ColumnName="idthprograma" />
+          <ScalarProperty Name="idtpprograma" ColumnName="idtpprograma" />
+          <ScalarProperty Name="idindiceprograma" ColumnName="idindiceprograma" />
+          <ScalarProperty Name="idcedulaprograma" ColumnName="idcedulaprograma" />
+          <ScalarProperty Name="idpapelesprograma" ColumnName="idpapelesprograma" />
+          <ScalarProperty Name="nombreprograma" ColumnName="nombreprograma" />
+          <ScalarProperty Name="fechahoyprograma" ColumnName="fechahoyprograma" />
+          <ScalarProperty Name="horasplanprograma" ColumnName="horasplanprograma" />
+          <ScalarProperty Name="estadoprograma" ColumnName="estadoprograma" />
+          <ScalarProperty Name="etapaprograma" ColumnName="etapaprograma" />
+          <ScalarProperty Name="horasejecucionprograma" ColumnName="horasejecucionprograma" />
+          <ScalarProperty Name="idencargoprograma" ColumnName="idencargoprograma" />
+          <ScalarProperty Name="referenciaprograma" ColumnName="referenciaprograma" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idagenda" ColumnName="idagenda" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ratios">
+      <EntityTypeMapping TypeName="SGPTModelo.ratio">
+        <MappingFragment StoreEntitySet="ratios">
+          <ScalarProperty Name="idratio" ColumnName="idratio" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="nombreratio" ColumnName="nombreratio" />
+          <ScalarProperty Name="interpretacionratio" ColumnName="interpretacionratio" />
+          <ScalarProperty Name="estadoratio" ColumnName="estadoratio" />
+          <ScalarProperty Name="sistemaratio" ColumnName="sistemaratio" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="razones">
+      <EntityTypeMapping TypeName="SGPTModelo.razone">
+        <MappingFragment StoreEntitySet="razones">
+          <ScalarProperty Name="idratio" ColumnName="idratio" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="nombreratio" ColumnName="nombreratio" />
+          <ScalarProperty Name="interpretacionratio" ColumnName="interpretacionratio" />
+          <ScalarProperty Name="estadoratio" ColumnName="estadoratio" />
+          <ScalarProperty Name="sistemaratio" ColumnName="sistemaratio" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="repositorios">
+      <EntityTypeMapping TypeName="SGPTModelo.repositorio">
+        <MappingFragment StoreEntitySet="repositorio">
+          <ScalarProperty Name="idrepositorio" ColumnName="idrepositorio" />
+          <ScalarProperty Name="idpapeles" ColumnName="idpapeles" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+          <ScalarProperty Name="iddocumento" ColumnName="iddocumento" />
+          <ScalarProperty Name="idindice" ColumnName="idindice" />
+          <ScalarProperty Name="nombrerepositorio" ColumnName="nombrerepositorio" />
+          <ScalarProperty Name="comentariorepositorio" ColumnName="comentariorepositorio" />
+          <ScalarProperty Name="versionrepositorio" ColumnName="versionrepositorio" />
+          <ScalarProperty Name="fechacreadorepositorio" ColumnName="fechacreadorepositorio" />
+          <ScalarProperty Name="tipoarchivorepositorio" ColumnName="tipoarchivorepositorio" />
+          <ScalarProperty Name="pdfrepositorio" ColumnName="pdfrepositorio" />
+          <ScalarProperty Name="estadorepositorio" ColumnName="estadorepositorio" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="binariorepositorio" ColumnName="binariorepositorio" />
+          <ScalarProperty Name="nombrepdf" ColumnName="nombrepdf" />
+          <ScalarProperty Name="nombrebinariorepositorio" ColumnName="nombrebinariorepositorio" />
+          <ScalarProperty Name="referenciarepositorio" ColumnName="referenciarepositorio" />
+          <ScalarProperty Name="idgenerico" ColumnName="idgenerico" />
+          <ScalarProperty Name="tabla" ColumnName="tabla" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requerimientos">
+      <EntityTypeMapping TypeName="SGPTModelo.requerimiento">
+        <MappingFragment StoreEntitySet="requerimientos">
+          <ScalarProperty Name="idrequerimiento" ColumnName="idrequerimiento" />
+          <ScalarProperty Name="ordenrequerimiento" ColumnName="ordenrequerimiento" />
+          <ScalarProperty Name="descripcionrequerimiento" ColumnName="descripcionrequerimiento" />
+          <ScalarProperty Name="estadorequerimiento" ColumnName="estadorequerimiento" />
+          <ScalarProperty Name="sistemarequerimiento" ColumnName="sistemarequerimiento" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reuniones">
+      <EntityTypeMapping TypeName="SGPTModelo.reunione">
+        <MappingFragment StoreEntitySet="reuniones">
+          <ScalarProperty Name="idreunion" ColumnName="idreunion" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="usuidusuario" ColumnName="usuidusuario" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="fechareunion" ColumnName="fechareunion" />
+          <ScalarProperty Name="tiempoduracionreunion" ColumnName="tiempoduracionreunion" />
+          <ScalarProperty Name="participanteexternoreunion" ColumnName="participanteexternoreunion" />
+          <ScalarProperty Name="participantesinternoreunion" ColumnName="participantesinternoreunion" />
+          <ScalarProperty Name="asuntoreunion" ColumnName="asuntoreunion" />
+          <ScalarProperty Name="conclusionesreunion" ColumnName="conclusionesreunion" />
+          <ScalarProperty Name="aprobacionreunion" ColumnName="aprobacionreunion" />
+          <ScalarProperty Name="estadoreunion" ColumnName="estadoreunion" />
+          <ScalarProperty Name="fechaaprobacionreunion" ColumnName="fechaaprobacionreunion" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="SGPTModelo.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+          <ScalarProperty Name="nombrerol" ColumnName="nombrerol" />
+          <ScalarProperty Name="sistemarol" ColumnName="sistemarol" />
+          <ScalarProperty Name="estadorol" ColumnName="estadorol" />
+          <ScalarProperty Name="descripcionrol" ColumnName="descripcionrol" />
+          <ScalarProperty Name="basadoenrol" ColumnName="basadoenrol" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="simbolos">
+      <EntityTypeMapping TypeName="SGPTModelo.simbolo">
+        <MappingFragment StoreEntitySet="simbolos">
+          <ScalarProperty Name="idsimbolo" ColumnName="idsimbolo" />
+          <ScalarProperty Name="idtd" ColumnName="idtd" />
+          <ScalarProperty Name="caractersimbolo" ColumnName="caractersimbolo" />
+          <ScalarProperty Name="estadosimbolo" ColumnName="estadosimbolo" />
+          <ScalarProperty Name="sistemasimbolo" ColumnName="sistemasimbolo" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sistemascontables">
+      <EntityTypeMapping TypeName="SGPTModelo.sistemascontable">
+        <MappingFragment StoreEntitySet="sistemascontables">
+          <ScalarProperty Name="idsc" ColumnName="idsc" />
+          <ScalarProperty Name="idmoneda" ColumnName="idmoneda" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="ideef" ColumnName="ideef" />
+          <ScalarProperty Name="fechasc" ColumnName="fechasc" />
+          <ScalarProperty Name="digitoscuentamayorsc" ColumnName="digitoscuentamayorsc" />
+          <ScalarProperty Name="digitosrubroscontablessc" ColumnName="digitosrubroscontablessc" />
+          <ScalarProperty Name="periodoiniciosc" ColumnName="periodoiniciosc" />
+          <ScalarProperty Name="periodofinsc" ColumnName="periodofinsc" />
+          <ScalarProperty Name="estadosc" ColumnName="estadosc" />
+          <ScalarProperty Name="idencargodsc" ColumnName="idencargodsc" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="telefonos">
+      <EntityTypeMapping TypeName="SGPTModelo.telefono">
+        <MappingFragment StoreEntitySet="telefonos">
+          <ScalarProperty Name="idtelefono" ColumnName="idtelefono" />
+          <ScalarProperty Name="idfirma" ColumnName="idfirma" />
+          <ScalarProperty Name="idduipersona" ColumnName="idduipersona" />
+          <ScalarProperty Name="idtt" ColumnName="idtt" />
+          <ScalarProperty Name="idnitcliente" ColumnName="idnitcliente" />
+          <ScalarProperty Name="idcontacto" ColumnName="idcontacto" />
+          <ScalarProperty Name="numerotelefono" ColumnName="numerotelefono" />
+          <ScalarProperty Name="estadotelefono" ColumnName="estadotelefono" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipocarpetas">
+      <EntityTypeMapping TypeName="SGPTModelo.tipocarpeta">
+        <MappingFragment StoreEntitySet="tipocarpeta">
+          <ScalarProperty Name="idtc" ColumnName="idtc" />
+          <ScalarProperty Name="descripciontc" ColumnName="descripciontc" />
+          <ScalarProperty Name="sistematc" ColumnName="sistematc" />
+          <ScalarProperty Name="estadotc" ColumnName="estadotc" />
+          <ScalarProperty Name="idencargotc" ColumnName="idencargotc" />
+          <ScalarProperty Name="padreidtc" ColumnName="padreidtc" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="usuariocerro" ColumnName="usuariocerro" />
+          <ScalarProperty Name="usuarioaprobo" ColumnName="usuarioaprobo" />
+          <ScalarProperty Name="usuariosuperviso" ColumnName="usuariosuperviso" />
+          <ScalarProperty Name="fechasupervision" ColumnName="fechasupervision" />
+          <ScalarProperty Name="fechaaprobacion" ColumnName="fechaaprobacion" />
+          <ScalarProperty Name="fechacierre" ColumnName="fechacierre" />
+          <ScalarProperty Name="etapapapel" ColumnName="etapapapel" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoconfirmaciones">
+      <EntityTypeMapping TypeName="SGPTModelo.tipoconfirmacione">
+        <MappingFragment StoreEntitySet="tipoconfirmaciones">
+          <ScalarProperty Name="idtconfirmacion" ColumnName="idtconfirmacion" />
+          <ScalarProperty Name="descripciontconfirmacion" ColumnName="descripciontconfirmacion" />
+          <ScalarProperty Name="sistematconfirmacion" ColumnName="sistematconfirmacion" />
+          <ScalarProperty Name="estadotconfirmacion" ColumnName="estadotconfirmacion" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoelementoindices">
+      <EntityTypeMapping TypeName="SGPTModelo.tipoelementoindice">
+        <MappingFragment StoreEntitySet="tipoelementoindice">
+          <ScalarProperty Name="idtei" ColumnName="idtei" />
+          <ScalarProperty Name="descripciontei" ColumnName="descripciontei" />
+          <ScalarProperty Name="sistematei" ColumnName="sistematei" />
+          <ScalarProperty Name="estadotei" ColumnName="estadotei" />
+          <ScalarProperty Name="imagentet" ColumnName="imagentet" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipopartidas">
+      <EntityTypeMapping TypeName="SGPTModelo.tipopartida">
+        <MappingFragment StoreEntitySet="tipopartidas">
+          <ScalarProperty Name="idtp" ColumnName="idtp" />
+          <ScalarProperty Name="descripciontp" ColumnName="descripciontp" />
+          <ScalarProperty Name="sistematp" ColumnName="sistematp" />
+          <ScalarProperty Name="estadotp" ColumnName="estadotp" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoprocedimientoes">
+      <EntityTypeMapping TypeName="SGPTModelo.tipoprocedimiento">
+        <MappingFragment StoreEntitySet="tipoprocedimiento">
+          <ScalarProperty Name="idtprocedimiento" ColumnName="idtprocedimiento" />
+          <ScalarProperty Name="descripciontprocedimiento" ColumnName="descripciontprocedimiento" />
+          <ScalarProperty Name="estadotprocedimiento" ColumnName="estadotprocedimiento" />
+          <ScalarProperty Name="sistematprocedimiento" ColumnName="sistematprocedimiento" />
+          <ScalarProperty Name="idthtprocedimiento" ColumnName="idthtprocedimiento" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiporespuestacuestionarios">
+      <EntityTypeMapping TypeName="SGPTModelo.tiporespuestacuestionario">
+        <MappingFragment StoreEntitySet="tiporespuestacuestionario">
+          <ScalarProperty Name="idtrc" ColumnName="idtrc" />
+          <ScalarProperty Name="descripciontrc" ColumnName="descripciontrc" />
+          <ScalarProperty Name="estadotrc" ColumnName="estadotrc" />
+          <ScalarProperty Name="sistematrc" ColumnName="sistematrc" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiposauditorias">
+      <EntityTypeMapping TypeName="SGPTModelo.tiposauditoria">
+        <MappingFragment StoreEntitySet="tiposauditoria">
+          <ScalarProperty Name="idta" ColumnName="idta" />
+          <ScalarProperty Name="descripcionta" ColumnName="descripcionta" />
+          <ScalarProperty Name="sistemata" ColumnName="sistemata" />
+          <ScalarProperty Name="estadota" ColumnName="estadota" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiposcedulas">
+      <EntityTypeMapping TypeName="SGPTModelo.tiposcedula">
+        <MappingFragment StoreEntitySet="tiposcedulas">
+          <ScalarProperty Name="idtc" ColumnName="idtc" />
+          <ScalarProperty Name="descripciontc" ColumnName="descripciontc" />
+          <ScalarProperty Name="estadotc" ColumnName="estadotc" />
+          <ScalarProperty Name="sistematc" ColumnName="sistematc" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiposdescriptores">
+      <EntityTypeMapping TypeName="SGPTModelo.tiposdescriptore">
+        <MappingFragment StoreEntitySet="tiposdescriptores">
+          <ScalarProperty Name="idtd" ColumnName="idtd" />
+          <ScalarProperty Name="tipotd" ColumnName="tipotd" />
+          <ScalarProperty Name="sistematd" ColumnName="sistematd" />
+          <ScalarProperty Name="estadotd" ColumnName="estadotd" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiposherramientas">
+      <EntityTypeMapping TypeName="SGPTModelo.tiposherramienta">
+        <MappingFragment StoreEntitySet="tiposherramientas">
+          <ScalarProperty Name="idth" ColumnName="idth" />
+          <ScalarProperty Name="descripcionth" ColumnName="descripcionth" />
+          <ScalarProperty Name="estadoth" ColumnName="estadoth" />
+          <ScalarProperty Name="sistemath" ColumnName="sistemath" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tiposprogramas">
+      <EntityTypeMapping TypeName="SGPTModelo.tiposprograma">
+        <MappingFragment StoreEntitySet="tiposprograma">
+          <ScalarProperty Name="idtp" ColumnName="idtp" />
+          <ScalarProperty Name="descripciontp" ColumnName="descripciontp" />
+          <ScalarProperty Name="estadotp" ColumnName="estadotp" />
+          <ScalarProperty Name="sistematp" ColumnName="sistematp" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipostelefonos">
+      <EntityTypeMapping TypeName="SGPTModelo.tipostelefono">
+        <MappingFragment StoreEntitySet="tipostelefonos">
+          <ScalarProperty Name="idtt" ColumnName="idtt" />
+          <ScalarProperty Name="descripciontt" ColumnName="descripciontt" />
+          <ScalarProperty Name="sistematt" ColumnName="sistematt" />
+          <ScalarProperty Name="estadott" ColumnName="estadott" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarioherramientasaccions">
+      <EntityTypeMapping TypeName="SGPTModelo.usuarioherramientasaccion">
+        <MappingFragment StoreEntitySet="usuarioherramientasaccion">
+          <ScalarProperty Name="iduha" ColumnName="iduha" />
+          <ScalarProperty Name="idherramienta" ColumnName="idherramienta" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="roluha" ColumnName="roluha" />
+          <ScalarProperty Name="fechacreadouha" ColumnName="fechacreadouha" />
+          <ScalarProperty Name="estadouha" ColumnName="estadouha" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuariomatanalisfinancaccions">
+      <EntityTypeMapping TypeName="SGPTModelo.usuariomatanalisfinancaccion">
+        <MappingFragment StoreEntitySet="usuariomatanalisfinancaccion">
+          <ScalarProperty Name="idumafa" ColumnName="idumafa" />
+          <ScalarProperty Name="idmaf" ColumnName="idmaf" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="rolumafa" ColumnName="rolumafa" />
+          <ScalarProperty Name="fechacreadoumafa" ColumnName="fechacreadoumafa" />
+          <ScalarProperty Name="estadoumafa" ColumnName="estadoumafa" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarioprogramasaccions">
+      <EntityTypeMapping TypeName="SGPTModelo.usuarioprogramasaccion">
+        <MappingFragment StoreEntitySet="usuarioprogramasaccion">
+          <ScalarProperty Name="idupa" ColumnName="idupa" />
+          <ScalarProperty Name="idprograma" ColumnName="idprograma" />
+          <ScalarProperty Name="iddp" ColumnName="iddp" />
+          <ScalarProperty Name="idusuarioupa" ColumnName="idusuarioupa" />
+          <ScalarProperty Name="rolupa" ColumnName="rolupa" />
+          <ScalarProperty Name="fechacreadoupa" ColumnName="fechacreadoupa" />
+          <ScalarProperty Name="estadoupa" ColumnName="estadoupa" />
+          <ScalarProperty Name="iddcupa" ColumnName="iddcupa" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="idencargo" ColumnName="idencargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuariorequerimientosaccions">
+      <EntityTypeMapping TypeName="SGPTModelo.usuariorequerimientosaccion">
+        <MappingFragment StoreEntitySet="usuariorequerimientosaccion">
+          <ScalarProperty Name="idura" ColumnName="idura" />
+          <ScalarProperty Name="idrequerimiento" ColumnName="idrequerimiento" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="rolura" ColumnName="rolura" />
+          <ScalarProperty Name="fechacreadoura" ColumnName="fechacreadoura" />
+          <ScalarProperty Name="estadoura" ColumnName="estadoura" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="SGPTModelo.usuario">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idduipersona" ColumnName="idduipersona" />
+          <ScalarProperty Name="idpista" ColumnName="idpista" />
+          <ScalarProperty Name="usuidusuario" ColumnName="usuidusuario" />
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+          <ScalarProperty Name="fecharegistrousuario" ColumnName="fecharegistrousuario" />
+          <ScalarProperty Name="fechadebaja" ColumnName="fechadebaja" />
+          <ScalarProperty Name="fechacontratacion" ColumnName="fechacontratacion" />
+          <ScalarProperty Name="nickusuariousuario" ColumnName="nickusuariousuario" />
+          <ScalarProperty Name="inicialesusuario" ColumnName="inicialesusuario" />
+          <ScalarProperty Name="respuestapistausuario" ColumnName="respuestapistausuario" />
+          <ScalarProperty Name="numerocvpausuario" ColumnName="numerocvpausuario" />
+          <ScalarProperty Name="fechacvpausuario" ColumnName="fechacvpausuario" />
+          <ScalarProperty Name="estadousuario" ColumnName="estadousuario" />
+          <ScalarProperty Name="contraseniausuario" ColumnName="contraseniausuario" />
+          <ScalarProperty Name="temacolorsistemausuario" ColumnName="temacolorsistemausuario" />
+          <ScalarProperty Name="isuso" ColumnName="isuso" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="visitas">
+      <EntityTypeMapping TypeName="SGPTModelo.visita">
+        <MappingFragment StoreEntitySet="visitas">
+          <ScalarProperty Name="idvisita" ColumnName="idvisita" />
+          <ScalarProperty Name="descripcionvisita" ColumnName="descripcionvisita" />
+          <ScalarProperty Name="estadovisita" ColumnName="estadovisita" />
+          <ScalarProperty Name="sistemavisita" ColumnName="sistemavisita" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

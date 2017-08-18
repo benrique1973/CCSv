@@ -2708,8 +2708,23 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     //La ordena por el idPrograma notar la notacion
                     int i = 1;
                     string referencia = string.Empty;
+                    //Para crear el registro de marcas utilizadas en clase de registro sera tipo m (marca)
+                    ObservableCollection<DetalleCedulaModelo> listaMarcas = new ObservableCollection<DetalleCedulaModelo>();
+                    CedulaModelo temporal = CedulaModelo.FindMaestro(encargo.idencargo, 13, "Cédula de marcas");
+                    ObservableCollection<CedulaMarcasModelo> listaCedulaMarcas = CedulaMarcasModelo.GetAllEdicion(encargo, temporal.idcedula);
+                    DetalleCedulaModelo detalleMarca = new DetalleCedulaModelo();
+                    //Insercion de linea vacia
                     foreach (DetalleCedulaModelo item in lista)
                     {
+                        if (i == 1)
+                        {
+                            detalleMarca.idcedula = item.idcedula;
+                            detalleMarca.codigocontabledc = " ";
+                            detalleMarca.claseregistro = "M";
+                            detalleMarca.nombrecuenta = " ";
+                            listaMarcas.Add(detalleMarca);
+                            detalleMarca = new DetalleCedulaModelo();
+                        }
                         item.idCorrelativo = i;
                         i++;
                         if (item.saldoanteriordc != 0 && item.saldoanteriordc!=null)
@@ -2754,6 +2769,58 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                     }
                                 }
                             }
+                        }
+                        if (item.m1dc != null && item.m1dc != "")
+                        {
+                            //Se incorpora a la lista
+                            //Verificar que no  esta en la lista
+                                if (listaMarcas.Count(x => x.codigocontabledc == item.m1dc) == 0)
+                                {
+                                    detalleMarca.idcedula = item.idcedula;
+                                    detalleMarca.codigocontabledc = item.m1dc;
+                                    detalleMarca.claseregistro = "M";
+                                    detalleMarca.nombrecuenta = listaCedulaMarcas.Single(x => x.marcama == item.m1dc).significadoma;
+                                    listaMarcas.Add(detalleMarca);
+                                    detalleMarca = new DetalleCedulaModelo();
+                                }
+                        }
+                        if (item.m2dc != null && item.m2dc != "")
+                        {
+                            //Se incorpora a la lista
+                            //Verificar que no  esta en la lista
+                            if (listaMarcas.Count(x => x.codigocontabledc == item.m2dc) == 0)
+                            {
+                                detalleMarca.idcedula = item.idcedula;
+                                detalleMarca.codigocontabledc = item.m2dc;
+                                detalleMarca.claseregistro = "M";
+                                detalleMarca.nombrecuenta = listaCedulaMarcas.Single(x => x.marcama == item.m2dc).significadoma;
+                                listaMarcas.Add(detalleMarca);
+                                detalleMarca = new DetalleCedulaModelo();
+                            }
+                        }
+                        if (item.m3dc != null && item.m3dc != "")
+                        {
+                            //Se incorpora a la lista
+                            //Verificar que no  esta en la lista
+                            if (listaMarcas.Count(x => x.codigocontabledc == item.m3dc) == 0)
+                            {
+                                detalleMarca.idcedula = item.idcedula;
+                                detalleMarca.codigocontabledc = item.m3dc;
+                                detalleMarca.claseregistro = "M";
+                                detalleMarca.nombrecuenta = listaCedulaMarcas.Single(x => x.marcama == item.m3dc).significadoma;
+                                listaMarcas.Add(detalleMarca);
+                                detalleMarca = new DetalleCedulaModelo();
+                            }
+                        }
+                    }
+                    if (listaMarcas.Count > 0)
+                    {
+                        //agregarlas al final
+                        foreach (DetalleCedulaModelo item in listaMarcas)
+                        {
+                            item.idCorrelativo = i;
+                            lista.Add(item);
+                            i++;
                         }
                     }
                     return new ObservableCollection<DetalleCedulaModelo>(lista);
