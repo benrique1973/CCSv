@@ -12,7 +12,6 @@ using SGPTWpf.Messages;
 using SGPTWpf.ViewModel;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion;
 using System.Linq;
-using System.ComponentModel;
 using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
 using SGPTWpf.SGPtWpf.Model.Modelo.Menus;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas;
@@ -3371,7 +3370,10 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             {
                 foreach (DetalleCedulaModelo item in lista)
                 {
-                    DetalleCedulaModelo.UpdateModelo(item);
+                    if (item.claseregistro != "M")
+                    {
+                        DetalleCedulaModelo.UpdateModelo(item);
+                    }
                 }
             }
 

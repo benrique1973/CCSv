@@ -1279,7 +1279,6 @@
     <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraViewModel.cs" />
     <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\DetalleCedulaControllerViewModel.cs" />
     <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\DetalleCedulaViewModel.cs" />
-    <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\Prueba.cs" />
     <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\Resumen\ResumenSumariasViewModel.cs" />
     <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\SumariaControllerViewModel.cs" />
     <Compile Include="SGPtWpf\ViewModel\Encargos\Cedulas\Sumarias\SumariaPresentacionViewModel.cs" />

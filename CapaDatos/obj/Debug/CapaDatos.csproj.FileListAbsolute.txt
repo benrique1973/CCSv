@@ -1,0 +1,16 @@
+F:\CCSv\blopez\CapaDatos\bin\Debug\CapaDatos.dll.config
+F:\CCSv\blopez\CapaDatos\bin\Debug\CapaDatos.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\CapaDatos.pdb
+F:\CCSv\blopez\CapaDatos\bin\Debug\EntityFramework.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\EntityFramework.SqlServer.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\EntityFramework6.Npgsql.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\MoonPdfLib.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\Npgsql.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\MouseKeyboardActivityMonitor.dll
+F:\CCSv\blopez\CapaDatos\bin\Debug\EntityFramework.xml
+F:\CCSv\blopez\CapaDatos\bin\Debug\EntityFramework.SqlServer.xml
+F:\CCSv\blopez\CapaDatos\bin\Debug\EntityFramework6.Npgsql.xml
+F:\CCSv\blopez\CapaDatos\bin\Debug\Npgsql.xml
+F:\CCSv\blopez\CapaDatos\obj\Debug\CapaDatos.csprojResolveAssemblyReference.cache
+F:\CCSv\blopez\CapaDatos\obj\Debug\CapaDatos.dll
+F:\CCSv\blopez\CapaDatos\obj\Debug\CapaDatos.pdb
