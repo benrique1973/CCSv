@@ -302,9 +302,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         public const string currentEntidadPropertyName = "currentEntidad";
 
-        private CedulaModelo _currentEntidad;
+        private DetalleCedulaModelo _currentEntidad;
 
-        public CedulaModelo currentEntidad
+        public DetalleCedulaModelo currentEntidad
         {
             get
             {
@@ -324,13 +324,13 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
-        #region ViewModel Property : currentDetalleEntidad
+        #region ViewModel Property : currentEntidadCedula
 
-        public const string currentDetalleEntidadPropertyName = "currentDetalleEntidad";
+        public const string currentDetalleEntidadPropertyName = "currentEntidadCedula";
 
         private CedulaModelo _currentDetalleEntidad;
 
-        public CedulaModelo currentDetalleEntidad
+        public CedulaModelo currentEntidadCedula
         {
             get
             {
@@ -1204,28 +1204,28 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
-        #region ViewModel Properties : accesibilidadClaseCedula
+        #region ViewModel Properties : accesibilidadDatosModificables
 
-        public const string accesibilidadClaseCedulaPropertyName = "accesibilidadClaseCedula";
+        public const string accesibilidadDatosModificablesPropertyName = "accesibilidadDatosModificables";
 
-        private bool _accesibilidadClaseCedula;
+        private bool _accesibilidadDatosModificables;
 
-        public bool accesibilidadClaseCedula
+        public bool accesibilidadDatosModificables
         {
             get
             {
-                return _accesibilidadClaseCedula;
+                return _accesibilidadDatosModificables;
             }
 
             set
             {
-                if (_accesibilidadClaseCedula == value)
+                if (_accesibilidadDatosModificables == value)
                 {
                     return;
                 }
 
-                _accesibilidadClaseCedula = value;
-                RaisePropertyChanged(accesibilidadClaseCedulaPropertyName);
+                _accesibilidadDatosModificables = value;
+                RaisePropertyChanged(accesibilidadDatosModificablesPropertyName);
             }
         }
 
@@ -1656,7 +1656,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _visibilidadConsultar = Visibility.Collapsed;
             _visibilidadCopiar = Visibility.Collapsed;
             _visibilidadPlantilla = Visibility.Collapsed;
-            _visibilidadBalance = Visibility.Collapsed;
+            _visibilidadBalance = Visibility.Visible;
             _visibilidadTareas = Visibility.Collapsed;
             _visibilidadClaseDocumento = Visibility.Collapsed;
             _visibilidadRespuesta = Visibility.Visible;
@@ -1664,7 +1664,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _visibilidadCuerpo = Visibility.Collapsed;
 
             _currentEncargo = new EncargoModelo();
-            _currentEntidad = new CedulaModelo();
+            _currentEntidad = new DetalleCedulaModelo();
             _currentDetalleEntidad = new CedulaModelo();
             _currentMovimientos = new CedulaMovimientoModelo();
             enviarMensajeInhabilitar();
@@ -1712,23 +1712,24 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             currentUsuario = datosMsj.usuarioModelo;
             opcionMenu = datosMsj.opcionMenuCrud;
             tokenEnvio = datosMsj.tokenRespuestaController;
-            currentDetalleEntidad = datosMsj.entidadMaestroModelo;
+            currentEntidadCedula = datosMsj.entidadMaestroModelo;
             //FuenteLlamada = datosMsj.fuenteLlamado;
             listacurrentEntidad = datosMsj.listaMaestroModelo;
             //listaDetalleEntidad = datosMsj.listaDetalle;
             //Cargor catalogo
             //listaCatalogo = new ObservableCollection<CatalogoCuentasModelo>(CatalogoCuentasModelo.GetAllByIdScForDisplayToPartidas(((int)currentEncargo.idsc)));
-            currentEntidad = datosMsj.entidadMaestroModelo;
-            if (currentEntidad.idtc == 0 || (currentEntidad.idtc != 1
-                && currentEntidad.idtc != 2 && currentEntidad.idtc != 3
-                && currentEntidad.idtc != 5 && currentEntidad.idtc != 6))
-            {
-                visibilidadClaseDocumento = Visibility.Visible;
-            }
-            else
-            {
-                visibilidadClaseDocumento = Visibility.Collapsed;
-            }
+            //currentEntidad = datosMsj.entidadMaestroModelo;
+            currentEntidad = datosMsj.entidadDetalle;
+            //if (currentEntidad.idtc == 0 || (currentEntidad.idtc != 1
+            //    && currentEntidad.idtc != 2 && currentEntidad.idtc != 3
+            //    && currentEntidad.idtc != 5 && currentEntidad.idtc != 6))
+            //{
+            //    visibilidadClaseDocumento = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    visibilidadClaseDocumento = Visibility.Collapsed;
+            //}
 
             llenadoDatos(datosMsj.opcionMenuCrud);
             switch (datosMsj.opcionMenuCrud)
@@ -1743,7 +1744,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     visibilidadBalance = Visibility.Collapsed;
                     visibilidadRespuesta = Visibility.Collapsed;
                     accesibilidadCuerpo = true;
-                    accesibilidadClaseCedula = false;
+                    accesibilidadDatosModificables = false;
                     accesibilidadRespuesta = true;
                     enableTareas = true;
                     break;
@@ -1754,8 +1755,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     visibilidadConsultar = Visibility.Collapsed;
                     visibilidadCopiar = Visibility.Collapsed;
                     visibilidadCuerpo = Visibility.Visible;
-                    accesibilidadCuerpo = true;
-                    accesibilidadClaseCedula = false;
+                    accesibilidadCuerpo = false;
+                    accesibilidadDatosModificables = true;
                     accesibilidadRespuesta = false;
                     enableTareas = true;
                     break;
@@ -1769,7 +1770,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     visibilidadConsultar = Visibility.Visible;
                     visibilidadCopiar = Visibility.Collapsed;
                     accesibilidadCuerpo = false;
-                    accesibilidadClaseCedula = false;
+                    accesibilidadDatosModificables = false;
                     accesibilidadRespuesta = false;
                     enableTareas = true;
                     break;
@@ -1912,6 +1913,14 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         private async void llenadoDatos(int comando)
         {
+            if (currentEntidadCedula.fechabalancebalanceComparativo == null || string.IsNullOrEmpty(currentEntidadCedula.fechabalancebalanceComparativo))
+            {
+                visibilidadBalance = Visibility.Collapsed;
+            }
+            else
+            {
+                visibilidadBalance = Visibility.Visible;
+            }
             if (comando != 1 || comando != 2 || comando != 3)
             {
                 //Llenar fecha de cierre
@@ -1969,6 +1978,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     fechaaprobacion = new DateTime((DateTime.Now.Year), 1, 1);
                 }
             }
+
         }
         #endregion
 
@@ -2161,22 +2171,22 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
             actualizarCommand = new RelayCommand(actualizaSumas);
 
-            SeleccionClaseDocumentoCommand = new RelayCommand<TipoCedulaModelo>(entidad =>
-            {
-                if (entidad == null) return;
-                currentEntidad.idtc = entidad.id;
-            });
+            //SeleccionClaseDocumentoCommand = new RelayCommand<TipoCedulaModelo>(entidad =>
+            //{
+            //    if (entidad == null) return;
+            //    currentEntidad.idtc = entidad.id;
+            //});
             //cmdCargarPdf_Click = new RelayCommand(cmdCargarPDF);
             //cmdCargarFuente_Click = new RelayCommand(cmdCargarFuente);
 
             CancelarPlantillaCommand = new RelayCommand(Cancelar);
             //SeleccionPlantillaCommand = new RelayCommand(ImportarPlantillas, canImport);
             CancelarProgramaEncargoCommand = new RelayCommand(Cancelar);
-            SeleccionClaseDocumentoCommand = new RelayCommand<TipoCedulaModelo>(entidad =>
-            {
-                if (entidad == null) return;
-                currentEntidad.idtc = entidad.id;
-            });
+            //SeleccionClaseDocumentoCommand = new RelayCommand<TipoCedulaModelo>(entidad =>
+            //{
+            //    if (entidad == null) return;
+            //    currentEntidad.idtc = entidad.id;
+            //});
 
 
             SelectedDateChangedCommand = new RelayCommand<DateTime>(entidad =>
@@ -2263,7 +2273,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         {
             bool evaluar = false;
 
-            if (currentDetalleEntidad == null)
+            if (currentEntidadCedula == null)
             {
                 return evaluar;
             }
@@ -2362,29 +2372,30 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 switch (opcionMenu)
                 {
                     case 2: //Actualiza
-                        await verificacion();
-                        ObservableCollection<CedulaMovimientoModelo> listaTemporal = new ObservableCollection<CedulaMovimientoModelo>();
+                        //await verificacion();
+                        //ObservableCollection<CedulaMovimientoModelo> listaTemporal = new ObservableCollection<CedulaMovimientoModelo>();
+                        resultadoModificar = DetalleCedulaModelo.UpdateModelo(currentEntidad,true);
                         break;
                     case 8: //Referenciar
-                        resultadoModificar = CedulaModelo.UpdateReferencia(currentEntidad);
+                        resultadoModificar = DetalleCedulaModelo.UpdateReferencia(currentEntidad);
                         break;
                     case 10://Cerrar
-                        resultadoModificar = CedulaModelo.UpdateCierre(currentEntidad, currentUsuario, currentEntidad.conclusioncedula);
+                        resultadoModificar = DetalleCedulaModelo.UpdateCierre(currentEntidad, currentUsuario);
                         //resultadoModificar = CedulaModelo.UpdateCierre(currentEntidad, currentUsuario);
                         break;
                     case 11://Supervisar
-                        resultadoModificar = CedulaModelo.UpdateSupervision(currentEntidad);
+                        resultadoModificar = DetalleCedulaModelo.UpdateSupervision(currentEntidad);
                         break;
                     case 12://Aprobar
                         if (string.IsNullOrEmpty(currentEntidad.usuariosuperviso) || string.IsNullOrWhiteSpace(currentEntidad.usuariosuperviso))
                         {
-                            resultadoModificar = CedulaModelo.UpdateAprobacionSupervision(currentEntidad);
+                            resultadoModificar = DetalleCedulaModelo.UpdateAprobacionSupervision(currentEntidad);
                             currentEntidad.usuariosuperviso = currentEntidad.usuarioaprobo;
                             currentEntidad.fechasupervision = currentEntidad.fechaaprobacion;
                         }
                         else
                         {
-                            resultadoModificar = CedulaModelo.UpdateAprobacion(currentEntidad);
+                            resultadoModificar = DetalleCedulaModelo.UpdateAprobacion(currentEntidad);
                         }
                         break;
                     case 14: //Responder

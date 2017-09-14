@@ -72,7 +72,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="1200" HorizontalContentAlignment="Center" >
             <Border BorderThickness="1" Margin="1" BorderBrush="{DynamicResource AccentColorBrush}">
                 <Grid HorizontalAlignment="Center" x:Name="gridContenido">
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="1175" >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="1195" >
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <usrImpresion:Encabezado
@@ -336,7 +336,7 @@
                                                                         TextAlignment="Center"
                                                                         Margin="1,1,1,1"
                                                                         Text="SALDO SEGUN AUDITORIA"
-                                                                        Width="85"
+                                                                        Width="105"
                                                                         TextWrapping="Wrap"
                                                                         VerticalAlignment="Center"/>
                                                                 </StackPanel>
@@ -364,7 +364,8 @@
                                                 </Border>
                                                 <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                     <DataGrid 
-                                                        AutoGenerateColumns="False"  SelectionMode="Extended"
+                                                        AutoGenerateColumns="False"  
+                                                        SelectionMode="Single"
                                                         Margin="1,0,0,0"
                                                         Name="dataGrid"
                                                         ScrollViewer.CanContentScroll="True" 
@@ -374,24 +375,22 @@
                                                         HorizontalAlignment="Left"
                                                         HeadersVisibility="None"
                                                         HorizontalScrollBarVisibility="Auto"
-                                                        Width="1170"
+                                                        Width="1190"
                                                         MinHeight="80"
                                                         AllowDrop="False"
                                                         VerticalScrollBarVisibility="Auto"
                                                         CanUserResizeRows="False"
-                                                        CanUserSortColumns="True"
+                                                        CanUserSortColumns="False"
                                                         CanUserAddRows="False"
                                                         BorderThickness="1"
                                                         BorderBrush="{DynamicResource AccentColorBrush}"   
                                                         ItemsSource="{Binding Path= lista , UpdateSourceTrigger=PropertyChanged}"
-                                                        SelectedItem="{Binding currentEntidad}"
                                                         VerticalGridLinesBrush="{DynamicResource AccentColorBrush}"
                                                         HorizontalGridLinesBrush="{DynamicResource AccentColorBrush}"
                                                         IsEnabled="True"
                                                         GridLinesVisibility="All">
                                                         <DataGrid.RowStyle>
                                                             <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
-                                                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                                 <Style.Triggers>
                                                                     <MultiTrigger>
                                                                         <MultiTrigger.Conditions>
@@ -411,11 +410,37 @@
                                                             Binding="{Binding Path= referenciapapel , 
                                                             UpdateSourceTrigger=PropertyChanged}">
                                                                 <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
-                                                                <DataGridTextColumn.ElementStyle>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                                                <DataGridTextColumn.CellStyle>
+                                                                    <Style TargetType="DataGridCell">
+                                                                        <Style.Triggers>
+                                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="D">
+                                                                                <Setter Property="Foreground" Value="Red"/>
+                                                                                <Setter Property="ToolTip" Value="Referencias"/>
+                                                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="TextBlock.TextWrapping"  Value="Wrap" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                                                <Setter Property="Foreground" Value="Red"/>
+                                                                                <Setter Property="ToolTip" Value="Referencias"/>
+                                                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="Foreground" Value="Red"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <MultiTrigger>
+                                                                                <MultiTrigger.Conditions>
+                                                                                    <Condition Property="IsSelected" Value="true" />
+                                                                                </MultiTrigger.Conditions>
+                                                                            </MultiTrigger>
+                                                                        </Style.Triggers>
                                                                     </Style>
-                                                                </DataGridTextColumn.ElementStyle>
+                                                                </DataGridTextColumn.CellStyle>
                                                             </DataGridTextColumn>
 
                                                             <DataGridTemplateColumn x:Name="ColCodigoCuenta" MinWidth="120" MaxWidth="120" Width="120" IsReadOnly="True">
@@ -435,6 +460,30 @@
                                                                         </TextBlock>
                                                                     </DataTemplate>
                                                                 </DataGridTemplateColumn.CellTemplate>
+                                                                <DataGridTemplateColumn.CellStyle>
+                                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                                        <Style.Triggers>
+                                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                                <Setter Property="Foreground" Value="Transparent"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="Foreground" Value="Red"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <MultiTrigger>
+                                                                                <MultiTrigger.Conditions>
+                                                                                    <Condition Property="IsSelected" Value="true" />
+                                                                                </MultiTrigger.Conditions>
+                                                                            </MultiTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </DataGridTemplateColumn.CellStyle>
                                                             </DataGridTemplateColumn>
 
                                                             <DataGridTemplateColumn x:Name="ColNombreCuenta" MinWidth="180" MaxWidth="180" Width="180" IsReadOnly="True">
@@ -444,11 +493,35 @@
                                                                 <DataGridTemplateColumn.CellTemplate>
                                                                     <DataTemplate>
                                                                         <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="180" MaxWidth="180" Width="180" IsEnabled="False"
-                                                                Text="{Binding nombrecuenta}"
-                                                                ToolTip="Nombre de la cuenta contable">
+                                                                        Text="{Binding nombrecuenta}"
+                                                                        ToolTip="Nombre de la cuenta contable">
                                                                         </TextBlock>
                                                                     </DataTemplate>
                                                                 </DataGridTemplateColumn.CellTemplate>
+                                                                <DataGridTemplateColumn.CellStyle>
+                                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                                        <Style.Triggers>
+                                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="D">
+                                                                                <Setter Property="ToolTip" Value="Nombre de cuenta contable"/>
+                                                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="Foreground" Value="Red"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                                <Setter Property="FontWeight"  Value="Bold"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </DataGridTemplateColumn.CellStyle>
                                                             </DataGridTemplateColumn>
 
                                                             <DataGridTemplateColumn x:Name="Colm1dc" Width="30" IsReadOnly="True" >
@@ -501,6 +574,11 @@
                                                                                 <Setter Property="FontWeight" Value="Bold"/>
                                                                                 <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                                                                                 <Setter Property="BorderThickness" Value="0,3,0,3"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
                                                                             </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
@@ -564,6 +642,11 @@
                                                                                 <Setter Property="FontWeight" Value="Bold"/>
                                                                                 <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                                                                                 <Setter Property="BorderThickness" Value="0,3,0,3"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
                                                                             </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
@@ -629,6 +712,11 @@
                                                                                 <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                                                                                 <Setter Property="BorderThickness" Value="0,3,0,3"/>
                                                                             </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
+                                                                            </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
                                                                                     <Condition Property="IsSelected" Value="true" />
@@ -654,8 +742,8 @@
                                                                 <DataGridTemplateColumn.CellTemplate>
                                                                     <DataTemplate >
                                                                         <TextBlock  
-                                                                            x:Name="txtvariaciónporcentual" 
-                                                                            Text="{Binding Path= variaciónporcentual, 
+                                                                            x:Name="txtvariacionporcentual" 
+                                                                            Text="{Binding Path= variacionporcentual, 
                                                                             UpdateSourceTrigger= PropertyChanged,
                                                                             StringFormat=n0}"
                                                                             MinWidth="80"
@@ -671,11 +759,16 @@
                                                                     <Style TargetType="{x:Type DataGridCell}">
                                                                         <Style.Triggers>
                                                                             <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
-                                                                            <DataTrigger Binding="{Binding variaciónporcentual}" Value="0">
+                                                                            <DataTrigger Binding="{Binding variacionporcentual}" Value="0">
                                                                                 <Setter Property="IsEnabled" Value="False"/>
                                                                                 <Setter Property="IsEditing" Value="False"/>
                                                                                 <Setter Property="Visibility" Value="Visible"/>
                                                                                 <Setter Property="Foreground" Value="Transparent"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
                                                                             </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
@@ -725,6 +818,11 @@
                                                                                 <Setter Property="FontWeight" Value="Bold"/>
                                                                                 <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                                                                                 <Setter Property="BorderThickness" Value="0,3,0,3"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
                                                                             </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
@@ -793,6 +891,11 @@
                                                                                 <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                                                                                 <Setter Property="BorderThickness" Value="0,3,0,3"/>
                                                                             </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
+                                                                            </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
                                                                                     <Condition Property="IsSelected" Value="true" />
@@ -814,7 +917,7 @@
                                                                 </DataGridTemplateColumn.CellTemplate>
                                                             </DataGridTemplateColumn>
 
-                                                            <DataGridTemplateColumn x:Name="ColSaldoFinal" MinWidth="90" MaxWidth="90" Width="90" IsReadOnly="True" >
+                                                            <DataGridTemplateColumn x:Name="ColSaldoFinal" MinWidth="80" MaxWidth="80" Width="80" IsReadOnly="True" >
                                                                 <DataGridTemplateColumn.Header>
                                                                     <Grid>
                                                                         <StackPanel>
@@ -853,6 +956,11 @@
                                                                                 <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                                                                                 <Setter Property="BorderThickness" Value="0,3,0,3"/>
                                                                             </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Foreground"  Value="Transparent"/>
+                                                                            </DataTrigger>
                                                                             <MultiTrigger>
                                                                                 <MultiTrigger.Conditions>
                                                                                     <Condition Property="IsSelected" Value="true" />
@@ -862,7 +970,19 @@
                                                                     </Style>
                                                                 </DataGridTemplateColumn.CellStyle>
                                                             </DataGridTemplateColumn>
-
+                                                            
+                                                            <DataGridTemplateColumn x:Name="Colm6dc" Width="30" IsReadOnly="True" >
+                                                                <DataGridTemplateColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock  x:Name="txtm6dc"  TextWrapping="Wrap" MinWidth="30" IsEnabled="False"
+                                                                         Text="{Binding m6dc}" Foreground="Red"
+                                                                         ToolTip="Marca de auditoría">
+                                                                        </TextBlock>
+                                                                    </DataTemplate>
+                                                                </DataGridTemplateColumn.CellTemplate>
+                                                            </DataGridTemplateColumn>
+                                                            
+                                                            
                                                             <DataGridTemplateColumn x:Name="ColObservacion" MinWidth="127" MaxWidth="127" Width="127" IsReadOnly="True">
                                                                 <DataGridTemplateColumn.Header>
                                                                     <TextBlock  Text="OBSERVACIONES"  />
@@ -870,11 +990,40 @@
                                                                 <DataGridTemplateColumn.CellTemplate>
                                                                     <DataTemplate>
                                                                         <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="120" IsEnabled="False"
-                                                                Text="{Binding observaciondc}"
-                                                                ToolTip="Observaciones ">
+                                                                        Text="{Binding observaciondc}"
+                                                                        ToolTip="Observaciones ">
                                                                         </TextBlock>
                                                                     </DataTemplate>
                                                                 </DataGridTemplateColumn.CellTemplate>
+                                                                <DataGridTemplateColumn.CellStyle>
+                                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                                        <Style.Triggers>
+                                                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="D">
+                                                                                <Setter Property="ToolTip" Value="Comentarios en el registro"/>
+                                                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="Foreground" Value="Red"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                                <Setter Property="IsEditing" Value="False"/>
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                                <Setter Property="FontWeight"  Value="Bold"/>
+                                                                            </DataTrigger>
+                                                                            <MultiTrigger>
+                                                                                <MultiTrigger.Conditions>
+                                                                                    <Condition Property="IsSelected" Value="true" />
+                                                                                </MultiTrigger.Conditions>
+                                                                            </MultiTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </DataGridTemplateColumn.CellStyle>
                                                             </DataGridTemplateColumn>
 
 

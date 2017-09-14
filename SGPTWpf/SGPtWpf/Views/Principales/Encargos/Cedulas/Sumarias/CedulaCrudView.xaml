@@ -222,191 +222,12 @@
                                 </StackPanel>
                             </WrapPanel>
                         </Grid>
-                        <Grid  x:Name="GrdCuerpo"  IsEnabled="{Binding accesibilidadCuerpo}">
-                            <WrapPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                                    <Grid VerticalAlignment="Center">
-                                        <TextBlock
-                                            Height="30"
-                                            Margin="0"
-                                            MinWidth="40"
-                                            Width="120"
-                                            MaxWidth="120"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Center"
-                                            Text="*Título cédula"/>
-                                    </Grid>
-                                    <Grid>
-                                        <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
-                                         Validation.Error="Validation_Error"    
-                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
-                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
-                                         Controls:TextBoxHelper.ClearTextButton="True" 
-                                         Controls:TextBoxHelper.Watermark="Ingrese el nombre de la cédula" 
-                                         Margin="10,5,0,5" VerticalAlignment="Top" 
-                                         Width="330"
-                                         MaxWidth="330"
-                                         MinHeight="30"
-                                         MinWidth="50"
-                                         Height="50"
-                                         TextWrapping="Wrap"
-                                         AcceptsReturn="True"
-                                         Text="{Binding titulocedula, 
-                                         NotifyOnValidationError=True, 
-                                         UpdateSourceTrigger=PropertyChanged, 
-                                         ValidatesOnDataErrors=True}" />
-                                    </Grid>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                                    <Grid VerticalAlignment="Center">
-                                        <TextBlock
-                                            Height="30"
-                                            Margin="0"
-                                            MinWidth="40"
-                                            Width="120"
-                                            MaxWidth="120"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Top"
-                                            Text="Objetivo"/>
-                                    </Grid>
-                                    <Grid>
-                                        <TextBox HorizontalContentAlignment="Left" 
-                                             DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
-                                             VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
-                                             Controls:TextBoxHelper.ClearTextButton="True" 
-                                             Controls:TextBoxHelper.Watermark="Ingrese el objetivo de la cédula" 
-                                             Margin="10,5,0,5" VerticalAlignment="Top" 
-                                             Width="330"
-                                             MaxWidth="330"
-                                             MinHeight="30"
-                                             MinWidth="50"
-                                             Height="50"
-                                             TextWrapping="Wrap"
-                                             AcceptsReturn="True"
-                                             Text="{Binding objetivocedula, 
-                                             NotifyOnValidationError=True, 
-                                             UpdateSourceTrigger=PropertyChanged, 
-                                             ValidatesOnDataErrors=True}"/>
-                                    </Grid>
-                                </StackPanel>
-                            </WrapPanel>
-                        </Grid>
-                        <Grid  x:Name="GrdCuerpoConclusiones"  IsEnabled="{Binding accesibilidadCuerpo}">
-                            <WrapPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                                    <Grid VerticalAlignment="Center">
-                                        <TextBlock
-                                            Height="30"
-                                            Margin="0"
-                                            MinWidth="40"
-                                            Width="120"
-                                            MaxWidth="120"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Center"
-                                            Text="Alcance de cédula"/>
-                                    </Grid>
-                                    <Grid>
-                                        <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
-                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
-                                         VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
-                                         Controls:TextBoxHelper.ClearTextButton="True" 
-                                         Controls:TextBoxHelper.Watermark="Ingrese el alcance de la cédula" 
-                                         Margin="10,5,0,5" VerticalAlignment="Top" 
-                                         Width="330"
-                                         MaxWidth="330"
-                                         MinHeight="30"
-                                         MinWidth="50"
-                                         Height="80"
-                                         TextWrapping="Wrap"
-                                         AcceptsReturn="True"
-                                         Text="{Binding alcancecedula, 
-                                         NotifyOnValidationError=True, 
-                                         UpdateSourceTrigger=PropertyChanged, 
-                                         ValidatesOnDataErrors=True}" />
-                                    </Grid>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                                        <Grid VerticalAlignment="Center" Visibility="{Binding visibilidadConclusiones}">
-                                        <TextBlock
-                                            Height="30"
-                                            Margin="0"
-                                            MinWidth="40"
-                                            Width="120"
-                                            MaxWidth="120"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Top"
-                                            Text="Conclusiones"/>
-                                    </Grid>
-                                    <Grid>
-                                        <TextBox HorizontalContentAlignment="Left" 
-                                             DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
-                                             VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
-                                             Controls:TextBoxHelper.ClearTextButton="True" 
-                                             Controls:TextBoxHelper.Watermark="Ingrese las conclusiones de la cédula" 
-                                             Margin="10,5,0,5" VerticalAlignment="Top" 
-                                             Width="330"
-                                             MaxWidth="330"
-                                             MinHeight="30"
-                                             MinWidth="50"
-                                             Height="80"
-                                             TextWrapping="Wrap"
-                                             AcceptsReturn="True"
-                                             Text="{Binding conclusioncedula, 
-                                             NotifyOnValidationError=True, 
-                                             UpdateSourceTrigger=PropertyChanged, 
-                                             ValidatesOnDataErrors=True}"/>
-                                    </Grid>
-                                </StackPanel>
-                            </WrapPanel>
-                        </Grid>
-                        <Grid IsEnabled="{Binding accesibilidadCuerpo}">
-                            <WrapPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                                    <Grid  x:Name="GrdDatosClaseDocumento" IsEnabled="{Binding accesibilidadClaseCedula}" >
-                                        <StackPanel Orientation="Horizontal" Margin="0" Visibility="{Binding visibilidadClaseDocumento}">
+                            <StackPanel Visibility="{Binding visibilidadDatosSumaria}">
+                                <Grid  x:Name="GrdCuerpo"  IsEnabled="{Binding accesibilidadCuerpo}">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                             <Grid VerticalAlignment="Center">
                                                 <TextBlock
-                                    Height="30"
-                                    Margin="0"
-                                    MinWidth="40"
-                                    Width="120"
-                                    MaxWidth="120"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    Text="*Clase de cédula"/>
-                                            </Grid>
-                                            <ComboBox x:Name="ClaseDocumento"
-                                          Width="330"
-                                          MaxWidth="420"
-                                          Validation.Error="Validation_Error"
-                                          Margin="10,5,0,5"
-                                          HorizontalAlignment="Center"
-                                          Background="Transparent"
-                                          ItemsSource="{Binding listaClaseDocumentos}" 
-                                          SelectedIndex="0" 
-                                          Text="{Binding Path=currentClaseDocumento.descripcion, UpdateSourceTrigger=PropertyChanged}"
-                                          DisplayMemberPath="descripcion" 
-                                          SelectedItem="{Binding currentClaseDocumento }"
-                                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la clase de documento"
-                                          AllowDrop="False"     
-                                          MinHeight="35">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger
-                                             EventName="SelectionChanged">
-                                                        <cmd:EventToCommand 
-                                             Command="{Binding SeleccionClaseDocumentoCommand, Mode=TwoWay}"
-                                             CommandParameter="{Binding SelectedItem, ElementName=ClaseDocumento}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </ComboBox>
-                                        </StackPanel>
-                                    </Grid>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
-                                        <Grid  x:Name="GrdVisita" IsEnabled="{Binding accesibilidadCuerpo}" Visibility="{Binding visibilidadVisita}" >
-                                            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                                                <Grid VerticalAlignment="Center">
-                                                    <TextBlock
                                                     Height="30"
                                                     Margin="0"
                                                     MinWidth="40"
@@ -414,53 +235,234 @@
                                                     MaxWidth="120"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Center"
-                                                    Text="Visita "/>
-                                                </Grid>
-                                                <ComboBox 
-                                                x:Name="comboVisita"
-                                                  Width="165"
-                                                  MaxWidth="330"
+                                                    Text="*Título cédula"/>
+                                            </Grid>
+                                            <Grid>
+                                                <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                                 Validation.Error="Validation_Error"    
+                                                 DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                                 VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                 Controls:TextBoxHelper.ClearTextButton="True" 
+                                                 Controls:TextBoxHelper.Watermark="Ingrese el nombre de la cédula" 
+                                                 Margin="10,5,0,5" VerticalAlignment="Top" 
+                                                 Width="330"
+                                                 MaxWidth="330"
+                                                 MinHeight="30"
+                                                 MinWidth="50"
+                                                 Height="50"
+                                                 TextWrapping="Wrap"
+                                                 AcceptsReturn="True"
+                                                 Text="{Binding titulocedula, 
+                                                 NotifyOnValidationError=True, 
+                                                 UpdateSourceTrigger=PropertyChanged, 
+                                                 ValidatesOnDataErrors=True}" />
+                                            </Grid>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                            <Grid VerticalAlignment="Center">
+                                                <TextBlock
+                                                    Height="30"
+                                                    Margin="0"
+                                                    MinWidth="40"
+                                                    Width="120"
+                                                    MaxWidth="120"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Top"
+                                                    Text="Objetivo"/>
+                                            </Grid>
+                                            <Grid>
+                                                <TextBox HorizontalContentAlignment="Left" 
+                                                     DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                                     VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                     Controls:TextBoxHelper.ClearTextButton="True" 
+                                                     Controls:TextBoxHelper.Watermark="Ingrese el objetivo de la cédula" 
+                                                     Margin="10,5,0,5" VerticalAlignment="Top" 
+                                                     Width="330"
+                                                     MaxWidth="330"
+                                                     MinHeight="30"
+                                                     MinWidth="50"
+                                                     Height="50"
+                                                     TextWrapping="Wrap"
+                                                     AcceptsReturn="True"
+                                                     Text="{Binding objetivocedula, 
+                                                     NotifyOnValidationError=True, 
+                                                     UpdateSourceTrigger=PropertyChanged, 
+                                                     ValidatesOnDataErrors=True}"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                </Grid>
+                                <Grid  x:Name="GrdCuerpoConclusiones"  IsEnabled="{Binding accesibilidadCuerpo}">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                            <Grid VerticalAlignment="Center">
+                                                <TextBlock
+                                                    Height="30"
+                                                    Margin="0"
+                                                    MinWidth="40"
+                                                    Width="120"
+                                                    MaxWidth="120"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Center"
+                                                    Text="Alcance de cédula"/>
+                                            </Grid>
+                                            <Grid>
+                                                <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                                 DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                                 VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                 Controls:TextBoxHelper.ClearTextButton="True" 
+                                                 Controls:TextBoxHelper.Watermark="Ingrese el alcance de la cédula" 
+                                                 Margin="10,5,0,5" VerticalAlignment="Top" 
+                                                 Width="330"
+                                                 MaxWidth="330"
+                                                 MinHeight="30"
+                                                 MinWidth="50"
+                                                 Height="80"
+                                                 TextWrapping="Wrap"
+                                                 AcceptsReturn="True"
+                                                 Text="{Binding alcancecedula, 
+                                                 NotifyOnValidationError=True, 
+                                                 UpdateSourceTrigger=PropertyChanged, 
+                                                 ValidatesOnDataErrors=True}" />
+                                            </Grid>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                                <Grid VerticalAlignment="Center" Visibility="{Binding visibilidadConclusiones}">
+                                                <TextBlock
+                                                    Height="30"
+                                                    Margin="0"
+                                                    MinWidth="40"
+                                                    Width="120"
+                                                    MaxWidth="120"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Top"
+                                                    Text="Conclusiones"/>
+                                            </Grid>
+                                            <Grid>
+                                                <TextBox HorizontalContentAlignment="Left" 
+                                                     DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                                     VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
+                                                     Controls:TextBoxHelper.ClearTextButton="True" 
+                                                     Controls:TextBoxHelper.Watermark="Ingrese las conclusiones de la cédula" 
+                                                     Margin="10,5,0,5" VerticalAlignment="Top" 
+                                                     Width="330"
+                                                     MaxWidth="330"
+                                                     MinHeight="30"
+                                                     MinWidth="50"
+                                                     Height="80"
+                                                     TextWrapping="Wrap"
+                                                     AcceptsReturn="True"
+                                                     Text="{Binding conclusioncedula, 
+                                                     NotifyOnValidationError=True, 
+                                                     UpdateSourceTrigger=PropertyChanged, 
+                                                     ValidatesOnDataErrors=True}"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                </Grid>
+                                <Grid IsEnabled="{Binding accesibilidadCuerpo}">
+                                    <WrapPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                            <Grid  x:Name="GrdDatosClaseDocumento" IsEnabled="{Binding accesibilidadClaseCedula}" >
+                                                <StackPanel Orientation="Horizontal" Margin="0" Visibility="{Binding visibilidadClaseDocumento}">
+                                                    <Grid VerticalAlignment="Center">
+                                                        <TextBlock
+                                            Height="30"
+                                            Margin="0"
+                                            MinWidth="40"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Text="*Clase de cédula"/>
+                                                    </Grid>
+                                                    <ComboBox x:Name="ClaseDocumento"
+                                                  Width="330"
+                                                  MaxWidth="420"
+                                                  Validation.Error="Validation_Error"
                                                   Margin="10,5,0,5"
-                                                  MinHeight="35"
                                                   HorizontalAlignment="Center"
                                                   Background="Transparent"
-                                                  ItemsSource="{Binding listaVisitas}" 
-                                                  SelectedIndex="0"
-                                                  DisplayMemberPath="descripcion"
-                                                  IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la visita"
+                                                  ItemsSource="{Binding listaClaseDocumentos}" 
+                                                  SelectedIndex="0" 
+                                                  Text="{Binding Path=currentClaseDocumento.descripcion, UpdateSourceTrigger=PropertyChanged}"
+                                                  DisplayMemberPath="descripcion" 
+                                                  SelectedItem="{Binding currentClaseDocumento }"
+                                                  IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la clase de documento"
                                                   AllowDrop="False"     
-                                                  Validation.Error="Validation_Error" ToolTip="Visita  en que elabora la cédula">
-                                                    <ComboBox.SelectedItem>
-                                                        <Binding Path="selectedVisitaModelo" 
-                                                         UpdateSourceTrigger="PropertyChanged"
-                                                         Mode="TwoWay"
-                                                         NotifyOnValidationError="True" 
-                                                         ValidatesOnDataErrors="True">
-                                                        </Binding>
-                                                    </ComboBox.SelectedItem>
-                                                    <i:Interaction.Triggers>
-                                                        <i:EventTrigger
-                                                                EventName="SelectionChanged">
-                                                            <cmd:EventToCommand 
-                                                             Command="{Binding SeleccionVisitaCommand, Mode=TwoWay}"
-                                                             CommandParameter="{Binding SelectedItem, ElementName=comboVisita}" />
-                                                        </i:EventTrigger>
-                                                    </i:Interaction.Triggers>
-                                                </ComboBox>
-                                            </StackPanel>
-                                        </Grid>
-                                        <TextBlock
-                                    Height="20"
-                                    Margin="10,5,0,0"
-                                    MinWidth="60"
-                                    Width="120"
-                                    MaxWidth="120"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Top"
-                                    Text="*Campo requerido"/>
-                                </StackPanel>
-                            </WrapPanel>
-                        </Grid>
+                                                  MinHeight="35">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger
+                                                     EventName="SelectionChanged">
+                                                                <cmd:EventToCommand 
+                                                     Command="{Binding SeleccionClaseDocumentoCommand, Mode=TwoWay}"
+                                                     CommandParameter="{Binding SelectedItem, ElementName=ClaseDocumento}" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </ComboBox>
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+                                                <Grid  x:Name="GrdVisita" IsEnabled="{Binding accesibilidadVisita}" Visibility="{Binding visibilidadVisita}" >
+                                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                                        <Grid VerticalAlignment="Center">
+                                                            <TextBlock
+                                                            Height="30"
+                                                            Margin="0"
+                                                            MinWidth="40"
+                                                            Width="120"
+                                                            MaxWidth="120"
+                                                            HorizontalAlignment="Stretch"
+                                                            VerticalAlignment="Center"
+                                                            Text="Visita "/>
+                                                        </Grid>
+                                                        <ComboBox 
+                                                        x:Name="comboVisita"
+                                                          Width="165"
+                                                          MaxWidth="330"
+                                                          Margin="10,5,0,5"
+                                                          MinHeight="35"
+                                                          HorizontalAlignment="Center"
+                                                          Background="Transparent"
+                                                          ItemsSource="{Binding listaVisitas}" 
+                                                          SelectedIndex="0"
+                                                          DisplayMemberPath="descripcion"
+                                                          IsEditable="False" Controls:TextBoxHelper.Watermark="Seleccione la visita"
+                                                          AllowDrop="False"     
+                                                          Validation.Error="Validation_Error" ToolTip="Visita  en que elabora la cédula">
+                                                            <ComboBox.SelectedItem>
+                                                                <Binding Path="selectedVisitaModelo" 
+                                                                 UpdateSourceTrigger="PropertyChanged"
+                                                                 Mode="TwoWay"
+                                                                 NotifyOnValidationError="True" 
+                                                                 ValidatesOnDataErrors="True">
+                                                                </Binding>
+                                                            </ComboBox.SelectedItem>
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger
+                                                                        EventName="SelectionChanged">
+                                                                    <cmd:EventToCommand 
+                                                                     Command="{Binding SeleccionVisitaCommand, Mode=TwoWay}"
+                                                                     CommandParameter="{Binding SelectedItem, ElementName=comboVisita}" />
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+                                                        </ComboBox>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <TextBlock
+                                            Height="20"
+                                            Margin="10,5,0,0"
+                                            MinWidth="60"
+                                            Width="120"
+                                            MaxWidth="120"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Top"
+                                            Text="*Campo requerido"/>
+                                        </StackPanel>
+                                    </WrapPanel>
+                                </Grid>
+                            </StackPanel>
                         </StackPanel>
                         <GroupBox Header="Seleccione las cuentas, sub-cuentas a incluir en la sumaria" Width="Auto"
                          Visibility="{Binding visibilidadBalance}" x:Name="grupoContenido"
@@ -514,11 +516,15 @@
                                                         <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Rubros">
                                                             <Setter Property="FontWeight" Value="Bold"/>
                                                         </DataTrigger>
+
                                                 <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="CUENTA">
                                                     <Setter Property="FontWeight" Value="Bold"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Cuenta">
                                                     <Setter Property="FontWeight" Value="Bold"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding isuso}" Value="1">
+                                                    <Setter Property="IsEnabled"  Value="False"/>
                                                 </DataTrigger>
                                                 <MultiTrigger>
                                                             <MultiTrigger.Conditions>
@@ -540,7 +546,7 @@
                                                             </TextBlock>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
+                                        </DataGridTemplateColumn>
                                                 <DataGridTextColumn  Header="#"
                                                 Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
@@ -558,24 +564,50 @@
                                                         </Style>
                                                     </DataGridTextColumn.EditingElementStyle>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Código" Width="150"
-                                                Binding="{Binding codigocontabledc,  UpdateSourceTrigger=PropertyChanged}">
-                                                    <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="TextWrapping" Value="Wrap" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                    <DataGridTextColumn.EditingElementStyle>
-                                                        <Style TargetType="TextBox">
-                                                            <Setter Property="TextWrapping" Value="Wrap" />
-                                                            <Setter Property="AcceptsReturn" Value="true" />
-                                                            <Setter Property="Margin" Value="5,2,5,0" />
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        </Style>
-                                                    </DataGridTextColumn.EditingElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Clase cuenta" Width="200"
+
+                                        <DataGridTemplateColumn x:Name="Colcodigocontable" MinWidth="150" MaxWidth="150" Width="150" IsReadOnly="True">
+                                            <DataGridTemplateColumn.Header>
+                                                <Grid>
+                                                    <StackPanel>
+                                                        <TextBlock  Text="CÓDIGO"  TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="100" IsEnabled="False"
+                                                                Text="{Binding codigocontabledc}"
+                                                                ToolTip="Código de la cuenta contable">
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}">
+                                                    <Style.Triggers>
+                                                        <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                        <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Setter Property="IsEditing" Value="False"/>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                            <Setter Property="Foreground" Value="Transparent"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Setter Property="Foreground" Value="Red"/>
+                                                            <Setter Property="IsEditing" Value="False"/>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                        <MultiTrigger>
+                                                            <MultiTrigger.Conditions>
+                                                                <Condition Property="IsSelected" Value="true" />
+                                                            </MultiTrigger.Conditions>
+                                                        </MultiTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </DataGridTemplateColumn.CellStyle>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTextColumn Header="Clase cuenta" Width="200"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>
@@ -690,19 +722,25 @@
                                                         <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Rubros">
                                                             <Setter Property="FontWeight" Value="Bold"/>
                                                         </DataTrigger>
+                                                        <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Rubros">
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding isuso}" Value="1">
+                                                            <Setter Property="IsEnabled"  Value="False"/>
+                                                        </DataTrigger>
                                                 <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="CUENTA">
                                                     <Setter Property="FontWeight" Value="Bold"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding nombreClaseCuenta}" Value="Cuenta">
                                                     <Setter Property="FontWeight" Value="Bold"/>
                                                 </DataTrigger>
-                                                <MultiTrigger>
+                                                        <MultiTrigger>
                                                             <MultiTrigger.Conditions>
                                                                 <Condition Property="IsSelected" Value="true" />
                                                             </MultiTrigger.Conditions>
                                                             <Setter Property="FontWeight" Value="Bold"/>
                                                         </MultiTrigger>
-                                                    </Style.Triggers>
+                                            </Style.Triggers>
                                                 </Style>
                                             </DataGrid.RowStyle>
                                             <DataGrid.Columns >
@@ -716,7 +754,7 @@
                                                             </TextBlock>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
+                                        </DataGridTemplateColumn>
                                                 <DataGridTextColumn  Header="#"
                                                 Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
@@ -734,24 +772,51 @@
                                                         </Style>
                                                     </DataGridTextColumn.EditingElementStyle>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Código" Width="150"
-                                                Binding="{Binding codigocontabledc,  UpdateSourceTrigger=PropertyChanged}">
-                                                    <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="TextWrapping" Value="Wrap" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                    <DataGridTextColumn.EditingElementStyle>
-                                                        <Style TargetType="TextBox">
-                                                            <Setter Property="TextWrapping" Value="Wrap" />
-                                                            <Setter Property="AcceptsReturn" Value="true" />
-                                                            <Setter Property="Margin" Value="5,2,5,0" />
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        </Style>
-                                                    </DataGridTextColumn.EditingElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Clase cuenta" Width="200"
+                                                
+                                        <DataGridTemplateColumn x:Name="Colcodigocontabledc" MinWidth="150" MaxWidth="150" Width="150" IsReadOnly="True">
+                                            <DataGridTemplateColumn.Header>
+                                                <Grid>
+                                                    <StackPanel>
+                                                        <TextBlock  Text="CÓDIGO"  TextWrapping="Wrap" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="100" IsEnabled="False"
+                                                                Text="{Binding codigocontabledc}"
+                                                                ToolTip="Código de la cuenta contable">
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}">
+                                                    <Style.Triggers>
+                                                        <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                                        <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Setter Property="IsEditing" Value="False"/>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                            <Setter Property="Foreground" Value="Transparent"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                            <Setter Property="Foreground" Value="Red"/>
+                                                            <Setter Property="IsEditing" Value="False"/>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                        <MultiTrigger>
+                                                            <MultiTrigger.Conditions>
+                                                                <Condition Property="IsSelected" Value="true" />
+                                                            </MultiTrigger.Conditions>
+                                                        </MultiTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </DataGridTemplateColumn.CellStyle>
+                                        </DataGridTemplateColumn>
+
+
+                                        <DataGridTextColumn Header="Clase cuenta" Width="200"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>

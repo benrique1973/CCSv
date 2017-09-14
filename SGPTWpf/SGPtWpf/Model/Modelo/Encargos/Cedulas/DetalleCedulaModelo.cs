@@ -264,81 +264,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
 
         #endregion
 
-        #region notas presentacion
-
-        public string nMHP1dc { get { return GetValue(() => nMHP1dc); } set { SetValue(() => nMHP1dc, value); } }
-        public string nMHP2dc { get { return GetValue(() => nMHP2dc); } set { SetValue(() => nMHP2dc, value); } }
-
-        public string nMHP3dc { get { return GetValue(() => nMHP3dc); } set { SetValue(() => nMHP3dc, value); } }
-
-        public string nMHP4dc { get { return GetValue(() => nMHP4dc); } set { SetValue(() => nMHP4dc, value); } }
-
-        public string nMHP5dc { get { return GetValue(() => nMHP5dc); } set { SetValue(() => nMHP5dc, value); } }
-
-        public string nMHP6dc { get { return GetValue(() => nMHP6dc); } set { SetValue(() => nMHP6dc, value); } }
-
-        public string nMHP7dc { get { return GetValue(() => nMHP7dc); } set { SetValue(() => nMHP7dc, value); } }
-
-        public string nMHP8dc { get { return GetValue(() => nMHP8dc); } set { SetValue(() => nMHP8dc, value); } }
-
-        public string nMHP9dc { get { return GetValue(() => nMHP9dc); } set { SetValue(() => nMHP9dc, value); } }
-
-        public string nMHP10dc { get { return GetValue(() => nMHP10dc); } set { SetValue(() => nMHP10dc, value); } }
-
-        public string nMHP11dc { get { return GetValue(() => nMHP11dc); } set { SetValue(() => nMHP11dc, value); } }
-
-        public string nMHP12dc { get { return GetValue(() => nMHP12dc); } set { SetValue(() => nMHP12dc, value); } }
-
-        public string nMHP13dc { get { return GetValue(() => nMHP13dc); } set { SetValue(() => nMHP13dc, value); } }
-
-        public string nMHP14dc { get { return GetValue(() => nMHP14dc); } set { SetValue(() => nMHP14dc, value); } }
-
-        public string nMHP15dc { get { return GetValue(() => nMHP15dc); } set { SetValue(() => nMHP15dc, value); } }
-
-        #endregion notas-nMHParcas-presentacion
-
-
-        #region notas presentacion
-
-        public bool isSelectedMarca1dc { get { return GetValue(() => isSelectedMarca1dc); } set { SetValue(() => isSelectedMarca1dc, value); } }
-        public bool isSelectedMarca2dc { get { return GetValue(() => isSelectedMarca2dc); } set { SetValue(() => isSelectedMarca2dc, value); } }
-
-        public bool isSelectedMarca3dc { get { return GetValue(() => isSelectedMarca3dc); } set { SetValue(() => isSelectedMarca3dc, value); } }
-
-        public bool isSelectedMarca4dc { get { return GetValue(() => isSelectedMarca4dc); } set { SetValue(() => isSelectedMarca4dc, value); } }
-
-        public bool isSelectedMarca5dc { get { return GetValue(() => isSelectedMarca5dc); } set { SetValue(() => isSelectedMarca5dc, value); } }
-
-        public bool isSelectedMarca6dc { get { return GetValue(() => isSelectedMarca6dc); } set { SetValue(() => isSelectedMarca6dc, value); } }
-
-        public bool isSelectedMarca7dc { get { return GetValue(() => isSelectedMarca7dc); } set { SetValue(() => isSelectedMarca7dc, value); } }
-
-        public bool isSelectedMarca8dc { get { return GetValue(() => isSelectedMarca8dc); } set { SetValue(() => isSelectedMarca8dc, value); } }
-
-        public bool isSelectedMarca9dc { get { return GetValue(() => isSelectedMarca9dc); } set { SetValue(() => isSelectedMarca9dc, value); } }
-
-        public bool isSelectedMarca10dc { get { return GetValue(() => isSelectedMarca10dc); } set { SetValue(() => isSelectedMarca10dc, value); } }
-
-        public bool isSelectedMarca11dc { get { return GetValue(() => isSelectedMarca11dc); } set { SetValue(() => isSelectedMarca11dc, value); } }
-
-        public bool isSelectedMarca12dc { get { return GetValue(() => isSelectedMarca12dc); } set { SetValue(() => isSelectedMarca12dc, value); } }
-
-        public bool isSelectedMarca13dc { get { return GetValue(() => isSelectedMarca13dc); } set { SetValue(() => isSelectedMarca13dc, value); } }
-
-        public bool isSelectedMarca14dc { get { return GetValue(() => isSelectedMarca14dc); } set { SetValue(() => isSelectedMarca14dc, value); } }
-
-        public bool isSelectedMarca15dc { get { return GetValue(() => isSelectedMarca15dc); } set { SetValue(() => isSelectedMarca15dc, value); } }
-
-        #endregion notas-isSelectedMarcaarcas-presentacion
-
-
         public decimal? cargosreajusteyreclasificacion { get { return GetValue(() => cargosreajusteyreclasificacion); } set { SetValue(() => cargosreajusteyreclasificacion, value); } }
         public decimal? abonoreajusteyreclasificacion { get { return GetValue(() => abonoreajusteyreclasificacion); } set { SetValue(() => abonoreajusteyreclasificacion, value); } }
 
 
         #region Propiedades adiciones de fechas
 
-        public decimal? variaciónporcentual { get { return GetValue(() => variaciónporcentual); } set { SetValue(() => variaciónporcentual, value); } }
+        public decimal? variacionporcentual { get { return GetValue(() => variacionporcentual); } set { SetValue(() => variacionporcentual, value); } }
         public decimal? saldoreajustado { get { return GetValue(() => saldoreajustado); } set { SetValue(() => saldoreajustado, value); } }
 
         
@@ -403,10 +335,6 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             get { return GetValue(() => elementoFinanciero); }
             set { SetValue(() => elementoFinanciero, value); }
         }
-        #region Control de archivos lanzados
-
-        #endregion
-
 
         #region colecciones virtuales
 
@@ -421,8 +349,22 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             get { return GetValue(() => detalleCedulaModelo); }
             set { SetValue(() => detalleCedulaModelo, value); }
         }
-
-       #region usuarioModelo
+        public ObservableCollection<CatalogoCuentasModelo> listaCuentasMayorizar
+        {
+            get { return GetValue(() => listaCuentasMayorizar); }
+            set { SetValue(() => listaCuentasMayorizar, value); }
+        }
+        public ObservableCollection<int> listaNumeroPartidasCargos
+        {
+            get { return GetValue(() => listaNumeroPartidasCargos); }
+            set { SetValue(() => listaNumeroPartidasCargos, value); }
+        }
+        public ObservableCollection<int> listaNumeroPartidasAbonos
+        {
+            get { return GetValue(() => listaNumeroPartidasAbonos); }
+            set { SetValue(() => listaNumeroPartidasAbonos, value); }
+        }
+        #region usuarioModelo
 
         public UsuarioModelo _usuarioModelo;
 
@@ -433,6 +375,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
         }
 
         #endregion
+
         //Permite evitar duplicacion el critero periodicidad, clase balance, fecha 
         public ObservableCollection<DetalleCedulaModelo> listaEntidadSeleccion
         {
@@ -1265,14 +1208,14 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                 entidad.etapapapel = EtapaEncargoModelo.seleccionEtapaIniciales(2); ; _context.Entry(entidad).State = EntityState.Modified;
                                 _context.SaveChanges();
                                 //Inserción de modificacion
-                                BitacoraModelo temporal = new BitacoraModelo(modelo, "DETALLECEDULAS", EtapaEncargoModelo.seleccionEtapa(2));
-                                temporal.detallebitacora = cambioTexto;
-                                //Crear registro de bitacora
-                                if (BitacoraModelo.Insert(temporal) == 1)
-                                {
-                                    //temporal.idCorrelativoBit = modelo.listaBitacora.Count() + 1;
-                                    // modelo.listaBitacora.Add(temporal);
-                                }
+                                //BitacoraModelo temporal = new BitacoraModelo(modelo, "DETALLECEDULAS", EtapaEncargoModelo.seleccionEtapa(2));
+                                //temporal.detallebitacora = cambioTexto;
+                                ////Crear registro de bitacora
+                                //if (BitacoraModelo.Insert(temporal) == 1)
+                                //{
+                                //    //temporal.idCorrelativoBit = modelo.listaBitacora.Count() + 1;
+                                //    // modelo.listaBitacora.Add(temporal);
+                                //}
                                 return 1;
                             }
                             else
@@ -1969,15 +1912,15 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             i++;
                             if (item.saldoanteriordc > 0)
                             {
-                                item.variaciónporcentual = (item.aumentodc) / (item.saldoanteriordc);
+                                item.variacionporcentual = (item.aumentodc) / (item.saldoanteriordc);
                             }
                             if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
                             {
-                                item.saldoreajustado = item.saldoactualdc + item.cargoreajuste - item.abonoreajuste;
+                                item.saldoreajustado = item.saldoactualdc + item.cargoreajuste - item.abonoreajuste + item.cargoreclasificacion - item.abonoreclasificacion;
                             }
                             else
                             {
-                                item.saldoreajustado = item.saldoactualdc - item.cargoreajuste + item.abonoreajuste;
+                                item.saldoreajustado = item.saldoactualdc - item.cargoreajuste + item.abonoreajuste - item.cargoreclasificacion + item.abonoreclasificacion;
                             }
                         }
                         //lista.ForEach(c => c.guardadoBase = true);
@@ -2093,7 +2036,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         {
                             if (item.saldoanteriordc > 0)
                             {
-                                item.variaciónporcentual = (item.aumentodc) / (item.saldoanteriordc);
+                                item.variacionporcentual = (item.aumentodc) / (item.saldoanteriordc);
                             }
                             item.idCorrelativo = i;
                             i++;
@@ -2337,7 +2280,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             i++;
                             if (item.saldoanteriordc > 0)
                             {
-                                item.variaciónporcentual = (item.aumentodc) / (item.saldoanteriordc);
+                                item.variacionporcentual = (item.aumentodc) / (item.saldoanteriordc);
                             }
                             if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
                             {
@@ -2638,7 +2581,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             {
                 using (_context = new SGPTEntidades())
                 {
-                    var lista = _context.detallecedulas.Select(entidad =>
+                    var listaPreliminar = _context.detallecedulas.Select(entidad =>
                      new DetalleCedulaModelo
                      {
                          iddc = entidad.iddc,
@@ -2708,6 +2651,18 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     //La ordena por el idPrograma notar la notacion
                     int i = 1;
                     string referencia = string.Empty;
+
+                    #region ordenamiento de lista
+                    ObservableCollection<DetalleCedulaModelo> lista = new ObservableCollection<DetalleCedulaModelo>(listaPreliminar.Where(x => x.claseregistro == "D"));
+                    if (lista.Count > 0 && listaPreliminar.Where(x => x.claseregistro == "S").Count() > 0)
+                    {
+                        lista.Insert(lista.Count(), listaPreliminar.Single(x => x.claseregistro == "S"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay registros en las listas la lista contiene "+lista.Count()+"\ny registros de suma son "+ listaPreliminar.Where(x => x.claseregistro == "S").Count());
+                    }
+                    #endregion fin del ordenamiento
                     //Para crear el registro de marcas utilizadas en clase de registro sera tipo m (marca)
                     ObservableCollection<DetalleCedulaModelo> listaMarcas = new ObservableCollection<DetalleCedulaModelo>();
                     CedulaModelo temporal = CedulaModelo.FindMaestro(encargo.idencargo, 13, "Cédula de marcas");
@@ -2729,7 +2684,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         i++;
                         if (item.saldoanteriordc != 0 && item.saldoanteriordc!=null)
                         {
-                            item.variaciónporcentual = (item.aumentodc) / (item.saldoanteriordc);
+                            item.variacionporcentual = (item.aumentodc) / (item.saldoanteriordc);
                         }
                         if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
                         {
@@ -2808,6 +2763,20 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                 detalleMarca.codigocontabledc = item.m3dc;
                                 detalleMarca.claseregistro = "M";
                                 detalleMarca.nombrecuenta = listaCedulaMarcas.Single(x => x.marcama == item.m3dc).significadoma;
+                                listaMarcas.Add(detalleMarca);
+                                detalleMarca = new DetalleCedulaModelo();
+                            }
+                        }
+                        if (item.m6dc != null && item.m6dc != "")
+                        {
+                            //Se incorpora a la lista
+                            //Verificar que no  esta en la lista
+                            if (listaMarcas.Count(x => x.codigocontabledc == item.m6dc) == 0)
+                            {
+                                detalleMarca.idcedula = item.idcedula;
+                                detalleMarca.codigocontabledc = item.m6dc;
+                                detalleMarca.claseregistro = "M";
+                                detalleMarca.nombrecuenta = listaCedulaMarcas.Single(x => x.marcama == item.m6dc).significadoma;
                                 listaMarcas.Add(detalleMarca);
                                 detalleMarca = new DetalleCedulaModelo();
                             }
@@ -2918,7 +2887,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         i++;
                         if (item.saldoanteriordc != 0 && item.saldoanteriordc != null)
                         {
-                            item.variaciónporcentual = (item.aumentodc) / (item.saldoanteriordc);
+                            item.variacionporcentual = (item.aumentodc) / (item.saldoanteriordc);
                         }
                         if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
                         {
@@ -3027,7 +2996,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         entidad.IsSelected = false;
                         if (entidad.saldoanteriordc > 0)
                         {
-                            entidad.variaciónporcentual = (entidad.aumentodc) / (entidad.saldoanteriordc);
+                            entidad.variacionporcentual = (entidad.aumentodc) / (entidad.saldoanteriordc);
                         }
                         if (entidad.tiposaldocc == "D" || entidad.tiposaldocc == "RD")
                         {
@@ -3237,7 +3206,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             usuarioModelo = null;
             IsSelected = false;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
         }
         public DetalleCedulaModelo(EncargoModelo encargo)
@@ -3304,7 +3273,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             usuarioModelo = null;
             IsSelected = false;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
 
         }
@@ -3415,8 +3384,9 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             usuarioModelo =usuario;
             IsSelected = false;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
+            listaCuentasMayorizar = new ObservableCollection<CatalogoCuentasModelo>();
         }
 
         public DetalleCedulaModelo(DetalleCedulaModelo entidad, EncargoModelo currentEncargo, UsuarioModelo currentUsuario)
@@ -3467,7 +3437,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             idpapeles = entidad.idpapeles;
             isuso = 0;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
             m1dc = entidad.m1dc;
             m2dc = entidad.m2dc;
@@ -3484,6 +3454,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             m13dc = entidad.m13dc;
             m14dc = entidad.m14dc;
             m15dc = entidad.m15dc;
+            listaCuentasMayorizar = new ObservableCollection<CatalogoCuentasModelo>();
         }
 
         public DetalleCedulaModelo(CedulaModelo currentMaestro, EncargoModelo encargo,UsuarioModelo usuario )
@@ -3550,8 +3521,9 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             usuarioModelo = usuario;
             IsSelected = false;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
+            listaCuentasMayorizar = new ObservableCollection<CatalogoCuentasModelo>();
         }
 
         #region comparativos
@@ -3842,8 +3814,9 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             usuarioModelo = usuario;
             IsSelected = false;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
+            listaCuentasMayorizar = new ObservableCollection<CatalogoCuentasModelo>();
         }
 
         public DetalleCedulaModelo(ObservableCollection<detallecedula> lista, UsuarioModelo usuario, int idEncargo, string signoOperacion)
@@ -3930,8 +3903,9 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             usuarioModelo = usuario;
             IsSelected = false;
             guardadoBase = false;
-            variaciónporcentual = 0;
+            variacionporcentual = 0;
             saldoreajustado = 0;
+            listaCuentasMayorizar = new ObservableCollection<CatalogoCuentasModelo>();
         }
 
         #endregion

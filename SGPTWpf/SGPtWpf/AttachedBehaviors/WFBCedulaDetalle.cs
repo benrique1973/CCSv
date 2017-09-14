@@ -79,15 +79,25 @@ namespace SGPTWpf.AttachedBehaviors
                     {
                         /*Casos de Encargos planificacion programas */
 
+                        //case "DetalleSumariaModeloCrearview":
+                        //    encabezado = "Adición de cuentas";
+                        //    crearVentana = new DetalleCedulaCrudView();
+                        //    crearVentana.DataContext = new DetalleCedulaControllerViewModel("EncargoCedulasSumariasDetalle");
+                        //    crearVentana.MinHeight = largo * 0.15;
+                        //    crearVentana.MinWidth = ancho * 0.15;
+                        //    crearVentana.MaxWidth = ancho;
+                        //    crearVentana.MaxHeight = largo;
+                        //    break;
                         case "DetalleSumariaModeloCrearview":
-                            encabezado = "Adición de cuentas";
-                            crearVentana = new AgendaCrudView();
-                            crearVentana.DataContext = new AgendaControllerViewModel("DocumentacionDetalleSumariaModelo");
+                            encabezado = "Inserción de cuentas para cédula";
+                            crearVentana = new SGPtWpf.Views.Principales.Encargos.Cedulas.Sumarias.CedulaCrudView();
+                            crearVentana.DataContext = new SumariaControllerViewModel("EncargoCedulasSumariasDetalle");
                             crearVentana.MinHeight = largo * 0.15;
                             crearVentana.MinWidth = ancho * 0.15;
                             crearVentana.MaxWidth = ancho;
                             crearVentana.MaxHeight = largo;
                             break;
+
                         case "DetalleSumariaModeloEditarview":
                             encabezado = "Edición de elementos";
                             crearVentana = new DetalleCedulaCrudView();
@@ -98,18 +108,18 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MaxHeight = largo;
                             break;
                         case "DetalleSumariaModeloConsultarView":
-                            encabezado = "Consulta de Agenda";
-                            crearVentana = new AgendaCrudView();
-                            crearVentana.DataContext = new AgendaControllerViewModel("DocumentacionDetalleSumariaModelo");
+                            encabezado = "Consulta de elementos";
+                            crearVentana = new DetalleCedulaCrudView();
+                            crearVentana.DataContext = new DetalleCedulaControllerViewModel("EncargoCedulasSumariasDetalle");
                             crearVentana.MinHeight = largo * 0.15;
                             crearVentana.MinWidth = ancho * 0.15;
                             crearVentana.MaxWidth = ancho;
                             crearVentana.MaxHeight = largo;
                             break;
                         case "DetalleSumariaModeloImportarView":
-                            encabezado = "Consulta de Agenda";
-                            crearVentana = new AgendaCrudView();
-                            crearVentana.DataContext = new AgendaControllerViewModel("DocumentacionDetalleSumariaModelo");
+                            encabezado = "Importacion";
+                            crearVentana = new DetalleCedulaCrudView();
+                            crearVentana.DataContext = new DetalleCedulaControllerViewModel("EncargoCedulasSumariasDetalle");
                             crearVentana.MinHeight = largo * 0.15;
                             crearVentana.MinWidth = ancho * 0.15;
                             crearVentana.MaxWidth = ancho;
@@ -167,6 +177,26 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = 250;
                             crearVentana.MinHeight = 150;
                             break;
+                        #region casos de partidas
+                        case "CedulaAjustesReclasificacionesCrearview":
+                            encabezado = "Creación de ajustes y reclasificaciones";
+                            crearVentana = new SGPtWpf.Views.Principales.Encargos.Cedulas.Ajustes.AjustesCrudView();
+                            crearVentana.DataContext = new SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes.AjustesReclasificacionesControllerViewModel("DocumentacionCedulaAjustesReclasificacionesSumarias");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            break;
+                        case "CedulaAjustesReclasificacionesConsultaview":
+                            encabezado = "Consulta de ajustes y reclasificaciones";
+                            crearVentana = new SGPtWpf.Views.Principales.Encargos.Cedulas.Ajustes.AjustesConsulta();
+                            crearVentana.DataContext = new SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes.AjustesReclasificacionesViewModel("DocumentacionCedulaAjustesReclasificacionesSumariasConsulta");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            break;
+                        #endregion
 
                         default:
 

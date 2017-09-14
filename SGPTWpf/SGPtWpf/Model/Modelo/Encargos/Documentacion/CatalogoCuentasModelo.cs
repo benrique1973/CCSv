@@ -239,6 +239,11 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion
             set { SetValue(() => listaEntidadSeleccion, value); }
         }
 
+        public virtual ObservableCollection<CatalogoCuentasModelo> listaSubCuentasMayorizacion
+        {
+            get { return GetValue(() => listaSubCuentasMayorizacion); }
+            set { SetValue(() => listaSubCuentasMayorizacion, value); }
+        }
         //De Eliezer no borrar porfa.
         public virtual List<ElementoModelo> listaElementos { get; set; }
         public virtual ElementoModelo Elementoss { get; set; }
@@ -2582,6 +2587,8 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion
             guardadoBase = false;
             IsSelected = false;
             ordencc = 1;
+            //listaSubCuentasMayorizacion = new ObservableCollection<CatalogoCuentasModelo>();
+            //listaEntidadSeleccion = new ObservableCollection<CatalogoCuentasModelo>();
         }
         public CatalogoCuentasModelo(SistemaContableModelo sistemaContableModelo)
         {
@@ -2599,6 +2606,8 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion
             guardadoBase = false;
             IsSelected = false;
             ordencc = 1;
+            //listaSubCuentasMayorizacion = new ObservableCollection<CatalogoCuentasModelo>();
+            //listaEntidadSeleccion = new ObservableCollection<CatalogoCuentasModelo>();
         }
 
         public static bool validarConversionCatalogo(int idDscOrigen, int idDscDestino)

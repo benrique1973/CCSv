@@ -17,6 +17,7 @@ using SGPTWpf.SGPtWpf.Model.Modelo.Menus;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 {
@@ -123,9 +124,31 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 set { _comando = value; }
             }
 
-            #endregion
+        #endregion
 
-            private DialogCoordinator dlg;
+            #region comandoPartida
+
+            private int _comandoPartida;
+            private int comandoPartida
+            {
+                get { return _comandoPartida; }
+                set { _comandoPartida = value; }
+            }
+
+        #endregion
+
+        #region inicializacionCatalogo
+
+        private int _inicializacionCatalogo;
+        private int inicializacionCatalogo
+        {
+            get { return _inicializacionCatalogo; }
+            set { _inicializacionCatalogo = value; }
+        }
+
+        #endregion
+
+        private DialogCoordinator dlg;
 
 
             #endregion
@@ -715,13 +738,223 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 }
             }
 
-            #endregion
+        #endregion
 
-            #region Entidades
+        #region Lista por partidas
 
-            #region ViewModel Property : currentEntidad
+        #region currentEntidadPartida
 
-            public const string currentEntidadPropertyName = "currentEntidad";
+        public const string currentEntidadPartidaPropertyName = "currentEntidadPartida";
+
+        private CedulaPartidasModelo _currentEntidadPartida;
+
+        public CedulaPartidasModelo currentEntidadPartida
+        {
+            get
+            {
+                return _currentEntidadPartida;
+            }
+
+            set
+            {
+                if (_currentEntidadPartida == value) return;
+
+                _currentEntidadPartida = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentEntidadPartidaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Property : currentCedulaPartidas
+
+        public const string currentCedulaPartidasPropertyName = "currentCedulaPartidas";
+
+        private CedulaModelo _currentCedulaPartidas;
+
+        public CedulaModelo currentCedulaPartidas
+        {
+            get
+            {
+                return _currentCedulaPartidas;
+            }
+
+            set
+            {
+                if (_currentCedulaPartidas == value) return;
+
+                _currentCedulaPartidas = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentCedulaPartidasPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaDiario
+
+        public const string listaDiarioPropertyName = "listaDiario";
+
+        private ObservableCollection<CedulaDiarioModelo> _listaDiario;
+
+        public ObservableCollection<CedulaDiarioModelo> listaDiario
+        {
+            get
+            {
+                return _listaDiario;
+            }
+
+            set
+            {
+                if (_listaDiario == value) return;
+
+                _listaDiario = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listaDiarioPropertyName);
+            }
+        }
+
+        #endregion
+
+
+        #region ViewModel Properties : listaDetallesDiario
+
+        public const string listaDetallesDiarioPropertyName = "listaDetallesDiario";
+
+        private ObservableCollection<CedulaDiarioModelo> _listaDetallesDiario;
+
+        public ObservableCollection<CedulaDiarioModelo> listaDetallesDiario
+        {
+            get
+            {
+                return _listaDetallesDiario;
+            }
+
+            set
+            {
+                if (_listaDetallesDiario == value) return;
+
+                _listaDetallesDiario = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listaDetallesDiarioPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaPartidas
+
+        public const string listaPartidasPropertyName = "listaPartidas";
+
+        private ObservableCollection<CedulaPartidasModelo> _listaPartidas;
+
+        public ObservableCollection<CedulaPartidasModelo> listaPartidas
+        {
+            get
+            {
+                return _listaPartidas;
+            }
+
+            set
+            {
+                if (_listaPartidas == value) return;
+
+                _listaPartidas = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listaPartidasPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaMovimientos
+
+        public const string listaMovimientosPropertyName = "listaMovimientos";
+
+        private ObservableCollection<CedulaMovimientoModelo> _listaMovimientos;
+
+        public ObservableCollection<CedulaMovimientoModelo> listaMovimientos
+        {
+            get
+            {
+                return _listaMovimientos;
+            }
+
+            set
+            {
+                if (_listaMovimientos == value) return;
+
+                _listaMovimientos = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listaMovimientosPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaMovimientosPorPartida
+
+        public const string listaMovimientosPorPartidaPropertyName = "listaMovimientosPorPartida";
+
+        private ObservableCollection<CedulaMovimientoModelo> _listaMovimientosPorPartida;
+
+        public ObservableCollection<CedulaMovimientoModelo> listaMovimientosPorPartida
+        {
+            get
+            {
+                return _listaMovimientosPorPartida;
+            }
+
+            set
+            {
+                if (_listaMovimientosPorPartida == value) return;
+
+                _listaMovimientosPorPartida = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listaMovimientosPorPartidaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaCatalogo
+
+        public const string listaCatalogoPropertyName = "listaCatalogo";
+
+        private ObservableCollection<CatalogoCuentasModelo> _listaCatalogo;
+
+        public ObservableCollection<CatalogoCuentasModelo> listaCatalogo
+        {
+            get
+            {
+                return _listaCatalogo;
+            }
+            set
+            {
+                if (_listaCatalogo == value) return;
+
+                _listaCatalogo = value;
+                RaisePropertyChanged(listaCatalogoPropertyName);
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Entidades
+
+        #region ViewModel Property : currentEntidad
+
+        public const string currentEntidadPropertyName = "currentEntidad";
 
             private DetalleCedulaModelo _currentEntidad;
 
@@ -1896,6 +2129,26 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         public RelayCommand aprobarCommand { get; set; }
         public RelayCommand agendaCommand { get; set; }
 
+        #region comandos Partidas
+            public RelayCommand nuevaPartidaCommand { get; set; }
+            public RelayCommand consultarPartidasCommand { get; set; }
+            public RelayCommand editarPartidasCommand { get; set; }
+            public RelayCommand borrarPartidaCommand { get; set; }
+        #endregion
+
+        #region comandos Notas
+        public RelayCommand nuevaNotaCommand { get; set; }
+        public RelayCommand consultarNotasCommand { get; set; }
+        public RelayCommand editarNotasCommand { get; set; }
+        public RelayCommand borrarNotaCommand { get; set; }
+        #endregion
+
+        #region comandos Hallazgos
+        public RelayCommand nuevoHallazgoCommand { get; set; }
+        public RelayCommand consultarHallazgosCommand { get; set; }
+        public RelayCommand editarHallazgosCommand { get; set; }
+        public RelayCommand borrarHallazgoCommand { get; set; }
+        #endregion
 
         #endregion
 
@@ -2001,9 +2254,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     _visibilidadMResponder = Visibility.Collapsed;
                     _visibilidadMDetalle = Visibility.Collapsed;
 
-                    _visibilidadMCerrar = Visibility.Visible;
-                    _visibilidadMSupervisar = Visibility.Visible;
-                    _visibilidadMAprobar = Visibility.Visible;
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
                     _visibilidadMTask = Visibility.Collapsed;
                     _visibilidadMImprimir = Visibility.Collapsed;
                     _visibilidadPdf = Visibility.Collapsed;
@@ -2162,13 +2415,13 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                         _origenLlamada = 2;
                         #endregion
                         break;
-
                 }
                 Messenger.Default.Register<CedulaMsj>(this, tokenRecepcionPadre, (datosMsj) => ControlRecepcionDatos(datosMsj));
                 currentEncargo = null;
                 currentEntidad = null;
                 currentSistemaContable = null;
                 _comando = 0;
+                _comandoPartida = 0;
                 dlg = new DialogCoordinator();
                 lista = new ObservableCollection<DetalleCedulaModelo>();//Lista vacia no se conoce el encargo y el cliente
                 listaDetalles = new ObservableCollection<BitacoraModelo>();
@@ -2194,6 +2447,16 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _colIndice = -1;
             _filaIndice = -1;
             _colNombre = string.Empty;
+            #region partidas
+            _listaDiario = new ObservableCollection<CedulaDiarioModelo>();
+            _listaMovimientos = new ObservableCollection<CedulaMovimientoModelo>();
+            _listaMovimientosPorPartida = new ObservableCollection<CedulaMovimientoModelo>();
+            _listaDetallesDiario = new ObservableCollection<CedulaDiarioModelo>();
+            _currentCedulaPartidas = new CedulaModelo();
+            _currentEntidadPartida = new CedulaPartidasModelo();
+            _listaCatalogo = new ObservableCollection<CatalogoCuentasModelo>();
+            _inicializacionCatalogo = 0;
+            #endregion
         }
 
         private void ControlSeleccionRegistros(celdaSeleccionadaMsj recepcionDatos)
@@ -2269,13 +2532,12 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                         break;
                     case 12:
                         #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Visible;
+                        visibilidadMenuHallazgos = Visibility.Collapsed;
                         visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Visible;
-                        visibilidadMenuPartidas = Visibility.Visible;
-                        visibilidadMenuReferencias = Visibility.Visible;
-                        visibilidadMenuTareas = Visibility.Visible;
+                        visibilidadMenuNotas = Visibility.Collapsed;
+                        visibilidadMenuPartidas = Visibility.Collapsed;
+                        visibilidadMenuReferencias = Visibility.Collapsed;
+                        visibilidadMenuTareas = Visibility.Collapsed;
                         colNombre = "m4dc";
                         #endregion fin  menuContextual
                         break;
@@ -2417,6 +2679,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             currentUsuario = msj.usuarioModelo;
             //currentSistemaContable = msj.sistemaContableModelo;
             currentMaestro = msj.entidadMaestroModelo;
+
             if (currentMaestro.idbalanceanterior != null && currentMaestro.idbalanceanterior != 0)
             {
                 visibilidadBalanceAnterior = Visibility.Visible;
@@ -2429,6 +2692,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             FuenteLlamada = msj.fuenteLlamado;
             tokenEnvioDatosAMenu = msj.tokenRecepcionSubMenuDetalle;
             actualizarLista();
+            #region catalogo
+            inicializarCatalogo();
+            #endregion
             //No se desuscribe porque continua existiendo
             //Messenger.Default.Unregister<CedulaMsj>(this, tokenRecepcionPadre);
             Mouse.OverrideCursor = null;
@@ -2491,10 +2757,306 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     break;
             }
             #endregion Marcas
+
+            #region Partidas
+
+            currentCedulaPartidas = CedulaModelo.FindMaestro((int)currentEncargo.idencargo, 15, "Cédula de ajustes y reclasificaciones",currentMaestro.idvisita);
+            switch (currentCedulaPartidas.idcedula)
+            {
+                case -1:
+                    //Error en la comunicacion
+                    //No  puede trabajarse
+                    await mensajeAutoCerrado("Existen errores de comunicación", "Intentelo más tarde para recuperar detalle de partidas", 1);
+                    accesibilidadWindow = false;
+                    break;
+                case 0:
+                    //Registro no creado, se deberá crear
+                    currentCedulaPartidas = new CedulaModelo();
+                    currentCedulaPartidas.idtc = 15;
+                    currentCedulaPartidas.idencargo = currentEncargo.idencargo;
+                    currentCedulaPartidas.titulocedula = "Cédula de ajustes y reclasificaciones";
+                    currentCedulaPartidas.usuarioModelo = currentUsuario;
+                    currentCedulaPartidas.idvisita = currentMaestro.idvisita;
+                    switch (CedulaModelo.Insert(currentCedulaPartidas, true))
+                    {
+                        case 0://No se pudo insertar
+                            await dlg.ShowMessageAsync(this, "No ha sido posible insertar el registro", "");
+                            accesibilidadWindow = false;
+                            break;
+                        case 1://Se inserto con éxito
+                            //await mensajeAutoCerrado("Registro insertado con éxito", "Este mensaje desaparecerá en segundos", 1);
+                            break;
+                        case -1://Se inserto con éxito
+                            await mensajeAutoCerrado("Error al insertar el registro", "Este mensaje desaparecerá en segundos", 1);
+                            accesibilidadWindow = false;
+                            break;
+                    }
+                    break;
+                default:
+                    //existe el registro
+                    actualizarListaPartidas();
+                    //Cargar los registros dependientes
+                    break;
+            }
+            #endregion Marcas
+            #region mayorizacion
+            //Mayorizar
+            mayorizar();
+            #endregion
+
+        }
+
+        private void actualizarSumaTotal()
+        {
+            foreach (DetalleCedulaModelo item in lista)
+            {
+                if (item.claseregistro == "S") //Es una cuenta
+                {
+                    item.saldoactualdc = lista.Where(x => x.claseregistro == "D").Sum(x => x.saldoactualdc);
+                    item.saldoanteriordc = lista.Where(x => x.claseregistro == "D").Sum(x => x.saldoanteriordc);
+                    if (item.saldoanteriordc != null && item.saldoanteriordc != 0)
+                    {
+                        item.aumentodc = lista.Where(x => x.claseregistro == "D").Sum(x => x.aumentodc);
+                        item.disminuciondc = (item.aumentodc / item.saldoanteriordc) * 100;
+                    }
+                    item.cargoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreajuste);
+                    item.abonoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.abonoreajuste);
+                    item.cargoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreajuste);
+                    item.abonoreclasificacion = lista.Where(x => x.claseregistro == "D").Sum(x => x.abonoreclasificacion);
+                    item.cargoreclasificacion = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreclasificacion);
+                    item.abonoreajusteyreclasificacion = item.abonoreajuste + item.abonoreclasificacion;
+                    item.cargosreajusteyreclasificacion = item.cargoreajuste + item.cargoreclasificacion;
+                    item.saldofinaldc = lista.Where(x => x.claseregistro == "D").Sum(x => x.saldofinaldc);
+                }
+            }
         }
 
 
-        private void actualizarLista()
+        private void mayorizar()
+        {
+            decimal? sumaCargos = 0;
+            decimal? sumaAbonos = 0;
+            decimal? sumaCargosAnterior = 0;
+            decimal? sumaAbonosAnterior = 0;
+            decimal? sumaCargosAjustes = 0;
+            decimal? sumaAbonosAjustes = 0;
+            decimal? sumaCargosAnteriorAjustes = 0;
+            decimal? sumaAbonosAnteriorAjustes = 0;
+            //string detallePartidas = "";
+            foreach (DetalleCedulaModelo item in lista)
+            {
+                sumaCargos = 0;
+                sumaAbonos = 0;
+                sumaCargosAjustes = 0;
+                sumaAbonosAjustes = 0;
+                item.listaNumeroPartidasAbonos = new ObservableCollection<int>();
+                item.listaNumeroPartidasCargos = new ObservableCollection<int>();
+                item.m4dc = string.Empty;
+                item.m5dc = string.Empty;
+                if (item.claseregistro == "D") //Es una cuenta
+                {
+                    foreach (CedulaPartidasModelo partida in listaPartidas)
+                    {
+                        sumaCargosAnterior = sumaCargos;
+                        sumaAbonosAnterior = sumaAbonos;
+                        sumaCargosAnteriorAjustes = sumaCargosAjustes;
+                        sumaAbonosAnteriorAjustes = sumaAbonosAjustes;
+                        foreach (CatalogoCuentasModelo elemento in item.listaCuentasMayorizar)
+                        {
+                            if (partida.idpartida == 1)//Partida de ajuste
+                            {
+                                sumaCargosAjustes = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargosAjustes;
+                                sumaAbonosAjustes = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonosAjustes;
+                            }
+                            else
+                            {
+                                //Partidas de reclasificacion
+                                sumaCargos = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargos;
+                                sumaAbonos = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonos;
+                            }
+                        }
+
+                        if (sumaAbonos != sumaAbonosAnterior)
+                        {
+                            item.listaNumeroPartidasAbonos.Add((int)partida.numeropartida);
+                        }
+                        if (sumaCargos != sumaCargosAnterior)
+                        {
+                            item.listaNumeroPartidasCargos.Add((int)partida.numeropartida);
+                        }
+                        if (sumaAbonosAjustes != sumaAbonosAnteriorAjustes)
+                        {
+                            item.listaNumeroPartidasAbonos.Add((int)partida.numeropartida);
+                        }
+                        if (sumaCargosAjustes != sumaCargosAnteriorAjustes)
+                        {
+                            item.listaNumeroPartidasCargos.Add((int)partida.numeropartida);
+                        }
+                        sumaCargosAnterior = 0;
+                        sumaAbonosAnterior = 0;
+                        sumaCargosAnteriorAjustes = 0;
+                        sumaAbonosAnteriorAjustes = 0;
+                    }
+                    if (item.listaNumeroPartidasCargos.Count > 0)
+                    {
+                        foreach (int numPartida in item.listaNumeroPartidasCargos)
+                        {
+                            if (item.m4dc == null || item.m4dc == "")
+                            {
+                                item.m4dc = numPartida.ToString();
+                            }
+                            else
+                            {
+                                item.m4dc = item.m4dc + ", " + numPartida.ToString();
+                            }
+                        }
+                    }
+                    if(item.listaNumeroPartidasAbonos.Count>0)
+                    { 
+                    foreach (int numPartida in item.listaNumeroPartidasAbonos)
+                    {
+                        if (item.m5dc == null || item.m5dc == "")
+                        {
+                            item.m5dc = numPartida.ToString();
+                        }
+                        else
+                        {
+                            item.m5dc = item.m5dc + ", " + numPartida.ToString();
+                        }
+                    }
+                    }
+                }
+                item.abonoreajuste = sumaAbonosAjustes;
+                item.cargoreajuste = sumaCargosAjustes;
+                item.abonoreclasificacion = sumaAbonos;
+                item.cargoreclasificacion = sumaCargos;
+
+                if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
+                {
+                    item.saldofinaldc= item.saldoactualdc + item.cargoreajuste - item.abonoreajuste + item.cargoreclasificacion - item.abonoreclasificacion;
+                }
+                else
+                {
+                    item.saldofinaldc = item.saldoactualdc - item.cargoreajuste + item.abonoreajuste - item.cargoreclasificacion + item.abonoreclasificacion;
+                }
+                item.cargosreajusteyreclasificacion = sumaCargos + sumaCargosAjustes;
+                item.abonoreajusteyreclasificacion = sumaAbonos + sumaCargosAjustes;
+            }
+            foreach (DetalleCedulaModelo item in lista)
+            {
+                if (item.claseregistro == "S") //Es una cuenta
+                {
+                    item.saldoactualdc = lista.Where(x => x.claseregistro == "D").Sum(x => x.saldoactualdc);
+                    item.saldoanteriordc = lista.Where(x => x.claseregistro == "D").Sum(x => x.saldoanteriordc);
+                    if (item.saldoanteriordc != null && item.saldoanteriordc != 0)
+                    {
+                        item.aumentodc = lista.Where(x => x.claseregistro == "D").Sum(x => x.aumentodc);
+                        item.disminuciondc = (item.aumentodc / item.saldoanteriordc) * 100;
+                    }
+                    item.cargoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreajuste);
+                    item.abonoreajuste = lista.Where(x => x.claseregistro=="D").Sum(x => x.abonoreajuste);
+                    item.cargoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreajuste);
+                    item.abonoreclasificacion = lista.Where(x => x.claseregistro == "D").Sum(x => x.abonoreclasificacion);
+                    item.cargoreclasificacion = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreclasificacion);
+                    item.abonoreajusteyreclasificacion = item.abonoreajuste + item.abonoreclasificacion;
+                    item.cargosreajusteyreclasificacion = item.cargoreajuste + item.cargoreclasificacion;
+                    item.saldofinaldc= lista.Where(x => x.claseregistro == "D").Sum(x => x.saldofinaldc);
+
+                }
+            }
+        }
+
+        private void inicializarCatalogo()
+        {
+                //BackgroundWorker worker = new BackgroundWorker();
+                //var secureString = passwordContainer.Password;
+                //worker.DoWork += (object sender, DoWorkEventArgs e) =>
+                //{
+                    CatalogoCuentasModelo temporal = new CatalogoCuentasModelo();
+                    listaCatalogo = CatalogoCuentasModelo.GetAllByIdScForDisplayToPartidas(((int)currentEncargo.idsc));
+                    //Para cada cuenta buscar las subcuentas y agregarlas para mayorizar
+                    foreach (DetalleCedulaModelo item in lista)
+                    {
+                        if (item.claseregistro == "D") //Es una cuenta
+                        {
+                            //Agregar el detalle en la listaCatalogo
+                            temporal = listaCatalogo.Single(x => x.codigocc == item.codigocontabledc);
+                            if (temporal.IsOperable)
+                            {
+                                //Es el ultimo nivel no requiere busqueda
+                            }
+                            else
+                            {
+                                //Requiere buscar el detalle para mayorizar
+                                 //listaHijos = new ObservableCollection<CatalogoCuentasModelo>(listaDetalleHerramienta.Where(x => x.catidcc == item.idcc));
+                                ObservableCollection<CatalogoCuentasModelo> listaInicial = new ObservableCollection<CatalogoCuentasModelo>(listaCatalogo.Where(x => x.catidcc == temporal.idcc));
+                                bool adicion = false;
+                                int recorrido = listaInicial.Count;
+                                int inicioAnterior = 0;
+                                do
+                                {
+                                    adicion = false;
+                                    recorrido = listaInicial.Count;
+                                    for (int i = inicioAnterior; i < recorrido; i++)
+                                    {
+                                        if (listaInicial[i].IsOperable)
+                                        {
+                                            //Es Ok ya esta  en el nivel final
+                                        }
+                                        else
+                                        {
+                                            foreach (CatalogoCuentasModelo elemento in listaCatalogo)
+                                            {
+                                                //si el elemento coincide con el padre y ademas no  existe ese elemento dentro del listado
+                                                if (listaInicial[i].idcc == elemento.catidcc && listaInicial.Count(x=>x.idcc==elemento.idcc)==0)
+                                                {
+                                                    listaInicial.Add(elemento);//Se agrega el elemento
+                                                    adicion = true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    inicioAnterior = recorrido;
+                                }
+                                while (adicion);
+                                //Se trasladan cuentas operables
+                                item.listaCuentasMayorizar = new ObservableCollection<CatalogoCuentasModelo>(listaInicial.Where(x => x.IsOperable));
+                            }
+                            //temporal.listaSubCuentasMayorizacion =listaCatalogo.Select(x => x.catidcc == temporal.idcc));
+                        }
+                    }
+                //};
+                //worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+                //{
+                    inicializacionCatalogo = 1;
+                //};
+                //worker.Dispose();
+                //worker.RunWorkerAsync();
+        }
+
+        private void actualizarListaPartidas()
+        {
+            try
+            {
+                listaPartidas = new ObservableCollection<CedulaPartidasModelo>(CedulaPartidasModelo.GetAllEdicion(currentEncargo, currentCedulaPartidas.idcedula));
+                listaMovimientos = new ObservableCollection<CedulaMovimientoModelo>(CedulaMovimientoModelo.GetAllEdicion(currentEncargo));
+                listaDiario = CedulaDiarioModelo.GetAllEdicion(currentEncargo, currentCedulaPartidas.idcedula, listaPartidas, listaMovimientos);
+            }
+            catch (Exception e)
+            {
+                if (e.Source != null)
+                {
+                    dlg.ShowMessageAsync(this, "Problema de comunicacion en la actualizacion de lista partidas" + e, "");
+                    listaDiario = new ObservableCollection<CedulaDiarioModelo>();
+                    listaPartidas = new ObservableCollection<CedulaPartidasModelo>();
+                    listaMovimientos = new ObservableCollection<CedulaMovimientoModelo>();
+                }
+            }
+            //Se manda a la vista actualizada
+            ///enviarMensaje();No aplica porque no  se envia  la lista a la vista
+        }
+
+            private void actualizarLista()
             {
                 guardarlista();
                 try
@@ -2531,7 +3093,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                         foreach (DetalleCedulaModelo item in lista)
                         {
-                            if (item.guardadoBase == false)
+                            if (item.guardadoBase == false && item.claseregistro!="M" && item.iddc!=0)
                             {
                                 DetalleCedulaModelo.UpdateModeloReodenar(item);
                                 item.guardadoBase = true;//Se actualizo el registro
@@ -2584,13 +3146,16 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 Messenger.Default.Send(elemento, tokenEnvioDatosAHijo);
             }
 
-            #endregion
+        #endregion
 
-            #region Receptor de mensajes
+        #region Receptor de mensajes
 
-            private void ControlVentanaMensaje(int controlVentanaCrearMensaje)
+        private void ControlVentanaMensaje(int controlVentanaCrearMensaje)
             {
-                EDDetalleIMainModel.TypeName = null;
+            EDDetalleIMainModel.TypeName = null;
+            if (comandoPartida == 0)
+            {
+                #region Seleccion del retorno
                 switch (comando)
                 {
                     case 1:
@@ -2648,9 +3213,78 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     default:
                         break;
                 }
-                //comando = 0;
-                currentEntidad = null;
-                finComando();
+                #endregion seleccion  de retorno
+            }
+            else
+            {
+                #region Seleccion del retorno de partida
+                switch (comandoPartida)
+                {
+                    case 1:
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            actualizarListaPartidas();
+                            mayorizar();
+                        }
+                        break;
+                    case 2:
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            actualizarListaPartidas();
+                            mayorizar();
+                        }
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        //caso de vista de programa
+                        break;
+                    case 5://Programa vista
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            actualizarListaPartidas();
+                            mayorizar();
+                        }
+                        accesibilidadWindow = true;
+                        enviarMensajeHabilitar();
+                        break;
+                    case 6:
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            actualizarListaPartidas();
+                            mayorizar();
+                        }
+                        break;
+                    case 7:
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            actualizarListaPartidas();
+                            mayorizar();
+                        }
+                        //enviarMensajeHabilitar();
+                        break;
+                    case 8:
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            actualizarListaPartidas();
+                            mayorizar();
+                        }
+                        //enviarMensajeHabilitar();
+                        break;
+                    case 12://Vista referencia
+                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                        {
+                            //actualizarLista();
+                        }
+                        //enviarMensajeHabilitar();
+                        break;
+                    default:
+                        break;
+                }
+                #endregion seleccion  de retorno partidas
+            }
+            //currentEntidad = null;
+            finComando();
             }
 
             #endregion
@@ -2684,8 +3318,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             public async void Editar()
             {
                 //Para guardar lo que esta en la  pantalla
-                if (lista.Where(x => x.IsSelected).Count() == 1)
-                {
                     if (!(currentEntidad == null))
                     {
                         iniciarComando();
@@ -2698,23 +3330,16 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     {
                         await dlg.ShowMessageAsync(this, "Debe seleccionar el registro a editar", "");
                     }
-                }
-                else
-                {
-                    await dlg.ShowMessageAsync(this, "Debe seleccionar solo un registro para editar", "");
-                }
             }
             public async void Consultar()
             {
                 //Para guardar lo que esta en la  pantalla
-                if (lista.Where(x => x.IsSelected).Count() == 1)
-                {
                     if (!(currentEntidad == null))
                     {
                         iniciarComando();
                         comando = 3;
                         //currentEntidad.usuarioModelo = currentUsuario;
-                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloConsultarview";
+                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloConsultarView";
                         enviarMensajeCrud(); //Debe ir antes, porque evalua si la ventana es cero para enviarse
 
                     }
@@ -2722,11 +3347,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     {
                         await dlg.ShowMessageAsync(this, "Debe seleccionar el registro a consultar", "");
                     }
-                }
-                else
-                {
-                    await dlg.ShowMessageAsync(this, "Debe seleccionar solo un registro para consultar", "");
-                }
+
             }
 
             public async void Borrar()
@@ -2734,6 +3355,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 //Para guardar lo que esta en la  pantalla
                 if (!(currentEntidad == null))
+                {
+                if (lista.Where(x => x.claseregistro == "D").Count() > 1)
                 {
                     //currentEntidad.usuarioModelo = currentUsuario;
                     var mySettings = new MetroDialogSettings()
@@ -2747,84 +3370,36 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     if (result == MessageDialogResult.Affirmative)
                     {
                         iniciarComandoBorrar();
-                        if (lista.Where(x => x.IsSelected).Count() == 1)
+                        //Para guardar lo que esta en la  pantalla
+                        if (!(currentEntidad == null))
                         {
                             //caso de un registro
-                            if (string.IsNullOrEmpty(currentEntidad.referenciapapel))
+                            if (DetalleCedulaModelo.Delete((int)currentEntidad.iddc, true))
                             {
-                                if (DetalleCedulaModelo.Delete((int)currentEntidad.idindice, true))
-                                {
-                                    var controller = await dlg.ShowProgressAsync(this, "Se borro el registro ", "Este mensaje desaparecerá en segundos", settings: configuracionDialogo);
-                                    controller.SetIndeterminate();
-                                    await TaskEx.Delay(1000);
-                                    await controller.CloseAsync();
-                                    actualizarLista();
-                                    currentEntidad = new DetalleCedulaModelo();
-                                    finComandoBorrar();
-                                }
-                                else
-                                {
-                                    finComandoBorrar();
-                                    await dlg.ShowMessageAsync(this, "No ha sido posible eliminar el registro", "");
-                                }
-                            }
-                            else
-                            {
-                                finComandoBorrar();
-                                await dlg.ShowMessageAsync(this, "No ha sido posible eliminar el registro", "Porque esta referenciado");
-
-                            }
-
-                        }
-                        else
-                        {
-                            ObservableCollection<DetalleCedulaModelo> temporal = new ObservableCollection<DetalleCedulaModelo>(lista.Where(x => x.IsSelected));
-                            foreach (DetalleCedulaModelo itemRemover in temporal)
-                            {
-                                if (!string.IsNullOrEmpty(itemRemover.referenciapapel))
-                                {
-                                    finComandoBorrar();
-                                    await dlg.ShowMessageAsync(this, "El registro " + itemRemover.nombrecuenta, "No será removido,  contiene referencias");
-                                    iniciarComando();
-                                }
-                            }
-                            //caso de muchos registros
-                            temporal = new ObservableCollection<DetalleCedulaModelo>(lista.Where(x => x.IsSelected && string.IsNullOrEmpty(x.referenciapapel)));
-                            if (temporal.Count() > 0)
-                            {
-                                switch (DetalleCedulaModelo.Delete(temporal))
-                                {
-                                    case -1:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "Se produjo un error ", "intentelo en otro momento");
-                                        break;
-                                    case 0:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "Los registros estaban estaba vacio ", "no puede eliminarse por ese motivo");
-                                        break;
-                                    case 1:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "Se borro el registro ", "");
-                                        actualizarLista();
-                                        currentEntidad = new DetalleCedulaModelo();
-                                        break;
-                                }
-                        }
-                            else
-                            {
-                                await mensajeAutoCerrado("Se borraron los registros posibles", "Este mensaje desaparecerá en 1 segundo", 1);
+                                await mensajeAutoCerrado("Se borro el registro ", "Este mensaje desaparecerá en segundos", 2);
                                 actualizarLista();
+                                actualizarSumaTotal();
                                 currentEntidad = new DetalleCedulaModelo();
                                 finComandoBorrar();
                             }
+                            else
+                            {
+                                finComandoBorrar();
+                                await dlg.ShowMessageAsync(this, "No ha sido posible eliminar el registro", "");
+                            }
                         }
-
                     }
                     else
                     {
                         finComandoBorrar();
                         await dlg.ShowMessageAsync(this, "Canceló la eliminacion", "");
                     }
+
+                }
+                else
+                {
+                    await mensajeAutoCerrado("Debe existir por lo menos una cuenta", "no puede eliminarse", 2);
+                }
                 }
                 else
                 {
@@ -2832,131 +3407,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 }
                 finComandoBorrar();
             }
-
-        public async void BorrarLogico()
-        {
-
-            if (!(currentEntidad == null))
-            {
-                accesibilidadWindow = false;
-                //Mouse.OverrideCursor = Cursors.Wait;
-                var mySettings = new MetroDialogSettings()
-                {
-                    AffirmativeButtonText = "Ok",
-                    NegativeButtonText = "Cancelar",
-                };
-
-                MessageDialogResult result = await dlg.ShowMessageAsync(this, "La acción no podrá revertirse y se incluirá a los registros dependientes", "¿Desea eliminar el o los  registros?", MessageDialogStyle.AffirmativeAndNegative, mySettings);
-
-                if (result == MessageDialogResult.Affirmative)
-                {
-                    iniciarComando();
-                    //Repite el  ciclo para evitar errores
-
-                    if (lista.Where(x => x.IsSelected).Count() == 1)
-                    {
-                        //switch (IndiceModelo.EvaluarBorrar(currentEntidad.id))
-                        switch (DetalleCedulaModelo.evaluarBorrar(currentEntidad))
-                        {
-                            case -1:
-                                finComando();
-                                await dlg.ShowMessageAsync(this, "Se produjo un error ", "intentelo en otro momento");
-                                //Hay error en el procedimiento
-                                break;
-                            case 1:
-                                //Puede borrarse por completo
-                                switch (DetalleCedulaModelo.DeleteLogico(currentEntidad))
-                                {
-                                    case -1:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "Se produjo un error ", "intentelo en otro momento");
-                                        break;
-                                    case 0:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "El registro estaba vacio ", "no puede eliminarse por ese motivo");
-                                        break;
-                                    case 1:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "Se borro el registro ", "");
-                                        actualizarLista();
-                                        currentEntidad = new DetalleCedulaModelo();
-                                        break;
-                                }
-                                break;
-                            default:
-                                finComando();
-                                await dlg.ShowMessageAsync(this, "No puede eliminarse ", "porque hay papeles referenciados");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        //Evaluar que registros pueden eliminarse
-                        ObservableCollection<DetalleCedulaModelo> temporal = new ObservableCollection<DetalleCedulaModelo>();
-                        foreach (DetalleCedulaModelo item in lista)
-                        {
-                            if (item.IsSelected)
-                            {
-                                //switch (IndiceModelo.EvaluarBorrar(currentEntidad.id))
-                                switch (DetalleCedulaModelo.evaluarBorrar(currentEntidad))
-                                //switch (IndiceModelo.EvaluarBorrar(currentEntidad.id))
-                                {
-                                    case -1:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "Se produjo un error al consultar  " + item.nombrecuenta, "intentelo en otro momento");
-                                        iniciarComando();
-                                        //Hay error en el procedimiento
-                                        break;
-                                    case 0:
-                                        //Puede borrarse por completo
-                                        temporal.Add(item);
-                                        break;
-                                    default:
-                                        finComando();
-                                        await dlg.ShowMessageAsync(this, "No puede eliminarse " + item.nombrecuenta, "porque hay papeles referenciados");
-                                        iniciarComando();
-                                        break;
-                                }
-                            }
-                        }
-                        if (temporal.Count > 0)
-                        {
-                            //caso de muchos registros
-                            switch (DetalleCedulaModelo.DeleteBorradoLogico(temporal))
-                            {
-                                case -1:
-                                    finComando();
-                                    await dlg.ShowMessageAsync(this, "Se produjo un error ", "intentelo en otro momento");
-                                    break;
-                                case 0:
-                                    finComando();
-                                    await dlg.ShowMessageAsync(this, "Los registros estaban estaba vacio ", "no puede eliminarse por ese motivo");
-                                    break;
-                                case 1:
-                                    finComando();
-                                    await dlg.ShowMessageAsync(this, "Se borro el registro ", "");
-                                    actualizarLista();
-                                    currentEntidad = new DetalleCedulaModelo();
-                                    break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    finComando();
-                    await dlg.ShowMessageAsync(this, "Canceló la eliminacion", "");
-                }
-            }
-            else
-            {
-                finComando();
-                await dlg.ShowMessageAsync(this, "Debe seleccionar el registro a eliminar", "");
-            }
-            finComando();
-        }
-
-
 
         #endregion
 
@@ -2976,6 +3426,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             {
                 if (!(currentEntidad == null))
                 {
+                if (currentEntidad.claseregistro == "D")
+                {
                     try
                     {
                         return currentEntidad.idindice != 0 && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
@@ -2984,6 +3436,11 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     {
                         return false;
                     }
+                }
+                else
+                {
+                    return false;
+                }
                 }
                 else
                 {
@@ -3079,7 +3536,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 NuevoCommand = new RelayCommand(Nuevo, null);//ok
                 EditarCommand = new RelayCommand(Editar, CanCommand);
                 BorrarCommand = new RelayCommand(Borrar, CanCommand);//ok
-                ConsultarCommand = new RelayCommand(Consultar, CanVista);
+                ConsultarCommand = new RelayCommand(Consultar, CanCommand);
                 DoubleClickCommand = new RelayCommand(Consultar);
 
                 //vistaPreviaReferenciaCommand = new RelayCommand(vistaPreviaReferencia, CanVista);
@@ -3119,7 +3576,266 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 //listaDetalles = entidad.listaBitacora;
             });
+            #region comandos de Partidas
+                nuevaPartidaCommand = new RelayCommand(nuevoPartida );
+                consultarPartidasCommand = new RelayCommand(consultarPartidas );
+                editarPartidasCommand = new RelayCommand(editarPartidas );
+                borrarPartidaCommand = new RelayCommand(borrarPartida );
+
+            #endregion
+
+            #region comandos de Hallazgos
+            nuevoHallazgoCommand = new RelayCommand(nuevoHallazgo);
+            consultarHallazgosCommand = new RelayCommand(consultarHallazgos);
+            editarHallazgosCommand = new RelayCommand(editarHallazgos);
+            borrarHallazgoCommand = new RelayCommand(borrarHallazgo);
+
+            #endregion
+
+            #region comandos de Notas
+            nuevaNotaCommand = new RelayCommand(nuevoNota);
+            consultarNotasCommand = new RelayCommand(consultarNotas);
+            editarNotasCommand = new RelayCommand(editarNotas);
+            borrarNotaCommand = new RelayCommand(borrarNota);
+
+            #endregion
         }
+
+        private void borrarHallazgo()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void editarHallazgos()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void consultarHallazgos()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void nuevoHallazgo()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void borrarNota()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void editarNotas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void consultarNotas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void nuevoNota()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void editarPartidas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void borrarPartida()
+        {
+            throw new NotImplementedException();
+        }
+
+        private async void consultarPartidas()
+        {
+            if (!(currentEntidad == null))
+            {
+                if (currentEntidad.cargosreajusteyreclasificacion == 0 && currentEntidad.abonoreajusteyreclasificacion == 0)
+                {
+                    await mensajeAutoCerrado("El registro no tiene ni  cargos o abonos", "No  hay nada que consultar", 2);
+                }
+                else
+                {
+                    bool sumaValida = true;
+                    switch (colIndice)
+                    {
+                        case 11:
+                            //Cargos
+                            if (currentEntidad.cargosreajusteyreclasificacion == 0)
+                            {
+                                await mensajeAutoCerrado("El registro no tiene ni cargos", "No  hay nada que consultar", 2);
+                                sumaValida = false;
+                            }
+                            break;
+                        case 13:
+                            //Abonos
+                            if (currentEntidad.abonoreajusteyreclasificacion == 0)
+                            {
+                                await mensajeAutoCerrado("El registro no tiene ni abonos", "No  hay nada que consultar", 2);
+                                sumaValida = false;
+                            }
+                            break;
+                        default:
+                            await mensajeAutoCerrado("Error en selección de registro", " ", 2);
+                            sumaValida = false;
+                            break;
+
+                    }
+                    if(sumaValida)
+                    { 
+                        iniciarComando();
+                        comando = 3;
+                        comandoPartida = 3;
+                        //currentEntidad.usuarioModelo = currentUsuario;
+                        EDDetalleIMainModel.TypeName = "CedulaAjustesReclasificacionesConsultaview";
+                        enviarMensajePartidasConsulta(); //Debe ir antes, porque evalua si la ventana es cero para enviarse
+                    }
+                }
+            }
+            else
+            {
+                await dlg.ShowMessageAsync(this, "Debe seleccionar el registro a consultar", "");
+            }
+        }
+
+        private void nuevoPartida()
+        {
+            iniciarComando();
+            //Para guardar lo que esta en la  pantalla
+            //No se utiliza debido a que no existe edicion
+            comando = 1;
+            comandoPartida = 1;
+            #region Inicializacion de herramienta 
+            currentEntidadPartida = new CedulaPartidasModelo(currentCedulaPartidas, currentEncargo, currentUsuario);
+            currentEntidadPartida.elaboradapartida = currentUsuario.inicialesusuario;
+            currentEntidadPartida.numeropartida = listaPartidas.Count() + 1;
+            currentEntidadPartida.idcedula = currentCedulaPartidas.idcedula;
+            #region filtrado
+            //Con base a seleccion de partida currentEntidadDetalle
+            //currentEntidadPartida = listaPartidas.SingleOrDefault(x => x.idpartida == currentEntidadDetalle.idpartida);
+            listaMovimientosPorPartida = new ObservableCollection<CedulaMovimientoModelo>();
+            listaDetallesDiario = new ObservableCollection<CedulaDiarioModelo>();
+            #endregion
+
+            EDDetalleIMainModel.TypeName = "CedulaAjustesReclasificacionesCrearview";
+            #endregion
+
+            activarCaptura = true;
+            enviarMensajePartidas();
+        }
+
+        public void enviarMensajePartidas()
+        {
+            //Se crea el mensaje
+            AjustesYReclasificacionesMsj elemento = new AjustesYReclasificacionesMsj();
+            elemento.encargoModelo = currentEncargo;
+            elemento.usuarioModelo =currentUsuario;
+            //elemento.sistemaContableModelo = currentSistemaContable;//Programa a crear 
+            elemento.entidadMaestroModelo = currentCedulaPartidas;//Para el caso de  edicion de programas
+                                                           //elemento.listaMaestroModelo = lista;
+            elemento.listaDiario = listaDiario;
+            elemento.listaDetalle = listaPartidas;//Lista completa de diario
+            elemento.entidadDetalle = currentEntidadPartida;
+            //elemento.listaDiario = listaDetalles;//Partida de diario en especificio
+            elemento.listaMovimientosPorPartida = listaMovimientosPorPartida;//Movimientos de la partida en particular
+            elemento.opcionMenuCrud = comando;
+            elemento.tokenRespuestaController = tokenRecepcionHijo;
+            elemento.tokenRecepcionSubMenuDetalle = tokenRecepcionHijo;
+            elemento.fuenteLlamado =3; //no se utiliza
+            Messenger.Default.Send(elemento, tokenEnvioDatosAHijo);
+        }
+        public void enviarMensajePartidasConsulta()
+        {
+            //Se crea el mensaje
+            AjustesYReclasificacionesMsj elemento = new AjustesYReclasificacionesMsj();
+            elemento.encargoModelo = currentEncargo;
+            elemento.usuarioModelo = currentUsuario;
+            //elemento.sistemaContableModelo = currentSistemaContable;//Programa a crear 
+            elemento.entidadMaestroModelo = currentCedulaPartidas;//Para el caso de  edicion de programas
+                                                                  //elemento.listaMaestroModelo = lista;
+            #region Seleccion de partidas
+            //Filtrando el numero de partida
+            ObservableCollection<CedulaPartidasModelo> listaDetalleMsj = new ObservableCollection<CedulaPartidasModelo>();
+            switch (colIndice)
+            {
+                case 11:
+                    //Cargos
+                    foreach (CedulaPartidasModelo item in listaPartidas)
+                    {
+                    foreach(int idPartida in currentEntidad.listaNumeroPartidasCargos)
+                        {
+                            if (idPartida == item.numeropartida)
+                            {
+                                listaDetalleMsj.Add(item);
+                            }
+                        }
+                    }
+                    break;
+                case 13:
+                    //Abonos
+                    foreach (CedulaPartidasModelo item in listaPartidas)
+                    {
+                        foreach (int idPartida in currentEntidad.listaNumeroPartidasAbonos)
+                        {
+                            if (idPartida == item.numeropartida)
+                            {
+                                listaDetalleMsj.Add(item);
+                            }
+                        }
+                    }
+                    break;
+            }
+            //elemento.listaDetalle = listaPartidas;//Lista completa de diario
+            elemento.listaDetalle = listaDetalleMsj;//Lista filtrada de composicion  de abonos
+            #endregion fin  seleccion de partidas
+
+            #region Seleccion de movimientos de partidas
+            //Filtrando las partidas seleccionadas
+
+            ObservableCollection<CedulaDiarioModelo> listaDiarioMsj = new ObservableCollection<CedulaDiarioModelo>();
+            foreach (CedulaPartidasModelo partida in elemento.listaDetalle)
+            {
+                foreach (CedulaDiarioModelo item in listaDiario)
+                {
+                    if (item.idpartida == partida.idpartida)
+                    {
+                        listaDiarioMsj.Add(item);
+                    }
+                }
+            }
+            elemento.listaDiario = listaDiarioMsj;
+            //elemento.listaDiario = listaDiario;
+            #endregion fin de seleccion de partidas
+
+            #region filtrado de movimientos
+            ObservableCollection<CedulaMovimientoModelo> listaMovimientosMsj = new ObservableCollection<CedulaMovimientoModelo>();
+            foreach (CedulaPartidasModelo partida in elemento.listaDetalle)
+            {
+                foreach (CedulaMovimientoModelo item in listaMovimientos)
+                {
+                    if (item.idpartida == partida.idpartida)
+                    {
+                        listaMovimientosMsj.Add(item);
+                    }
+                }
+            }
+            elemento.listaMovimientosPorPartida = listaMovimientosMsj;
+            #endregion filtrado de movimientos
+
+            elemento.entidadDetalle = currentEntidadPartida;
+
+            elemento.opcionMenuCrud = comando;
+            elemento.tokenRespuestaController = tokenRecepcionHijo;
+            elemento.tokenRecepcionSubMenuDetalle = tokenRecepcionHijo;
+            elemento.fuenteLlamado = 3; //no se utiliza
+            Messenger.Default.Send(elemento, tokenEnvioDatosAHijo);
+        }
+
 
         private async void gestionarReferencias()
         {
@@ -3229,9 +3945,87 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             throw new NotImplementedException();
         }
 
-        private void gestionarPartidas()
+        private async void gestionarPartidas()
         {
-            throw new NotImplementedException();
+            if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
+            {
+                //Gestionar referencias
+                //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
+                currentEntidad = lista[(int)filaIndice];
+                #region gestion
+
+                //Insertar-Modificar
+                //Borrar
+                //Ir a referencia
+                //Cancelar
+                var mySettings = new MetroDialogSettings()
+                {
+                    AffirmativeButtonText = "Insertar/Modificar",
+                    NegativeButtonText = "Borrar",
+                    FirstAuxiliaryButtonText = "Cancelar",
+                    //SecondAuxiliaryButtonText="Cancelar"
+                };
+
+                MessageDialogResult result = await dlg.ShowMessageAsync(this, "Seleccione la opción", "Gestión de referencias",
+                MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, mySettings);
+
+                if (result == MessageDialogResult.Affirmative)
+                {
+                    //Se mandara listado de referencias y realizará la inserción
+                    if (currentEntidad != null && colIndice != -1)
+                    {
+                        comando = 8;//Referenciar
+                        iniciarComando();
+                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloReferenciarview";
+                        enviarMensajeReferenciacion();
+                    }
+                    else
+                    {
+                        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
+                    }
+
+                }
+                else
+                {
+                    if (result == MessageDialogResult.Negative)
+                    {
+                        //Borrar la referencia
+                        DetalleCedulaModelo.BorrarModeloReferencia(currentEntidad);
+                        await mensajeAutoCerrado("Referencia eliminada", "", 2);
+                    }
+                    else
+                    {
+                        //if (result == MessageDialogResult.FirstAuxiliary)
+                        //{
+                        //    if (currentEntidad != null && colIndice != -1)
+                        //    {
+                        //        comando = 8;//Referenciar
+                        //        iniciarComando();
+                        //        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloVerview";
+                        //        enviarMensajeReferenciacion();
+                        //    }
+                        //    else
+                        //    {
+                        //        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        await dlg.ShowMessageAsync(this, "Cancelo operación", "");
+                        finComando();
+
+                    }
+                }
+
+
+                #endregion
+            }
+            else
+            {
+                await mensajeAutoCerrado("Debe seleccionar una celta para operar", "Seleccione una celda", 2);
+            }
+            //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
+            finComando();
         }
 
         private void gestionarHallazgos()
@@ -3487,6 +4281,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 //Messenger.Default.Unregister<int>(this, tokenRecepcionCierrePreView);
                 accesibilidadWindow = true;
                 comando = 0;
+                comandoPartida = 0;
             }
 
 
