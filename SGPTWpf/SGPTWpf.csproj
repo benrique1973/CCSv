@@ -1598,6 +1598,9 @@
     <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Agenda\CedulaAgendaView.xaml.cs">
       <DependentUpon>CedulaAgendaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesConsulta.xaml.cs">
+      <DependentUpon>AjustesConsulta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesCrudView.xaml.cs">
       <DependentUpon>AjustesCrudView.xaml</DependentUpon>
     </Compile>
@@ -1735,9 +1738,6 @@
     </Compile>
     <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\ReferenciarView.xaml.cs">
       <DependentUpon>ReferenciarView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudSeleccionView.xaml.cs">
-      <DependentUpon>DetalleCedulaCrudSeleccionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudView.xaml.cs">
       <DependentUpon>DetalleCedulaCrudView.xaml</DependentUpon>
@@ -2831,6 +2831,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesConsulta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesCrudView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -3014,10 +3018,6 @@
     <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\ReferenciarView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudSeleccionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudView.xaml">
       <SubType>Designer</SubType>
@@ -4580,6 +4580,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SGPtWpf\Recursos\Imagenes\flaticon\esential-set\add.png" />
+    <Resource Include="SGPtWpf\Recursos\Imagenes\flaticon\esential-set\edit.png" />
+    <Resource Include="SGPtWpf\Recursos\Imagenes\flaticon\esential-set\folder-13.png" />
+    <Resource Include="SGPtWpf\Recursos\Imagenes\flaticon\esential-set\garbage-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

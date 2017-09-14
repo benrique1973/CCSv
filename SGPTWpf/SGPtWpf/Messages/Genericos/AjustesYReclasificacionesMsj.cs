@@ -37,5 +37,6 @@ namespace SGPTWpf.SGPtWpf.Messages.Genericos
         public string tokenRespuestaVista { get; set; }
 
         public string tokenRecepcionSubMenuDetalle { get; set; }
+
     }
 }

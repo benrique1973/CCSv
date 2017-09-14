@@ -156,6 +156,7 @@ FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Documentos\Consulta\PortadaVie
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Documentos\DocumentosView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Documentos\Generacion\GeneracionView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Agenda\CedulaAgendaView.xaml;;
+FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesConsulta.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesCrudView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesPresentacionView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesView.xaml;;
@@ -202,7 +203,6 @@ FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Cent
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraPresentacionView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\ReferenciarView.xaml;;
-FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudSeleccionView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaPresentacionView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaView.xaml;;

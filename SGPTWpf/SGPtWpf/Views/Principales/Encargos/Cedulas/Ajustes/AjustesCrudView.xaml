@@ -168,8 +168,8 @@
                                 </WrapPanel>
                             </Grid>
                                <Grid x:Name="datosConsulta" >
-                                 <StackPanel Orientation="Vertical"  Width="744">
-                                        <DataGrid Width="743"
+                                 <StackPanel Orientation="Vertical"  Width="760">
+                                        <DataGrid Width="760"
                                             AutoGenerateColumns="False"  SelectionMode="Extended"
                                             Margin="0"
                                             Height="330"
@@ -242,7 +242,7 @@
                                         </DataGrid.Resources>
                                         <DataGrid.Columns >
 
-                                            <DataGridTemplateColumn x:Name="ColCuenta" Width="438" >
+                                            <DataGridTemplateColumn x:Name="ColCuenta" Width="434" >
                                                 <DataGridTemplateColumn.Header>
                                                     <TextBlock  Text="CUENTA"  />
                                                 </DataGridTemplateColumn.Header>

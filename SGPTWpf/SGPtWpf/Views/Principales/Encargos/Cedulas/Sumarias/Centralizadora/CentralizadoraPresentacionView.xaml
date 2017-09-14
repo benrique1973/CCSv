@@ -688,8 +688,8 @@
                                                                 <DataGridTemplateColumn.CellTemplate>
                                                                     <DataTemplate >
                                                                         <TextBlock  
-                                                        x:Name="txtvariaciónporcentual" 
-                                                        Text="{Binding Path= variaciónporcentual, 
+                                                        x:Name="txtvariacionporcentual" 
+                                                        Text="{Binding Path= variacionporcentual, 
                                                         UpdateSourceTrigger= PropertyChanged,
                                                         StringFormat=n2}"
                                                         MinWidth="105"

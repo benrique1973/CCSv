@@ -52,8 +52,8 @@
                     Text="{Binding encabezadoPantalla, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>-->
                         <StackPanel HorizontalAlignment="Center">
-                            <Grid  x:Name="GrdCuerpo"  IsEnabled="{Binding accesibilidadCuerpo}">
-                                <WrapPanel Orientation="Horizontal">
+                            <Grid  x:Name="GrdCuerpo"  IsEnabled="{Binding accesibilidadCuerpo}" >
+                                <WrapPanel Orientation="Horizontal" >
                                     <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                         <Grid VerticalAlignment="Center">
                                             <TextBlock
@@ -67,7 +67,7 @@
                                             Text="Código de cuenta"/>
                                         </Grid>
                                         <Grid>
-                                            <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                            <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True"
                                          DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
                                          VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
                                          Controls:TextBoxHelper.Watermark="Código contable" 
@@ -118,7 +118,8 @@
                                     </StackPanel>
                                 </WrapPanel>
                             </Grid>
-                            <Grid  x:Name="GrdCuerpoConclusiones"  IsEnabled="{Binding accesibilidadCuerpo}">
+                            
+                            <Grid  x:Name="GrdCuerpoConclusiones"  IsEnabled="{Binding accesibilidadDatosModificables}">
                                 <WrapPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                         <Grid VerticalAlignment="Center">
@@ -133,7 +134,7 @@
                                             Text="Nombre de la cuenta"/>
                                         </Grid>
                                         <Grid>
-                                            <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
+                                         <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
                                          DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
                                          VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
                                          Controls:TextBoxHelper.Watermark="Nombre de cuenta" 
@@ -154,8 +155,7 @@
                                 </WrapPanel>
                             </Grid>
 
-                            <Grid  x:Name="GrdDatosTipoSaldo"  Visibility="{Binding visibilidadBalanceSeleccionar}" 
-                                   IsEnabled="{Binding accesibilidadBalanceSeleccionar}"  >
+                            <Grid  x:Name="GrdDatosTipoSaldo" IsEnabled="{Binding accesibilidadCuerpo}"  >
                                 <WrapPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                         <Grid VerticalAlignment="Center">
@@ -169,8 +169,8 @@
                                     VerticalAlignment="Center"
                                     Text="*Balance base"/>
                                         </Grid>
-                                        <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
-                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                        <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" IsEnabled="False"
+                                         DataContext="{Binding currentEntidadCedula, ValidatesOnDataErrors=True}"
                                          VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
                                          Controls:TextBoxHelper.Watermark="Fecha de balance" 
                                          Margin="10,5,0,5" VerticalAlignment="Top" 
@@ -181,12 +181,13 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding titulocedula, 
+                                         Text="{Binding fechabalancebalance, 
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0"  IsEnabled="{Binding accesibilidadCuerpo}">
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0"  IsEnabled="{Binding accesibilidadCuerpo}" 
+                                                Visibility="{Binding visibilidadBalance}">
                                         <Grid VerticalAlignment="Center">
                                             <TextBlock
                                     Height="30"
@@ -198,8 +199,8 @@
                                     VerticalAlignment="Center"
                                     Text="Balance anterior"/>
                                         </Grid>
-                                        <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" 
-                                         DataContext="{Binding currentEntidad, ValidatesOnDataErrors=True}"
+                                        <TextBox HorizontalContentAlignment="Left" SpellCheck.IsEnabled="True" IsEnabled="False"
+                                         DataContext="{Binding currentEntidadCedula, ValidatesOnDataErrors=True}"
                                          VerticalContentAlignment="Top"  HorizontalAlignment="Center" 
                                          Controls:TextBoxHelper.Watermark="Balance comparativo" 
                                          Margin="10,5,0,5" VerticalAlignment="Top" 
@@ -210,7 +211,7 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding titulocedula, 
+                                         Text="{Binding fechabalancebalanceComparativo, 
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
@@ -245,13 +246,13 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding saldoactualdc, 
+                                         Text="{Binding saldoactualdc,  StringFormat=N2,
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
                                         </Grid>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0"  Visibility="{Binding visibilidadBalance}">
                                         <Grid VerticalAlignment="Center">
                                             <TextBlock
                                             Height="30"
@@ -276,7 +277,7 @@
                                              Height="30"
                                              TextWrapping="Wrap"
                                              AcceptsReturn="True"
-                                             Text="{Binding saldoanteriordc, 
+                                             Text="{Binding saldoanteriordc,  StringFormat=N2,
                                              NotifyOnValidationError=True, 
                                              UpdateSourceTrigger=PropertyChanged, 
                                              ValidatesOnDataErrors=True}"/>
@@ -284,7 +285,7 @@
                                     </StackPanel>
                                 </WrapPanel>
                             </Grid>
-                            <Grid  IsEnabled="{Binding accesibilidadCuerpo}">
+                            <Grid  IsEnabled="{Binding accesibilidadCuerpo}"  Visibility="{Binding visibilidadBalance}">
                                 <WrapPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                         <Grid VerticalAlignment="Center">
@@ -311,7 +312,7 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding aumentodc, 
+                                         Text="{Binding aumentodc,  StringFormat=N2,
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
@@ -342,7 +343,7 @@
                                              Height="30"
                                              TextWrapping="Wrap"
                                              AcceptsReturn="True"
-                                             Text="{Binding disminuciondc, 
+                                             Text="{Binding disminuciondc,  StringFormat=N2,
                                              NotifyOnValidationError=True, 
                                              UpdateSourceTrigger=PropertyChanged, 
                                              ValidatesOnDataErrors=True}"/>
@@ -397,7 +398,7 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding cargoreajuste, 
+                                         Text="{Binding cargoreajuste,  StringFormat=N2,
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
@@ -428,7 +429,7 @@
                                              Height="30"
                                              TextWrapping="Wrap"
                                              AcceptsReturn="True"
-                                             Text="{Binding abonoreajuste, 
+                                             Text="{Binding abonoreajuste,  StringFormat=N2,
                                              NotifyOnValidationError=True, 
                                              UpdateSourceTrigger=PropertyChanged, 
                                              ValidatesOnDataErrors=True}"/>
@@ -483,7 +484,7 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding cargoreclasificacion, 
+                                         Text="{Binding cargoreclasificacion,  StringFormat=N2,
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
@@ -514,7 +515,7 @@
                                              Height="30"
                                              TextWrapping="Wrap"
                                              AcceptsReturn="True"
-                                             Text="{Binding abonoreclasificacion, 
+                                             Text="{Binding abonoreclasificacion,  StringFormat=N2,
                                              NotifyOnValidationError=True, 
                                              UpdateSourceTrigger=PropertyChanged, 
                                              ValidatesOnDataErrors=True}"/>
@@ -551,7 +552,7 @@
                                          Height="30"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True"
-                                         Text="{Binding saldofinaldc, 
+                                         Text="{Binding saldofinaldc,  StringFormat=N2,
                                          NotifyOnValidationError=True, 
                                          UpdateSourceTrigger=PropertyChanged, 
                                          ValidatesOnDataErrors=True}" />
@@ -561,7 +562,7 @@
                                 </WrapPanel>
                             </Grid>
 
-                            <Grid  IsEnabled="{Binding accesibilidadCuerpo}">
+                            <Grid  IsEnabled="{Binding accesibilidadDatosModificables}">
                                 <WrapPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                         <Grid VerticalAlignment="Center">

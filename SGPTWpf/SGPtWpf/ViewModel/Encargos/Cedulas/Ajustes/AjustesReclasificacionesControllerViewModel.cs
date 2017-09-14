@@ -1955,6 +1955,17 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
                     _tokenRecepcionAbonos = "CedulaAjustesYReclasificaciones" + "Abonos";
                     #endregion
                     break;
+                case "DocumentacionCedulaAjustesReclasificacionesSumarias"://Llamada desde Documentacion/Cedulas sumarias
+                    #region configuracion Documentacion
+                    _tokenEnvio = "datosControllerEncargoCedulasSumariasDetalle";
+                    _tokenRecepcion = "datosEncargoCedulasSumariasDetalle"; //Modificado
+
+                    _tokenRecepcionCodigo = "CedulaAjustesYReclasificaciones" + "Codigo";
+                    _tokenRecepcionCuenta = "CedulaAjustesYReclasificaciones" + "Cuenta";
+                    _tokenRecepcionCargos = "CedulaAjustesYReclasificaciones" + "Cargos";
+                    _tokenRecepcionAbonos = "CedulaAjustesYReclasificaciones" + "Abonos";
+                    #endregion
+                    break;
             }
             //Suscribiendo el mensaje
             Messenger.Default.Register<AjustesYReclasificacionesMsj>(this, tokenRecepcion, (datosMsj) => ControlDatosMsj(datosMsj));
@@ -1995,6 +2006,23 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
             //FuenteLlamada = datosMsj.fuenteLlamado;
             listacurrentEntidad = datosMsj.listaMaestroModelo;
             listaDetalleEntidad = datosMsj.listaDetalle;
+            switch (origen)
+            {
+                case "DocumentacionCedulaAjustesReclasificaciones"://Llamada desde Documentacion/Carpetas
+                    #region configuracion Documentacion
+
+                    #endregion
+                    break;
+                case "DocumentacionCedulasAjustesResumen"://Llamada desde Documentacion/Carpetas
+                    #region configuracion Documentacion
+
+                    #endregion
+                    break;
+                case "DocumentacionCedulaAjustesReclasificacionesSumarias"://Llamada desde Documentacion/Cedulas sumarias
+                    #region configuracion Documentacion
+                    #endregion
+                    break;
+            }
             //Cargor catalogo
             //listaCatalogo = new ObservableCollection<CatalogoCuentasModelo>(CatalogoCuentasModelo.GetAllByIdScForDisplayToPartidas(((int)currentEncargo.idsc)));
             listaCatalogo = CatalogoCuentasModelo.GetAllByIdScForDisplayToPartidas(((int)currentEncargo.idsc));
@@ -2452,63 +2480,68 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
                 currentDetalleEntidad.listaCedulaMovimientoModelo.Add(item);
                 }
             }
-            if ( valida())
-            {
-                if (nombreUnico(currentDetalleEntidad.conceptopartida, listaDetalleEntidad) == 0)
+
+                #region  insersion
+                if (valida())
                 {
-                    try
+                    if (nombreUnico(currentDetalleEntidad.conceptopartida, listaDetalleEntidad) == 0)
                     {
-                        //Se envian los detalles
-                        switch (CedulaPartidasModelo.Insert(currentDetalleEntidad,currentDetalleEntidad.listaCedulaMovimientoModelo))
+                        try
                         {
-                            case 0://No se pudo insertar
-                                finComando();
-                                await dlg.ShowMessageAsync(this, "No ha sido posible insertar el registro", "");
-                                break;
-                            case 1://Se inserto con éxito
-                                await mensajeAutoCerrado("Registro insertado con éxito", "Este mensaje desaparecerá en segundos", 1);
-                                fuenteCierre = 1;
-                                resultadoProceso = 1;//1 para  crear
-                                CloseWindow();
-                                break;
-                            case -1://Se inserto con éxito
-                                await mensajeAutoCerrado("Error al insertar el registro", "Este mensaje desaparecerá en segundos", 1);
-                                fuenteCierre = 1;
-                                resultadoProceso = 1;//1 para  crear
-                                CloseWindow();
-                                break;
-                            case 2://Se inserto con éxito
-                                await mensajeAutoCerrado("Algunos registros del detalle estaban vacios", "Este mensaje desaparecerá en segundos", 1);
-                                fuenteCierre = 1;
-                                resultadoProceso = 1;//1 para  crear
-                                CloseWindow();
-                                break;
-                            case -2://Se inserto con éxito
-                                await mensajeAutoCerrado("Hubo error al insertar algunos elementos", "Este mensaje desaparecerá en segundos", 1);
-                                fuenteCierre = 1;
-                                resultadoProceso = 1;//1 para  crear
-                                CloseWindow();
-                                break;
+                            //Se envian los detalles
+                            switch (CedulaPartidasModelo.Insert(currentDetalleEntidad, currentDetalleEntidad.listaCedulaMovimientoModelo))
+                            {
+                                case 0://No se pudo insertar
+                                    finComando();
+                                    await dlg.ShowMessageAsync(this, "No ha sido posible insertar el registro", "");
+                                    break;
+                                case 1://Se inserto con éxito
+                                    await mensajeAutoCerrado("Registro insertado con éxito", "Este mensaje desaparecerá en segundos", 1);
+                                    fuenteCierre = 1;
+                                    resultadoProceso = 1;//1 para  crear
+                                    CloseWindow();
+                                    break;
+                                case -1://Se inserto con éxito
+                                    await mensajeAutoCerrado("Error al insertar el registro", "Este mensaje desaparecerá en segundos", 1);
+                                    fuenteCierre = 1;
+                                    resultadoProceso = 1;//1 para  crear
+                                    CloseWindow();
+                                    break;
+                                case 2://Se inserto con éxito
+                                    await mensajeAutoCerrado("Algunos registros del detalle estaban vacios", "Este mensaje desaparecerá en segundos", 1);
+                                    fuenteCierre = 1;
+                                    resultadoProceso = 1;//1 para  crear
+                                    CloseWindow();
+                                    break;
+                                case -2://Se inserto con éxito
+                                    await mensajeAutoCerrado("Hubo error al insertar algunos elementos", "Este mensaje desaparecerá en segundos", 1);
+                                    fuenteCierre = 1;
+                                    resultadoProceso = 1;//1 para  crear
+                                    CloseWindow();
+                                    break;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            //await dlg.ShowMessageAsync(this, "No ha sido posible insertar el registro", "");
+                            MessageBox.Show("No ha sido posible insertar el registro");
+                            finComando();
                         }
                     }
-                    catch (Exception)
+                    else
                     {
-                        //await dlg.ShowMessageAsync(this, "No ha sido posible insertar el registro", "");
-                        MessageBox.Show("No ha sido posible insertar el registro");
+                        await mensajeAutoCerrado("El nombre ya esta siendo utilizado, ", "seleccione otro nombre", 1);
                         finComando();
                     }
                 }
                 else
                 {
-                    await mensajeAutoCerrado("El nombre ya esta siendo utilizado, ", "seleccione otro nombre", 1);
+                    await mensajeAutoCerrado("Hay errores  en los datos", "Revise", 1);
                     finComando();
                 }
-            }
-            else
-            {
-                await mensajeAutoCerrado("Hay errores  en los datos", "Revise", 1);
-                finComando();
-            }
+
+            #endregion validacion
+
         }
 
         public async void Copiar()
@@ -3027,22 +3060,27 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
                                 listaTemporal.Add(item);
                             }
                         }
-                        if (valida())
-                        {
-                            if (nombreUnico(currentDetalleEntidad.conceptopartida, listaDetalleEntidad) == 1)
+
+                            #region  insersion
+                            if (valida())
                             {
-                                resultadoModificar = CedulaPartidasModelo.UpdateModelo(currentDetalleEntidad, listaTemporal);
+                                if (nombreUnico(currentDetalleEntidad.conceptopartida, listaDetalleEntidad) == 1)
+                                {
+                                    resultadoModificar = CedulaPartidasModelo.UpdateModelo(currentDetalleEntidad, listaTemporal);
+                                }
+                                else
+                                {
+                                    await dlg.ShowMessageAsync(this, "El nombre no puede repetirse", "Modifique  el nombre la cédula");
+                                }
                             }
                             else
                             {
-                                await dlg.ShowMessageAsync(this, "El nombre no puede repetirse", "Modifique  el nombre la cédula");
+                                await mensajeAutoCerrado("Hay errores  en los datos", "Revise", 1);
+                                finComando();
                             }
-                        }
-                        else
-                        {
-                            await mensajeAutoCerrado("Hay errores  en los datos", "Revise", 1);
-                            finComando();
-                        }
+
+                        #endregion
+
                         break;
                     case 8: //Referenciar
                         resultadoModificar = CedulaModelo.UpdateReferencia(currentEntidad);

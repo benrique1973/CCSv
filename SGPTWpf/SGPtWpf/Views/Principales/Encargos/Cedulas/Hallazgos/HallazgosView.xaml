@@ -255,54 +255,6 @@
                         </Grid>
 
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="1" Visibility="{Binding visibilidadPdf}" >
-                        <Grid VerticalAlignment="Center">
-                            <TextBlock
-                                            Height="Auto"
-                                            Margin="0"
-                                            MinWidth="40"
-                                            Width="90"
-                                            MaxWidth="100"
-                                            MinHeight="20"
-                                            HorizontalAlignment="Stretch"
-                                            VerticalAlignment="Center"
-                                            Text="Notas pdf"/>
-                        </Grid>
-                        <Grid>
-                            <ComboBox 
-                                                x:Name="comboVisita"
-                                                 MaxWidth="100"
-                                                 MinHeight="30"
-                                                 MinWidth="100"
-                                                 Height="30"
-                                                  HorizontalAlignment="Center"
-                                                  Background="Transparent"
-                                                  ItemsSource="{Binding listaPDF}" 
-                                                  SelectedIndex="0"
-                                                  DisplayMemberPath="descripcion"
-                                                  IsEditable="False" Controls:TextBoxHelper.Watermark="Archivos"
-                                                  AllowDrop="False" 
-                                                ToolTip="Cartas en  que se comunica los hallazgos">
-                                <ComboBox.SelectedItem>
-                                    <Binding Path="selectedPDFModelo" 
-                                                         UpdateSourceTrigger="PropertyChanged"
-                                                         Mode="TwoWay"
-                                                         NotifyOnValidationError="True" 
-                                                         ValidatesOnDataErrors="True">
-                                    </Binding>
-                                </ComboBox.SelectedItem>
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger
-                                        EventName="SelectionChanged">
-                                        <cmd:EventToCommand 
-                                         Command="{Binding SeleccionPDFCommand, Mode=TwoWay}"
-                                        CommandParameter="{Binding SelectedItem, ElementName=comboVisita}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </ComboBox>
-                        </Grid>
-
-                    </StackPanel>
                 </WrapPanel>
                 <Grid  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" IsEnabled="{Binding accesibilidadWindow}" >
                     <Border BorderThickness="1" BorderBrush="Transparent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -348,6 +300,12 @@
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="COD. HALLAZGO"
+                                Binding="{Binding Path= referenciahallazgo , UpdateSourceTrigger=PropertyChanged}"
+                                Width="Auto"
+                                MinWidth="50"
+                                IsReadOnly="True" />
                                 <DataGridTextColumn Header="Hallazgo" MinWidth="150" 
                                    Binding="{Binding titulohallazgo,  UpdateSourceTrigger=PropertyChanged}">
                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
@@ -409,10 +367,10 @@
                                 MinWidth="140"
                                 Width="Auto"
                                 IsReadOnly="True" />
-                                <DataGridTextColumn Header="Referencia"
-                                Binding="{Binding Path= referenciahallazgo , UpdateSourceTrigger=PropertyChanged}"
+                                <DataGridTextColumn Header="Referencia PT"
+                                Binding="{Binding Path= referenciapapel , UpdateSourceTrigger=PropertyChanged}"
                                 Width="Auto"
-                                MinWidth="50"
+                                MinWidth="100"
                                 IsReadOnly="True" />
                                 <!--<DataGridTextColumn Header="Estado" MinWidth="50"
                                 Binding="{Binding Path= etapapapel , 

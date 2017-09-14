@@ -15,6 +15,7 @@ using System.Linq;
 using SGPtmvvm.Mensajes;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas;
 using System.Threading.Tasks;
+using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
 
 namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
 {
@@ -1129,6 +1130,11 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
 
         public RelayCommand irMenuPadreCommand { get; set; }
 
+        public RelayCommand CancelarCommand { get; set; }
+        public RelayCommand OkCommand { get; set; }
+        public RelayCommand SalirCommand { get; set; }
+
+
         #endregion
 
         #region ECMainModel
@@ -1242,8 +1248,52 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
                     _visibilidadMImprimir = Visibility.Collapsed;
                     _visibilidadPdf = Visibility.Collapsed;
                     #endregion
-                    break;
 
+                    Messenger.Default.Register<CedulaMsj>(this, tokenRecepcionPadre, (recepcionDatos) => ControlRecepcionDatos(recepcionDatos));
+
+                    break;
+                //Consulta de partidas particulares
+
+                case "DocumentacionCedulaAjustesReclasificacionesSumariasConsulta":
+                    fuenteLlamado = 1;
+                    _idtc = 15;//
+                               //15;"Ajustes y reclasificaciones";"A";TRUE
+                    #region tokens
+
+                    _tokenRecepcionPadre = "datosEncargoCedulasSumariasDetalle"; //Permite captar los mensajes del  view model BalancesViewModel
+
+                    //_tokenEnvioDatosAHijo = "datosEncargoCedulaAjustesYReclasificaciones";  //Para control de los datos que  remite programas a sub-ventanas
+
+                    //_tokenRecepcionHijo = "datosEncargoCedulasAjustesController";
+
+                    _tokenEnvioDatosAMenu = "datosControllerEncargoCedulasSumariasDetalle"; //Para regresar al menu anterior.
+
+                    #endregion
+
+                    //RegisterCommands();
+                    RegisterCommandsSumaria();
+                    _tablaDetalle = "Ajustes y reclasificaciones";
+                    #region  menu
+
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Collapsed;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Collapsed;
+                    _visibilidadMResponder = Visibility.Collapsed;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMTask = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    _visibilidadPdf = Visibility.Collapsed;
+                    #endregion
+                    Messenger.Default.Register<AjustesYReclasificacionesMsj>(this, tokenRecepcionPadre, (recepcionDatos) => ControlRecepcionDatosSumaria(recepcionDatos));
+                    break;
             }
 
 
@@ -1256,7 +1306,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
 
             _cursorWindow = Cursors.Hand;
 
-            Messenger.Default.Register<CedulaMsj>(this, tokenRecepcionPadre, (recepcionDatos) => ControlRecepcionDatos(recepcionDatos));
             currentEncargo = null;
             currentEntidad = null;
             currentSistemaContable = null;
@@ -1273,6 +1322,80 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
             ECMainModel = new MainModel();
             _listaMaestro = new ObservableCollection<CedulaModelo>();
             //Messenger.Default.Register<int>(this, tokenRecepcionSubMenu, (detalleTerminado) => ControlVentanaMensaje(detalleTerminado));
+        }
+
+        private void RegisterCommandsSumaria()
+        {
+            //EditarCommand = new RelayCommand(Modificar, CanSave);
+            CancelarCommand = new RelayCommand(Cancelar);
+            OkCommand = new RelayCommand(Ok);
+            SalirCommand = new RelayCommand(Salir);
+        }
+
+        private async void Cancelar()
+        {
+
+                // Basado en : https://social.msdn.microsoft.com/Forums/en-US/fece5464-1863-4d76-b595-b16fb98ce626/messages-dialog-fired-the-viewmodel-through-the-dialogcoordinator-using-mahappsmetro-and-mvvm-light?forum=wpf
+                //Debe cerrar el sistemapi
+                await dlg.ShowMessageAsync(this, "Operación cancelada", "");
+                CloseWindow();
+                enviarMensajeHabilitar();
+                //fuenteCierre = 1;
+        }
+
+        private void Ok()
+        {
+                CloseWindow();
+                enviarMensajeHabilitar();
+        }
+
+        private void Salir()
+        {
+                    CloseWindow();
+                    enviarMensajeHabilitar();
+                    enviarMensajeSumaria(0);//Manda mensaje de cierre
+        }
+        public void enviarMensajeSumaria(int resultadoProceso)
+        {
+            //Creando el mensaje de cierre
+            Messenger.Default.Send(resultadoProceso, tokenEnvioDatosAMenu);
+        }
+        private async void ControlRecepcionDatosSumaria(AjustesYReclasificacionesMsj msj)
+        {
+            usuarioModelo = msj.usuarioModelo;
+            currentEncargo = msj.encargoModelo;  //El encargo puede estar cambiando.
+            accesibilidadWindow = true;
+            //_tokenEnvioPadre = msj.tokenRespuesta;
+            //_tokenRecepcionSubMenu = msj.tokenRespuestaDetalle;
+            Messenger.Default.Unregister<CedulaMsj>(this, tokenRecepcionPadre);
+            //Verificar que exista el  registro de cedulay en caso  contrario crearlo
+            //currentEntidad = CedulaModelo.FindMaestro(currentEncargo.idencargo, idtc, "Cédula de ajustes y reclasificaciones");
+            currentEntidad = msj.entidadMaestroModelo;
+            switch (currentEntidad.idcedula)
+            {
+                case -1:
+                    //Error en la comunicacion
+                    //No  puede trabajarse
+                    await mensajeAutoCerrado("Existen errores de comunicación", "Intentelo más tarde", 1);
+                    accesibilidadWindow = false;
+                    break;
+                default:
+                    //existe el registro
+                    //actualizarLista();
+                    listaPartidas = msj.listaDetalle;
+                    listaMovimientos = msj.listaMovimientosPorPartida;
+                    lista = msj.listaDiario;
+
+                    accesibilidadWindow = true;
+                    //Cargar los registros dependientes
+                    break;
+            }
+            listaMaestro = msj.listaMaestroModelo;
+            //listaMaestro.Add(currentEntidad);
+            //inicializacionTerminada();
+            enviarMensajeInhabilitar();
+            finComando();
+
         }
 
         private async void ControlRecepcionDatos(CedulaMsj msj)
@@ -2253,7 +2376,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
             inhabilitar.mensaje = true;
             Messenger.Default.Send<TabItemMensaje>(inhabilitar);
         }
-
 
         private void iniciarComandoBorrar()
         {

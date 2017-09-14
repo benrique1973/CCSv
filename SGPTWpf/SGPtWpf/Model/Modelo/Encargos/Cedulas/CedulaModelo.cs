@@ -334,7 +334,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
         public decimal? cargosreajusteyreclasificacion { get { return GetValue(() => cargosreajusteyreclasificacion); } set { SetValue(() => cargosreajusteyreclasificacion, value); } }
         public decimal? abonoreajusteyreclasificacion { get { return GetValue(() => abonoreajusteyreclasificacion); } set { SetValue(() => abonoreajusteyreclasificacion, value); } }
 
-        public decimal? variaciónporcentual { get { return GetValue(() => variaciónporcentual); } set { SetValue(() => variaciónporcentual, value); } }
+        public decimal? variacionporcentual { get { return GetValue(() => variacionporcentual); } set { SetValue(() => variacionporcentual, value); } }
         public decimal? saldoreajustado { get { return GetValue(() => saldoreajustado); } set { SetValue(() => saldoreajustado, value); } }
 
         public int? idagenda { get { return GetValue(() => idagenda); } set { SetValue(() => idagenda, value); } }
@@ -602,7 +602,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                 MessageBox.Show("No ha sido posible insertar el registro \n"+e);
                             }
                         }
-                        #region insersion de totales
+                        #region insercion de totales
                         
                         //Insercion de totales
                         try
@@ -647,6 +647,68 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             }
         }
 
+        //Permite almacenar cuentas particulares que se adicionen a la cédula.
+        public static int InsertCuentas(CedulaModelo modelo)
+        {
+            //-1 Fallo en la insercion
+            //1 éxito en la operacion
+            int result = 0;
+            if (!(modelo == null))
+            {
+                try
+                {
+                    using (_context = new SGPTEntidades())
+                    {
+
+                        CedulaModelo tablaDestino = modelo;
+                        //guardar la referencia
+                        foreach (DetalleCedulaModelo item in modelo.listaDetalleCedula)
+                        {
+                            if (item.iddc==0 && item.isuso==0 && item.claseregistro=="D")//Solo registros nuevos
+                            {
+                                item.idcedula = modelo.idcedula;
+                                try
+                                {
+                                    item.aumentodc = item.saldoactualdc - item.saldoanteriordc;
+                                    if (item.saldoanteriordc != null && item.saldoanteriordc != 0)
+                                    {
+                                        item.disminuciondc = (item.aumentodc / item.saldoanteriordc) * 100;
+                                    }
+                                    //Se envian los detalles
+                                    switch (DetalleCedulaModelo.Insert(item))
+                                    {
+                                        case 0://No se pudo insertar
+                                            result = 2;
+                                            break;
+                                        case 1://Se inserto con éxito
+                                            result = 1;
+                                            break;
+                                        case -1:
+                                            result = -2;
+                                            break;
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+                                    result = -2;
+                                    MessageBox.Show("No ha sido posible insertar el registro \n" + e);
+                                }
+                            }
+                        }
+                        return result;//éxito
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Exception en insertar registro \n" + e);
+                    return -1;//Error en la inserción
+                }
+            }
+            else
+            {
+                return result;
+            }
+        }
 
         public static CedulaModelo Find(int id)
         {
@@ -2345,7 +2407,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         i++;
                         if (item.aumentodc != null && item.aumentodc != 0)
                         {
-                            item.variaciónporcentual = item.aumentodc / item.saldoanteriordc;
+                            item.variacionporcentual = item.aumentodc / item.saldoanteriordc;
                         }
                     }
 
@@ -2453,7 +2515,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         i++;
                         if (item.aumentodc != null && item.aumentodc != 0)
                         {
-                            item.variaciónporcentual = item.aumentodc / item.saldoanteriordc;
+                            item.variacionporcentual = item.aumentodc / item.saldoanteriordc;
                         }
                     }
 
@@ -2816,7 +2878,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
 
         }
 
-        public static CedulaModelo FindMaestro(int idEncargo, int idTc, string titulocedula,int idVisita)
+        public static CedulaModelo FindMaestro(int idEncargo, int idTc, string titulocedula,int? idVisita)
         {
             cedula modelo = new cedula();
             CedulaModelo entidad = new CedulaModelo();

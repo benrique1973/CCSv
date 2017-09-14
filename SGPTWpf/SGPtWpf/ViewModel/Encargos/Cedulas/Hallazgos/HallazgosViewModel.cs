@@ -1823,6 +1823,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Hallazgos
             //currentEntidad.idtc = idtc;//Se asigna el tipo de cedula a utilizar
             currentEntidadDetalle = new CedulaHallazgosModelo(currentEntidad, currentEncargo, usuarioModelo);
             currentEntidadDetalle.orden = lista.Count() + 1;
+            currentEntidadDetalle.referenciahallazgo = "H-" + currentEntidadDetalle.orden.ToString();
             ECMainModel.TypeName = "CedulaHallazgosCrearview";
             #endregion
 

@@ -290,6 +290,7 @@ F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Documentos\Consulta\P
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Documentos\DocumentosView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Documentos\Generacion\GeneracionView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Agenda\CedulaAgendaView.g.cs
+F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesConsulta.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesCrudView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesPresentacionView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesView.g.cs
@@ -336,7 +337,6 @@ F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Suma
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraPresentacionView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\ReferenciarView.g.cs
-F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudSeleccionView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaPresentacionView.g.cs
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaView.g.cs
@@ -620,6 +620,7 @@ F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Documentos\Consulta\P
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Documentos\DocumentosView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Documentos\Generacion\GeneracionView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Agenda\CedulaAgendaView.baml
+F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesConsulta.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesCrudView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesPresentacionView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Ajustes\AjustesView.baml
@@ -666,7 +667,6 @@ F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Suma
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraPresentacionView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\ReferenciarView.baml
-F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudSeleccionView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaCrudView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaPresentacionView.baml
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Detalle\DetalleCedulaView.baml

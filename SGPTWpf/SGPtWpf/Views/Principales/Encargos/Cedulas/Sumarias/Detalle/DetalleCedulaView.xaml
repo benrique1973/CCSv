@@ -139,7 +139,7 @@
                         HorizontalAlignment="Left"
                         HeadersVisibility="All"
                         HorizontalScrollBarVisibility="Auto"
-                        Width="1520"
+                        Width="1600"
                         MinHeight="100"
                         AllowDrop="False"
                         VerticalScrollBarVisibility="Auto"
@@ -177,19 +177,49 @@
                                                                Source={StaticResource proxy},UpdateSourceTrigger= PropertyChanged}"/>
                                 <MenuItem  Command="{Binding Path=Data.GestionTareasCommand,
                                                                Source={StaticResource proxy}}" 
-                                                               Header="Gestión de notas" ToolTip="Administra las tareas de la cédula"
+                                                               Header="Gestión de tareas" ToolTip="Administra las tareas de la cédula"
                                                                Visibility="{Binding Data.visibilidadMenuTareas,
                                                                Source={StaticResource proxy},UpdateSourceTrigger= PropertyChanged}"/>
                                 <MenuItem  Command="{Binding Path=Data.GestionPartidasCommand,
                                                                Source={StaticResource proxy}}" 
-                                                               Header="Gestión de notas" ToolTip="Administra las partidas de la cédula"
+                                                               Header="Gestión de partidas" ToolTip="Administra las partidas de la cédula"
                                                                Visibility="{Binding Data.visibilidadMenuPartidas,
                                                                Source={StaticResource proxy},UpdateSourceTrigger= PropertyChanged}"/>
                                 <MenuItem  Command="{Binding Path=Data.GestionHallazgosCommand,
                                                                Source={StaticResource proxy}}" 
-                                                               Header="Gestión de notas" ToolTip="Administra los hallazgos de la cédula"
+                                                               Header="Gestión de hallazgos" ToolTip="Administra los hallazgos de la cédula"
                                                                Visibility="{Binding Data.visibilidadMenuHallazgos,
                                                                Source={StaticResource proxy},UpdateSourceTrigger= PropertyChanged}"/>
+                            </ContextMenu>
+                            <ContextMenu x:Key="MenuContable"  >
+                                <MenuItem  Command="{Binding Path=Data.nuevaPartidaCommand,
+                                                                       Source={StaticResource proxy}}" 
+                                                                       Header="nueva Partida" ToolTip="Crea nueva partida" 
+                                                                       HorizontalAlignment="Left"/>
+                                <MenuItem  Command="{Binding Path=Data.consultarPartidasCommand,
+                                                                       Source={StaticResource proxy}}" 
+                                                                       Header="consultar Partidas " ToolTip="muestra la composicion de partida"
+                                                                        HorizontalAlignment="Left"/>
+                            </ContextMenu>
+                            <ContextMenu x:Key="MenuHallazgos"  >
+                                <MenuItem  Command="{Binding Path=Data.nuevoHallazgoCommand,
+                                                                       Source={StaticResource proxy}}" 
+                                                                       Header="nueva Hallazgo" ToolTip="Crea nuevo Hallazgo" 
+                                                                       HorizontalAlignment="Left"/>
+                                <MenuItem  Command="{Binding Path=Data.consultarHallazgosCommand,
+                                                                       Source={StaticResource proxy}}" 
+                                                                       Header="consultar Hallazgos " ToolTip="muestra el Hallazgo"
+                                                                        HorizontalAlignment="Left"/>
+                            </ContextMenu>
+                            <ContextMenu x:Key="MenuNotas"  >
+                                <MenuItem  Command="{Binding Path=Data.nuevaNotaCommand,
+                                                                       Source={StaticResource proxy}}" 
+                                                                       Header="nueva Nota" ToolTip="Crea nueva Nota" 
+                                                                       HorizontalAlignment="Left"/>
+                                <MenuItem  Command="{Binding Path=Data.consultarNotasCommand,
+                                                                       Source={StaticResource proxy}}" 
+                                                                       Header="consultar Notas " ToolTip="muestra la composicion de Nota"
+                                                                        HorizontalAlignment="Left"/>
                             </ContextMenu>
                         </DataGrid.Resources>
 
@@ -209,10 +239,34 @@
                                 MinWidth="100" MaxWidth="100" Width="100" IsReadOnly="False">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
-                                        <Setter Property="Foreground" Value="Red"/>
-                                        <Setter Property="ToolTip" Value="Referencias"/>
-                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                        <Style.Triggers>
+                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="D">
+                                                <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="ToolTip" Value="Referencias"/>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="ToolTip" Value="Referencias"/>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn><!--1-->
@@ -226,7 +280,7 @@
                                         </StackPanel>
                                     </Grid>
                                 </DataGridTemplateColumn.Header>
-                                <DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
                                         <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="100" IsEnabled="False"
                                                                 Text="{Binding codigocontabledc}"
@@ -260,7 +314,7 @@
                                 </DataGridTemplateColumn.CellStyle>
                             </DataGridTemplateColumn><!--2-->
 
-                            <DataGridTemplateColumn x:Name="ColNombreCuenta" MinWidth="200" MaxWidth="200" Width="200" IsReadOnly="True">
+                            <DataGridTemplateColumn x:Name="ColNombreCuenta" MinWidth="200" MaxWidth="200" Width="200" IsReadOnly="False">
                                 <DataGridTemplateColumn.Header>
                                     <TextBlock  Text="CUENTA CONTABLE"  />
                                 </DataGridTemplateColumn.Header>
@@ -272,10 +326,45 @@
                                         </TextBlock>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate >
+                                    <DataTemplate>
+                                        <TextBox 
+                                                         SpellCheck.IsEnabled="True"
+                                                         x:Name="txtcomentariodp" 
+                                                         IsEnabled="True"
+                                                         IsReadOnly="False"
+                                                         HorizontalContentAlignment="Left" 
+                                                         VerticalContentAlignment="Top"  
+                                                         HorizontalAlignment="Left"  
+                                                         Controls:TextBoxHelper.ClearTextButton="True"
+                                                         Margin="1" VerticalAlignment="Top" 
+                                                         MinHeight="30"
+                                                         MinWidth="200"
+                                                         MaxWidth="200"
+                                                         TextWrapping="Wrap"
+                                                         AcceptsReturn="True"
+                                                            Text="{Binding nombrecuenta, 
+                                                            NotifyOnValidationError=True, 
+                                                            UpdateSourceTrigger=PropertyChanged, 
+                                                            ValidatesOnDataErrors=True}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>                                
+                                
                                 <DataGridTemplateColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Style.Triggers>
                                             <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="D">
+                                                <Setter Property="ToolTip" Value="Nombre de cuenta contable"/>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                <Setter Property="IsEditing" Value="True"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
                                             <DataTrigger Binding="{Binding claseregistro}" Value="S">
                                                 <Setter Property="IsEnabled" Value="False"/>
                                                 <Setter Property="IsEditing" Value="False"/>
@@ -317,7 +406,7 @@
                                                     Text="{Binding m1dc, UpdateSourceTrigger=LostFocus}"
                                                     SelectedItem="{Binding m1dc, UpdateSourceTrigger=LostFocus}"
                                                     IsEditable="False"
-                                                    Controls:TextBoxHelper.Watermark="Seleccione la marca"
+                                                    Controls:TextBoxHelper.Watermark="Marcas"
                                                     AllowDrop="False" ToolTip="Escoja la marca">
                                         </ComboBox>
                                     </DataTemplate>
@@ -341,7 +430,6 @@
                                     </Style>
                                 </DataGridTemplateColumn.CellStyle>
                             </DataGridTemplateColumn><!--4-->
-
 
                             <DataGridTemplateColumn x:Name="ColSaldoActual" MinWidth="100" MaxWidth="100" Width="100" IsReadOnly="True" >
                                 <DataGridTemplateColumn.Header>
@@ -424,7 +512,7 @@
                                                     Text="{Binding m2dc, UpdateSourceTrigger=LostFocus}"
                                                     SelectedItem="{Binding m2dc, UpdateSourceTrigger=LostFocus}"
                                                     IsEditable="False"
-                                                    Controls:TextBoxHelper.Watermark="Seleccione la marca"
+                                                    Controls:TextBoxHelper.Watermark="Marcas"
                                                     AllowDrop="False" ToolTip="Escoja la marca">
                                         </ComboBox>
                                     </DataTemplate>
@@ -533,7 +621,7 @@
                                                     Text="{Binding m3dc, UpdateSourceTrigger=LostFocus}"
                                                     SelectedItem="{Binding m3dc, UpdateSourceTrigger=LostFocus}"
                                                     IsEditable="False"
-                                                    Controls:TextBoxHelper.Watermark="Seleccione la marca"
+                                                    Controls:TextBoxHelper.Watermark="Marcas"
                                                     AllowDrop="False" ToolTip="Escoja la marca">
                                         </ComboBox>
                                     </DataTemplate>
@@ -628,8 +716,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate >
                                         <TextBlock  
-                                                        x:Name="txtvariaciónporcentual" 
-                                                        Text="{Binding Path= variaciónporcentual, 
+                                                        x:Name="txtvariacionporcentual" 
+                                                        Text="{Binding Path= variacionporcentual, 
                                                         UpdateSourceTrigger= PropertyChanged,
                                                         StringFormat=n2}"
                                                         MinWidth="100"
@@ -693,7 +781,8 @@
                                                         Margin="1"
                                                         HorizontalAlignment="Right"
                                                         TextAlignment="Right"
-                                                        ToolTip="Monto en partidas de ajuste">
+                                                        ContextMenu="{StaticResource MenuContable}"
+                                                        ToolTip="Monto en cargos por reajustes y reclasificaciones">
                                         </TextBlock>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -725,12 +814,11 @@
                                 </DataGridTemplateColumn.CellStyle>
                             </DataGridTemplateColumn><!--11-->
 
-                            <DataGridTextColumn  Binding="{Binding m4dc}" Width="30" MinWidth="30" MaxWidth="30" IsReadOnly="False">
+                            <DataGridTextColumn  Binding="{Binding m4dc}" Width="30" MinWidth="30" MaxWidth="30" IsReadOnly="True">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
                                         <Setter Property="Foreground" Value="Red"/>
-                                        <Setter Property="ToolTip" Value="Seleccione  la marca o  nota"/>
+                                        <Setter Property="ToolTip" Value="Partidas que conforman el saldo"/>
                                         <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
                                     </Style>
                                     
@@ -760,6 +848,7 @@
                                                         MaxWidth="100"
                                                         Margin="1"
                                                         HorizontalAlignment="Right"
+                                                        ContextMenu="{StaticResource MenuContable}"
                                                         TextAlignment="Right"
                                                         ToolTip="Valor de los abonos para el reajuste">
 
@@ -794,12 +883,11 @@
                                 </DataGridTemplateColumn.CellStyle>
                             </DataGridTemplateColumn><!--13-->
 
-                            <DataGridTextColumn  Binding="{Binding m5dc}" Width="30" MinWidth="30" MaxWidth="30" IsReadOnly="False">
+                            <DataGridTextColumn  Binding="{Binding m5dc}" Width="30" MinWidth="30" MaxWidth="30" IsReadOnly="True">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
                                         <Setter Property="Foreground" Value="Red"/>
-                                        <Setter Property="ToolTip" Value="Seleccione  la marca o  nota"/>
+                                        <Setter Property="ToolTip" Value="Partidasa que conforman el abono"/>
                                         <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -860,42 +948,227 @@
                                 </DataGridTemplateColumn.CellStyle>
                             </DataGridTemplateColumn><!--15-->
 
-                            <DataGridTextColumn  Binding="{Binding m6dc}" Width="30" MinWidth="30" MaxWidth="30" IsReadOnly="False">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
-                                        <Setter Property="Foreground" Value="Red"/>
-                                        <Setter Property="ToolTip" Value="Seleccione  la marca o  nota"/>
-                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <DataGridTemplateColumn x:Name="colm6dc" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock  x:Name="txtm6dc" 
+                                          Text="{Binding m6dc}"
+                                          Foreground="Red"
+                                          Padding="2"
+                                          ToolTip="Seleccione la marca correspondiente"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate >
+                                    <DataTemplate>
+                                        <ComboBox x:Name="seleccionMarcam6dc"
+                                                    Height="30"
+                                                    Background="Transparent"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Right"
+                                                    Width="30"
+                                                    MinWidth="30"
+                                                    MaxWidth="150"
+                                                    Foreground="Red"
+                                                    ItemsSource="{Binding Source={StaticResource marcasListado}}"
+                                                    Text="{Binding m6dc, UpdateSourceTrigger=LostFocus}"
+                                                    SelectedItem="{Binding m6dc, UpdateSourceTrigger=LostFocus}"
+                                                    IsEditable="False"
+                                                    Controls:TextBoxHelper.Watermark="Marcas"
+                                                    AllowDrop="False" ToolTip="Escoja la marca">
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="Foreground"  Value="Transparent"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
                                     </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn><!--16-->
-
-                            <DataGridTemplateColumn x:Name="ColObservacion" MinWidth="150" MaxWidth="150" Width="150" IsReadOnly="True">
+                                </DataGridTemplateColumn.CellStyle>
+                            </DataGridTemplateColumn>
+                            <!--16-->
+                            <!--Columna para notas-->
+                            <DataGridTemplateColumn x:Name="colm7dc" MinWidth="60" MaxWidth="60" Width="60" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="NOTAS"  />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <TextBlock  
+                                                        x:Name="txtm7dc" 
+                                                        Text="{Binding Path=m7dc, 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n2}"
+                                                        MinWidth="60"
+                                                        Width="60"
+                                                        MaxWidth="60"
+                                                        Margin="1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ContextMenu="{StaticResource MenuNotas}"
+                                                        ToolTip="Notas explicativas">
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+                                                <Setter Property="BorderThickness" Value="0,3,0,3"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="Foreground"  Value="Transparent"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                            </DataGridTemplateColumn>
+                            <!--17-->
+                            <!--Columna para hallazgos-->
+                            <DataGridTemplateColumn x:Name="colm8dc" MinWidth="60" MaxWidth="60" Width="60" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock  Text="HALL."  />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <TextBlock  
+                                                        x:Name="txtm8dc" 
+                                                        Text="{Binding Path=m8dc, 
+                                                        UpdateSourceTrigger= PropertyChanged,
+                                                        StringFormat=n2}"
+                                                        MinWidth="60"
+                                                        Width="60"
+                                                        MaxWidth="60"
+                                                        Margin="1"
+                                                        HorizontalAlignment="Right"
+                                                        TextAlignment="Right"
+                                                        ContextMenu="{StaticResource MenuHallazgos}"
+                                                        ToolTip="Hallazgos">
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+                                                <Setter Property="BorderThickness" Value="0,3,0,3"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="Foreground"  Value="Transparent"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTemplateColumn.CellStyle>
+                            </DataGridTemplateColumn>
+                            <!--18-->                            
+                            <DataGridTemplateColumn x:Name="ColObservacion" MinWidth="180" MaxWidth="180" Width="180" IsReadOnly="False">
                                 <DataGridTemplateColumn.Header>
                                     <TextBlock  Text="OBSERVACIONES"  />
                                 </DataGridTemplateColumn.Header>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="150" IsEnabled="False"
-                                                                Text="{Binding observaciondc}"
-                                                                ToolTip="Observaciones ">
+                                        <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="180" IsEnabled="False"
+                                         Text="{Binding observaciondc}"
+                                         ToolTip="Observaciones ">
                                         </TextBlock>
                                     </DataTemplate>
+                                    
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn><!--17-->
-                            
-                            <DataGridTextColumn  Binding="{Binding m7dc}" Width="30" MinWidth="30" MaxWidth="30" IsReadOnly="False">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="ContextMenu" Value="{StaticResource MenuContextual}"/>
-                                        <Setter Property="Foreground" Value="Red"/>
-                                        <Setter Property="ToolTip" Value="Seleccione  la marca o  nota"/>
-                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                <DataGridTemplateColumn.CellEditingTemplate >
+                                    <DataTemplate>
+                                        <TextBox 
+                                                         SpellCheck.IsEnabled="True"
+                                                         x:Name="txtcomentariodp" 
+                                                         IsEnabled="True"
+                                                         IsReadOnly="False"
+                                                         HorizontalContentAlignment="Left" 
+                                                         VerticalContentAlignment="Top"  
+                                                         HorizontalAlignment="Left"  
+                                                         Controls:TextBoxHelper.ClearTextButton="True"
+                                                         Margin="1" VerticalAlignment="Top" 
+                                                         MinHeight="30"
+                                                         MinWidth="180"
+                                                         MaxWidth="180"
+                                                         TextWrapping="Wrap"
+                                                         AcceptsReturn="True"
+                                                            Text="{Binding observaciondc, 
+                                                            NotifyOnValidationError=True, 
+                                                            UpdateSourceTrigger=PropertyChanged, 
+                                                            ValidatesOnDataErrors=True}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                                <DataGridTemplateColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Style.Triggers>
+                                            <!--http://es.stackoverflow.com/questions/34624/style-datagridrow-wpf-->
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="D">
+                                                <Setter Property="ToolTip" Value="Comentarios en el registro"/>
+                                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                                <Setter Property="IsEditing" Value="True"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="M">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="Foreground" Value="Red"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding claseregistro}" Value="S">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="IsEditing" Value="False"/>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="FontWeight"  Value="Bold"/>
+                                            </DataTrigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
                                     </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn><!--18-->
+                                </DataGridTemplateColumn.CellStyle>
+                            </DataGridTemplateColumn>
+                            <!--19-->
 
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
