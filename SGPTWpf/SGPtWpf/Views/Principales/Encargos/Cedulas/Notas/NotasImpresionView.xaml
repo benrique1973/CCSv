@@ -18,7 +18,8 @@
                       BorderBrush="{DynamicResource AccentColorBrush}"
                       BorderThickness="1"
                       ShowMinButton="True"
-                      IsWindowDraggable="True"  
+                      IsWindowDraggable="True"
+                      SizeToContent="WidthAndHeight"
                       xmlns:usrControl="clr-namespace:SGPTWpf.Recursos.controles.Administracion.Crud"
                       TitleCaps="False"
                       xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -67,10 +68,10 @@
             <conv:EnableConverter x:Key="EnableConvertir"/>
         </Grid.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="Auto" Width="816" HorizontalContentAlignment="Center" >
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="624" >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="625" >
                 <Grid >
                     <StackPanel Orientation="Vertical" >
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal"  Visibility="{Binding visibilidadEncabezado}">
                             <usrImpresion:EncabezadoEstandar
                             Grid.Row="0" Margin="0"/>
                         </StackPanel>
@@ -84,9 +85,9 @@
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         VerticalAlignment="Top"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         HorizontalScrollBarVisibility="Auto"
-                        Width="600"
+                        Width="620"
                         AllowDrop="True"
                         VerticalScrollBarVisibility="Auto"
                         CanUserResizeRows="True"
@@ -118,14 +119,14 @@
                                             </DataGridTextColumn.ElementStyle>
                                         </DataGridTextColumn>
 
-                                        <DataGridTemplateColumn x:Name="ColNumNota" Width="60" IsReadOnly="True">
+                                        <DataGridTemplateColumn x:Name="ColNumNota" Width="100" IsReadOnly="True">
                                             <DataGridTemplateColumn.Header>
                                                 <TextBlock  Text="NOTA"  />
                                             </DataGridTemplateColumn.Header>
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <TextBlock  x:Name="txtclasepartida" 
-                                                        TextWrapping="Wrap" MinWidth="60" IsEnabled="False"
+                                                        TextWrapping="Wrap" MinWidth="100" IsEnabled="False"
                                                                 Text="{Binding numnotapt}"
                                                                 ToolTip="Número de nota aclaratoria">
                                                     </TextBlock>
@@ -145,13 +146,13 @@
                                             </DataGridTextColumn.ElementStyle>
                                         </DataGridTextColumn>
 
-                                        <DataGridTemplateColumn x:Name="ColConcepto" Width="470" IsReadOnly="True">
+                                        <DataGridTemplateColumn x:Name="ColConcepto" Width="360" IsReadOnly="True">
                                             <DataGridTemplateColumn.Header>
                                                 <TextBlock  Text="NOTA"  />
                                             </DataGridTemplateColumn.Header>
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="470" IsEnabled="False"
+                                                    <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="360" IsEnabled="False"
                                                                 Text="{Binding descripcionnotaspt}"
                                                                 ToolTip="Explicación de la observación">
                                                     </TextBlock>

@@ -872,6 +872,33 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
 
         #endregion
 
+        #region visibilidadEncabezado
+
+        public const string visibilidadEncabezadoPropertyName = "visibilidadEncabezado";
+
+        private Visibility _visibilidadEncabezado = Visibility.Collapsed;
+
+        public Visibility visibilidadEncabezado
+        {
+            get
+            {
+                return _visibilidadEncabezado;
+            }
+
+            set
+            {
+                if (_visibilidadEncabezado == value)
+                {
+                    return;
+                }
+
+                _visibilidadEncabezado = value;
+                RaisePropertyChanged(visibilidadEncabezadoPropertyName);
+            }
+        }
+
+        #endregion
+
         #region fechaejecuto
 
         public const string fechaejecutoPropertyName = "fechaejecuto";
@@ -1095,6 +1122,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
         {
             #region configuracion general
             enviarMensajeInhabilitar();
+            _visibilidadEncabezado = Visibility.Visible;
             _currentEntidad = new CedulaModelo();
             _currentEntidadDetalle = new CedulaNotasModelo();
             _lista = new ObservableCollection<CedulaNotasModelo>();
@@ -1151,6 +1179,14 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
                     _tokenEnvioCierre = "PlanDetalleReferenciaVista";
                     _fuenteLlamado = 1;
                     _encabezadoPantalla = "Cédula de Notas";
+                    break;
+                case "DocumentacionCedulaNotasSumariasCedulaNotas":
+                    _tokenEnvioCierre = "datosControllerEncargoCedulasSumariasDetalle";
+                    _tokenRecepcion = "datosEncargoCedulasSumariasDetalle"; //Modificado
+
+                    _fuenteLlamado = 1;
+                    _encabezadoPantalla = "Cédula de Notas";
+                    _visibilidadEncabezado = Visibility.Collapsed;
                     break;
             }
             //Mensaje de vista desde el menu principal

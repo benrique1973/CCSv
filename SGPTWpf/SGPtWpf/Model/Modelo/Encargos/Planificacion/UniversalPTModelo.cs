@@ -177,6 +177,12 @@ namespace SGPTWpf.Model.Modelo.programas
                         case "DETALLEBALANCES":
                             break;
                         case "DETALLECEDULAS":
+                            {
+                                detallecedula registro = _context.detallecedulas.Find(idGenerico);
+                                int? idcedulaSumaria = registro.idcedula;
+                                cedula registroSumaria = _context.cedulas.Find(idcedulaSumaria);
+                                referencia = registroSumaria.referenciacedula;
+                            }
                             break;
                         case "DETALLECONFIRMACIONES":
                             break;
@@ -381,6 +387,7 @@ namespace SGPTWpf.Model.Modelo.programas
             catch (Exception e)
             {
                 MessageBox.Show("No fue posible la elaboracion del detalle\n" + e);
+                referencia = "Pendiente";
                 return referencia ="-1";
             }
         }

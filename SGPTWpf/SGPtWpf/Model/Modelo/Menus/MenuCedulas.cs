@@ -122,7 +122,9 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                     ViewType = typeof(SumariasView);
                     break;
                 case "Analíticas":
+                    //ViewType = typeof(AnaliticasView);
                     ViewType = typeof(AnaliticasView);
+                    ViewType = typeof(SumariasView);
                     break;
                 case "De Detalle":
                     ViewType = typeof(DeDetalleView);
@@ -190,8 +192,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         Contexto = new DeDetalleViewModel(token);
                         break;
                     case "Analíticas":
-                        ViewModelType = typeof(AnaliticasViewModel);
-                        Contexto = new AnaliticasViewModel(token);
+                        ViewModelType = typeof(SumariasViewModel);
+                        Contexto = new SumariasViewModel("cedulasAnaliticas");
+                        //Contexto = new AnaliticasViewModel(token);
+                        break;
+                    case "Detalle de Analíticas":
+                        ViewModelType = typeof(DetalleCedulaViewModel);
+                        Contexto = new DetalleCedulaViewModel("cedulasAnaliticasDetalle");
                         break;
                     case "Correspondencia":
                         //Uso de una variable para cargar otro controlador
@@ -284,12 +291,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                //                 ViewType = typeof(DeDetalleViewModel),
                //                 ViewDisplay ="De Detalle"
                //                 },
-               //new MenuCedulas {
-               //                 id=3,
-               //                 tabla="Analíticas",
-               //                 ViewType = typeof(AnaliticasViewModel),
-               //                 ViewDisplay ="Analíticas"
-               //                 },
+               new MenuCedulas {
+                                id=3,
+                                tabla="Analíticas",
+                                ViewType = typeof(SumariasViewModel),
+                                //ViewType = typeof(AnaliticasViewModel),
+                                ViewDisplay ="Analíticas"
+                                },
                //new MenuCedulas {
                //                 id=4,
                //                 tabla="Correspondencia",

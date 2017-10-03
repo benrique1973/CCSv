@@ -234,7 +234,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
 
         public const string visibilidadMCrearPropertyName = "visibilidadMCrear";
 
-        private Visibility _visibilidadMCrear = Visibility.Collapsed;
+        private Visibility _visibilidadMCrear = Visibility.Visible;
 
         public Visibility visibilidadMCrear
         {
@@ -1275,7 +1275,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Ajustes
                     _tablaDetalle = "Ajustes y reclasificaciones";
                     #region  menu
 
-                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMCrear = Visibility.Visible;
                     _visibilidadMEditar = Visibility.Collapsed;
                     _visibilidadMBorrar = Visibility.Collapsed;
                     _visibilidadMConsulta = Visibility.Collapsed;

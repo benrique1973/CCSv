@@ -1300,6 +1300,12 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     _fuenteLlamado = 1;
                     _encabezadoPantalla = "Cédula Sumaria";
                     break;
+                case "DocumentacionCedulasAnaliticas":
+                    _tokenEnvioCierre = "datosEncargoCedulasAnalíticasController";
+                    _tokenRecepcion = "datosEncargoCedulasAnalíticas"; //Modificado
+                    _fuenteLlamado = 1;
+                    _encabezadoPantalla = "Cédula Analítica";
+                    break;
                 case "IndiceCedulaSumaria":
                     _tokenRecepcion = "datosPadreDetalleIndices";  //Modificado
                     _tokenEnvioCierre = "datosControllerDetalleIndices";
@@ -1418,9 +1424,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         private void llenadoDatos()
         {
             //Encabezado
-            if (currentEntidad.idtc == 1)
+            if (!string.IsNullOrEmpty(currentEntidad.titulocedula))
             {
-                encabezadoPantalla = "Cedula Sumaria " + currentEntidad.titulocedula;
+                encabezadoPantalla = encabezadoPantalla +" " + currentEntidad.titulocedula;
             }
             if (currentEntidad.objetivocedula != null && !string.IsNullOrEmpty(currentEntidad.objetivocedula))
             {
@@ -1433,6 +1439,10 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             if (currentEntidad.conclusioncedula != null && !string.IsNullOrEmpty(currentEntidad.conclusioncedula))
             {
                 visibilidadConclusiones = Visibility.Visible;
+            }
+            if (currentEntidad.idvisita != null)
+            {
+                encabezadoPantalla = encabezadoPantalla +" "+ currentEntidad.descripcionvisita;
             }
             //Usuarios
             usuarioEjecuto = currentEntidad.usuariocerro;

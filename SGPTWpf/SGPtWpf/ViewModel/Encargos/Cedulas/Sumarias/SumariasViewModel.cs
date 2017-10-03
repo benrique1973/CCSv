@@ -1496,11 +1496,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     #endregion
 
                     break;
-                /* case "cedulasHallazgos":
-                    #region hallazgos
-
+                case "cedulasAnaliticas":
                     fuenteLlamado = 1;
-                    _idtc = 6;//Sumarias
+                    _idtc = 2;//Sumarias
                     //2;"Analítica";"A";TRUE
                     //3;"De detalle";"A";TRUE
                     //4;"De variaciones";"A";TRUE
@@ -1520,22 +1518,21 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     //18;"Agenda";"A";FALSE
                     //19: Otras
                     //Indica la clase de documento
-
                     #region tokens
 
-                    _tokenRecepcionPadre = "Hallazgos" + "Cédulas";//Permite captar los mensajes del  menú planificacion, corresponde a Indices
-                    
-                    _tokenEnvioDatosAHijo = "datosEncargoCedulasHallazgosMenuPrincipal";//Para control de los datos que  remite programas a sub-ventanas
+                    _tokenRecepcionPadre = "Analíticas" + "Cédulas";//Permite captar los mensajes del  menú planificacion, corresponde a Indices
 
-                    _tokenRecepcionHijo = "datosEncargoCedulasHallazgosControllerMenuPrincipal";
+                    _tokenRecepcionCierrePreView = "EncargoCedulasAnalíticas";//Sirve tanto para los programas en vista previa como para el controllador;
 
-                    _tokenRecepcionCierrePreView = "EncargoCedulasHallazgosMenuPrincipal";//Sirve tanto para los programas en vista previa como para el controllador;
+                    _tokenEnvioDatosAHijo = "datosEncargoCedulasAnalíticas";//Para control de los datos que  remite programas a sub-ventanas
+
+                    _tokenRecepcionHijo = "datosEncargoCedulasAnalíticasController";
 
                     #endregion
 
-                    _tablaDetalle = "Hallazgos";
-                    _tablaResumen = "resumenHallazgoscedulas";
                     RegisterCommands();
+                    _tablaDetalle = "detallecedulasAnaliticas";
+                    _tablaResumen = "resumenAnaliticascedulas";
 
                     #region  menu
 
@@ -1544,7 +1541,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     _visibilidadMBorrar = Visibility.Visible;
                     _visibilidadMConsulta = Visibility.Visible;
                     _visibilidadMReferenciar = Visibility.Visible;//Pendiente
-                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMRegresar = Visibility.Visible;
                     _visibilidadMVista = Visibility.Visible;
                     _visibilidadMImportar = Visibility.Collapsed;
                     _visibilidadMDetalle = Visibility.Visible;
@@ -1557,9 +1554,71 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     _visibilidadMResumen = Visibility.Collapsed;
                     #endregion
 
-                    #endregion hallazgos
+                    break;
+                    /* case "cedulasHallazgos":
+                        #region hallazgos
 
-                    break;*/
+                        fuenteLlamado = 1;
+                        _idtc = 6;//Sumarias
+                        //2;"Analítica";"A";TRUE
+                        //3;"De detalle";"A";TRUE
+                        //4;"De variaciones";"A";TRUE
+                        //5;"Cumplimiento legal";"A";TRUE
+                        //6;"Hallazgos";"A";TRUE
+                        //7;"Notas";"A";TRUE
+                        //8;"Correspondencia";"A";TRUE
+                        //9;"Reuniones";"A";TRUE
+                        //10;"Contactos";"A";TRUE
+                        //11;"Expediente";"A";TRUE
+                        //12;"Cronograma";"A";TRUE
+                        //13;"Marcas";"A";TRUE
+                        //14;"Confirmaciones";"A";TRUE
+                        //15;"Ajustes y reclasificaciones";"A";TRUE
+                        //16;"Expediente";"A";TRUE
+                        //17;"Conclusiones";"A";TRUE
+                        //18;"Agenda";"A";FALSE
+                        //19: Otras
+                        //Indica la clase de documento
+
+                        #region tokens
+
+                        _tokenRecepcionPadre = "Hallazgos" + "Cédulas";//Permite captar los mensajes del  menú planificacion, corresponde a Indices
+
+                        _tokenEnvioDatosAHijo = "datosEncargoCedulasHallazgosMenuPrincipal";//Para control de los datos que  remite programas a sub-ventanas
+
+                        _tokenRecepcionHijo = "datosEncargoCedulasHallazgosControllerMenuPrincipal";
+
+                        _tokenRecepcionCierrePreView = "EncargoCedulasHallazgosMenuPrincipal";//Sirve tanto para los programas en vista previa como para el controllador;
+
+                        #endregion
+
+                        _tablaDetalle = "Hallazgos";
+                        _tablaResumen = "resumenHallazgoscedulas";
+                        RegisterCommands();
+
+                        #region  menu
+
+                        _visibilidadMCrear = Visibility.Visible;
+                        _visibilidadMEditar = Visibility.Visible;
+                        _visibilidadMBorrar = Visibility.Visible;
+                        _visibilidadMConsulta = Visibility.Visible;
+                        _visibilidadMReferenciar = Visibility.Visible;//Pendiente
+                        _visibilidadMRegresar = Visibility.Collapsed;
+                        _visibilidadMVista = Visibility.Visible;
+                        _visibilidadMImportar = Visibility.Collapsed;
+                        _visibilidadMDetalle = Visibility.Visible;
+
+                        _visibilidadMCerrar = Visibility.Visible;
+                        _visibilidadMSupervisar = Visibility.Visible;
+                        _visibilidadMAprobar = Visibility.Visible;
+                        _visibilidadMTask = Visibility.Collapsed;
+                        _visibilidadMImprimir = Visibility.Collapsed;
+                        _visibilidadMResumen = Visibility.Collapsed;
+                        #endregion
+
+                        #endregion hallazgos
+
+                        break;*/
             }
 
 
@@ -1732,6 +1791,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 case 1:
                 ECMainModel.TypeName = "CedulaModeloCrearview";
                 break;
+                case 2:
+                ECMainModel.TypeName = "CedulaModeloAnaliticaCrearview";
+                break;
                 case 6://Cedula hallazgos
                 ECMainModel.TypeName = "CedulaModeloHallazgosCrearview";
                 break;
@@ -1758,10 +1820,14 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     currentEntidad.usuarioModelo = usuarioModelo;
                     switch (idtc)//Depende del tipo de cedula
                     {
+                        
                         case 1:
                             ECMainModel.TypeName = "CedulaModeloEditarView";
                             break;
-                        case 6://Cedula hallazgos
+                        case 2:
+                            ECMainModel.TypeName = "CedulaModeloAnaliticaEditarView";
+                        break;
+                    case 6://Cedula hallazgos
                             ECMainModel.TypeName = "CedulaModeloHallazgosEditarView";
                             break;
                     }
@@ -1793,6 +1859,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     {
                         case 1:
                             ECMainModel.TypeName = "CedulaModeloConsultarView";
+                            break;
+                        case 2:
+                            ECMainModel.TypeName = "CedulaModeloAnaliticaConsultarView";
                             break;
                         case 6://Cedula hallazgos
                             ECMainModel.TypeName = "CedulaModeloHallazgosConsultarView";
@@ -2151,6 +2220,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 case 1:
                     ECMainModel.TypeName = "CedulaModeloSeleccionarVisitaView";
                     break;
+                case 2:
+                    ECMainModel.TypeName = "CedulaModeloAnaliticaSeleccionarVisitaView";
+                    break;
                 case 6://Cedula hallazgos
                     ECMainModel.TypeName = "CedulaModeloHallazgosSeleccionarVisitaView";
                     break;
@@ -2269,6 +2341,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                         case 1:
                             ECMainModel.TypeName = "CedulaModeloReferenciarView";
                             break;
+                        case 2:
+                            ECMainModel.TypeName = "CedulaModeloAnaliticaReferenciarView";
+                            break;
                         case 6://Cedula hallazgos
                             ECMainModel.TypeName = "CedulaModeloHallazgosReferenciarView";
                             break;
@@ -2361,6 +2436,10 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     case 1:
                         ECMainModel.TypeName = "CedulaModeloAprobarView";
                         break;
+                        
+                    case 2:
+                        ECMainModel.TypeName = "CedulaModeloAnaliticaAprobarView";
+                        break;
                     case 6://Cedula hallazgos
                         ECMainModel.TypeName = "CedulaModeloHallazgosAprobarView";
                         break;
@@ -2390,6 +2469,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     {
                         case 1:
                             ECMainModel.TypeName = "CedulaModeloSupervisarView";
+                            break;
+                        case 2:
+                            ECMainModel.TypeName = "CedulaModeloAnaliticaSupervisarView";
                             break;
                         case 6://Cedula hallazgos
                             ECMainModel.TypeName = "CedulaModeloHallazgosSupervisarView";
@@ -2438,7 +2520,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 {
                     if (currentEntidad.referenciacedula!=string.Empty)
                     {
-                        if (currentEntidad.conclusioncedula != string.Empty)
+                        if (currentEntidad.conclusioncedula != string.Empty || currentEntidad.idtc==2)
                         {
                             comando = 10;//Referenciacion
                             iniciarComando();
@@ -2446,6 +2528,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                             {
                                 case 1:
                                     ECMainModel.TypeName = "CedulaModeloCerrarView";
+                                    break;
+                                case 2:
+                                    ECMainModel.TypeName = "CedulaModeloAnaliticaCerrarView";
                                     break;
                                 case 6://Cedula hallazgos
                                     ECMainModel.TypeName = "CedulaModeloHallazgosCerrarView";
@@ -2508,6 +2593,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     {
                         case 1:
                             ECMainModel.TypeName = "CierreTipoCarpetaModeloConsultarView";
+                            break;
+                        case 2:
+                            ECMainModel.TypeName = "CierreTipoCarpetaModeloAnaliticaConsultarView";
                             break;
                         case 6://Cedula hallazgos
                             ECMainModel.TypeName = "CierreTipoCarpetaModeloHallazgosConsultarView";
@@ -2583,6 +2671,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 {
                     case 1:
                         ECMainModel.TypeName = "CedulaSumariaVerView";
+                        break;
+                    case 2:
+                        ECMainModel.TypeName = "CedulaSumariaAnaliticaVerView";
                         break;
                     case 6://Cedula hallazgos
                         ECMainModel.TypeName = "CedulaSumariaHallazgosVerView";

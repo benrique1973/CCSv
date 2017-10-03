@@ -1,3 +1,4 @@
+F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.ReportViewer.Common.dll
 F:\CCSv\blopez\SGPTWpf\bin\Debug\SGPTWpf.exe.config
 F:\CCSv\blopez\SGPTWpf\bin\Debug\SGPTWpf.exe
 F:\CCSv\blopez\SGPTWpf\bin\Debug\SGPTWpf.pdb
@@ -27,7 +28,6 @@ F:\CCSv\blopez\SGPTWpf\bin\Debug\itextsharp.dll
 F:\CCSv\blopez\SGPTWpf\bin\Debug\MahApps.Metro.dll
 F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.Expression.Interactions.dll
 F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.ReportViewer.Common.dll
 F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.DLL
 F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.ReportViewer.WebForms.DLL
 F:\CCSv\blopez\SGPTWpf\bin\Debug\Microsoft.VisualStudio.Tools.Applications.Runtime.dll
@@ -794,3 +794,7 @@ F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPTWpf.Properties.Resources.resources
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPTWpf.csproj.GenerateResource.Cache
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPTWpf.exe
 F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPTWpf.pdb
+F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudAnaliticaView.g.cs
+F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudAnaliticaView.baml
+F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudUnificada.g.cs
+F:\CCSv\blopez\SGPTWpf\obj\Debug\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudUnificada.baml

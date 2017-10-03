@@ -80,7 +80,7 @@ namespace SGPTWpf.AttachedBehaviors
                     switch (e.NewValue.ToString())
                     {
                         /*Casos de Encargos planificacion programas */
-
+                        #region Sumaria 
                         case "CedulaModeloCrearview":
                             encabezado = "Creación de cédula";
                             crearVentana = new CedulaCrudView();
@@ -173,6 +173,101 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                             break;
 
+                        #endregion sumaria
+                        #region Analitica
+
+                        case "CedulaModeloAnaliticaCrearview":
+                            encabezado = "Creación de cédula analítica";
+                            crearVentana = new CedulaCrudAnaliticaView();
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            break;
+                        case "CedulaModeloAnaliticaEditarView":
+                            encabezado = "Actualización de cédula analítica";
+                            crearVentana = new CedulaCrudView();
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            break;
+                        //case "CedulaModeloAnaliticaImportarView":
+                        //    encabezado = "Importar de encargos anteriores";
+                        //    crearVentana = new ImportarRepositorioView();
+                        //    crearVentana.DataContext = new RepositorioModeloController("DocumentacionCartasAnaliticas");
+                        //    crearVentana.MinHeight = largo * 0.15;
+                        //    crearVentana.MinWidth = ancho * 0.15;
+                        //    crearVentana.MaxWidth = ancho;
+                        //    crearVentana.MaxHeight = largo;
+                        //    break;
+                        case "CedulaModeloAnaliticaConsultarView":
+                            encabezado = "Consulta de cédula analítica";
+                            crearVentana = new CedulaCrudView();
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            break;
+                        case "CedulaModeloAnaliticaReferenciarView":
+                            encabezado = "Referenciación de cédula de auditoría analítica";
+                            crearVentana = new ReferenciarView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            break;
+                        case "CedulaModeloAnaliticaCerrarView":
+                            encabezado = "Cierre del documento";
+                            crearVentana = new ReferenciarView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            break;
+                        case "CedulaModeloAnaliticaSupervisarView":
+                            encabezado = "Supervisa y aprueba el documento";
+                            crearVentana = new ReferenciarView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            break;
+                        case "CedulaModeloAnaliticaAprobarView":
+                            encabezado = "Terminación del papel de trabajo";
+                            crearVentana = new ReferenciarView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            break;
+                        case "CedulaSumariaAnaliticaVerView":
+                            encabezado = "Cédula analítica";
+                            crearVentana = new SumariaPresentacionView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaPresentacionViewModel("DocumentacionCedulasAnaliticas");
+                            break;
+                        case "CedulaModeloAnaliticaSeleccionarVisitaView":
+                            encabezado = "Selección de visita para agrupar sumarias analítica";
+                            crearVentana = new SumariaSeleccionView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaControllerViewModel("DocumentacionCedulasAnaliticas");
+                            crearVentana.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                            break;
+                        #endregion analitica
 
                         //case "CedulaModeloHallazgosSeleccionarVisitaView":
                         //    encabezado = "Selección de visita para agrupar sumarias";

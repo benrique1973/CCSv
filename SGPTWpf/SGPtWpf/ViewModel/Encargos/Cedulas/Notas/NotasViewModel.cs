@@ -1512,7 +1512,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
                     _tablaDetalle = "Notas";
                     #region  menu
 
-                    _visibilidadMCrear = Visibility.Visible;
+                    _visibilidadMCrear = Visibility.Collapsed;
                     _visibilidadMEditar = Visibility.Visible;
                     _visibilidadMBorrar = Visibility.Visible;
                     _visibilidadMConsulta = Visibility.Visible;
@@ -1548,7 +1548,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
                     _tablaDetalle = "Notas";
                     #region  menu
 
-                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMCrear = Visibility.Visible;
                     _visibilidadMEditar = Visibility.Visible;
                     _visibilidadMBorrar = Visibility.Collapsed;
                     _visibilidadMConsulta = Visibility.Visible;

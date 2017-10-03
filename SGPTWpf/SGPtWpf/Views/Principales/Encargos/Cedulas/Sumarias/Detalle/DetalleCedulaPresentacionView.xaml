@@ -99,7 +99,7 @@
                                                             TextAlignment="Center"
                                                             Margin="1,1,1,1"
                                                             Text="REFERENCIA PT"
-                                                            Width="77"
+                                                            Width="97"
                                                             TextWrapping="Wrap"
                                                             VerticalAlignment="Center"/>
                                                                 </StackPanel>
@@ -113,7 +113,7 @@
                                                             TextAlignment="Center"
                                                             Margin="1"
                                                             Text="CÓDIGO CONTABLE"
-                                                            Width="75"
+                                                            Width="90"
                                                             TextWrapping="Wrap"
                                                             VerticalAlignment="Center" ToolTip="Código de cuenta contable según catalogo de cuentas"/>
                                                                 </StackPanel>
@@ -276,7 +276,7 @@
                                                                         TextAlignment="Center"
                                                                         Margin="1,1,1,1"
                                                                         Text="SALDO SEGUN AUDITORIA"
-                                                                        Width="85"
+                                                                        Width="125"
                                                                         TextWrapping="Wrap"
                                                                         VerticalAlignment="Center"/>
                                                                 </StackPanel>
@@ -292,8 +292,8 @@
                                                                         TextAlignment="Center"
                                                                         Margin="1,1,1,1"
                                                                         TextWrapping="Wrap"
-                                                                        Text="OBSERVACIONES"
-                                                                        Width="116"
+                                                                        Text="NOTAS"
+                                                                        Width="45"
                                                                         VerticalAlignment="Center"/>
                                                                 </StackPanel>
 
@@ -312,9 +312,9 @@
                                                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                         VerticalAlignment="Top"
                                                         HorizontalAlignment="Left"
-                                                        HeadersVisibility="None"
+                                                        HeadersVisibility="Column"
                                                         HorizontalScrollBarVisibility="Auto"
-                                                        Width="1100"
+                                                        Width="1095"
                                                         MinHeight="80"
                                                         AllowDrop="False"
                                                         VerticalScrollBarVisibility="Auto"
@@ -334,7 +334,7 @@
                                                         </DataGrid.Resources>
                                                         <DataGrid.Columns >
 
-                                                            <DataGridTextColumn Header="Ref PT"  MinWidth="80" MaxWidth="80" Width="80" IsReadOnly="True" 
+                                                            <DataGridTextColumn Header="Ref PT"  MinWidth="100" MaxWidth="100" Width="100" IsReadOnly="True" 
                                                             Binding="{Binding Path= referenciapapel , 
                                                             UpdateSourceTrigger=PropertyChanged}">
                                                                 <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
@@ -371,7 +371,7 @@
                                                                 </DataGridTextColumn.CellStyle>
                                                             </DataGridTextColumn>
 
-                                                            <DataGridTemplateColumn x:Name="ColCodigoCuenta" MinWidth="80" MaxWidth="80" Width="80" IsReadOnly="True">
+                                                            <DataGridTemplateColumn x:Name="ColCodigoCuenta" MinWidth="95" MaxWidth="95" Width="95" IsReadOnly="True">
                                                                 <DataGridTemplateColumn.Header>
                                                                     <Grid>
                                                                         <StackPanel>
@@ -763,7 +763,7 @@
                                                                 </DataGridTemplateColumn.CellTemplate>
                                                             </DataGridTemplateColumn>
 
-                                                            <DataGridTemplateColumn x:Name="ColSaldoFinal" MinWidth="90" MaxWidth="90" Width="90" IsReadOnly="True" >
+                                                            <DataGridTemplateColumn x:Name="ColSaldoFinal" MinWidth="100" MaxWidth="100" Width="100" IsReadOnly="True" >
                                                                 <DataGridTemplateColumn.Header>
                                                                     <Grid>
                                                                         <StackPanel>
@@ -781,9 +781,9 @@
                                                                         Text="{Binding Path= saldofinaldc, 
                                                                         UpdateSourceTrigger= PropertyChanged,
                                                                         StringFormat=n}"
-                                                                        MinWidth="80"
-                                                                        Width="80"
-                                                                        MaxWidth="80"
+                                                                        MinWidth="100"
+                                                                        Width="100"
+                                                                        MaxWidth="100"
                                                                         Margin="1"
                                                                         HorizontalAlignment="Right"
                                                                         TextAlignment="Right"
@@ -812,20 +812,26 @@
                                                                 </DataGridTemplateColumn.CellStyle>
                                                             </DataGridTemplateColumn>
 
-                                                            <DataGridTemplateColumn x:Name="ColObservacion" MinWidth="120" MaxWidth="120" Width="120" IsReadOnly="True">
-                                                                <DataGridTemplateColumn.Header>
-                                                                    <TextBlock  Text="OBSERVACIONES"  />
-                                                                </DataGridTemplateColumn.Header>
+                                                            <DataGridTemplateColumn x:Name="Colm6dc" Width="30" IsReadOnly="True" >
                                                                 <DataGridTemplateColumn.CellTemplate>
                                                                     <DataTemplate>
-                                                                        <TextBlock  x:Name="txtclasepartida"  TextWrapping="Wrap" MinWidth="120" IsEnabled="False"
-                                                                Text="{Binding observaciondc}"
-                                                                ToolTip="Observaciones ">
+                                                                        <TextBlock  x:Name="txtm6dc"  TextWrapping="Wrap" MinWidth="30" IsEnabled="False"
+                                                                         Text="{Binding m6dc}" Foreground="Red"
+                                                                         ToolTip="Marca de auditoría">
                                                                         </TextBlock>
                                                                     </DataTemplate>
                                                                 </DataGridTemplateColumn.CellTemplate>
                                                             </DataGridTemplateColumn>
-
+                                                            <DataGridTemplateColumn x:Name="Colm7dc" Width="50" IsReadOnly="True" >
+                                                                <DataGridTemplateColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <TextBlock  x:Name="txtm7dc"  TextWrapping="Wrap" MinWidth="50" IsEnabled="False"
+                                                                         Text="{Binding m7dc}" Foreground="Red"
+                                                                         ToolTip="Marca de auditoría">
+                                                                        </TextBlock>
+                                                                    </DataTemplate>
+                                                                </DataGridTemplateColumn.CellTemplate>
+                                                            </DataGridTemplateColumn>                                                            
 
                                                         </DataGrid.Columns>
                                                         <i:Interaction.Triggers>
