@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion;
+using CapaDatos;
+using SGPTWpf.Model.Modelo.programas;
 
 namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 {
@@ -106,6 +108,31 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
+
+        
+
+        #region idBalanceComparativo
+        //Almacena el balance comparativo anterior
+        private int _idBalanceComparativo;
+        private int idBalanceComparativo
+        {
+            get { return _idBalanceComparativo; }
+            set { _idBalanceComparativo = value; }
+        }
+
+        #endregion
+
+        #region idBalanceUsado
+        //Almacena la seleccion de balance anterior
+        private int _idBalanceUsado;
+        private int idBalanceUsado
+        {
+            get { return _idBalanceUsado; }
+            set { _idBalanceUsado = value; }
+        }
+
+        #endregion
+
         #region FuenteCierre
 
         private int _fuenteCierre;
@@ -134,7 +161,44 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
-        #region ViewModel Properties listas
+        #region idtc //Sirve para diferenciar las fuentas de  la llamada para las vistas
+        //Tipo de  cedulas
+        private int _idtc;
+        private int idtc
+        {
+            get { return _idtc; }
+            set { _idtc = value; }
+        }
+
+        #endregion
+
+        #region ViewModel Properties listadoSumarias
+
+        #region ViewModel Properties : listadoSumarias
+
+        public const string listadoSumariasPropertyName = "listadoSumarias";
+
+        private ObservableCollection<CedulaModelo> _listadoSumarias;
+
+        public ObservableCollection<CedulaModelo> listadoSumarias
+        {
+            get
+            {
+                return _listadoSumarias;
+            }
+
+            set
+            {
+                if (_listadoSumarias == value) return;
+
+                _listadoSumarias = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listadoSumariasPropertyName);
+            }
+        }
+
+        #endregion
 
         #region ViewModel Properties : isListaCargada
 
@@ -391,6 +455,78 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
+        #region ViewModel Properties : listaBalancePatron
+
+        public const string listaBalancePatronPropertyName = "listaBalancePatron";
+
+        private ObservableCollection<DetalleCedulaModelo> _listaBalancePatron;
+
+        public ObservableCollection<DetalleCedulaModelo> listaBalancePatron
+        {
+            get
+            {
+                return _listaBalancePatron;
+            }
+            set
+            {
+                if (_listaBalancePatron == value) return;
+
+                _listaBalancePatron = value;
+
+                RaisePropertyChanged(listaBalancePatronPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaCuentasSumaria
+
+        public const string listaCuentasSumariaPropertyName = "listaCuentasSumaria";
+
+        private ObservableCollection<DetalleCedulaModelo> _listaCuentasSumaria;
+
+        public ObservableCollection<DetalleCedulaModelo> listaCuentasSumaria
+        {
+            get
+            {
+                return _listaCuentasSumaria;
+            }
+            set
+            {
+                if (_listaCuentasSumaria == value) return;
+
+                _listaCuentasSumaria = value;
+
+                RaisePropertyChanged(listaCuentasSumariaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaCuentasSumariaCompleto
+        //Almacena el listado de  detalles relacionados al encargo
+        public const string listaCuentasSumariaCompletoPropertyName = "listaCuentasSumariaCompleto";
+
+        private ObservableCollection<detallecedula> _listaCuentasSumariaCompleto;
+
+        public ObservableCollection<detallecedula> listaCuentasSumariaCompleto
+        {
+            get
+            {
+                return _listaCuentasSumariaCompleto;
+            }
+            set
+            {
+                if (_listaCuentasSumariaCompleto == value) return;
+
+                _listaCuentasSumariaCompleto = value;
+
+                RaisePropertyChanged(listaCuentasSumariaCompletoPropertyName);
+            }
+        }
+
+        #endregion
+
         #region ViewModel Properties : listaVisitas
 
         public const string listaVisitasPropertyName = "listaVisitas";
@@ -462,6 +598,32 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 // Update bindings, no broadcast
                 RaisePropertyChanged(selectedTipoCedulaModeloPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Property : selectedCuentaAnalitica
+
+        public const string selectedCuentaAnaliticaPropertyName = "selectedCuentaAnalitica";
+
+        private DetalleCedulaModelo _selectedCuentaAnalitica;
+
+        public DetalleCedulaModelo selectedCuentaAnalitica
+        {
+            get
+            {
+                return _selectedCuentaAnalitica;
+            }
+
+            set
+            {
+                if (_selectedCuentaAnalitica == value) return;
+
+                _selectedCuentaAnalitica = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(selectedCuentaAnaliticaPropertyName);
             }
         }
 
@@ -569,6 +731,32 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 // Update bindings, no broadcast
                 RaisePropertyChanged(currentEntidadPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Property : currentEntidadSumaria
+
+        public const string currentEntidadSumariaPropertyName = "currentEntidadSumaria";
+
+        private CedulaModelo _currentEntidadSumaria;
+
+        public CedulaModelo currentEntidadSumaria
+        {
+            get
+            {
+                return _currentEntidadSumaria;
+            }
+
+            set
+            {
+                if (_currentEntidadSumaria == value) return;
+
+                _currentEntidadSumaria = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentEntidadSumariaPropertyName);
             }
         }
 
@@ -1342,6 +1530,33 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
+        #region visibilidadCedulasSumarias
+
+        public const string visibilidadCedulasSumariasPropertyName = "visibilidadCedulasSumarias";
+
+        private Visibility _visibilidadCedulasSumarias = Visibility.Collapsed;
+
+        public Visibility visibilidadCedulasSumarias
+        {
+            get
+            {
+                return _visibilidadCedulasSumarias;
+            }
+
+            set
+            {
+                if (_visibilidadCedulasSumarias == value)
+                {
+                    return;
+                }
+
+                _visibilidadCedulasSumarias = value;
+                RaisePropertyChanged(visibilidadCedulasSumariasPropertyName);
+            }
+        }
+
+        #endregion
+
         #region accesibilidad
 
 
@@ -1455,6 +1670,60 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         #endregion
 
         
+
+        #region ViewModel Properties : accesibilidadSumaria
+
+        public const string accesibilidadSumariaPropertyName = "accesibilidadSumaria";
+
+        private bool _accesibilidadSumaria;
+
+        public bool accesibilidadSumaria
+        {
+            get
+            {
+                return _accesibilidadSumaria;
+            }
+
+            set
+            {
+                if (_accesibilidadSumaria == value)
+                {
+                    return;
+                }
+
+                _accesibilidadSumaria = value;
+                RaisePropertyChanged(accesibilidadSumariaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : accesibilidadDetalleSumaria
+
+        public const string accesibilidadDetalleSumariaPropertyName = "accesibilidadDetalleSumaria";
+
+        private bool _accesibilidadDetalleSumaria;
+
+        public bool accesibilidadDetalleSumaria
+        {
+            get
+            {
+                return _accesibilidadDetalleSumaria;
+            }
+
+            set
+            {
+                if (_accesibilidadDetalleSumaria == value)
+                {
+                    return;
+                }
+
+                _accesibilidadDetalleSumaria = value;
+                RaisePropertyChanged(accesibilidadDetalleSumariaPropertyName);
+            }
+        }
+
+        #endregion
 
         #region ViewModel Properties : accesibilidadCierre
 
@@ -1645,6 +1914,34 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
+
+        #region diferenciaConSumaria
+
+        public const string diferenciaConSumariaPropertyName = "diferenciaConSumaria";
+
+        private decimal _diferenciaConSumaria = 0;
+
+        public decimal diferenciaConSumaria
+        {
+            get
+            {
+                return _diferenciaConSumaria;
+            }
+
+            set
+            {
+                if (_diferenciaConSumaria == value)
+                {
+                    return;
+                }
+
+                _diferenciaConSumaria = value;
+                RaisePropertyChanged(diferenciaConSumariaPropertyName);
+            }
+        }
+
+        #endregion
+
         #region fechacierre
 
         public const string fechacierrePropertyName = "fechacierre";
@@ -1814,6 +2111,17 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
+        #region detalleCedulaSumaria
+
+        public ObservableCollection<DetalleCedulaModelo> _detalleCedulaSumaria;
+        public ObservableCollection<DetalleCedulaModelo> detalleCedulaSumaria
+        {
+            get { return _detalleCedulaSumaria; }
+            set { _detalleCedulaSumaria = value; }
+        }
+
+        #endregion
+
         #region ViewModel Commands
         public RelayCommand CopiarCommand { get; set; }
         public RelayCommand EditarCommand { get; set; }
@@ -1822,6 +2130,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         public RelayCommand OkCommand { get; set; }
         public RelayCommand SalirCommand { get; set; }
 
+        public RelayCommand<CedulaModelo> SelectionChangedCommand { get; set; }
         public RelayCommand<TipoCedulaModelo> SelectionCarpetaCommand { get; set; }
 
 
@@ -1857,6 +2166,10 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         public RelayCommand cmdCargarFuente_Click { get; set; }
         public RelayCommand<BalanceModelo> SeleccionBalanceCommand { get; set; }
+
+        public RelayCommand<DetalleCedulaModelo> SeleccionCuentaAnaliticaCommand { get; set; }
+
+        public RelayCommand<DetalleCedulaModelo> SelectionDetalleAnaliticaChangedCommand { get; set; }
         public RelayCommand<BalanceModelo> SeleccionBalanceComparativoCommand { get; set; }
         
         public RelayCommand<VisitaModelo> SeleccionVisitaCommand { get; set; }
@@ -1888,6 +2201,12 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _opcionMenu = 0;
             _fuenteCierre = 0;
             _resultadoProceso = 0;
+            _idtc = 0;
+            _diferenciaConSumaria = 0;
+
+            _idBalanceComparativo = 0;
+            _idBalanceUsado = 0;
+            
             //Suscribiendo el mensaje
             _listaClaseDocumentos = new ObservableCollection<TipoCedulaModelo>();
             _listacurrentEntidad = new ObservableCollection<CedulaModelo>();
@@ -1896,7 +2215,14 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _selectedBalance = new BalanceModelo();
             _selectedBalComparativo = new BalanceModelo();
             _listaBalanceDetalle = new ObservableCollection<DetalleCedulaModelo>();
+            _listaBalancePatron = new ObservableCollection<DetalleCedulaModelo>();
             _listaVisitas = new ObservableCollection<VisitaModelo>(VisitaModelo.GetAllSeleccion());
+            _listadoSumarias = new ObservableCollection<CedulaModelo>();
+            _listaCuentasSumariaCompleto = new ObservableCollection<detallecedula>();
+            //_detalleCedulaSumaria = new ObservableCollection<detallecedula>();
+            _detalleCedulaSumaria = new ObservableCollection<DetalleCedulaModelo>();
+
+            _listaCuentasSumaria = new ObservableCollection<DetalleCedulaModelo>();
             Errors = 0;
             //Messenger.Default.Register<PlantillaIndiceMensaje>(this, tokenRecepcion, (plantillaIndiceMensaje) => ControlPlantillaIndiceMensaje(plantillaIndiceMensaje));
             RegisterCommands();
@@ -1907,6 +2233,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _accesibilidadCuerpo = false;
             _accesibilidadBalanceSeleccionar = false;
             _accesibilidadVisita = false;
+            _accesibilidadSumaria = false;
+            _accesibilidadDetalleSumaria = false;
             _visibilidadClaseDocumento = Visibility.Collapsed;
             _visibilidadCrear = Visibility.Collapsed;
             _visibilidadEditar = Visibility.Collapsed;
@@ -1920,14 +2248,17 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _visibilidadConclusiones = Visibility.Visible;
             _visibilidadBalanceSeleccionar = Visibility.Collapsed;
             _visibilidadDatosSumaria = Visibility.Visible;
+            _visibilidadCedulasSumarias = Visibility.Collapsed;
             _selectedTipoCedulaModelo = new TipoCedulaModelo();
             _eleccionTipoCedulaModelo = new TipoCedulaModelo();
 
             _currentEncargo = new EncargoModelo();
             _currentEntidad = new CedulaModelo();
             _currentDetalleEntidad = new DetalleCedulaModelo();
+            _currentEntidadSumaria = new CedulaModelo();
             _eleccionTipoCedulaModelo = new TipoCedulaModelo();
             _selectedVisitaModelo = new VisitaModelo();
+            _selectedCuentaAnalitica = new DetalleCedulaModelo();
             enviarMensajeInhabilitar();
 
             configuracionDialogo = new MetroDialogSettings()
@@ -1951,6 +2282,15 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     _visibilidadDatosSumaria = Visibility.Collapsed;
                     #endregion
                     break;
+                case "DocumentacionCedulasAnaliticas"://Llamada desde Documentacion/Analiticas/crear
+                    #region configuracion Documentacion
+                    _tokenEnvio = "datosEncargoCedulasAnalíticasController";
+                    _tokenRecepcion = "datosEncargoCedulasAnalíticas"; //Modificado
+                    //_visibilidadDatosSumaria = Visibility.Collapsed;
+                    _idtc = 1;//Para filtrar las sumarias
+                    #endregion
+                    break;
+
                 case "ReferenciarDocumentacionCartas"://Referenciacion
                     #region configuracion Documentacion
                     _tokenEnvio = "datosControllerCartas";
@@ -2026,6 +2366,24 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _fechasupervision = new DateTime((DateTime.Now.Year), 1, 1);
         }
 
+        private void actualizarListaSumaria()
+        {
+            //guardarlistadoSumarias();
+            try
+            {
+                listadoSumarias = new ObservableCollection<CedulaModelo>(CedulaModelo.GetAll(currentEncargo, idtc));
+            }
+            catch (Exception e)
+            {
+                if (e.Source != null)
+                {
+                    dlg.ShowMessageAsync(this, "Problema de comunicacion en la actualizacion de lista de Sumarias " + e, "");
+                }
+            }
+            //Se manda a la vista actualizada
+            ///enviarMensaje();No aplica porque no  se envia  la listadoSumarias a la vista
+        }
+
         private async void ControlDatosMsj(CedulaMsj datosMsj)
         {
             //Asignacion de  entidades
@@ -2037,6 +2395,15 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             listacurrentEntidad = datosMsj.listaMaestroModelo;
             //Eliminar visitas ya existentes
             currentEntidad = datosMsj.entidadMaestroModelo;
+            //Carga el detalle de las  sumarias
+            if (opcionMenu != 10)
+            {
+                listaCuentasSumariaCompleto = new ObservableCollection<detallecedula>(DetalleCedulaModelo.GetAllCapaDatosByidEncargoForDetalle(currentEncargo.idencargo));
+            }
+            else
+            {
+                listaCuentasSumariaCompleto = new ObservableCollection<detallecedula>(DetalleCedulaModelo.GetAllCapaDatosByidEncargo(currentEncargo.idencargo));
+            }
             if (datosMsj.listaDetalle != null && datosMsj.listaDetalle.Count > 0)
             {
                 currentEntidad.listaDetalleCedula = datosMsj.listaDetalle;//Lista de cuentas seleccionadas
@@ -2360,7 +2727,315 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
             }
                     #endregion sumaria
-                break;
+
+                    break;
+
+                case 2: //Cedula analitica
+                    #region carga datos
+                    if (opcionMenu != 14)
+                    {
+                        listaBalancePrincipal = new ObservableCollection<BalanceModelo>(BalanceModelo.GetAllByIsScForCedulas(currentEncargo));
+                        listaBalanceComparativo = new ObservableCollection<BalanceModelo>(listaBalancePrincipal.ToList());
+                        if (currentEntidad.idtc == 0 || (currentEntidad.idtc != 1
+                            && currentEntidad.idtc != 2 && currentEntidad.idtc != 3
+                            && currentEntidad.idtc != 5 && currentEntidad.idtc != 6))
+                        {
+                            //2; "Analítica"; "A"; TRUE
+                            visibilidadClaseDocumento = Visibility.Visible;
+                            listaClaseDocumentos = new ObservableCollection<TipoCedulaModelo>(TipoCedulaModelo.GetAllOtros());
+                        }
+                        else
+                        {
+                            visibilidadClaseDocumento = Visibility.Collapsed;
+                            listaClaseDocumentos = new ObservableCollection<TipoCedulaModelo>(TipoCedulaModelo.GetAll());
+                        }
+
+                        llenadoDatos(datosMsj.opcionMenuCrud);
+                    }
+
+                    #endregion
+
+                    #region Sumaria analítica
+                    switch (datosMsj.opcionMenuCrud)
+                    {
+                        case 1://Crear 
+
+                            if (origen == "EncargoCedulasSumariasDetalle")
+                            {
+                                encabezadoPantalla = "Seleccione la sumaria para generar el detalle";
+                                titulocedula = currentEntidad.titulocedula;
+                                visibilidadCrear = Visibility.Visible;
+                                visibilidadEditar = Visibility.Collapsed;
+                                visibilidadConsultar = Visibility.Collapsed;
+                                visibilidadCopiar = Visibility.Collapsed;
+                                visibilidadBalanceSeleccionar = Visibility.Visible;
+                                //visibilidadDatosSumaria = Visibility.Collapsed;
+                                visibilidadCedulasSumarias = Visibility.Collapsed;
+                                accesibilidadCuerpo = true;
+                                accesibilidadVisita = false;
+                                accesibilidadClaseCedula = false;
+                                accesibilidadDetalleBalance = true;
+                                accesibilidadBalanceSeleccionar = false;
+                                accesibilidadSumaria = false;
+                            }
+                            else
+                            {
+                                //Generacion del detalle de cedulas sumarias
+                                encabezadoPantalla = "Seleccione la sumaria para generar el detalle para la analítica";
+                                visibilidadCrear = Visibility.Visible;
+                                visibilidadEditar = Visibility.Collapsed;
+                                visibilidadConsultar = Visibility.Collapsed;
+                                visibilidadCopiar = Visibility.Collapsed;
+                                visibilidadBalanceSeleccionar = Visibility.Collapsed;
+                                visibilidadBalance = Visibility.Collapsed;
+                                visibilidadBalanceComparativo = Visibility.Collapsed;
+                                //visibilidadDatosSumaria = Visibility.Visible;
+                                visibilidadCedulasSumarias = Visibility.Visible;
+                                accesibilidadCuerpo = false;
+                                accesibilidadClaseCedula = false;
+                                accesibilidadDetalleBalance = true;
+                                accesibilidadBalanceSeleccionar = true;
+                                accesibilidadVisita = true;
+                                accesibilidadSumaria = true;
+                                titulocedula = string.Empty;
+                                actualizarListaSumaria();
+                                //Carga de datos de todas las sumarias
+                                //detalleCedulaSumaria = new ObservableCollection<detallecedula>(DetalleCedulaModelo.GetAllCapaDatosByidEncargo((int)currentEntidad.idencargo));
+                                detalleCedulaSumaria =new ObservableCollection<DetalleCedulaModelo>(DetalleCedulaModelo.GetAllSeleccion(currentEncargo)) ;
+                            }
+
+                            break;
+                        case 14://Seleccionar visita 
+                            encabezadoPantalla = "Proporcione los datos requeridos";
+                            visibilidadCrear = Visibility.Collapsed;
+                            visibilidadEditar = Visibility.Collapsed;
+                            visibilidadConsultar = Visibility.Visible;
+                            visibilidadCopiar = Visibility.Collapsed;
+                            visibilidadBalanceSeleccionar = Visibility.Visible;
+                            visibilidadBalance = Visibility.Collapsed;
+                            visibilidadBalanceComparativo = Visibility.Collapsed;
+                            accesibilidadCuerpo = true;
+                            accesibilidadClaseCedula = true;
+                            accesibilidadDetalleBalance = true;
+                            accesibilidadBalanceSeleccionar = true;
+                            accesibilidadVisita = false;
+                            accesibilidadWindow = true;
+                            titulocedula = string.Empty;
+                            break;
+                        case 2://Editar, no sera activada
+                            encabezadoPantalla = "Edite los datos";
+                            titulocedula = currentEntidad.titulocedula;
+                            visibilidadCrear = Visibility.Collapsed;
+                            visibilidadEditar = Visibility.Visible;
+                            visibilidadConsultar = Visibility.Collapsed;
+                            visibilidadCopiar = Visibility.Collapsed;
+                            visibilidadBalanceSeleccionar = Visibility.Visible;
+                            accesibilidadCuerpo = true;
+                            accesibilidadVisita = false;
+                            accesibilidadClaseCedula = false;
+                            accesibilidadDetalleBalance = false;
+                            accesibilidadBalanceSeleccionar = false;
+                            break;
+                        case 3://Consultar
+                            encabezadoPantalla = "Consulta del tipo de carpeta";
+                            titulocedula = currentEntidad.titulocedula;
+                            visibilidadCrear = Visibility.Collapsed;
+                            visibilidadEditar = Visibility.Collapsed;
+                            visibilidadConsultar = Visibility.Visible;
+                            visibilidadCopiar = Visibility.Collapsed;
+                            accesibilidadCuerpo = false;
+                            accesibilidadVisita = false;
+                            accesibilidadClaseCedula = false;
+                            accesibilidadDetalleBalance = false;
+                            accesibilidadBalanceSeleccionar = false;
+
+                            break;
+                        case 6://Importar de las plantillas (No se usa)
+                            listacurrentEntidad = datosMsj.listaMaestroModelo;
+                            listaDocumentosAnteriores = new ObservableCollection<CedulaModelo>(CedulaModelo.GetAll());
+                            //Remover todas las carpetas ya existentes
+                            ObservableCollection<CedulaModelo> listaRepositorioTemporal = new ObservableCollection<CedulaModelo>();
+                            foreach (CedulaModelo item in listacurrentEntidad)
+                            {
+                                listaRepositorioTemporal = new ObservableCollection<CedulaModelo>(listaDocumentosAnteriores.Where(x => x.idencargo == item.idencargo));
+                                if (listaRepositorioTemporal.Count > 0)
+                                {
+                                    foreach (CedulaModelo itemRemover in listaRepositorioTemporal)
+                                    {
+                                        listaDocumentosAnteriores.Remove(itemRemover);
+                                    }
+                                }
+                            }
+
+                            visibilidadCrear = Visibility.Visible;
+                            accesibilidadWindow = true;
+                            if (!(listaDocumentosAnteriores.Count > 0))
+                            {
+                                var controller = await dlg.ShowProgressAsync(this, "No hay registros disponibles", "Este mensaje desaparecerá en segundos", settings: configuracionDialogo);
+                                controller.SetIndeterminate();
+                                await TaskEx.Delay(1000);
+                                await controller.CloseAsync();
+                                fuenteCierre = 1;
+                                resultadoProceso = 0;//1 para  crear
+                                CloseWindow();
+                            }
+
+                            break;
+                        case 7://Importar de programas de otros encargos
+                               //Seleccion de programa
+                            visibilidadCopiar = Visibility.Visible;
+                            accesibilidadWindow = true;
+                            listacurrentEntidad = datosMsj.listaMaestroModelo;
+                            ControlCambioLista();
+                            if (currentEntidad.idtc == 0 || (currentEntidad.idtc != 2 && currentEntidad.idtc != 7 && currentEntidad.idtc != 8))
+                            {
+                                //listaDocumentosAnteriores = new ObservableCollection<CedulaModelo>(CedulaModelo.GetAllByEncargosImportacionEncabezadosOtros(currentEncargo, currentEntidad.idtc));
+                            }
+                            else
+                            {
+                                //listaDocumentosAnteriores = new ObservableCollection<CedulaModelo>(CedulaModelo.GetAllByEncargosImportacionEncabezados(currentEncargo, currentEntidad.idtc));
+                            }
+                            accesibilidadWindow = true;
+                            if (!(listaDocumentosAnteriores.Count > 0))
+                            {
+                                var controller = await dlg.ShowProgressAsync(this, "No hay registros disponibles", "Este mensaje desaparecerá en segundos", settings: configuracionDialogo);
+                                controller.SetIndeterminate();
+                                await TaskEx.Delay(1000);
+                                await controller.CloseAsync();
+                                fuenteCierre = 1;
+                                resultadoProceso = 0;//1 para  crear
+                                CloseWindow();
+                            }
+                            break;
+                        case 8://Referenciar 
+                            encabezadoPantalla = "Introduzca la referencia para la cédula";
+                            #region contenido
+
+                            accesibilidadCuerpo = true;
+                            accesibilidadReferencia = true;
+                            accesibilidadCierre = false;
+                            accesibilidadSupervision = false;
+                            accesibilidadAprobacion = false;
+                            accesibilidadEvaluacion = false;
+
+                            #endregion
+
+                            #region visibilidadContenido
+
+                            visibilidadReferencia = Visibility.Visible;
+                            visibilidadFechaCierre = Visibility.Collapsed;
+                            visibilidadFechaSupervision = Visibility.Collapsed;
+                            visibilidadFechaAprobacion = Visibility.Collapsed;
+                            visibilidadFechaEvaluacion = Visibility.Collapsed;
+                            #endregion
+
+                            #region visibilidad botones inferiores
+
+                            visibilidadReferenciar = Visibility.Visible;
+                            visibilidadAprobar = Visibility.Collapsed;
+                            visibilidadSupervisar = Visibility.Collapsed;
+                            visibilidadConsultar = Visibility.Collapsed;
+                            visibilidadCerrar = Visibility.Collapsed;
+                            visibilidadEditar = Visibility.Collapsed;
+
+                            #endregion
+                            break;
+                        case 10://Cerrar el papel 
+                            encabezadoPantalla = "Introduzca la fecha de cierre a utilizar";
+                            #region contenido
+
+
+                            accesibilidadReferencia = false;
+                            accesibilidadCierre = true;
+                            accesibilidadSupervision = false;
+                            accesibilidadAprobacion = false;
+
+                            #endregion
+                            #region visibilidadContenido
+
+                            visibilidadReferencia = Visibility.Collapsed;
+                            visibilidadFechaCierre = Visibility.Visible;
+                            visibilidadFechaSupervision = Visibility.Collapsed;
+                            visibilidadFechaAprobacion = Visibility.Collapsed;
+                            visibilidadFechaEvaluacion = Visibility.Collapsed;
+                            #endregion
+
+                            #region visibilidad botones inferiores
+
+                            visibilidadReferenciar = Visibility.Collapsed;
+                            visibilidadAprobar = Visibility.Collapsed;
+                            visibilidadSupervisar = Visibility.Collapsed;
+                            visibilidadConsultar = Visibility.Collapsed;
+                            visibilidadCerrar = Visibility.Visible;
+
+                            #endregion
+                            break;
+                        case 11://Finaliza la  supervisión
+                            encabezadoPantalla = "Introduzca la fecha de la supervisión";
+                            #region contenido
+
+
+                            accesibilidadReferencia = false;
+                            accesibilidadCierre = false;
+                            accesibilidadSupervision = true;
+                            accesibilidadAprobacion = false;
+
+                            #endregion
+                            #region visibilidadContenido
+
+                            visibilidadReferencia = Visibility.Collapsed;
+                            visibilidadFechaCierre = Visibility.Collapsed;
+                            visibilidadFechaSupervision = Visibility.Visible;
+                            visibilidadFechaAprobacion = Visibility.Collapsed;
+                            visibilidadFechaEvaluacion = Visibility.Collapsed;
+                            #endregion
+
+                            #region visibilidad botones inferiores
+
+                            visibilidadReferenciar = Visibility.Collapsed;
+                            visibilidadAprobar = Visibility.Collapsed;
+                            visibilidadSupervisar = Visibility.Visible;
+                            visibilidadConsultar = Visibility.Collapsed;
+                            visibilidadCerrar = Visibility.Collapsed;
+
+                            #endregion
+                            break;
+                        case 12://Cerrar el papel 
+                            encabezadoPantalla = "Introduzca la fecha de cierre a utilizar";
+                            #region contenido
+
+
+                            accesibilidadReferencia = false;
+                            accesibilidadCierre = false;
+                            accesibilidadSupervision = false;
+                            accesibilidadAprobacion = true;
+
+                            #endregion
+                            #region visibilidadContenido
+
+                            visibilidadReferencia = Visibility.Collapsed;
+                            visibilidadFechaCierre = Visibility.Collapsed;
+                            visibilidadFechaSupervision = Visibility.Visible;
+                            visibilidadFechaAprobacion = Visibility.Visible;
+                            visibilidadFechaEvaluacion = Visibility.Visible;
+                            #endregion
+
+                            #region visibilidad botones inferiores
+
+                            visibilidadReferenciar = Visibility.Collapsed;
+                            visibilidadAprobar = Visibility.Visible;
+                            visibilidadSupervisar = Visibility.Collapsed;
+                            visibilidadConsultar = Visibility.Collapsed;
+                            visibilidadCerrar = Visibility.Collapsed;
+
+                            #endregion
+                            break;
+
+                    }
+                    #endregion analitica
+
+                    break;
+
 
                 default: //Cedula Hallazgos
                     #region carga datos
@@ -2653,6 +3328,69 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             Messenger.Default.Unregister<CedulaMsj>(this, tokenRecepcion);
             finComando();
             finInicializacion = true;//Termino la carga se activan los comando
+            if (opcionMenu == 10)
+            {
+                bool continuar = true;
+                string mensaje = string.Empty;
+                ObservableCollection<detallecedula> contenidoCedula = new ObservableCollection<detallecedula>();
+                //Verificar que sumaria y detalle coincida
+                if (currentEntidad.idtc == 1)
+                {
+                    //Cedula sumaria, verificar que las  sumas coincidan.
+                    contenidoCedula = new ObservableCollection<detallecedula>(listaCuentasSumariaCompleto.Where(x => x.idcedula == currentEntidad.idcedula));
+                    foreach (detallecedula item in contenidoCedula)
+                    {
+                        if (listaCuentasSumariaCompleto.Count(x => x.padreiddc == item.iddc) > 0)
+                        {
+                            if (item.saldoactualdc != listaCuentasSumariaCompleto.Where(x => x.padreiddc == item.iddc).Sum(x => x.saldoactualdc))
+                            {
+                                continuar = false;
+                                mensaje = "La suma de saldo actual no coincide el varlo de la sumaria con el detalle";
+                            }
+                            else if(item.saldofinaldc != listaCuentasSumariaCompleto.Where(x => x.padreiddc == item.iddc).Sum(x => x.saldofinaldc))
+                            {
+                                mensaje = "La suma de saldo final no coincide el varlo de la sumaria con el detalle";
+                                continuar = false;
+                            }
+                        }
+                    }
+                }
+                else if(currentEntidad.idtc==2)
+                {
+                    //Cedula de detalle
+                    contenidoCedula = new ObservableCollection<detallecedula>(listaCuentasSumariaCompleto.Where(x => x.idcedula == currentEntidad.idcedula));
+                    detallecedula detallecedulaTemporal = listaCuentasSumariaCompleto.SingleOrDefault(x => x.iddc == contenidoCedula[0].padreiddc);
+                    if (contenidoCedula.Count(x => x.padreiddc!=null) > 0)
+                        {
+                            if (detallecedulaTemporal.saldoactualdc != contenidoCedula.Where(x => x.idcedula == currentEntidad.idcedula 
+                            && x.claseregistro=="D").Sum(x => x.saldoactualdc))
+                            {
+                            //await mensajeAutoCerrado(detallecedulaTemporal.saldoactualdc.ToString(), contenidoCedula.Where(x => x.idcedula == currentEntidad.idcedula
+                            // && x.claseregistro == "D").Sum(x => x.saldoactualdc).ToString(),  4);
+                            //    continuar = false;
+                                mensaje = "La suma de saldo actual no coincide el varlo de la sumaria con el detalle";
+                            }
+                            else if (detallecedulaTemporal.saldofinaldc!= contenidoCedula.Where(x => x.idcedula == currentEntidad.idcedula
+                            && x.claseregistro == "D").Sum(x => x.saldofinaldc))
+                        {
+                            //await mensajeAutoCerrado(detallecedulaTemporal.saldofinaldc.ToString(), contenidoCedula.Where(x => x.idcedula == currentEntidad.idcedula
+                            //        && x.claseregistro == "D").Sum(x => x.saldofinaldc).ToString(), 4);
+
+                            mensaje = "La suma de saldo final no coincide el varlo de la sumaria con el detalle";
+                                continuar = false;
+                            }
+                        }
+            
+                }
+                if (!continuar)
+                {
+                    //Debe cerrar e informmar
+                    await mensajeAutoCerrado(mensaje, "Se cerrará esta ventana y revise", 5);
+                    cerradoFinalVentana = true;
+                    CloseWindow();
+                    enviarMensajeHabilitar();
+                }
+            }
         }
 
         private void ControlCambioLista()
@@ -2749,7 +3487,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     fechaaprobacion = new DateTime((DateTime.Now.Year), 1, 1);
                 }
             }
-            if (currentEntidad.idtc == 1)//Sumaria
+            if (currentEntidad.idtc == 1|| currentEntidad.idtc == 2)//Sumaria o analitica
             {
                 if (comando == 1 || comando == 2 || comando == 3)
                 {
@@ -2828,6 +3566,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 }
             }
         }
+
         #endregion
 
 
@@ -3009,6 +3748,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         public async void Guardar()
         {
+            iniciarComando();
             if (origen == "EncargoCedulasSumariasDetalle")
             {
                 //Caso de  inserción de cuentas seleccionadas
@@ -3074,7 +3814,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             {
                 if (nombreUnico(currentEntidad.titulocedula, listacurrentEntidad, currentEntidad.idvisita) == 0)
                 {
-                    if (currentEntidad.idtc == 1)
+                    if (currentEntidad.idtc == 1|| currentEntidad.idtc == 2)
                     {
                         try
                         {
@@ -3088,6 +3828,26 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                                     break;
                                 case 1://Se inserto con éxito
                                     await mensajeAutoCerrado("Registro insertado con éxito", "Este mensaje desaparecerá en segundos", 1);
+                                    #region  referenciacion automatica
+                                    if (currentEntidad.idtc == 2)
+                                    {
+                                        UniversalPTModelo temporalItem = new UniversalPTModelo();
+                                            temporalItem = new UniversalPTModelo();
+                                            temporalItem.idUpt = 1;
+                                            temporalItem.descripionUpt = currentEntidad.titulocedula;
+                                            temporalItem.idOrigenUpt = currentEntidad.idcedula; //Almacena el id de la tabla origen
+                                            temporalItem.referenciaTpt = currentEntidad.referenciacedula;
+                                            temporalItem.codOrigenUpt = 6;//item.idTpt; //Almacena el codigo para las tablas origen
+                                            temporalItem.tablaUpt = "CEDULAS";//item.tablaTpt; //Tabla de la que proviene los datos
+                                            temporalItem.vistaUpt = "Pendiente";// item.vistaTpt; //vista de la que proviene los datos
+                                            temporalItem.controladorUpt = "Pendiente";// item.controladorTpt; //controlador de la que proviene los datos
+                                            temporalItem.nombreMostrarTpt = "Cedulas";// temporalCed[p].titulocedula;
+                                        if (DetalleCedulaModelo.UpdateModeloReferencia(selectedCuentaAnalitica, temporalItem, 1))
+                                        {
+                                            await mensajeAutoCerrado("Se actualizó la referencia de la sumaria", "Este mensaje desaparecerá en 1 segundos", 2);
+                                        }
+                                    }
+                                    #endregion
                                     fuenteCierre = 1;
                                     resultadoProceso = 1;//1 para  crear
                                     CloseWindow();
@@ -3278,6 +4038,30 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             CancelarCommand = new RelayCommand(Cancelar);
             OkCommand = new RelayCommand(Ok);
             SalirCommand = new RelayCommand(Salir);
+
+            SelectionDetalleAnaliticaChangedCommand = new RelayCommand<DetalleCedulaModelo>(entidad =>
+            {
+                diferenciaConSumaria =(decimal) (listaBalanceDetalle.Where(k=>k.IsSelected).Sum(x=>x.saldoactualdc)- selectedCuentaAnalitica.saldoactualdc);
+            });
+
+            SelectionChangedCommand = new RelayCommand<CedulaModelo>(entidad =>
+            {
+                #region reinicializacion
+                    visibilidadBalance = Visibility.Collapsed;
+                    visibilidadBalanceComparativo = Visibility.Collapsed;
+                    listaCuentasSumaria = new ObservableCollection<DetalleCedulaModelo>();
+                    selectedCuentaAnalitica = new DetalleCedulaModelo();
+                    currentDetalleEntidad = new DetalleCedulaModelo();
+                #endregion
+                if (entidad == null) return;
+                    //Verificar la cantidad de  registros seleccionados
+                    currentEntidadSumaria = entidad;
+                    //Si la cedula es diferente a vacio
+                    if (currentEntidadSumaria.idcedula != 0)
+                    {
+                        cargarDatosDetalle(currentEntidadSumaria);
+                    }
+            });
             SelectionCarpetaCommand = new RelayCommand<TipoCedulaModelo>(entidad =>
             {
                 if (entidad == null) return;
@@ -3400,6 +4184,41 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 }
 
             });
+
+            SeleccionCuentaAnaliticaCommand = new RelayCommand<DetalleCedulaModelo>(async entidad =>
+            {
+                if (entidad == null) return;
+                visibilidadBalance = Visibility.Collapsed;
+                visibilidadBalanceComparativo = Visibility.Collapsed;
+                //Verificar que no existe mayor detalle
+                if (listaCuentasSumariaCompleto.Count(x => x.padreiddc == entidad.iddc) == 0)
+                {
+                    currentDetalleEntidad.iddc = entidad.iddc;
+                    if (entidad.iddc != 0)
+                    {
+                        //visibilidad
+                        iniciarComando();
+                        selectedCuentaAnalitica = entidad;
+                        currentEntidad.titulocedula = selectedCuentaAnalitica.nombrecuenta;
+                        diferenciaConSumaria = -1 * (decimal)selectedCuentaAnalitica.saldoactualdc;
+                        //Filtrar sub-cuentas dependientes
+                        filtradoCuentas(selectedCuentaAnalitica);
+                        finComando();
+                    }
+                    else
+                    {
+                        //Se anula la seleccion
+                        selectedCuentaAnalitica = null;
+                    }
+
+                }
+                else
+                {
+                    selectedCuentaAnalitica = listaCuentasSumaria[0];
+                    await mensajeAutoCerrado("La seleccion ya tiene cédula analítica", "debe cambiar la selección", 3);
+                }
+
+            });
             SeleccionBalanceComparativoCommand = new RelayCommand<BalanceModelo>(entidad =>
             {
                 if (entidad == null) return;
@@ -3432,6 +4251,143 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                             });
         }
 
+        private async void filtradoCuentas(DetalleCedulaModelo selectedCuentaAnalitica)
+        {
+            #region listados para seleccion  de cuentas desde el detalle
+            if (currentEntidad.idbalance != idBalanceUsado)
+            {
+                if (currentEntidad.idbalanceanterior != null && currentEntidad.idbalanceanterior != 0)
+                {
+                    //visibilidadBalance = Visibility.Collapsed;
+                    listaBalancePatron = DetalleCedulaModelo.GetAllCreacionComparativo((int)currentEncargo.idsc, (int)currentEntidad.idbalance, (int)currentEntidad.idbalanceanterior, currentEncargo.idencargo, currentUsuario);
+                    //visibilidadBalanceComparativo = Visibility.Visible;
+                    //accesibilidadCuerpo = true;
+                    selectedBalComparativo = listaBalanceComparativo.Single(i => i.idbalance == currentEntidad.idbalance);
+                    idBalanceUsado = (int)currentEntidad.idbalance;
+                    idBalanceComparativo = (int)currentEntidad.idbalanceanterior;
+                }
+                else
+                {
+                    //visibilidadBalance = Visibility.Visible;
+                    listaBalancePatron = DetalleCedulaModelo.GetAllCreacionUnico((int)currentEncargo.idsc, (int)currentEntidad.idbalance, currentEncargo.idencargo, currentUsuario);
+                    //visibilidadBalanceComparativo = Visibility.Collapsed;
+                    idBalanceUsado = (int)currentEntidad.idbalance;
+                    idBalanceComparativo = 0;
+                    //accesibilidadCuerpo = true;
+                }
+            }
+            #endregion fin listado para seleccion de cuentas
+            foreach (DetalleCedulaModelo elemento in listaBalancePatron)
+            {
+               elemento.IsSelected = false;
+            }
+            listaBalanceDetalle = new ObservableCollection<DetalleCedulaModelo>(listaBalancePatron.Where(x => x.catidcc==selectedCuentaAnalitica.idcc));
+            if (listaBalanceDetalle.Count() == 0)
+            {
+                await mensajeAutoCerrado("No hay cuentas dependientes", "", 2);
+            }
+            else
+            {
+                bool noCambio = false;
+                int numeroRegistros = 0;//Cantidad de registros iniciales
+                ObservableCollection<DetalleCedulaModelo> listaTemporal = new ObservableCollection<DetalleCedulaModelo>(listaBalanceDetalle);
+                DetalleCedulaModelo item = new DetalleCedulaModelo();
+                do
+                {
+                    ObservableCollection<DetalleCedulaModelo> registrosAdicionales = new ObservableCollection<DetalleCedulaModelo>();
+                    for (int j = numeroRegistros; j < listaTemporal.Count(); j++)
+                    {
+                        item = listaTemporal[j];
+                        registrosAdicionales = new ObservableCollection<DetalleCedulaModelo>(listaBalancePatron.Where(x => x.catidcc == item.idcc));
+                        if (registrosAdicionales.Count > 0)
+                        {
+                            foreach (DetalleCedulaModelo registro in registrosAdicionales)
+                            {
+                                listaBalanceDetalle.Add(registro);
+                            }
+                        }
+                        registrosAdicionales = new ObservableCollection<DetalleCedulaModelo>();
+                    }
+                    if (listaTemporal.Count == listaBalanceDetalle.Count)
+                    {
+                        noCambio = true;
+                    }
+                    else
+                    {
+                        numeroRegistros = listaTemporal.Count;
+                        noCambio = false;
+                        listaTemporal = new ObservableCollection<DetalleCedulaModelo>(listaBalanceDetalle);
+                    }
+                }
+                while (!noCambio);
+                listaBalanceDetalle.OrderBy(x => x.ordendc);
+                foreach (DetalleCedulaModelo elemento in listaBalanceDetalle)
+                {
+                    elemento.padreiddc = selectedCuentaAnalitica.iddc;//Cuenta padre
+                    elemento.IsSelected = false;
+                }
+                if (currentEntidad.idbalanceanterior != null && currentEntidad.idbalanceanterior != 0)
+                {
+                    visibilidadBalance = Visibility.Collapsed;
+                    visibilidadBalanceComparativo = Visibility.Visible;
+                }
+                else
+                {
+                    visibilidadBalance = Visibility.Visible;
+                    visibilidadBalanceComparativo = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private async void cargarDatosDetalle(CedulaModelo sumaria)
+        {
+            if (sumaria.idcedula != 0)
+            {
+                currentEntidad.idvisita = sumaria.idvisita;
+                currentEntidad.idencargo = sumaria.idencargo;
+                currentEntidad.idbalance = sumaria.idbalance;
+                currentEntidad.idbalanceanterior = sumaria.idbalanceanterior;
+                currentEntidad.ordencedula = sumaria.ordencedula;
+                currentEntidad.padreidcedula = sumaria.idcedula;
+                if (currentEntidad.idbalance != idBalanceUsado)
+                {
+                    idBalanceUsado = 0;
+                    idBalanceComparativo = 0;
+                }
+                if (currentEntidad.idbalanceanterior!=null && currentEntidad.idbalanceanterior!= idBalanceComparativo)
+                {
+                    idBalanceUsado = 0;
+                    idBalanceComparativo = 0; //Se reinicializa
+                }
+                #region detalle de  cuentas
+                //Indicar cuentas ya seleccionadas
+                try
+                {
+                    //Carga parcial
+                    listaCuentasSumaria = new ObservableCollection<DetalleCedulaModelo>(detalleCedulaSumaria.Where(x=>x.claseregistro == "D" && x.idcedula == sumaria.idcedula));
+                    DetalleCedulaModelo temporal = new DetalleCedulaModelo();
+                    temporal.nombrecuenta = "Ninguna";
+                    temporal.nombreClaseCuenta = "";
+                    temporal.codigocontabledc = "Ninguno";
+                    listaCuentasSumaria.Insert(0, temporal);
+                    int i = 1;
+                    foreach (DetalleCedulaModelo item in listaCuentasSumaria)
+                    {
+                        item.idCorrelativo = i;
+                        ++i;
+                    }
+                    selectedCuentaAnalitica = listaCuentasSumaria[0];
+                    accesibilidadDetalleSumaria = true;
+
+                }
+                catch (Exception e)
+                {
+                    await mensajeAutoCerrado(e.ToString(), "", 3);
+                }
+                #endregion
+            }
+            }
+
         private bool CanNuevo()
         {
             bool evaluar = false;
@@ -3449,7 +4405,15 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 }
                 else
                 {
-                   return evaluar=currentEntidad.idvisita != null;
+                    if (currentEntidad.idtc == 2)
+                    {
+                        int valor = listaBalanceDetalle.Where(x => x.IsSelected).Count();
+                        evaluar = Errors == 0 && listaBalanceDetalle.Where(x => x.IsSelected).Count() > 0 && diferenciaConSumaria==0;
+                    }
+                    else
+                    {
+                        return evaluar = currentEntidad.idvisita != null;
+                    }
                 }
                 return evaluar;
             }
@@ -3481,10 +4445,19 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             }
             else
             {
-                return (!string.IsNullOrEmpty(currentEntidad.usuariocerro))
-                        && (!string.IsNullOrWhiteSpace(currentEntidad.usuariocerro))
-                        && (!string.IsNullOrEmpty(currentEntidad.conclusioncedula))
-                        && (!string.IsNullOrWhiteSpace(currentEntidad.conclusioncedula));
+                if (currentEntidad.idtc != 2)
+                {
+                    return (!string.IsNullOrEmpty(currentEntidad.usuariocerro))
+                          && (!string.IsNullOrWhiteSpace(currentEntidad.usuariocerro))
+                          && (!string.IsNullOrEmpty(currentEntidad.conclusioncedula))
+                          && (!string.IsNullOrWhiteSpace(currentEntidad.conclusioncedula));
+                }
+                else
+                {
+                    return (!string.IsNullOrEmpty(currentEntidad.usuariocerro))
+                          && (!string.IsNullOrWhiteSpace(currentEntidad.usuariocerro));
+
+                }
             }
         }
 

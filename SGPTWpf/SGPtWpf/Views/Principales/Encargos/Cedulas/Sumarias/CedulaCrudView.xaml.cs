@@ -26,12 +26,13 @@ namespace SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Sumarias
             MinHeight = MaxHeight * 0.5;
             MaxHeight = MaxHeight;
 
+            #region Balance simple
             //datosConsulta.Width = ancho - 7;
             datosConsulta.MinWidth = ancho * 0.5;
             datosConsulta.MaxWidth = ancho - 7;
 
             //datosConsulta.Height = MaxHeight - 300;
-            datosConsulta.MaxHeight = MaxHeight - 300;
+            datosConsulta.MaxHeight = (MaxHeight - 300) * 0.40; 
             datosConsulta.MinHeight = MaxHeight * 0.2;
 
             //dataGrid.Width = datosConsulta.Width - 1;
@@ -41,13 +42,15 @@ namespace SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Sumarias
             //dataGrid.Height = datosConsulta.MaxHeight - 1;
             dataGrid.MaxHeight = datosConsulta.MaxHeight - 1;
             dataGrid.MinHeight = datosConsulta.MinHeight - 1;
+            #endregion
 
+            #region Balance Conmparativo
             //datosConsultaComparativa.Width = ancho- 7;
             datosConsultaComparativa.MinWidth = ancho * 0.5;
             datosConsultaComparativa.MaxWidth = ancho - 7;
 
             //datosConsultaComparativa.Height = MaxHeight - 300;
-            datosConsultaComparativa.MaxHeight = MaxHeight - 300;
+            datosConsultaComparativa.MaxHeight = (MaxHeight - 300) * 0.40; 
             datosConsultaComparativa.MinHeight = MaxHeight * 0.2;
 
             //dataGridComparativo.Width = datosConsulta.ancho - 1;
@@ -57,7 +60,7 @@ namespace SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Sumarias
             //dataGridComparativo.Height = datosConsulta.MaxHeight - 1;
             dataGridComparativo.MaxHeight = datosConsulta.MaxHeight - 1;
             dataGridComparativo.MinHeight = datosConsulta.MinHeight - 1;
-
+            #endregion
 
         }
 

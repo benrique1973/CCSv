@@ -126,6 +126,7 @@ namespace SGPTWpf.SGPtWpf.Views.Principales.Encargos.Cedulas.Sumarias.Detalle
             dataGrid.MaxHeight = datosConsulta.MaxHeight - 1;
             dataGrid.MinHeight = datosConsulta.MinHeight - 1;
 
+
             _tokenRecepcionVista = "datosControllerEncargoCedulasSumariasDetalleDatosVista";//Datos de controllador CatalogoCuentasViewModel
             _tokenEnvioPadre = "datosControllerEncargoCedulasSumariasDetallefila";//Datos de controllador CatalogoCuentasViewModel
             _tokenEnvioPadreColumna = "datosControllerEncargoCedulasSumariasDetalleColumna";

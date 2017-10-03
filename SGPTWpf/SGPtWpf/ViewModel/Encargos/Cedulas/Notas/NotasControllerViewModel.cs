@@ -1905,7 +1905,13 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
                     _tokenRecepcion = "datosEncargoCedulasNotasMenuPrincipal"; //Modificado
                     #endregion
                     break;
+                case "DocumentacionCedulaNotasSumarias"://Llamada desde Documentacion/Carpetas
+                    #region configuracion Documentacion
+                    _tokenEnvio = "datosControllerEncargoCedulasSumariasDetalle";
+                    _tokenRecepcion = "datosEncargoCedulasSumariasDetalle"; //Modificado
 
+                    #endregion
+                    break;
             }
             //Suscribiendo el mensaje
             Messenger.Default.Register<NotasMsj>(this, tokenRecepcion, (datosMsj) => ControlDatosMsj(datosMsj));

@@ -135,7 +135,10 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                     ViewType = typeof(DetalleCedulaView);
                     break;
                 case "Analíticas":
-                    ViewType = typeof(AnaliticasView);
+                    ViewType = typeof(DetalleCedulaView);
+                    break;
+                case "Detalle de Analíticas":
+                    ViewType = typeof(DetalleCedulaView);
                     break;
                 case "De Detalle":
                     ViewType = typeof(DeDetalleView);
@@ -211,8 +214,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         Contexto = new DeDetalleViewModel(token);
                         break;
                     case "Analíticas":
-                        ViewModelType = typeof(AnaliticasViewModel);
-                        Contexto = new AnaliticasViewModel(token);
+                        ViewModelType = typeof(SumariasViewModel);
+                        Contexto = new SumariasViewModel("cedulasAnaliticas");
+                        //Contexto = new AnaliticasViewModel(token);
+                        break;
+                    case "Detalle de Analíticas":
+                        ViewModelType = typeof(DetalleCedulaViewModel);
+                        Contexto = new DetalleCedulaViewModel("cedulasAnaliticasDetalle");
                         break;
                     case "Correspondencia":
                         //Uso de una variable para cargar otro controlador
@@ -375,7 +383,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                                 ViewType =  typeof(DetalleCedulaViewModel),
                                 ViewDisplay ="Detalle de Sumarias"
                                 },
-              new menuCedulaDetalle {
+                new menuCedulaDetalle {
                                 id=16,
                                 tabla="resumenSumariascedulas",
                                 ViewType =  typeof(CentralizadoraViewModel),
@@ -393,7 +401,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                                 ViewType =  typeof(HallazgosViewModel),
                                 ViewDisplay ="Consulta de hallazgos"
                                 },
-                    };
+              new menuCedulaDetalle {
+                                id=19,
+                                tabla="detallecedulasAnaliticas",
+                                ViewType =  typeof(DetalleCedulaViewModel),
+                                ViewDisplay ="Detalle de Analíticas"
+                                },
+            };
 
             return lista.OrderBy(x => x.id).ToList();
         }

@@ -1506,7 +1506,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Notas
 
                     #region  menu
 
-                    _visibilidadMCrear = Visibility.Visible;
+                    _visibilidadMCrear = Visibility.Collapsed;
                     _visibilidadMEditar = Visibility.Visible;
                     _visibilidadMBorrar = Visibility.Visible;
                     _visibilidadMConsulta = Visibility.Visible;

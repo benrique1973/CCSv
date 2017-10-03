@@ -12,7 +12,6 @@ using SGPTWpf.Messages;
 using SGPTWpf.ViewModel;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion;
 using System.Linq;
-using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
 using SGPTWpf.SGPtWpf.Model.Modelo.Menus;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas;
 using System.Threading.Tasks;
@@ -134,6 +133,17 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 get { return _comandoPartida; }
                 set { _comandoPartida = value; }
             }
+
+        #endregion
+
+        #region comandoNotas
+
+        private int _comandoNotas;
+        private int comandoNotas
+        {
+            get { return _comandoNotas; }
+            set { _comandoNotas = value; }
+        }
 
         #endregion
 
@@ -768,6 +778,32 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
         #endregion
 
+        #region currentEntidadDetalleNota
+
+        public const string currentEntidadDetalleNotaPropertyName = "currentEntidadDetalleNota";
+
+        private CedulaNotasModelo _currentEntidadDetalleNota;
+
+        public CedulaNotasModelo currentEntidadDetalleNota
+        {
+            get
+            {
+                return _currentEntidadDetalleNota;
+            }
+
+            set
+            {
+                if (_currentEntidadDetalleNota == value) return;
+
+                _currentEntidadDetalleNota = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentEntidadDetalleNotaPropertyName);
+            }
+        }
+
+        #endregion
+
         #region ViewModel Property : currentCedulaPartidas
 
         public const string currentCedulaPartidasPropertyName = "currentCedulaPartidas";
@@ -789,6 +825,32 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 // Update bindings, no broadcast
                 RaisePropertyChanged(currentCedulaPartidasPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Property : currentCedulaNotas
+
+        public const string currentCedulaNotasPropertyName = "currentCedulaNotas";
+
+        private CedulaModelo _currentCedulaNotas;
+
+        public CedulaModelo currentCedulaNotas
+        {
+            get
+            {
+                return _currentCedulaNotas;
+            }
+
+            set
+            {
+                if (_currentCedulaNotas == value) return;
+
+                _currentCedulaNotas = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentCedulaNotasPropertyName);
             }
         }
 
@@ -868,6 +930,32 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 // Update bindings, no broadcast
                 RaisePropertyChanged(listaPartidasPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : listaNotas
+
+        public const string listaNotasPropertyName = "listaNotas";
+
+        private ObservableCollection<CedulaNotasModelo> _listaNotas;
+
+        public ObservableCollection<CedulaNotasModelo> listaNotas
+        {
+            get
+            {
+                return _listaNotas;
+            }
+
+            set
+            {
+                if (_listaNotas == value) return;
+
+                _listaNotas = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(listaNotasPropertyName);
             }
         }
 
@@ -1889,172 +1977,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         #endregion
 
 
-        #region menuContextual
-
-        #region visibilidadMenuReferencias
-
-        public const string visibilidadMenuReferenciasPropertyName = "visibilidadMenuReferencias";
-
-        private Visibility _visibilidadMenuReferencias = Visibility.Collapsed;
-
-        public Visibility visibilidadMenuReferencias
-        {
-            get
-            {
-                return _visibilidadMenuReferencias;
-            }
-
-            set
-            {
-                if (_visibilidadMenuReferencias == value)
-                {
-                    return;
-                }
-
-                _visibilidadMenuReferencias = value;
-                RaisePropertyChanged(visibilidadMenuReferenciasPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region visibilidadMenuMarcas
-
-        public const string visibilidadMenuMarcasPropertyName = "visibilidadMenuMarcas";
-
-        private Visibility _visibilidadMenuMarcas = Visibility.Collapsed;
-
-        public Visibility visibilidadMenuMarcas
-        {
-            get
-            {
-                return _visibilidadMenuMarcas;
-            }
-
-            set
-            {
-                if (_visibilidadMenuMarcas == value)
-                {
-                    return;
-                }
-
-                _visibilidadMenuMarcas = value;
-                RaisePropertyChanged(visibilidadMenuMarcasPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region visibilidadMenuNotas
-
-        public const string visibilidadMenuNotasPropertyName = "visibilidadMenuNotas";
-
-        private Visibility _visibilidadMenuNotas = Visibility.Collapsed;
-
-        public Visibility visibilidadMenuNotas
-        {
-            get
-            {
-                return _visibilidadMenuNotas;
-            }
-
-            set
-            {
-                if (_visibilidadMenuNotas == value)
-                {
-                    return;
-                }
-
-                _visibilidadMenuNotas = value;
-                RaisePropertyChanged(visibilidadMenuNotasPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region visibilidadMenuHallazgos
-
-        public const string visibilidadMenuHallazgosPropertyName = "visibilidadMenuHallazgos";
-
-        private Visibility _visibilidadMenuHallazgos = Visibility.Collapsed;
-
-        public Visibility visibilidadMenuHallazgos
-        {
-            get
-            {
-                return _visibilidadMenuHallazgos;
-            }
-
-            set
-            {
-                if (_visibilidadMenuHallazgos == value)
-                {
-                    return;
-                }
-
-                _visibilidadMenuHallazgos = value;
-                RaisePropertyChanged(visibilidadMenuHallazgosPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region visibilidadMenuTareas
-
-        public const string visibilidadMenuTareasPropertyName = "visibilidadMenuTareas";
-
-        private Visibility _visibilidadMenuTareas = Visibility.Collapsed;
-
-        public Visibility visibilidadMenuTareas
-        {
-            get
-            {
-                return _visibilidadMenuTareas;
-            }
-
-            set
-            {
-                if (_visibilidadMenuTareas == value)
-                {
-                    return;
-                }
-
-                _visibilidadMenuTareas = value;
-                RaisePropertyChanged(visibilidadMenuTareasPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region visibilidadMenuPartidas
-
-        public const string visibilidadMenuPartidasPropertyName = "visibilidadMenuPartidas";
-
-        private Visibility _visibilidadMenuPartidas = Visibility.Collapsed;
-
-        public Visibility visibilidadMenuPartidas
-        {
-            get
-            {
-                return _visibilidadMenuPartidas;
-            }
-
-            set
-            {
-                if (_visibilidadMenuPartidas == value)
-                {
-                    return;
-                }
-
-                _visibilidadMenuPartidas = value;
-                RaisePropertyChanged(visibilidadMenuPartidasPropertyName);
-            }
-        }
-
-        #endregion
-
-        #endregion fin  menuContextual
-
         #region filaIndice
 
         private int? _filaIndice;
@@ -2098,18 +2020,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         
             public RelayCommand<DataGrid> SelectionCellsChangedCommand { get; set; }
 
-            public RelayCommand GestionMarcasCommand { get; set; }
-
-            public RelayCommand GestionNotasCommand { get; set; }
-
-            public RelayCommand GestionHallazgosCommand { get; set; }
-
-            public RelayCommand GestionPartidasCommand { get; set; }
-
-            public RelayCommand GestionTareasCommand { get; set; }
-
-            public RelayCommand GestionReferenciasCommand { get; set; }
-
             public RelayCommand irMenuPadreCommand { get; set; }
 
             public RelayCommand referenciarCommand { get; set; }
@@ -2132,8 +2042,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         #region comandos Partidas
             public RelayCommand nuevaPartidaCommand { get; set; }
             public RelayCommand consultarPartidasCommand { get; set; }
-            public RelayCommand editarPartidasCommand { get; set; }
-            public RelayCommand borrarPartidaCommand { get; set; }
+
         #endregion
 
         #region comandos Notas
@@ -2143,11 +2052,13 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         public RelayCommand borrarNotaCommand { get; set; }
         #endregion
 
-        #region comandos Hallazgos
-        public RelayCommand nuevoHallazgoCommand { get; set; }
-        public RelayCommand consultarHallazgosCommand { get; set; }
-        public RelayCommand editarHallazgosCommand { get; set; }
-        public RelayCommand borrarHallazgoCommand { get; set; }
+
+        #region comandos Referencias
+        public RelayCommand nuevaReferenciaCommand { get; set; }
+        public RelayCommand consultarReferenciasCommand { get; set; }
+        public RelayCommand editarReferenciasCommand { get; set; }
+        public RelayCommand borrarReferenciaCommand { get; set; }
+
         #endregion
 
         #endregion
@@ -2281,21 +2192,55 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                         RegisterCommands();
                         _origenLlamada = 2;
 
-                    #region menuContextual
+                    #endregion
 
-                    visibilidadMenuHallazgos = Visibility.Collapsed;
-                    visibilidadMenuMarcas = Visibility.Collapsed;
-                    visibilidadMenuNotas = Visibility.Collapsed;
-                    visibilidadMenuPartidas = Visibility.Collapsed;
-                    visibilidadMenuReferencias = Visibility.Collapsed;
-                    visibilidadMenuTareas = Visibility.Collapsed;
+                    break;
+                case "cedulasAnaliticasDetalle":
+                    #region configuracion
 
-                    #endregion fin  menuContextual
+                    #region  menu
+
+                    _visibilidadMCrear = Visibility.Visible; ;
+                    _visibilidadMEditar = Visibility.Visible; ;
+                    _visibilidadMBorrar = Visibility.Visible; ;
+                    _visibilidadMConsulta = Visibility.Visible; ;
+                    _visibilidadMReferenciar = Visibility.Visible;//Pendiente
+                    _visibilidadMRegresar = Visibility.Visible;
+                    _visibilidadMVista = Visibility.Collapsed; ;
+                    _visibilidadMResponder = Visibility.Collapsed;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMTask = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    _visibilidadPdf = Visibility.Collapsed;
+                    #endregion
+
+                    #region token 
+                    _permitirArrastrar = true;//Permite al usuario arrastrar
+                    _tokenRecepcionPadre = "datosEncargoCedulasAnalíticas";//Permite captar los mensajes del  view model BalancesViewModel
+
+                    _tokenEnvioDatosAHijo = "datosEncargoCedulasAnalíticasDetalle";  //Para control de los datos que  remite programas a sub-ventanas
+                    _tokenRecepcionHijo = "datosControllerEncargoCedulasAnalíticasDetalle";
+                    _tokenEnvioDatosAMenu = "PlanDetalleIndiceRegreso"; //Para regresar al menu anterior.
+                    _tokenReferenciaVista = "datosControllerEncargoCedulasAnalíticasDetalleReferenciaVista";
+
+                    _tokenRespuestaVistaColumna = "datosControllerEncargoCedulasSumariasDetalleColumna";
+                    _tokenRecepcionVista = "datosControllerEncargoCedulasSumariasDetallefila";
+                    _tokenEnvioVista = "datosControllerEncargoCedulasSumariasDetalleColumna";
+
+                    _tokenRespuestaReferenciaVista = "RespuestaDatosControllerEncargoCedulasSumariasDetalleReferenciaVista";
+                    #endregion
+                    _FuenteLlamada = 0;
+                    RegisterCommands();
+                    _origenLlamada = 2;
 
                     #endregion
 
                     break;
-                    case "EncargoDocumentacionIndiceDetalle":
+                case "EncargoDocumentacionIndiceDetalle":
                         #region configuracion
                         #region  menu
 
@@ -2422,6 +2367,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 currentSistemaContable = null;
                 _comando = 0;
                 _comandoPartida = 0;
+                _comandoNotas = 0;
                 dlg = new DialogCoordinator();
                 lista = new ObservableCollection<DetalleCedulaModelo>();//Lista vacia no se conoce el encargo y el cliente
                 listaDetalles = new ObservableCollection<BitacoraModelo>();
@@ -2457,6 +2403,12 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             _listaCatalogo = new ObservableCollection<CatalogoCuentasModelo>();
             _inicializacionCatalogo = 0;
             #endregion
+
+            #region Notas
+            _currentCedulaNotas = new CedulaModelo();
+            _currentEntidadDetalleNota = new CedulaNotasModelo();
+            _listaNotas = new ObservableCollection<CedulaNotasModelo>();
+            #endregion
         }
 
         private void ControlSeleccionRegistros(celdaSeleccionadaMsj recepcionDatos)
@@ -2467,129 +2419,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 colIndice = recepcionDatos.columna;
                 filaIndice = recepcionDatos.fila;
                 currentEntidad = lista[(int)filaIndice];
-                switch (recepcionDatos.columna)
-                {
-                    case 1:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Collapsed;
-                        visibilidadMenuNotas = Visibility.Collapsed;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Visible;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-                        colNombre = "referenciapapel";
-                        #endregion fin  menuContextual
-
-                        break;
-                    case 4:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Collapsed;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Collapsed;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-                        colNombre = "m1dc";
-                        #endregion fin  menuContextual
-                        break;
-                    case 6:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Visible;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Collapsed;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-                        colNombre = "m2dc";
-                        #endregion fin  menuContextual
-                        break;
-                    case 8:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Visible;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Collapsed;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-                        colNombre = "m3dc";
-                        #endregion fin  menuContextual
-                        break;
-                    case 11:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Collapsed;
-                        visibilidadMenuNotas = Visibility.Collapsed;
-                        visibilidadMenuPartidas = Visibility.Visible;
-                        visibilidadMenuReferencias = Visibility.Collapsed;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-
-                        #endregion fin  menuContextual
-                        break;
-                    case 12:
-                        #region menuContextual
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Collapsed;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Collapsed;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-                        colNombre = "m4dc";
-                        #endregion fin  menuContextual
-                        break;
-                    case 13:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Collapsed;
-                        visibilidadMenuMarcas = Visibility.Collapsed;
-                        visibilidadMenuNotas = Visibility.Collapsed;
-                        visibilidadMenuPartidas = Visibility.Visible;
-                        visibilidadMenuReferencias = Visibility.Collapsed;
-                        visibilidadMenuTareas = Visibility.Collapsed;
-                        #endregion fin  menuContextual
-                        break;
-                    case 14:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Visible;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Visible;
-                        visibilidadMenuPartidas = Visibility.Visible;
-                        visibilidadMenuReferencias = Visibility.Visible;
-                        visibilidadMenuTareas = Visibility.Visible;
-                        colNombre = "m5dc";
-                        #endregion fin  menuContextual
-                        break;
-                    case 16:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Visible;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Visible;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Visible;
-                        visibilidadMenuTareas = Visibility.Visible;
-                        colNombre = "m6dc";
-                        #endregion fin  menuContextual
-                        break;
-                    case 18:
-                        #region menuContextual
-
-                        visibilidadMenuHallazgos = Visibility.Visible;
-                        visibilidadMenuMarcas = Visibility.Visible;
-                        visibilidadMenuNotas = Visibility.Visible;
-                        visibilidadMenuPartidas = Visibility.Collapsed;
-                        visibilidadMenuReferencias = Visibility.Visible;
-                        visibilidadMenuTareas = Visibility.Visible;
-                        colNombre = "m7dc";
-                        #endregion fin  menuContextual
-                        break;
-                }
-                //await mensajeAutoCerrado("Registros \n" + "fila " + filaIndice + "\n" + "columna " + colIndice, "Mensaje recibido", 2);
+              //await mensajeAutoCerrado("Registros \n" + "fila " + filaIndice + "\n" + "columna " + colIndice, "Mensaje recibido", 2);
 
                 Messenger.Default.Unregister<celdaSeleccionadaMsj>(this, tokenRecepcionVista);
 
@@ -2601,57 +2431,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         private void ControlCambioColumna(int recepcionDatos)
         {
             colIndice=recepcionDatos;
-            switch (recepcionDatos)
-            {
-                case 1:
-                    #region menuContextual
-
-                    visibilidadMenuHallazgos = Visibility.Collapsed;
-                    visibilidadMenuMarcas = Visibility.Collapsed;
-                    visibilidadMenuNotas = Visibility.Collapsed;
-                    visibilidadMenuPartidas = Visibility.Collapsed;
-                    visibilidadMenuReferencias = Visibility.Visible;
-                    visibilidadMenuTareas = Visibility.Collapsed;
-
-                    #endregion fin  menuContextual
-                    break;
-                case 4:
-                    #region menuContextual
-
-                    visibilidadMenuHallazgos = Visibility.Collapsed;
-                    visibilidadMenuMarcas = Visibility.Visible;
-                    visibilidadMenuNotas = Visibility.Visible;
-                    visibilidadMenuPartidas = Visibility.Collapsed;
-                    visibilidadMenuReferencias = Visibility.Collapsed;
-                    visibilidadMenuTareas = Visibility.Collapsed;
-
-                    #endregion fin  menuContextual
-                    break;
-                case 6:
-                    #region menuContextual
-
-                    visibilidadMenuHallazgos = Visibility.Collapsed;
-                    visibilidadMenuMarcas = Visibility.Visible;
-                    visibilidadMenuNotas = Visibility.Visible;
-                    visibilidadMenuPartidas = Visibility.Collapsed;
-                    visibilidadMenuReferencias = Visibility.Collapsed;
-                    visibilidadMenuTareas = Visibility.Collapsed;
-
-                    #endregion fin  menuContextual
-                    break;
-                case 8:
-                    #region menuContextual
-
-                    visibilidadMenuHallazgos = Visibility.Collapsed;
-                    visibilidadMenuMarcas = Visibility.Visible;
-                    visibilidadMenuNotas = Visibility.Visible;
-                    visibilidadMenuPartidas = Visibility.Collapsed;
-                    visibilidadMenuReferencias = Visibility.Collapsed;
-                    visibilidadMenuTareas = Visibility.Collapsed;
-
-                    #endregion fin  menuContextual
-                    break;
-            }
         }
 
         private void ControlCambioFila(int recepcionDatos)
@@ -2661,13 +2440,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             if (filaIndice != recepcionDatos)
             {
                 filaIndice = recepcionDatos;
-                    #region cambio datos
-                    //Antes de cambiar  la entidad se enviará para guardar cualquier cambio posible.
-                    /*if (currentEntidad != null && currentEntidad.iddc != 0)
-                    {
-                        DetalleCedulaModelo.UpdateModelo(currentEntidad);
-                    }*/
-                    #endregion
                     currentEntidad = lista[(int)filaIndice];
             }
             }
@@ -2798,12 +2570,55 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     //Cargar los registros dependientes
                     break;
             }
-            #endregion Marcas
+            #endregion partidas
+
+            #region Notas
+            // 7;"Notas";"A";TRUE
+            currentCedulaNotas = CedulaModelo.FindMaestro((int)currentEncargo.idencargo, 7, "Cédula de notas", currentMaestro.idvisita);
+            switch (currentCedulaNotas.idcedula)
+            {
+                case -1:
+                    //Error en la comunicacion
+                    //No  puede trabajarse
+                    await mensajeAutoCerrado("Existen errores de comunicación", "Intentelo más tarde para recuperar detalle de notas", 1);
+                    accesibilidadWindow = false;
+                    break;
+                case 0:
+                    //Registro no creado, se deberá crear
+                    currentCedulaNotas = new CedulaModelo();
+                    currentCedulaNotas.idtc = 7;
+                    currentCedulaNotas.idencargo = currentEncargo.idencargo;
+                    currentCedulaNotas.titulocedula = "Cédula de notas";
+                    currentCedulaNotas.usuarioModelo = currentUsuario;
+                    currentCedulaNotas.idvisita = currentMaestro.idvisita;
+                    switch (CedulaModelo.Insert(currentCedulaNotas, true))
+                    {
+                        case 0://No se pudo insertar
+                            await dlg.ShowMessageAsync(this, "No ha sido posible insertar el registro", "");
+                            accesibilidadWindow = false;
+                            break;
+                        case 1://Se inserto con éxito
+                            //await mensajeAutoCerrado("Registro insertado con éxito", "Este mensaje desaparecerá en segundos", 1);
+                            break;
+                        case -1://Se inserto con éxito
+                            await mensajeAutoCerrado("Error al insertar el registro", "Este mensaje desaparecerá en segundos", 1);
+                            accesibilidadWindow = false;
+                            break;
+                    }
+                    break;
+                default:
+                    //existe el registro
+                    actualizarListaNotas();
+                    //Cargar los registros dependientes
+                    break;
+            }
+            #endregion Notas
+
             #region mayorizacion
             //Mayorizar
             mayorizar();
             #endregion
-
+            ControlCambioLista();//Actualiza valores en la base
         }
 
         private void actualizarSumaTotal()
@@ -2832,7 +2647,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         }
 
 
-        private void mayorizar()
+        private async void mayorizar()
         {
             decimal? sumaCargos = 0;
             decimal? sumaAbonos = 0;
@@ -2843,104 +2658,128 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             decimal? sumaCargosAnteriorAjustes = 0;
             decimal? sumaAbonosAnteriorAjustes = 0;
             //string detallePartidas = "";
-            foreach (DetalleCedulaModelo item in lista)
+            try
             {
-                sumaCargos = 0;
-                sumaAbonos = 0;
-                sumaCargosAjustes = 0;
-                sumaAbonosAjustes = 0;
-                item.listaNumeroPartidasAbonos = new ObservableCollection<int>();
-                item.listaNumeroPartidasCargos = new ObservableCollection<int>();
-                item.m4dc = string.Empty;
-                item.m5dc = string.Empty;
-                if (item.claseregistro == "D") //Es una cuenta
+                foreach (DetalleCedulaModelo item in lista)
                 {
-                    foreach (CedulaPartidasModelo partida in listaPartidas)
+                    sumaCargos = 0;
+                    sumaAbonos = 0;
+                    sumaCargosAjustes = 0;
+                    sumaAbonosAjustes = 0;
+                    item.listaNumeroPartidasAbonos = new ObservableCollection<int>();
+                    item.listaNumeroPartidasCargos = new ObservableCollection<int>();
+                    item.m4dc = string.Empty;
+                    item.m5dc = string.Empty;
+                    if (item.claseregistro == "D") //Es una cuenta
                     {
-                        sumaCargosAnterior = sumaCargos;
-                        sumaAbonosAnterior = sumaAbonos;
-                        sumaCargosAnteriorAjustes = sumaCargosAjustes;
-                        sumaAbonosAnteriorAjustes = sumaAbonosAjustes;
-                        foreach (CatalogoCuentasModelo elemento in item.listaCuentasMayorizar)
+                        foreach (CedulaPartidasModelo partida in listaPartidas)
                         {
-                            if (partida.idpartida == 1)//Partida de ajuste
-                            {
-                                sumaCargosAjustes = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargosAjustes;
-                                sumaAbonosAjustes = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonosAjustes;
+                            sumaCargosAnterior = sumaCargos;
+                            sumaAbonosAnterior = sumaAbonos;
+                            sumaCargosAnteriorAjustes = sumaCargosAjustes;
+                            sumaAbonosAnteriorAjustes = sumaAbonosAjustes;
+                            if (item.listaCuentasMayorizar != null && item.listaCuentasMayorizar.Count > 0)
+                            {//Verifica que hay cuentas para mayorizar
+                                foreach (CatalogoCuentasModelo elemento in item.listaCuentasMayorizar)
+                                {
+                                    if (partida.idpartida == 1)//Partida de ajuste
+                                    {
+                                        sumaCargosAjustes = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargosAjustes;
+                                        sumaAbonosAjustes = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonosAjustes;
+                                    }
+                                    else
+                                    {
+                                        //Partidas de reclasificacion
+                                        sumaCargos = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargos;
+                                        sumaAbonos = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonos;
+                                    }
+                                }
                             }
                             else
                             {
-                                //Partidas de reclasificacion
-                                sumaCargos = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargos;
-                                sumaAbonos = listaMovimientos.Where(x => x.codigocc == elemento.codigocc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonos;
+                                //No  hay detalle
+                                if (partida.idpartida == 1)//Partida de ajuste
+                                {
+                                    sumaCargosAjustes = listaMovimientos.Where(x => x.codigocc == item.codigocontabledc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargosAjustes;
+                                    sumaAbonosAjustes = listaMovimientos.Where(x => x.codigocc == item.codigocontabledc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonosAjustes;
+                                }
+                                else
+                                {
+                                    //Partidas de reclasificacion
+                                    sumaCargos = listaMovimientos.Where(x => x.codigocc == item.codigocontabledc && partida.idpartida == x.idpartida).Sum(x => x.cargomovimiento) + sumaCargos;
+                                    sumaAbonos = listaMovimientos.Where(x => x.codigocc == item.codigocontabledc && partida.idpartida == x.idpartida).Sum(x => x.abonomovimiento) + sumaAbonos;
+                                }
                             }
+                                if (sumaAbonos != sumaAbonosAnterior)
+                                {
+                                    item.listaNumeroPartidasAbonos.Add((int)partida.numeropartida);
+                                }
+                                if (sumaCargos != sumaCargosAnterior)
+                                {
+                                    item.listaNumeroPartidasCargos.Add((int)partida.numeropartida);
+                                }
+                                if (sumaAbonosAjustes != sumaAbonosAnteriorAjustes)
+                                {
+                                    item.listaNumeroPartidasAbonos.Add((int)partida.numeropartida);
+                                }
+                                if (sumaCargosAjustes != sumaCargosAnteriorAjustes)
+                                {
+                                    item.listaNumeroPartidasCargos.Add((int)partida.numeropartida);
+                                }
+                                sumaCargosAnterior = 0;
+                                sumaAbonosAnterior = 0;
+                                sumaCargosAnteriorAjustes = 0;
+                                sumaAbonosAnteriorAjustes = 0;
                         }
-
-                        if (sumaAbonos != sumaAbonosAnterior)
+                        if (item.listaNumeroPartidasCargos!=null && item.listaNumeroPartidasCargos.Count > 0)
                         {
-                            item.listaNumeroPartidasAbonos.Add((int)partida.numeropartida);
-                        }
-                        if (sumaCargos != sumaCargosAnterior)
-                        {
-                            item.listaNumeroPartidasCargos.Add((int)partida.numeropartida);
-                        }
-                        if (sumaAbonosAjustes != sumaAbonosAnteriorAjustes)
-                        {
-                            item.listaNumeroPartidasAbonos.Add((int)partida.numeropartida);
-                        }
-                        if (sumaCargosAjustes != sumaCargosAnteriorAjustes)
-                        {
-                            item.listaNumeroPartidasCargos.Add((int)partida.numeropartida);
-                        }
-                        sumaCargosAnterior = 0;
-                        sumaAbonosAnterior = 0;
-                        sumaCargosAnteriorAjustes = 0;
-                        sumaAbonosAnteriorAjustes = 0;
-                    }
-                    if (item.listaNumeroPartidasCargos.Count > 0)
-                    {
-                        foreach (int numPartida in item.listaNumeroPartidasCargos)
-                        {
-                            if (item.m4dc == null || item.m4dc == "")
+                            foreach (int numPartida in item.listaNumeroPartidasCargos)
                             {
-                                item.m4dc = numPartida.ToString();
+                                if (item.m4dc == null || item.m4dc == "")
+                                {
+                                    item.m4dc = numPartida.ToString();
+                                }
+                                else
+                                {
+                                    item.m4dc = item.m4dc + ", " + numPartida.ToString();
+                                }
                             }
-                            else
+                        }
+                        if (item.listaNumeroPartidasAbonos != null && item.listaNumeroPartidasAbonos.Count > 0)
+                        {
+                            foreach (int numPartida in item.listaNumeroPartidasAbonos)
                             {
-                                item.m4dc = item.m4dc + ", " + numPartida.ToString();
+                                if (item.m5dc == null || item.m5dc == "")
+                                {
+                                    item.m5dc = numPartida.ToString();
+                                }
+                                else
+                                {
+                                    item.m5dc = item.m5dc + ", " + numPartida.ToString();
+                                }
                             }
                         }
                     }
-                    if(item.listaNumeroPartidasAbonos.Count>0)
-                    { 
-                    foreach (int numPartida in item.listaNumeroPartidasAbonos)
-                    {
-                        if (item.m5dc == null || item.m5dc == "")
-                        {
-                            item.m5dc = numPartida.ToString();
-                        }
-                        else
-                        {
-                            item.m5dc = item.m5dc + ", " + numPartida.ToString();
-                        }
-                    }
-                    }
-                }
-                item.abonoreajuste = sumaAbonosAjustes;
-                item.cargoreajuste = sumaCargosAjustes;
-                item.abonoreclasificacion = sumaAbonos;
-                item.cargoreclasificacion = sumaCargos;
+                    item.abonoreajuste = sumaAbonosAjustes;
+                    item.cargoreajuste = sumaCargosAjustes;
+                    item.abonoreclasificacion = sumaAbonos;
+                    item.cargoreclasificacion = sumaCargos;
 
-                if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
-                {
-                    item.saldofinaldc= item.saldoactualdc + item.cargoreajuste - item.abonoreajuste + item.cargoreclasificacion - item.abonoreclasificacion;
+                    if (item.tiposaldocc == "D" || item.tiposaldocc == "RD")
+                    {
+                        item.saldofinaldc = item.saldoactualdc + item.cargoreajuste - item.abonoreajuste + item.cargoreclasificacion - item.abonoreclasificacion;
+                    }
+                    else
+                    {
+                        item.saldofinaldc = item.saldoactualdc - item.cargoreajuste + item.abonoreajuste - item.cargoreclasificacion + item.abonoreclasificacion;
+                    }
+                    item.cargosreajusteyreclasificacion = sumaCargos + sumaCargosAjustes;
+                    item.abonoreajusteyreclasificacion = sumaAbonos + sumaCargosAjustes;
                 }
-                else
-                {
-                    item.saldofinaldc = item.saldoactualdc - item.cargoreajuste + item.abonoreajuste - item.cargoreclasificacion + item.abonoreclasificacion;
-                }
-                item.cargosreajusteyreclasificacion = sumaCargos + sumaCargosAjustes;
-                item.abonoreajusteyreclasificacion = sumaAbonos + sumaCargosAjustes;
+            }
+            catch (Exception e)
+            {
+                await mensajeAutoCerrado("Error", e.ToString(), 4);
             }
             foreach (DetalleCedulaModelo item in lista)
             {
@@ -2954,13 +2793,13 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                         item.disminuciondc = (item.aumentodc / item.saldoanteriordc) * 100;
                     }
                     item.cargoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreajuste);
-                    item.abonoreajuste = lista.Where(x => x.claseregistro=="D").Sum(x => x.abonoreajuste);
+                    item.abonoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.abonoreajuste);
                     item.cargoreajuste = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreajuste);
                     item.abonoreclasificacion = lista.Where(x => x.claseregistro == "D").Sum(x => x.abonoreclasificacion);
                     item.cargoreclasificacion = lista.Where(x => x.claseregistro == "D").Sum(x => x.cargoreclasificacion);
                     item.abonoreajusteyreclasificacion = item.abonoreajuste + item.abonoreclasificacion;
                     item.cargosreajusteyreclasificacion = item.cargoreajuste + item.cargoreclasificacion;
-                    item.saldofinaldc= lista.Where(x => x.claseregistro == "D").Sum(x => x.saldofinaldc);
+                    item.saldofinaldc = lista.Where(x => x.claseregistro == "D").Sum(x => x.saldofinaldc);
 
                 }
             }
@@ -3056,6 +2895,50 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             ///enviarMensaje();No aplica porque no  se envia  la lista a la vista
         }
 
+        private void actualizarListaNotas()
+        {
+            try
+            {
+                listaNotas = CedulaNotasModelo.GetAllEdicion(currentEncargo, currentCedulaNotas.idcedula);
+                //Actualizar la referencia de  las  notas
+                if (listaNotas.Count > 0)
+                {
+                    foreach (DetalleCedulaModelo item in lista)
+                    {
+                        item.m7dc = string.Empty;
+                        if (item.claseregistro == "D" || item.claseregistro == "S") //Es una cuenta o suma de cuentas
+                        {
+                            foreach (CedulaNotasModelo nota in listaNotas)
+                            {
+                                if(nota.idgenerico==item.iddc && nota.tabla == "DETALLECEDULAS")
+                                if (item.m7dc == null || item.m7dc == "")
+                                {
+                                    item.m7dc = nota.numnotapt;
+                                    item.contenidoNotas= nota.numnotapt+" )"+nota.descripcionnotaspt;
+                                    }
+                                else
+                                {
+                                    item.m7dc = item.m7dc + ", " + nota.numnotapt;
+                                    item.contenidoNotas =item.contenidoNotas+", "+nota.numnotapt + " )" + nota.descripcionnotaspt;
+                                    }
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                if (e.Source != null)
+                {
+                    dlg.ShowMessageAsync(this, "Problema de comunicacion en la actualizacion de lista Notas" + e, "");
+                    listaNotas = new ObservableCollection<CedulaNotasModelo>();
+                }
+            }
+            //Se manda a la vista actualizada
+            ///enviarMensaje();No aplica porque no  se envia  la lista a la vista
+        }
+
             private void actualizarLista()
             {
                 guardarlista();
@@ -3064,7 +2947,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     //Internamenteo consigo el id del sistema contable
                     //lista = new ObservableCollection<CedulaModelo>(CedulaModelo.GetAll(currentEncargo.idencargo));
                     lista = new ObservableCollection<DetalleCedulaModelo>(DetalleCedulaModelo.GetAllEdicion(currentEncargo,currentMaestro.idcedula));
-
+                    
                 }
                 catch (Exception e)
                 {
@@ -3153,7 +3036,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         private void ControlVentanaMensaje(int controlVentanaCrearMensaje)
             {
             EDDetalleIMainModel.TypeName = null;
-            if (comandoPartida == 0)
+            if (comandoPartida == 0 && comandoNotas==0)
             {
                 #region Seleccion del retorno
                 switch (comando)
@@ -3217,71 +3100,137 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             }
             else
             {
-                #region Seleccion del retorno de partida
-                switch (comandoPartida)
+                if (comandoNotas == 0)
                 {
-                    case 1:
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            actualizarListaPartidas();
-                            mayorizar();
-                        }
-                        break;
-                    case 2:
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            actualizarListaPartidas();
-                            mayorizar();
-                        }
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        //caso de vista de programa
-                        break;
-                    case 5://Programa vista
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            actualizarListaPartidas();
-                            mayorizar();
-                        }
-                        accesibilidadWindow = true;
-                        enviarMensajeHabilitar();
-                        break;
-                    case 6:
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            actualizarListaPartidas();
-                            mayorizar();
-                        }
-                        break;
-                    case 7:
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            actualizarListaPartidas();
-                            mayorizar();
-                        }
-                        //enviarMensajeHabilitar();
-                        break;
-                    case 8:
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            actualizarListaPartidas();
-                            mayorizar();
-                        }
-                        //enviarMensajeHabilitar();
-                        break;
-                    case 12://Vista referencia
-                        if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
-                        {
-                            //actualizarLista();
-                        }
-                        //enviarMensajeHabilitar();
-                        break;
-                    default:
-                        break;
+                    #region Seleccion del retorno de partida
+                    switch (comandoPartida)
+                    {
+                        case 1:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaPartidas();
+                                mayorizar();
+                            }
+                            break;
+                        case 2:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaPartidas();
+                                mayorizar();
+                            }
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            //caso de vista de programa
+                            break;
+                        case 5://Programa vista
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaPartidas();
+                                mayorizar();
+                            }
+                            accesibilidadWindow = true;
+                            enviarMensajeHabilitar();
+                            break;
+                        case 6:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaPartidas();
+                                mayorizar();
+                            }
+                            break;
+                        case 7:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaPartidas();
+                                mayorizar();
+                            }
+                            //enviarMensajeHabilitar();
+                            break;
+                        case 8:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaPartidas();
+                                mayorizar();
+                            }
+                            //enviarMensajeHabilitar();
+                            break;
+                        case 12://Vista referencia
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                //actualizarLista();
+                            }
+                            //enviarMensajeHabilitar();
+                            break;
+                        default:
+                            break;
+                    }
+                    #endregion seleccion  de retorno partidas
                 }
-                #endregion seleccion  de retorno partidas
+                else
+                {
+                    #region Seleccion del retorno de notas
+                    switch (comandoNotas)
+                    {
+                        case 1:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaNotas();
+                            }
+                            break;
+                        case 2:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaNotas();
+                            }
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            //caso de vista de programa
+                            break;
+                        case 5://Programa vista
+                            //if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            //{
+                            //    actualizarListaNotas();
+                            //}
+                            accesibilidadWindow = true;
+                            enviarMensajeHabilitar();
+                            break;
+                        case 6:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaNotas();
+                            }
+                            break;
+                        case 7:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaNotas();
+                            }
+                            //enviarMensajeHabilitar();
+                            break;
+                        case 8:
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                actualizarListaNotas();
+                            }
+                            //enviarMensajeHabilitar();
+                            break;
+                        case 12://Vista referencia
+                            if (controlVentanaCrearMensaje != 0)//Cancelo o cerro la ventana no se requiere actualizar
+                            {
+                                //actualizarLista();
+                            }
+                            //enviarMensajeHabilitar();
+                            break;
+                        default:
+                            break;
+                    }
+                    #endregion seleccion  de retorno partidas
+                }
+
             }
             //currentEntidad = null;
             finComando();
@@ -3554,21 +3503,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
                 referenciarCommand = new RelayCommand(Referenciar, CanReferenciar);
 
-
-                GestionMarcasCommand = new RelayCommand(gestionarMarca);
-
-                GestionNotasCommand = new RelayCommand(gestionarNotas);
-
-
-                GestionHallazgosCommand = new RelayCommand(gestionarHallazgos);
-
-                GestionPartidasCommand  =new RelayCommand(gestionarPartidas);
-
-                GestionTareasCommand  =new RelayCommand(gestionarTareas);
-
-                GestionReferenciasCommand = new RelayCommand(gestionarReferencias);
-
-                SelectionCellsChangedCommand=new RelayCommand<DataGrid> (entidad =>
+               SelectionCellsChangedCommand=new RelayCommand<DataGrid> (entidad =>
             {
                 if (entidad == null) return;
                 //Verificar la cantidad de  registros seleccionados
@@ -3578,78 +3513,364 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             });
             #region comandos de Partidas
                 nuevaPartidaCommand = new RelayCommand(nuevoPartida );
-                consultarPartidasCommand = new RelayCommand(consultarPartidas );
-                editarPartidasCommand = new RelayCommand(editarPartidas );
-                borrarPartidaCommand = new RelayCommand(borrarPartida );
+                consultarPartidasCommand = new RelayCommand(consultarPartidas, CanPartidas);
 
             #endregion
 
-            #region comandos de Hallazgos
-            nuevoHallazgoCommand = new RelayCommand(nuevoHallazgo);
-            consultarHallazgosCommand = new RelayCommand(consultarHallazgos);
-            editarHallazgosCommand = new RelayCommand(editarHallazgos);
-            borrarHallazgoCommand = new RelayCommand(borrarHallazgo);
+            #region comandos de referencias
+
+            nuevaReferenciaCommand = new RelayCommand(nuevoReferencia, CanNuevaReferencia);
+            consultarReferenciasCommand = new RelayCommand(consultarReferencia, CanReferenciaPT);
+            editarReferenciasCommand = new RelayCommand(editarReferencia, CanReferenciaPT);
+            borrarReferenciaCommand = new RelayCommand(borrarReferencia, CanReferenciaPT);
 
             #endregion
 
             #region comandos de Notas
             nuevaNotaCommand = new RelayCommand(nuevoNota);
-            consultarNotasCommand = new RelayCommand(consultarNotas);
-            editarNotasCommand = new RelayCommand(editarNotas);
-            borrarNotaCommand = new RelayCommand(borrarNota);
+            consultarNotasCommand = new RelayCommand(consultarNotas, CanNotas);
+
 
             #endregion
         }
 
-        private void borrarHallazgo()
+        private bool CanNotas()
         {
-            throw new NotImplementedException();
+            if (!(currentEntidad == null))
+            {
+                if (currentEntidad.claseregistro == "D")
+                {
+                    try
+                    {
+                        return !string.IsNullOrEmpty(currentEntidad.m7dc) && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        private void editarHallazgos()
+        private bool CanHallazgos()
         {
-            throw new NotImplementedException();
+            if (!(currentEntidad == null))
+            {
+                if (currentEntidad.claseregistro == "D")
+                {
+                    try
+                    {
+                        return !string.IsNullOrEmpty(currentEntidad.m8dc) && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        private void consultarHallazgos()
+        private bool CanPartidas()
         {
-            throw new NotImplementedException();
+            bool respuesta = false;
+            if (!(currentEntidad == null))
+            {
+                if (currentEntidad.claseregistro == "D")
+                {
+                    try
+                    {
+                        if (colIndice != -1 && colIndice != null)
+                        {
+                            switch (colIndice)
+                            {
+                                case 11:
+                                    //Cargos
+                                    respuesta= !string.IsNullOrEmpty(currentEntidad.m4dc) && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
+                                    break;
+                                case 13:
+                                    //Abonos
+                                    respuesta= !string.IsNullOrEmpty(currentEntidad.m5dc) && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        return respuesta;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        private void nuevoHallazgo()
+        private bool CanReferenciaPT()
         {
-            throw new NotImplementedException();
+            if (!(currentEntidad == null))
+            {
+                if (currentEntidad.claseregistro == "D" || currentEntidad.claseregistro == "S")
+                {
+                    try
+                    {
+                        return !string.IsNullOrEmpty(currentEntidad.referenciapapel) && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        private void borrarNota()
+        private bool CanNuevaReferencia()
         {
-            throw new NotImplementedException();
+            if (!(currentEntidad == null))
+            {
+                if (currentEntidad.claseregistro == "D" || currentEntidad.claseregistro == "S")
+                {
+                    try
+                    {
+                        return string.IsNullOrEmpty(currentEntidad.referenciapapel) && (currentMaestro.usuariocerro == null || currentMaestro.usuariocerro == string.Empty);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        private void editarNotas()
+        private async void borrarReferencia()
         {
-            throw new NotImplementedException();
+            if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
+            {
+                //Gestionar referencias
+                //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
+                currentEntidad = lista[(int)filaIndice];
+                #region gestion
+                //Borrar la referencia
+                DetalleCedulaModelo.BorrarModeloReferencia(currentEntidad);
+                currentEntidad.referenciapapel = string.Empty;
+                await mensajeAutoCerrado("Referencia eliminada", "", 2);
+                #endregion
+            }
+            else
+            {
+                await mensajeAutoCerrado("Debe seleccionar una celta para operar", "Seleccione una celda", 2);
+            }
+            finComando();
         }
 
-        private void consultarNotas()
+
+        private async void editarReferencia()
         {
-            throw new NotImplementedException();
+            if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
+            {
+                //Gestionar referencias
+                //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
+                currentEntidad = lista[(int)filaIndice];
+                #region gestion
+
+                //Se mandara listado de referencias y realizará la inserción
+                if (currentEntidad != null && colIndice != -1)
+                {
+                    comando = 8;//Referenciar
+                    iniciarComando();
+                    EDDetalleIMainModel.TypeName = "DetalleSumariaModeloReferenciarview";
+                    enviarMensajeReferenciacion();
+                }
+                else
+                {
+                    await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
+                    finComando();
+
+                }
+
+                #endregion
+            }
+            else
+            {
+                await mensajeAutoCerrado("Debe seleccionar una celta para operar", "Seleccione una celda", 2);
+                finComando();
+
+            }
+            //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
         }
+
+        private async void consultarReferencia()
+        {
+            await mensajeAutoCerrado("Pendiente de desarrollo", "", 2);
+        }
+
+        private async void nuevoReferencia()
+            {
+                if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
+                {
+                    //Gestionar referencias
+                    //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
+                    currentEntidad = lista[(int)filaIndice];
+                    #region gestion
+
+                    //Se mandara listado de referencias y realizará la inserción
+                    if (currentEntidad != null && colIndice != -1)
+                    {
+                        comando = 8;//Referenciar
+                        iniciarComando();
+                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloReferenciarview";
+                        enviarMensajeReferenciacion();
+                    }
+                    else
+                    {
+                        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
+                        finComando();
+
+                }
+
+                #endregion
+            }
+                else
+                {
+                    await mensajeAutoCerrado("Debe seleccionar una celta para operar", "Seleccione una celda", 2);
+                    finComando();
+
+            }
+            //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
+        }
+
+
+
+        private async void consultarNotas()
+        {
+            if (!(currentEntidad == null))
+            {
+                if (string.IsNullOrEmpty(currentEntidad.m7dc))
+                {
+                    await mensajeAutoCerrado("El registro no tiene notas que mostrar","", 2);
+                }
+                else
+                {
+                        iniciarComando();
+                        comando = 5;
+                        comandoNotas = 5;
+                        //currentEntidad.usuarioModelo = currentUsuario;
+                        EDDetalleIMainModel.TypeName = "SumariasDetalleCedulaNotasConsultaview";
+                        enviarMensajeNotas();  //Debe ir antes, porque evalua si la ventana es cero para enviarse
+                }
+            }
+            else
+            {
+                await dlg.ShowMessageAsync(this, "Debe seleccionar el registro a consultar", "");
+            }
+        }
+
 
         private void nuevoNota()
         {
-            throw new NotImplementedException();
+            iniciarComando();
+            //Para guardar lo que esta en la  pantalla
+            //No se utiliza debido a que no existe edicion
+            comando = 1;
+            comandoNotas = 1;
+
+            #region Inicializacion de herramienta 
+            //currentEntidad = new CedulaModelo(currentEncargo, usuarioModelo);
+            //currentEntidad.idtc = idtc;//Se asigna el tipo de cedula a utilizar
+            currentEntidadDetalleNota = new CedulaNotasModelo(currentCedulaNotas, currentEncargo, currentUsuario);
+            currentEntidadDetalleNota.numnotapt = CedulaNotasModelo.indice(listaNotas.Count() + 1);
+            currentEntidadDetalleNota.idusuariocreador = currentUsuario.idUsuario;
+            currentEntidadDetalleNota.tabla = "DETALLECEDULAS";
+            if (string.IsNullOrEmpty(currentMaestro.referenciacedula))
+            {
+                currentEntidadDetalleNota.referenciapapel = "Pendiente";
+            }
+            else
+            {
+                currentEntidadDetalleNota.referenciapapel = currentMaestro.referenciacedula;
+            }
+            currentEntidadDetalleNota.idgenerico = currentEntidad.iddc;
+
+            EDDetalleIMainModel.TypeName = "CedulaNotasCrearview";
+            #endregion
+
+            activarCaptura = true;
+            enviarMensajeNotas();
         }
 
-        private void editarPartidas()
+        private void enviarMensajeNotas()
         {
-            throw new NotImplementedException();
+            //Se crea el mensaje
+            NotasMsj elemento = new NotasMsj();
+            elemento.encargoModelo = currentEncargo;
+            elemento.usuarioModelo = currentUsuario;
+            //elemento.sistemaContableModelo = currentSistemaContable;//Programa a crear 
+            elemento.entidadMaestroModelo = currentCedulaNotas;//Para el caso de  edicion de programas
+            //elemento.listaMaestroModelo = lista;
+            if (comandoNotas == 5)
+            {
+                ObservableCollection<CedulaNotasModelo> listaConsulta = new ObservableCollection<CedulaNotasModelo>();
+                if (listaNotas.Count > 0)
+                {
+                            foreach (CedulaNotasModelo nota in listaNotas)
+                            {
+                                if (nota.idgenerico == currentEntidad.iddc && nota.tabla == "DETALLECEDULAS")
+                                    listaConsulta.Add(nota);
+                            }
+                }
+                elemento.listaDetalle = listaConsulta;//Listado de notas a mostrar
+            }
+            else
+            {
+                elemento.listaDetalle = listaNotas;//Listado de notas a mostrar
+            }
+            elemento.entidadDetalle = currentEntidadDetalleNota;
+            elemento.opcionMenuCrud = comandoNotas;
+            elemento.tokenRespuestaController = tokenRecepcionHijo;
+            elemento.tokenRecepcionSubMenuDetalle = tokenRecepcionHijo;
+            elemento.fuenteLlamado = 3; //no se utiliza
+            Messenger.Default.Send(elemento, tokenEnvioDatosAHijo);
         }
 
-        private void borrarPartida()
-        {
-            throw new NotImplementedException();
-        }
 
         private async void consultarPartidas()
         {
@@ -3837,88 +4058,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
         }
 
 
-        private async void gestionarReferencias()
-        {
-            if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
-            {
-                //Gestionar referencias
-                //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
-                currentEntidad = lista[(int)filaIndice];
-                #region gestion
 
-                //Insertar-Modificar
-                //Borrar
-                //Ir a referencia
-                //Cancelar
-                var mySettings = new MetroDialogSettings()
-                {
-                    AffirmativeButtonText = "Insertar/Modificar",
-                    NegativeButtonText = "Borrar",
-                    FirstAuxiliaryButtonText = "Cancelar",
-                    //SecondAuxiliaryButtonText="Cancelar"
-                };
-
-                MessageDialogResult result = await dlg.ShowMessageAsync(this, "Seleccione la opción", "Gestión de referencias",
-                MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, mySettings);
-
-                if (result == MessageDialogResult.Affirmative)
-                {
-                    //Se mandara listado de referencias y realizará la inserción
-                    if (currentEntidad != null && colIndice!=-1)
-                    {
-                        comando = 8;//Referenciar
-                        iniciarComando();
-                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloReferenciarview";
-                        enviarMensajeReferenciacion();
-                    }
-                    else
-                    {
-                        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
-                    }
-
-                }
-                else
-                {
-                    if (result == MessageDialogResult.Negative)
-                    {
-                        //Borrar la referencia
-                        DetalleCedulaModelo.BorrarModeloReferencia(currentEntidad);
-                        await mensajeAutoCerrado("Referencia eliminada", "", 2);
-                    }
-                    else
-                    {
-                        //if (result == MessageDialogResult.FirstAuxiliary)
-                        //{
-                        //    if (currentEntidad != null && colIndice != -1)
-                        //    {
-                        //        comando = 8;//Referenciar
-                        //        iniciarComando();
-                        //        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloVerview";
-                        //        enviarMensajeReferenciacion();
-                        //    }
-                        //    else
-                        //    {
-                        //        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
-                        //    }
-                        //}
-                        //else
-                        //{
-                            await dlg.ShowMessageAsync(this, "Cancelo operación", "");
-                            finComando();
-
-                    }
-                }
-
-
-                #endregion
-            }
-            else
-            {
-                await mensajeAutoCerrado("Debe seleccionar una celta para operar","Seleccione una celda", 2);
-            }
-            //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
-            finComando();
-        }
 
         public void enviarMensajeReferenciacion()
         {
@@ -3938,171 +4078,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             elemento.detalleCedulaModelo = currentEntidad;
             elemento.columnaDestino =(int) colIndice;
             Messenger.Default.Send(elemento, tokenEnvioDatosAHijo);
-        }
-
-        private void gestionarTareas()
-        {
-            throw new NotImplementedException();
-        }
-
-        private async void gestionarPartidas()
-        {
-            if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
-            {
-                //Gestionar referencias
-                //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
-                currentEntidad = lista[(int)filaIndice];
-                #region gestion
-
-                //Insertar-Modificar
-                //Borrar
-                //Ir a referencia
-                //Cancelar
-                var mySettings = new MetroDialogSettings()
-                {
-                    AffirmativeButtonText = "Insertar/Modificar",
-                    NegativeButtonText = "Borrar",
-                    FirstAuxiliaryButtonText = "Cancelar",
-                    //SecondAuxiliaryButtonText="Cancelar"
-                };
-
-                MessageDialogResult result = await dlg.ShowMessageAsync(this, "Seleccione la opción", "Gestión de referencias",
-                MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, mySettings);
-
-                if (result == MessageDialogResult.Affirmative)
-                {
-                    //Se mandara listado de referencias y realizará la inserción
-                    if (currentEntidad != null && colIndice != -1)
-                    {
-                        comando = 8;//Referenciar
-                        iniciarComando();
-                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloReferenciarview";
-                        enviarMensajeReferenciacion();
-                    }
-                    else
-                    {
-                        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
-                    }
-
-                }
-                else
-                {
-                    if (result == MessageDialogResult.Negative)
-                    {
-                        //Borrar la referencia
-                        DetalleCedulaModelo.BorrarModeloReferencia(currentEntidad);
-                        await mensajeAutoCerrado("Referencia eliminada", "", 2);
-                    }
-                    else
-                    {
-                        //if (result == MessageDialogResult.FirstAuxiliary)
-                        //{
-                        //    if (currentEntidad != null && colIndice != -1)
-                        //    {
-                        //        comando = 8;//Referenciar
-                        //        iniciarComando();
-                        //        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloVerview";
-                        //        enviarMensajeReferenciacion();
-                        //    }
-                        //    else
-                        //    {
-                        //        await mensajeAutoCerrado("Debe seleccionar el elemento a referenciar", "", 2);
-                        //    }
-                        //}
-                        //else
-                        //{
-                        await dlg.ShowMessageAsync(this, "Cancelo operación", "");
-                        finComando();
-
-                    }
-                }
-
-
-                #endregion
-            }
-            else
-            {
-                await mensajeAutoCerrado("Debe seleccionar una celta para operar", "Seleccione una celda", 2);
-            }
-            //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
-            finComando();
-        }
-
-        private void gestionarHallazgos()
-        {
-            throw new NotImplementedException();
-        }
-
-        private async void gestionarNotas()
-        {
-            await mensajeAutoCerrado("Nota Insertar columna "+ colIndice +"\n fila "+ filaIndice+"\n","", 3);
-        }
-
-        private async void gestionarMarca()
-        {
-            if (colIndice != -1 && filaIndice != -1 && currentEntidad != null && currentEntidad.iddc != 0)
-            {
-                //Gestionar referencias
-                //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
-                currentEntidad = lista[(int)filaIndice];
-                #region gestion
-
-                //Insertar-Modificar
-                //Borrar
-                //Ir a referencia
-                //Cancelar
-                var mySettings = new MetroDialogSettings()
-                {
-                    AffirmativeButtonText = "Insertar/Modificar",
-                    NegativeButtonText = "Borrar",
-                    FirstAuxiliaryButtonText = "Cancelar",
-                    //SecondAuxiliaryButtonText="Cancelar"
-                };
-
-                MessageDialogResult result = await dlg.ShowMessageAsync(this, "Seleccione la opción", "Gestión de marcas",
-                MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, mySettings);
-
-                if (result == MessageDialogResult.Affirmative)
-                {
-                    //Se mandara listado de referencias y realizará la inserción
-                    if (currentEntidad != null && colIndice != -1)
-                    {
-                        comando = 8;//Referenciar
-                        iniciarComando();
-                        EDDetalleIMainModel.TypeName = "DetalleSumariaModeloMarcasview";
-                        //enviarMensajeMarca();
-                    }
-                    else
-                    {
-                        await mensajeAutoCerrado("Debe seleccionar el elemento para insertar la marca", "", 2);
-                    }
-
-                }
-                else
-                {
-                    if (result == MessageDialogResult.Negative)
-                    {
-                        //Borrar la referencia
-                        DetalleCedulaModelo.BorrarModeloMarca(currentEntidad,colNombre);
-                        await mensajeAutoCerrado("Marca eliminada", "", 2);
-                    }
-                    else
-                    {
-                        await dlg.ShowMessageAsync(this, "Cancelo operación", "");
-                        finComando();
-
-                    }
-                }
-
-
-                #endregion
-            }
-            else
-            {
-                await mensajeAutoCerrado("Debe seleccionar una celta para operar", "Seleccione una celda", 2);
-            }
-            //await mensajeAutoCerrado("Nota Insertar columna " + colIndice + "\n fila " + filaIndice + "\n", "", 3);
-            finComando();
         }
 
 
@@ -4154,27 +4129,46 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             }
 
 
-
-            private void irPrincipal()
+        private void ControlCambioLista()
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            //var secureString = passwordContainer.Password;
+            worker.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+                if (lista.Count() > 0)
+                {
+                    foreach (DetalleCedulaModelo item in lista)
+                    {
+                        if (item.claseregistro != "M")
+                        {
+                            DetalleCedulaModelo.UpdateModelo(item);
+                        }
+                    }
+                }
+            };
+            worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+                //Proceso terminado
+            };
+            worker.Dispose();
+            worker.RunWorkerAsync();
+        }
+        private void irPrincipal()
             {
                 iniciarComando();
             #region cambio datos
+            ControlCambioLista();
             //Antes de regresar se guarda cualquier cambio posible.
-            if (lista.Count() > 0)
-            {
-                foreach (DetalleCedulaModelo item in lista)
-                {
-                    if (item.claseregistro != "M")
-                    {
-                        DetalleCedulaModelo.UpdateModelo(item);
-                    }
-                }
-            }
-
-                    //if (currentEntidad != null && currentEntidad.iddc != 0)
-                    //{
-                    //    DetalleCedulaModelo.UpdateModelo(currentEntidad);
-                    //}
+            //if (lista.Count() > 0)
+            //{
+            //    foreach (DetalleCedulaModelo item in lista)
+            //    {
+            //        if (item.claseregistro != "M")
+            //        {
+            //            DetalleCedulaModelo.UpdateModelo(item);
+            //        }
+            //    }
+            //}
                     #endregion
             //Mandar el mensaje al principal que domina la pantalla
             Messenger.Default.Send(currentMaestro.idcedula, tokenEnvioDatosAMenu);
@@ -4260,10 +4254,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 //cursorWindow = Cursors.Wait;
                 Mouse.OverrideCursor = Cursors.Wait;
                 Messenger.Default.Register<int>(this, tokenRecepcionHijo, (controllerProgramaViewMensaje) => ControlVentanaMensaje(controllerProgramaViewMensaje));
-                //Messenger.Default.Register<int>(this, tokenRecepcionCierrePreView, (controllerProgramaViewMensaje) => ControlVentanaMensaje(controllerProgramaViewMensaje));
-                //Messenger.Default.Register<bool>(this, tokenRecepcionHijo, (recepcionDatos) => ControlCambioLista(recepcionDatos));
                 Messenger.Default.Register<int>(this, tokenRespuestaReferenciaVista, (controllerProgramaViewMensaje) => ControlVentanaMensaje(controllerProgramaViewMensaje));
-
                 accesibilidadWindow = false;
             }
 
@@ -4282,6 +4273,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 accesibilidadWindow = true;
                 comando = 0;
                 comandoPartida = 0;
+                comandoNotas = 0;
             }
 
 

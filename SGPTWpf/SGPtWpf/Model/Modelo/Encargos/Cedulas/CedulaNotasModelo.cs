@@ -1,6 +1,7 @@
 ﻿using CapaDatos;
 using SGPTWpf.Model;
 using SGPTWpf.Model.Modelo.Encargos;
+using SGPTWpf.Model.Modelo.programas;
 using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Documentacion;
 using SGPTWpf.SGPtWpf.Support.Validaciones.Atributos;
 using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
@@ -1670,8 +1671,41 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                      }).OrderBy(o => o.idnotaspt).Where(x => x.estadonota == "A" && x.idencargo == encargo.idencargo && x.idcedula == idcedula).ToList();
                     //La ordena por el idPrograma notar la notacion
                     int i = 1;
+                    string referencia;
                     foreach (CedulaNotasModelo item in lista)
                     {
+                        if (item.tabla != null && item.idgenerico != null && item.idgenerico != 0)
+                        {
+                            //Actualizar referencias
+                            referencia = UniversalPTModelo.GetReferencia(item.tabla, item.idgenerico);
+                            if (referencia == "-1")
+                            {
+                                item.referenciapapel = "Error";
+                                item.referenciapapel = "Error";
+                                //Limpia la referencia
+                                item.referenciapapel = string.Empty;
+                                item.idgenerico = null;
+                                item.tabla = string.Empty;
+                                //No se identifica el papel origen se elimina la  refencia que genera error
+                                BorrarModeloReferencia(item);
+                            }
+                            else
+                            {
+                                if (item.referenciapapel == referencia)
+                                {
+                                    item.referenciapapel = referencia;
+                                }
+                                else
+                                {
+                                    //Asignarlo y guardarlo
+                                    item.referenciapapel = referencia;
+                                    if (!UpdateModeloReferencia(item, referencia))
+                                    {
+                                        MessageBox.Show("Error en actualizar referencia");
+                                    }
+                                }
+                            }
+                        }
                         item.etapaPapelDescripcion = EtapaEncargoModelo.descripcionEtapa(item.etapapapel);
                         item.commandButton = CedulaNotasModelo.seleccionCommand(item.etapaPapelDescripcion);
                         //item.usuariocreo = UsuarioModelo.GetInicialesCapaDatosByid((int)item.idusuariocreador);
@@ -1689,6 +1723,72 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     MessageBox.Show("Exception en elaboracion de lista \n" + e);
                 }
                 return new ObservableCollection<CedulaNotasModelo>();
+            }
+        }
+
+        public static bool UpdateModeloReferencia(CedulaNotasModelo modelo, string referencia)
+        {
+            if ((modelo != null && modelo.idnotaspt != 0 && referencia != null))
+            {
+                try
+                {
+                    using (_context = new SGPTEntidades())
+                    {
+                        if (string.IsNullOrEmpty(referencia))
+                        {
+                            modelo.referenciapapel = "Pendiente";
+                        }
+                        string commandString = String.Format("UPDATE sgpt.notaspt SET referenciapapel='{0}' WHERE idnotaspt={1};",
+                            referencia,
+                            modelo.idnotaspt);
+                        commandString = MetodosModelo.ordenConversionToSQL(commandString);
+                        _context.Database.ExecuteSqlCommand(commandString);
+                        _context.SaveChanges();
+                        //_context.Entry(entidad).State = EntityState.Modified;
+                        //    _context.SaveChanges();
+                        modelo.guardadoBase = true;
+                        //Reordenar((int)modelo.iddp);
+                        return true;
+                        //}
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("exception en actualizar referencia: \n" + e);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static void BorrarModeloReferencia(CedulaNotasModelo modelo)
+        {
+            if ((modelo != null && modelo.idnotaspt != 0))
+            {
+                try
+                {
+                    using (_context = new SGPTEntidades())
+                    {
+                        string commandString = String.Format("UPDATE sgpt.notaspt  SET tabla = '',idgenerico=null,referenciapapel='' WHERE idnotaspt={0};",
+                            modelo.idnotaspt);
+                        commandString = MetodosModelo.ordenConversionToSQL(commandString);
+                        _context.Database.ExecuteSqlCommand(commandString);
+                        _context.SaveChanges();
+                        //_context.Entry(entidad).State = EntityState.Modified;
+                        //    _context.SaveChanges();
+                        modelo.guardadoBase = true;
+                        modelo.referenciapapel = string.Empty;
+                        //Reordenar((int)modelo.iddp);
+                        //}
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("exception en actualizar referencia: \n" + e);
+                }
             }
         }
 

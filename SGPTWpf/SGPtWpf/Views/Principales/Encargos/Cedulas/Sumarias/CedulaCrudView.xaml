@@ -40,17 +40,6 @@
                       BorderThickness="2" >
                     <StackPanel IsEnabled="{Binding accesibilidadWindow}"  x:Name="GrdDatosCuerpo" Margin="10,0,10,5"
                                 VerticalAlignment="Top" HorizontalAlignment="Center"  MinWidth="150">
-                        <!--<Grid  x:Name="GrdDatosEncabezado"
-                    HorizontalAlignment="Center" Margin="0,5,0,0">
-                            <TextBlock
-                    Height="20"
-                    Margin="10,5,5,5"
-                    MinWidth="60"
-                    Width="Auto"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Text="{Binding encabezadoPantalla, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Grid>-->
                         <StackPanel HorizontalAlignment="Center">
                             <Grid  x:Name="GrdDatosTipoSaldo"  Visibility="{Binding visibilidadBalanceSeleccionar}" 
                                    IsEnabled="{Binding accesibilidadBalanceSeleccionar}"  >
@@ -393,10 +382,10 @@
                                                   MinHeight="35">
                                                         <i:Interaction.Triggers>
                                                             <i:EventTrigger
-                                                     EventName="SelectionChanged">
-                                                                <cmd:EventToCommand 
-                                                     Command="{Binding SeleccionClaseDocumentoCommand, Mode=TwoWay}"
-                                                     CommandParameter="{Binding SelectedItem, ElementName=ClaseDocumento}" />
+                                                             EventName="SelectionChanged">
+                                                                        <cmd:EventToCommand 
+                                                             Command="{Binding SeleccionClaseDocumentoCommand, Mode=TwoWay}"
+                                                             CommandParameter="{Binding SelectedItem, ElementName=ClaseDocumento}" />
                                                             </i:EventTrigger>
                                                         </i:Interaction.Triggers>
                                                     </ComboBox>
@@ -464,14 +453,15 @@
                                 </Grid>
                             </StackPanel>
                         </StackPanel>
-                        <GroupBox Header="Seleccione las cuentas, sub-cuentas a incluir en la sumaria" Width="Auto"
+
+                        <GroupBox Header="Seleccione las cuentas, sub-cuentas a incluir" Width="Auto"
                          Visibility="{Binding visibilidadBalance}" x:Name="grupoContenido"
                          HorizontalAlignment="Left"  Margin="0">
                                 <Grid x:Name="datosConsulta" HorizontalAlignment="Left" 
                                   IsEnabled="{Binding accesibilidadDetalleBalance}"
                                   VerticalAlignment="Top" Grid.Row="1" >
                                          <DataGrid 
-                                            AutoGenerateColumns="False"  SelectionMode="Extended"
+                                            AutoGenerateColumns="False"  SelectionMode="Single"
                                             Margin="1,0,0,0"
                                             Name="dataGrid"
                                             ScrollViewer.CanContentScroll="True" 
@@ -666,11 +656,25 @@
                                                 <!--https://social.msdn.microsoft.com/Forums/vstudio/en-US/9e3cb8bc-a860-44e7-b4da-5c8b8d40126d/wpf-datagrid-checkbox-event?forum=wpf-->
 
                                             </DataGrid.Columns>
-                                        </DataGrid>
-                                    
-                                </Grid>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                        EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                            Command="{Binding SelectionDetalleAnaliticaChangedCommand, Mode=TwoWay}"
+                                            CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                                        </i:EventTrigger>
+                                        <i:EventTrigger
+                                        EventName="lostFocs">
+                                            <cmd:EventToCommand 
+                                            Command="{Binding SelectionDetalleAnaliticaChangedCommand, Mode=TwoWay}"
+                                            CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DataGrid>
+
+                            </Grid>
                         </GroupBox>
-                        <GroupBox Header="Seleccione las cuentas, sub-cuentas a incluir en la sumaria" Width="Auto"
+                        <GroupBox Header="Seleccione las cuentas, sub-cuentas a incluir" Width="Auto"
                                   Visibility="{Binding visibilidadBalanceComparativo}" x:Name="grupoContenidoCompara"
                          HorizontalAlignment="Left"  Margin="0,0,-5,0">
                                <Grid x:Name="datosConsultaComparativa" HorizontalAlignment="Left" 
@@ -772,7 +776,8 @@
                                                         </Style>
                                                     </DataGridTextColumn.EditingElementStyle>
                                                 </DataGridTextColumn>
-                                                
+
+                                         
                                         <DataGridTemplateColumn x:Name="Colcodigocontabledc" MinWidth="150" MaxWidth="150" Width="150" IsReadOnly="True">
                                             <DataGridTemplateColumn.Header>
                                                 <Grid>
@@ -816,7 +821,7 @@
                                         </DataGridTemplateColumn>
 
 
-                                        <DataGridTextColumn Header="Clase cuenta" Width="200"
+                                                <DataGridTextColumn Header="Clase cuenta" Width="200"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>
@@ -891,7 +896,21 @@
                                                 <!--https://social.msdn.microsoft.com/Forums/vstudio/en-US/9e3cb8bc-a860-44e7-b4da-5c8b8d40126d/wpf-datagrid-checkbox-event?forum=wpf-->
 
                                             </DataGrid.Columns>
-                                        </DataGrid>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger
+                                        EventName="SelectionChanged">
+                                            <cmd:EventToCommand 
+                                            Command="{Binding SelectionDetalleAnaliticaChangedCommand, Mode=TwoWay}"
+                                            CommandParameter="{Binding SelectedItem, ElementName=dataGridComparativo}" />
+                                        </i:EventTrigger>
+                                        <i:EventTrigger
+                                        EventName="lostFocs">
+                                            <cmd:EventToCommand 
+                                            Command="{Binding SelectionDetalleAnaliticaChangedCommand, Mode=TwoWay}"
+                                            CommandParameter="{Binding SelectedItem, ElementName=dataGridComparativo}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DataGrid>
                                    
                                 </Grid>
                         </GroupBox>                        

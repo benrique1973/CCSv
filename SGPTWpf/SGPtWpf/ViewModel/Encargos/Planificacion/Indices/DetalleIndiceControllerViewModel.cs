@@ -1814,7 +1814,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                 enviarMensajeHabilitar();
                 enviarMensaje();//Cero por cancelamiento
                 fuenteCierre = 3;
-                CloseWindow();
+                //CloseWindow();
             }
             else
             {
@@ -2054,10 +2054,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                 case "CuestionariosReferenciacion":
                     if (DetalleCuestionarioModelo.UpdateModeloReferencia(currentDetalleCuestionario, currentPapel))
                     {
-                        var controller = await dlg.ShowProgressAsync(this, "Registro insertado con éxito", "Este mensaje desaparecerá en 1 segundos", settings: configuracionDialogo);
-                        controller.SetIndeterminate();
-                        await TaskEx.Delay(1000);
-                        await controller.CloseAsync();
+                        await mensajeAutoCerrado("Registro insertado con éxito", "Este mensaje desaparecerá en 1 segundos", 2);
                         resultadoProceso = 2;
                         CloseWindow();
                     }

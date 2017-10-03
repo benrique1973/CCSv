@@ -213,6 +213,12 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             set { SetValue(() => idbalance, value); }
         }
 
+        public int? padreidcedula
+        {
+            get { return GetValue(() => padreidcedula); }
+            set { SetValue(() => padreidcedula, value); }
+        }
+
         public int? idbalanceanterior
         {
             get { return GetValue(() => idbalanceanterior); }
@@ -454,6 +460,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             fechacierre = modelo.fechacierre,
                             idbalance = modelo.idbalance,
                             idbalanceanterior = modelo.idbalanceanterior,
+                            padreidcedula=modelo.padreidcedula,
                             ordencedula = modelo.ordencedula,
                         };
                         _context.cedulas.Add(tablaDestino);
@@ -563,6 +570,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             fechacierre = modelo.fechacierre,
                             idbalance = modelo.idbalance,
                             idbalanceanterior = modelo.idbalanceanterior,
+                            padreidcedula=modelo.padreidcedula,
                             ordencedula = modelo.ordencedula,
                         };
                         _context.cedulas.Add(tablaDestino);
@@ -750,6 +758,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             entidad.idbalanceanterior = modelo.idbalanceanterior;
                             entidad.entidadBase = modelo;
                             entidad.ordencedula = modelo.ordencedula;
+                            entidad.padreidcedula = modelo.padreidcedula;
                             return entidad;
                         }
                         else
@@ -925,6 +934,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             entidad.idbalance = modelo.idbalance;
                             entidad.idbalanceanterior = modelo.idbalanceanterior;
                             entidad.ordencedula = modelo.ordencedula;
+                            entidad.padreidcedula = modelo.padreidcedula;
                             _context.Entry(entidad).State = EntityState.Modified;
                             _context.SaveChanges();
                         }
@@ -1469,6 +1479,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          idbalance = entidad.idbalance,
                          idbalanceanterior = entidad.idbalanceanterior,
                          ordencedula = entidad.ordencedula,
+                         padreidcedula=entidad.padreidcedula,
 
                          descripciontc = entidad.tiposcedula.descripciontc,
                          fechabalancebalance = entidad.balance.fechabalancebalance,
@@ -1543,6 +1554,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          fechacierre = entidad.fechacierre,
                          idbalance = entidad.idbalance,
                          idbalanceanterior = entidad.idbalanceanterior,
+                         padreidcedula=entidad.padreidcedula,
 
                          ordencedula=entidad.ordencedula,
                          fechabalancebalance = entidad.balance.fechabalancebalance,
@@ -1664,6 +1676,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             entidad.idbalance = modelo.idbalance;
             entidad.idbalanceanterior = modelo.idbalanceanterior;
             entidad.ordencedula = modelo.ordencedula;
+            entidad.padreidcedula = modelo.padreidcedula;
             // explicit conversion
             return entidad;
         }
@@ -1740,6 +1753,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          idbalanceanterior = entidad.idbalanceanterior,
                          descripcionvisita = entidad.visita.descripcionvisita,
                          descripciontc = entidad.tiposcedula.descripciontc,
+                         padreidcedula=entidad.padreidcedula,
 
                          fechabalancebalance = entidad.balance.fechabalancebalance,
                          descripcioncb = entidad.balance.clasesbalance.descripcioncb,
@@ -1813,6 +1827,8 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          idbalance = entidad.idbalance,
                          idbalanceanterior = entidad.idbalanceanterior,
                          ordencedula=entidad.ordencedula,
+                         padreidcedula=entidad.padreidcedula,
+                         
 
                          fechabalancebalance = entidad.balance.fechabalancebalance,
                          descripcioncb = entidad.balance.clasesbalance.descripcioncb,
@@ -1886,6 +1902,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          idbalance = entidad.idbalance,
                          idbalanceanterior = entidad.idbalanceanterior,
                          ordencedula=entidad.ordencedula,
+                         padreidcedula=entidad.padreidcedula,
 
                          fechabalancebalance = entidad.balance.fechabalancebalance,
                          descripcioncb = entidad.balance.clasesbalance.descripcioncb,
@@ -2279,6 +2296,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          idbalanceanterior = entidad.idbalanceanterior,
                          descripcionvisita=entidad.visita.descripcionvisita,
                          ordencedula=entidad.ordencedula,
+                         padreidcedula=entidad.padreidcedula,
 
                          fechabalancebalance = entidad.balance.fechabalancebalance,
                          descripcioncb = entidad.balance.clasesbalance.descripcioncb,
@@ -2356,6 +2374,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                      idbalanceanterior = pd.idbalanceanterior,
                                      descripcionvisita = pd.visita.descripcionvisita,
                                      ordencedula = pd.ordencedula,
+                                     padreidcedula=pd.padreidcedula,
 
                                      elementoFinanciero = od.codigocontabledc,
 
@@ -2405,7 +2424,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     {
                         item.idCorrelativo = i;
                         i++;
-                        if (item.aumentodc != null && item.aumentodc != 0)
+                        if (item.aumentodc != null && item.aumentodc != 0 && item.saldoanteriordc != null && item.saldoanteriordc != 0)
                         {
                             item.variacionporcentual = item.aumentodc / item.saldoanteriordc;
                         }
@@ -2464,6 +2483,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                      idbalanceanterior = pd.idbalanceanterior,
                                      descripcionvisita = pd.visita.descripcionvisita,
                                      ordencedula = pd.ordencedula,
+                                     padreidcedula=pd.padreidcedula,
 
                                      elementoFinanciero = od.codigocontabledc,
 
@@ -2513,7 +2533,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     {
                         item.idCorrelativo = i;
                         i++;
-                        if (item.aumentodc != null && item.aumentodc != 0)
+                        if (item.aumentodc != null && item.aumentodc != 0 && item.saldoanteriordc!=null && item.saldoanteriordc!=0)
                         {
                             item.variacionporcentual = item.aumentodc / item.saldoanteriordc;
                         }
@@ -2596,6 +2616,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     idbalance = temporal.idbalance;
                     idbalanceanterior = temporal.idbalanceanterior;
                     descripcionvisita = temporal.descripcionvisita;
+                    padreidcedula = temporal.padreidcedula;
 
                     ordencedula = temporal.ordencedula+(decimal)0.25;
                     elementoFinanciero =idElementoFinanciero;
@@ -2673,6 +2694,8 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         entidad.idbalance = modelo.idbalance;
                         entidad.idbalanceanterior = modelo.idbalanceanterior;
                         entidad.ordencedula = modelo.ordencedula;
+                        entidad.padreidcedula = modelo.padreidcedula;
+
                         int i = 1;
                         var listaBitacora = BitacoraModelo.GetAllByTabla("CEDULAS");
                         if (listaBitacora.Count > 0)
@@ -2864,6 +2887,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     entidad.idbalance = modelo.idbalance;
                     entidad.idbalanceanterior = modelo.idbalanceanterior;
                     entidad.ordencedula = modelo.ordencedula;
+                    entidad.padreidcedula = modelo.padreidcedula;
                     return entidad;
                 }
             }
@@ -2882,6 +2906,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
         {
             cedula modelo = new cedula();
             CedulaModelo entidad = new CedulaModelo();
+            ObservableCollection<visita> listaVisita = new ObservableCollection<visita>();
             try
             {
                 string busqueda = titulocedula.ToUpper();
@@ -2892,6 +2917,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     && x.idencargo == idEncargo 
                     && x.idvisita==idVisita
                     && x.idtc == idTc);
+                    var listaVisitas=_context.visitas.OrderBy(o => o.idvisita).Where(x => x.estadovisita == "A").ToList();
+                    //La ordena por el ID notar la notacion
+                    if ((listaVisitas.Count) > 0)
+                    {
+                        listaVisita = new ObservableCollection<visita>(listaVisitas);
+                    }
+
                 }
                 if (modelo == null)
                 {
@@ -2925,6 +2957,16 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                     entidad.idbalance = modelo.idbalance;
                     entidad.idbalanceanterior = modelo.idbalanceanterior;
                     entidad.ordencedula = modelo.ordencedula;
+                    entidad.padreidcedula = modelo.padreidcedula;
+
+                    if (listaVisita.Count > 0 && entidad.idvisita!=null)
+                    {
+                        entidad.descripcionvisita = listaVisita.Single(x => x.idvisita == entidad.idvisita).descripcionvisita;
+                    }
+                    else
+                    {
+                        entidad.descripcionvisita = "";
+                    }
                     return entidad;
                 }
             }
@@ -2973,6 +3015,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             descripcioncb = string.Empty;
             periodicidadperiodos = string.Empty;
             ordencedula =0;
+            padreidcedula = null;
 
             fechabalancebalanceComparativo = string.Empty;
             descripcioncbComparativo = string.Empty;
@@ -3012,6 +3055,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             descripcioncb = string.Empty;
             periodicidadperiodos = string.Empty;
             ordencedula = 0;
+            padreidcedula = null;
 
             fechabalancebalanceComparativo = string.Empty;
             descripcioncbComparativo = string.Empty;
@@ -3095,6 +3139,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             descripcioncb = string.Empty;
             periodicidadperiodos = string.Empty;
             ordencedula = 1;
+            padreidcedula = null;
 
             fechabalancebalanceComparativo = string.Empty;
             descripcioncbComparativo = string.Empty;
@@ -3129,6 +3174,8 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             idbalance = entidad.idbalance;
             idbalanceanterior = entidad.idbalanceanterior;
             usuarioModelo = currentUsuario;
+            padreidcedula = null;
+
             isuso = 0;
             guardadoBase = false;
             fechabalancebalance = string.Empty;

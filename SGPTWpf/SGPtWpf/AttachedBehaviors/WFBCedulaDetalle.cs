@@ -198,6 +198,31 @@ namespace SGPTWpf.AttachedBehaviors
                             break;
                         #endregion
 
+                        #region Notas
+
+                        case "CedulaNotasCrearview":
+                            encabezado = "Creación de notas";
+                            crearVentana = new SGPtWpf.Views.Principales.Encargos.Cedulas.Notas.NotasCrudView();
+                            crearVentana.DataContext = new SGPtWpf.ViewModel.Encargos.Cedulas.Notas.NotasControllerViewModel("DocumentacionCedulaNotasSumarias");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                            break;
+                        case "SumariasDetalleCedulaNotasConsultaview":
+                            encabezado = "Consulta de notas";
+                            crearVentana = new SGPtWpf.Views.Principales.Encargos.Cedulas.Notas.NotasImpresionView();
+                            crearVentana.DataContext = new SGPtWpf.ViewModel.Encargos.Cedulas.Notas.NotasPresentacionViewModel("DocumentacionCedulaNotasSumariasCedulaNotas");
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.WindowStartupLocation = WindowStartupLocation.Manual;
+                            break;
+
+                        #endregion notas
+
                         default:
 
                             //Controller y vista solo para mientras

@@ -70,6 +70,13 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             set { SetValue(() => padreiddc, value); }
         }
 
+        //Para reflejar la cuenta padre
+        public int? catidcc
+        {
+            get { return GetValue(() => catidcc); }
+            set { SetValue(() => catidcc, value); }
+        }
+
         public string codigocontabledc   {  get { return GetValue(() => codigocontabledc); }  set { SetValue(() => codigocontabledc, value); }}
         public string nombrecuenta { get { return GetValue(() => nombrecuenta); } set { SetValue(() => nombrecuenta, value); } }
 
@@ -98,6 +105,12 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
         {
             get { return GetValue(() => isuso); }
             set { SetValue(() => isuso, value); }
+        }
+
+        public string contenidoNotas
+        {
+            get { return GetValue(() => contenidoNotas); }
+            set { SetValue(() => contenidoNotas, value); }
         }
 
         //Almacena la referencia para el  papel de  trabajo
@@ -364,6 +377,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             get { return GetValue(() => listaNumeroPartidasAbonos); }
             set { SetValue(() => listaNumeroPartidasAbonos, value); }
         }
+
         #region usuarioModelo
 
         public UsuarioModelo _usuarioModelo;
@@ -552,7 +566,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             //idindice = modelo.idindice,
                             idcedula = modelo.idcedula,
                             //idpartida = modelo.idpartida,
-                            //padreiddc = modelo.padreiddc,
+                           
                             codigocontabledc = modelo.codigocontabledc,
                             saldoactualdc = modelo.saldoactualdc,
                             saldoanteriordc = modelo.saldoanteriordc,
@@ -605,9 +619,11 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             idpapeles = modelo.idpapeles,
                             idnotaspt = modelo.idnotaspt,
                             idagenda = modelo.idagenda,
-
                     };
-
+                        if (modelo.padreiddc != null && modelo.padreiddc != 0)
+                        {
+                            tablaDestino.padreiddc = modelo.padreiddc;
+                        }
                         //if (modelo.saldoanteriordc > 0)
                         //{
                         //    tablaDestino.aumentodc = modelo.saldoactualdc - modelo.saldoanteriordc;
@@ -1413,10 +1429,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                 {
                     using (_context = new SGPTEntidades())
                     {
-                        string commandString = String.Format("UPDATE sgpt.detallecedulas SET tabla = '{0}',idgenerico={1},referenciapapel='{2}' WHERE iddc={3};",
-                            string.Empty,
-                            null,
-                            string.Empty,
+                        string commandString = String.Format("UPDATE sgpt.detallecedulas SET tabla = '',idgenerico=null,referenciapapel='' WHERE iddc={0};",
                             modelo.iddc);
                         commandString = MetodosModelo.ordenConversionToSQL(commandString);
                         _context.Database.ExecuteSqlCommand(commandString);
@@ -2707,6 +2720,12 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                             if (referencia == "-1")
                             {
                                 item.referenciapapel = "Error";
+                                //Limpia la referencia
+                                item.referenciapapel = string.Empty;
+                                item.idgenerico = null;
+                                item.tabla = string.Empty;
+                                //No se identifica el papel origen se elimina la  refencia que genera error
+                                BorrarModeloReferencia(item);
                             }
                             else
                             {
@@ -2805,6 +2824,95 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                 return null;
             }
         }
+
+        public static ObservableCollection<DetalleCedulaModelo> GetAllSeleccion(EncargoModelo encargo)
+        {
+            try
+            {
+                using (_context = new SGPTEntidades())
+                {
+                    var lista = _context.detallecedulas.Select(entidad =>
+                     new DetalleCedulaModelo
+                     {
+                         iddc = entidad.iddc,
+                         idindice = entidad.idindice,
+                         idcedula = entidad.idcedula,
+                         idpartida = entidad.idpartida,
+                         padreiddc = entidad.padreiddc,
+                         codigocontabledc = entidad.codigocontabledc,
+                         saldoactualdc = entidad.saldoactualdc,
+                         m1dc = entidad.m1dc,
+                         m2dc = entidad.m2dc,
+                         saldoanteriordc = entidad.saldoanteriordc,
+                         m3dc = entidad.m3dc,
+                         m4dc = entidad.m4dc,
+                         aumentodc = entidad.aumentodc,
+                         disminuciondc = entidad.disminuciondc,
+                         m5dc = entidad.m5dc,
+                         m6dc = entidad.m6dc,
+                         m7dc = entidad.m7dc,
+                         m8dc = entidad.m8dc,
+                         saldofinaldc = entidad.saldofinaldc,
+                         m9dc = entidad.m9dc,
+                         m10dc = entidad.m10dc,
+                         fechacreadodc = entidad.fechacreadodc,
+                         ordendc = entidad.ordendc,
+                         isuso = entidad.isuso,
+                         referenciapapel = entidad.referenciapapel,
+                         idgenerico = entidad.idgenerico,
+                         tabla = entidad.tabla,
+                         usuariocerro = entidad.usuariocerro,
+                         usuarioaprobo = entidad.usuarioaprobo,
+                         usuariosuperviso = entidad.usuariosuperviso,
+                         fechasupervision = entidad.fechasupervision,
+                         fechaaprobacion = entidad.fechaaprobacion,
+                         fechacierre = entidad.fechacierre,
+                         etapapapel = entidad.etapapapel,
+                         idencargo = entidad.idencargo,
+                         claseregistro = entidad.claseregistro,
+                         filasoperadas = entidad.filasoperadas,
+                         signooperacion = entidad.signooperacion,
+                         idcc = entidad.idcc,
+                         iddb = entidad.iddb,
+                         idrepositorio = entidad.idrepositorio,
+                         estadodc = entidad.estadodc,
+                         nombrecuenta = entidad.nombrecuenta,
+                         cargoreajuste = entidad.cargoreajuste,
+                         abonoreajuste = entidad.abonoreajuste,
+                         m11dc = entidad.m11dc,
+                         m12dc = entidad.m12dc,
+                         m13dc = entidad.m13dc,
+                         m14dc = entidad.m14dc,
+                         m15dc = entidad.m15dc,
+                         observaciondc = entidad.observaciondc,
+                         cargoreclasificacion = entidad.cargoreclasificacion,
+                         abonoreclasificacion = entidad.abonoreclasificacion,
+                         idpapeles = entidad.idpapeles,
+                         idnotaspt = entidad.idnotaspt,
+                         idagenda = entidad.idagenda,
+                         cargosreajusteyreclasificacion = entidad.cargoreajuste + entidad.cargoreajuste,
+                         abonoreajusteyreclasificacion = entidad.abonoreajuste + entidad.abonoreajuste,
+                         tiposaldocc = entidad.catalogocuenta.tiposaldocc,
+                         nombreClaseCuenta = entidad.catalogocuenta.clasecuenta.descripcionccuentas,
+                         guardadoBase = true,
+                         IsSelected = false,
+                         //Lista filtrada de elementos que fueron eliminados
+                     }).OrderBy(o => o.iddc).Where(x => x.estadodc == "A" && x.idencargo == encargo.idencargo && x.claseregistro !="S").ToList();
+                    //La ordena por el idPrograma notar la notacion
+                    return new ObservableCollection<DetalleCedulaModelo>(lista);
+                }
+            }
+            catch (Exception e)
+            {
+                //Captura de fallo en la insercion
+                if (e.Source != null)
+                {
+                    MessageBox.Show("Exception en elaboracion de lista \n" + e);
+                }
+                return null;
+            }
+        }
+
 
         public static ObservableCollection<DetalleCedulaModelo> GetAllEdicionResumen(EncargoModelo encargo)
         {
@@ -3043,7 +3151,27 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                 return null;
             }
         }
-
+        public static ObservableCollection<detallecedula> GetAllCapaDatosByidEncargoForDetalle(int idencargo)
+        {
+            try
+            {
+                using (_context = new SGPTEntidades())
+                {
+                    var lista = _context.detallecedulas.Where(entidad => (entidad.idencargo == idencargo && entidad.estadodc == "A" && entidad.padreiddc!=null && entidad.claseregistro == "D"));
+                    ObservableCollection<detallecedula> temporal = new ObservableCollection<detallecedula>(lista);
+                    return temporal;
+                }
+            }
+            catch (Exception e)
+            {
+                //Captura de fallo en la insercion
+                if (e.Source != null)
+                {
+                    MessageBox.Show("Exception en elaboracion de lista \n" + e);
+                }
+                return null;
+            }
+        }
         public static bool DeleteByIdEncargoRange(int? idEncargo)
         {
             try
@@ -3545,6 +3673,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                      idcedula = null,
                                      idpartida = null,
                                      padreiddc = null,
+                                     catidcc=pd.catidcc,//Para almacenar las cuentas dependientes.
                                      codigocontabledc = pd.codigocc,
                                      nombrecuenta = pd.descripcioncc,
                                      nombreClaseCuenta = pd.clasecuenta.descripcionccuentas,
@@ -3645,6 +3774,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                      idcedula = null,
                                      idpartida = null,
                                      padreiddc = null,
+                                     catidcc = pd.catidcc,//Para almacenar las cuentas dependientes.
                                      codigocontabledc = pd.codigocc,
                                      nombrecuenta=pd.descripcioncc,
                                      nombreClaseCuenta=pd.clasecuenta.descripcionccuentas,
@@ -3734,6 +3864,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             idindice = null;
             idcedula = modelo.idcedula;
             idpartida = null;
+            catidcc = null;
             padreiddc = null;
             //Se usara para  identificar el tipo de área
 
@@ -3827,6 +3958,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             idcedula = 0;
             idpartida = null;
             padreiddc = null;
+            catidcc = null;
             codigocontabledc = string.Empty;
             saldoactualdc = lista.Sum(x => x.saldoactualdc);
             if (lista.Sum(x => x.saldoanteriordc) > 0)

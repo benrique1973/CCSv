@@ -1724,6 +1724,12 @@
     <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Notas\ResumenNotasView.xaml.cs">
       <DependentUpon>ResumenNotasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudAnaliticaView.xaml.cs">
+      <DependentUpon>CedulaCrudAnaliticaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudUnificada.xaml.cs">
+      <DependentUpon>CedulaCrudUnificada.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudView.xaml.cs">
       <DependentUpon>CedulaCrudView.xaml</DependentUpon>
     </Compile>
@@ -2996,6 +3002,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Notas\ResumenNotasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudAnaliticaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudUnificada.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
