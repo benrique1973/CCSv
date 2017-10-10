@@ -1534,6 +1534,11 @@ namespace SGPTmvvm.Modales
             //    MessageBox.Show("Error al convertir a cadena insegura "+e.InnerException);
             //}
         }
+
+        private void ConvertirASombi()
+        {
+            //necesita no ser sombi
+        }
 //*************************************************************************************************************************************************************************
         private async void cmdGuardar(Object parametroDesdeVista) //Traigo el passwordbox como parametro desde el relayCommand, ya que el passwordBox no se deja Bindiar.
         {
