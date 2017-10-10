@@ -133,27 +133,27 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo
                 {
                     case "Programas":
                         ViewModelType = typeof(HerramientasProgramaViewModel);
-                        Contexto = new HerramientasProgramaViewModel();
+                        Contexto = new HerramientasProgramaViewModel("Programas");
                         break;
                     case "Cuestionarios":
                         ViewModelType = typeof(HerramientasCuestionarioViewModel);
-                        Contexto = new HerramientasCuestionarioViewModel();
+                        Contexto = new HerramientasCuestionarioViewModel("Cuestionarios");
                         break;
                     case "Plantillas":
                         ViewModelType = typeof(PlantillaViewModel);
-                        Contexto = new PlantillaViewModel();
+                        Contexto = new PlantillaViewModel("Plantillas");
                         break;
                     case "Normativa":
                         ViewModelType = typeof(NormativaViewModel);
-                        Contexto = new NormativaViewModel();
+                        Contexto = new NormativaViewModel("Normativa");
                         break;
                     case "Indice":
                         ViewModelType = typeof(PlantillaIndiceViewModel);
-                        Contexto = new PlantillaIndiceViewModel();
+                        Contexto = new PlantillaIndiceViewModel("Indice");
                         break;
                     case "Marcas":
                         ViewModelType = typeof(MarcasEstandaresViewModel);
-                        Contexto = new MarcasEstandaresViewModel();
+                        Contexto = new MarcasEstandaresViewModel("Marcas");
                         break;
                     default:
                         ViewModelType = typeof(GenericoHerramientasViewModel);

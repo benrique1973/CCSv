@@ -44,7 +44,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="1,0,0,0" Height="55" VerticalAlignment="Bottom">
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMCrear}"
                 Command="{Binding NuevoCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -59,7 +59,7 @@
                 </StackPanel>
             </Button>
             <Button
-                 Style="{StaticResource AccentedSquareButtonStyle}"
+                 Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMEditar}"
                 Command="{Binding EditarCommand, Mode=TwoWay}">
                 <StackPanel Style="{StaticResource StackPanelEstilo}">
                     <Rectangle Width="45"
@@ -73,7 +73,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMConsulta}"
                 Command="{Binding ConsultarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -89,7 +89,7 @@
                 
             </Button>            
             <Button
-               Style="{StaticResource AccentedSquareButtonStyle}"
+               Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMBorrar}"
                 Command="{Binding BorrarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -104,7 +104,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}"  Visibility="{Binding visibilidadMEditar}"
                 Command="{Binding ExportarPdfCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -119,7 +119,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMVista}"
                 Command="{Binding cambiarVistaPageCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 

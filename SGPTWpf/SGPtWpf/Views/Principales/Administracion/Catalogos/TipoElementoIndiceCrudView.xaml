@@ -87,11 +87,6 @@
                                     Command="{Binding SelectionChangedCommand, Mode=TwoWay}"
                                     CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
                     </i:EventTrigger>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <cmd:EventToCommand 
-                                    Command="{Binding DoubleClickCommand, Mode=TwoWay}"
-                                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" />
-                    </i:EventTrigger>
                 </i:Interaction.Triggers>
             </DataGrid>
         </Grid>

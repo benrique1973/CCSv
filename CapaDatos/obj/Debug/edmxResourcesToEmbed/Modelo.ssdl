@@ -442,7 +442,7 @@
     <Property Name="salientecorrespondencia" Type="bool" Nullable="false" />
     <Property Name="estadocorrespondencia" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="archivocorrespondencia" Type="bytea" />
-    <Property Name="nombrefilecorrespondencia" Type="bpchar" MaxLength="255" />
+    <Property Name="nombrefilecorrespondencia" Type="varchar" MaxLength="255" />
     <Property Name="idcontactofirmacorrespondencia" Type="int4" />
     <Property Name="isuso" Type="int4" />
     <Property Name="uuid" Type="varchar" MaxLength="50" />
@@ -1639,7 +1639,7 @@
     <Property Name="sistematei" Type="bool" Nullable="false" />
     <Property Name="estadotei" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="imagentet" Type="bytea" />
-    <Property Name="uuid" Type="bpchar" MaxLength="50" />
+    <Property Name="uuid" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tipopartidas">
     <Key>
@@ -4796,6 +4796,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_usuarios_usuarios_roles">
+    <End Role="roles" Type="Self.roles" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="idrol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_usuarios_usuariosp_personas">
     <End Role="personas" Type="Self.personas" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -4821,20 +4835,6 @@
       </Principal>
       <Dependent Role="usuarios">
         <PropertyRef Name="idpista" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_usuarios_usuariosr_roles">
-    <End Role="roles" Type="Self.roles" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="roles">
-        <PropertyRef Name="idrol" />
-      </Principal>
-      <Dependent Role="usuarios">
-        <PropertyRef Name="idrol" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5835,16 +5835,16 @@
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="agendas" EntitySet="agendas" />
     </AssociationSet>
+    <AssociationSet Name="fk_usuarios_usuarios_roles" Association="Self.fk_usuarios_usuarios_roles">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
     <AssociationSet Name="fk_usuarios_usuariosp_personas" Association="Self.fk_usuarios_usuariosp_personas">
       <End Role="personas" EntitySet="personas" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>
     <AssociationSet Name="fk_usuarios_usuariosp_pistas" Association="Self.fk_usuarios_usuariosp_pistas">
       <End Role="pistas" EntitySet="pistas" />
-      <End Role="usuarios" EntitySet="usuarios" />
-    </AssociationSet>
-    <AssociationSet Name="fk_usuarios_usuariosr_roles" Association="Self.fk_usuarios_usuariosr_roles">
-      <End Role="roles" EntitySet="roles" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>
     <AssociationSet Name="fk_visitas_detallec" Association="Self.fk_visitas_detallec">

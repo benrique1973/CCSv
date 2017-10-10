@@ -172,131 +172,131 @@ namespace SGPTWpf.Model
                 {
                     case "Actividades":
                         ViewModelType = typeof(ActividadViewModel);
-                        Contexto = new ActividadViewModel();
+                        Contexto = new ActividadViewModel("Actividades");
                         break;
                     case "Clase de balances":
                         ViewModelType = typeof(ClaseBalanceViewModel);
-                        Contexto = new ClaseBalanceViewModel();
+                        Contexto = new ClaseBalanceViewModel("Clase de balances");
                         break;
                     case "Clase de cuentas":
                         ViewModelType = typeof(ClaseCuentaViewModel);
-                        Contexto = new ClaseCuentaViewModel();
+                        Contexto = new ClaseCuentaViewModel("Clase de cuentas");
                         break;
                     case "Clase de herramientas":
                         ViewModelType = typeof(TipoHerramientaViewModel);
-                        Contexto = new TipoHerramientaViewModel();
+                        Contexto = new TipoHerramientaViewModel("Clase de herramientas");
                         break;
                     case "Clase de programas":
                         ViewModelType = typeof(TipoProgramaViewModel);
-                        Contexto = new TipoProgramaViewModel();
+                        Contexto = new TipoProgramaViewModel("Clase de programas");
                         break;
                     case "Clase de simbolos":
                         ViewModelType = typeof(TipoDescriptorViewModel);
-                        Contexto = new TipoDescriptorViewModel();
+                        Contexto = new TipoDescriptorViewModel("Clase de simbolos");
                         break;
                     case "Clase de teléfonos":
                         ViewModelType = typeof(TipoTelefonoViewModel);
-                        Contexto = new TipoTelefonoViewModel();
+                        Contexto = new TipoTelefonoViewModel("Clase de teléfonos");
                         break;
                     case "Clase de visitas":
                         ViewModelType = typeof(VisitaViewModel);
-                        Contexto = new VisitaViewModel();
+                        Contexto = new VisitaViewModel("Clase de visitas");
                         break;
                     case "Clases de auditoría":
                         ViewModelType = typeof(TipoAuditoriaViewModel);
-                        Contexto = new TipoAuditoriaViewModel();
+                        Contexto = new TipoAuditoriaViewModel("Clase de auditoría");
                         break;
                     case "Clases de cédula":
                         ViewModelType = typeof(TipoCedulaViewModel);
-                        Contexto = new TipoCedulaViewModel();
+                        Contexto = new TipoCedulaViewModel("Clases de cédula");
                         break;
                     case "Clases de personas":
                         ViewModelType = typeof(ClasificacionViewModel);
-                        Contexto = new ClasificacionViewModel();
+                        Contexto = new ClasificacionViewModel("Clases de personas");
                         break;
                     case "Criterios de materialidad":
                         ViewModelType = typeof(MaterialidadViewModel);
-                        Contexto = new MaterialidadViewModel();
+                        Contexto = new MaterialidadViewModel("Criterios  de  materialidad");
                         break;
                     case "Departamentos por país":
                         ViewModelType = typeof(DepartamentoViewModel);
-                        Contexto = new DepartamentoViewModel();
+                        Contexto = new DepartamentoViewModel("Departamentos por pais");
                         break;
                     case "Municipos por depto":
                         ViewModelType = typeof(MunicipioViewModel);
-                        Contexto = new MunicipioViewModel();
+                        Contexto = new MunicipioViewModel("Municipios por departamento");
                         break;
                     case "Monedas y símbolos":
                         ViewModelType = typeof(MonedaViewModel);
-                        Contexto = new MonedaViewModel();
+                        Contexto = new MonedaViewModel("Moneda y simbolos");
                         break;
                     case "Elementos contables":
                         ViewModelType = typeof(ElementoViewModel);
-                        Contexto = new ElementoViewModel();
+                        Contexto = new ElementoViewModel("Elementos contables");
                         break;
                     case "Elementos de Indice":
                         ViewModelType = typeof(TipoElementoIndiceViewModel);
-                        Contexto = new TipoElementoIndiceViewModel();
+                        Contexto = new TipoElementoIndiceViewModel("Elementos de indice");
                         break;
                     case "Estructuras de EF":
                         ViewModelType = typeof(EstructuraEstadoFinancieroViewModel);
-                        Contexto = new EstructuraEstadoFinancieroViewModel();
+                        Contexto = new EstructuraEstadoFinancieroViewModel("Estructura de EF");
                         break;
                     case "Estructuras de normas":
                         ViewModelType = typeof(LegalNormaViewModel);
-                        Contexto = new LegalNormaViewModel();
+                        Contexto = new LegalNormaViewModel("Estructura de normas");
                         break;
                     case "Paises":
                         ViewModelType = typeof(PaisViewModel);
-                        Contexto = new PaisViewModel();
+                        Contexto = new PaisViewModel("Paises");
                         break;
                     case "Períodos":
                         ViewModelType = typeof(PeriodoViewModel);
-                        Contexto = new PeriodoViewModel();
+                        Contexto = new PeriodoViewModel("Periodos");
                         break;
                     case "Procesos de auditoría":
                         ViewModelType = typeof(ProcesoAuditoriaViewModel);
-                        Contexto = new ProcesoAuditoriaViewModel();
+                        Contexto = new ProcesoAuditoriaViewModel("Procesos de  auditoria");
                         break;
                     case "Respuesta de cuestionarios":
                         ViewModelType = typeof(TipoRespuestaCuestionarioViewModel);
-                        Contexto = new TipoRespuestaCuestionarioViewModel();
+                        Contexto = new TipoRespuestaCuestionarioViewModel("Respuesta de cuestionarios");
                         break;
                     case "Roles de usuario":
                         ViewModelType = typeof(RolViewModel);
-                        Contexto = new RolViewModel();
+                        Contexto = new RolViewModel("Roles de usuario");
                         break;
                     case "Tipo de correspondencia":
                         ViewModelType = typeof(CorrespondenciaTipoViewModel);
-                        Contexto = new CorrespondenciaTipoViewModel();
+                        Contexto = new CorrespondenciaTipoViewModel("Tipo de correspondencia");
                         break;
                     case "Tipos de carpetas":
                         ViewModelType = typeof(TipoCarpetaViewModel);
-                        Contexto = new TipoCarpetaViewModel();
+                        Contexto = new TipoCarpetaViewModel("Tipos de carpetas");
                         break;
                     case "Tipos de confirmaciones":
                         ViewModelType = typeof(TipoConfirmacionViewModel);
-                        Contexto = new TipoConfirmacionViewModel();
+                        Contexto = new TipoConfirmacionViewModel("Tipos de confirmaciones");
                         break;
                     case "Clase de documentos":
                         ViewModelType = typeof(DocumentoViewModel);
-                        Contexto = new DocumentoViewModel();
+                        Contexto = new DocumentoViewModel("Clase de documentos");
                         break;
                     case "Tipos de partidas contables":
                         ViewModelType = typeof(TipoPartidaViewModel);
-                        Contexto = new TipoPartidaViewModel();
+                        Contexto = new TipoPartidaViewModel("Tipos de partidas contables");
                         break;
                     case "Tipos de procedimiento programas":
                         ViewModelType = typeof(TipoProcedimientoViewModel);
-                        Contexto = new TipoProcedimientoViewModel();
+                        Contexto = new TipoProcedimientoViewModel("Tipos de procedimiento programa");
                         break;
                     case "Símbolos para fórmulas":
                         ViewModelType = typeof(SimboloViewModel);
-                        Contexto = new SimboloViewModel();
+                        Contexto = new SimboloViewModel("Simbolo de  formulas");
                         break;
                     case "Detalle de clase de documentos":
                         ViewModelType = typeof(DetalleDocumentosViewModel);
-                        Contexto = new DetalleDocumentosViewModel();
+                        Contexto = new DetalleDocumentosViewModel("Detalle de  clase de documentos");
                         break;
                     default:
                         //MessageDialog("Error en el switch");

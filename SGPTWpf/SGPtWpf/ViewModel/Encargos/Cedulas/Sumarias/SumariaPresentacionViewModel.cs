@@ -1312,6 +1312,12 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                     _fuenteLlamado = 1;
                     _encabezadoPantalla = "Cédula Sumaria";
                     break;
+                case "IndiceCedulaAnaliticas":
+                    _tokenRecepcion = "datosPadreDetalleIndices";  //Modificado
+                    _tokenEnvioCierre = "datosControllerDetalleIndices";
+                    _fuenteLlamado = 1;
+                    _encabezadoPantalla = "Cédula Analítica";
+                    break;
                 case "ImprimirIndiceCedulaSumaria":
                     _tokenRecepcion = "datosPadreDetalleIndices";  //Modificado
                     _tokenEnvioCierre = "PlanDetalleReferenciaVista";

@@ -198,6 +198,8 @@ FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Notas\NotasIm
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Notas\NotasView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Notas\ReferenciarView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Notas\ResumenNotasView.xaml;;
+FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudAnaliticaView.xaml;;
+FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudUnificada.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraCrudView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\Centralizadora\CentralizadoraPresentacionView.xaml;;
@@ -325,6 +327,4 @@ FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Normas\NormasView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Compartidas\LoguinView.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Compartidas\PrincipalAlterna.xaml;;
 FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Sincronizacion\SincronizacionView.xaml;;
-FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudAnaliticaView.xaml;;
-FF:\CCSv\blopez\SGPTWpf\SGPtWpf\Views\Principales\Encargos\Cedulas\Sumarias\CedulaCrudUnificada.xaml;;
 

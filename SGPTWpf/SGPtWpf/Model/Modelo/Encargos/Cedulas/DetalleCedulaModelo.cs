@@ -3661,9 +3661,9 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
             {
                 using (_context = new SGPTEntidades())
                 {
-                    var lista = (from pd in _context.catalogocuentas
-                                 join od in _context.detallebalances on pd.idcc equals od.idcc
-                                 join ct in _context.detallebalances on od.idcc equals ct.idcc
+                    var lista = (from pd in _context.catalogocuentas 
+                                 join od in _context.detallebalances on pd.idcc equals od.idcc 
+                                 join ct in _context.detallebalances on pd.idcc equals ct.idcc
                                  where pd.idsc == idsc && od.idbalance == idBalance && ct.idbalance == idBalanceC
                                  orderby pd.ordencc
                                  select new DetalleCedulaModelo
@@ -3727,10 +3727,35 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                                      elementoFinanciero = pd.elemento.padreidelemento,
 
                 }).ToList().OrderBy(o => o.ordendc).Where(x => x.estadodc == "A");
+
+                    //Validar los resultados individuales
+                    ObservableCollection<DetalleCedulaModelo> listaBalanceCompara = DetalleCedulaModelo.GetAllCreacionUnico(idsc, idBalance, idEncargo, usuarioModelo);
+                    #region verificacion de cuentas
+                    //var diferentes = listaSeleccionada.Union(listaBalanceCompara).Except(listaBalanceCompara.Intersect(listaSeleccionada)).ToList();
+                    var cuentas = lista.Select(x => x.idcc).ToList();
+                    var cuentasAnterior= listaBalanceCompara.Select(x => x.idcc).ToList();
+                    //determinar los diferentes
+                    var diferentes = cuentas.Union(cuentasAnterior).Except(cuentas.Intersect(cuentasAnterior)).ToList();
+
+                    ObservableCollection<DetalleCedulaModelo> addicion = new ObservableCollection<DetalleCedulaModelo>();
+                    foreach (int cod in diferentes)
+                    {
+                        if (listaBalanceCompara.Count(x => x.idcc == cod) > 0)
+                        {
+                            addicion.Add(listaBalanceCompara.SingleOrDefault(x => x.idcc == cod));
+                        }
+                    }
+                    //Adicion de resultados
+                    lista = lista.Union(addicion);
+                    //lista.OrderBy(x => x.ordendc);
+
+                    #endregion fin de adicion 
+
                     //La ordena por el idPrograma notar la notacion
                     int i = 1;
                     string temporal = MetodosModelo.homologacionFecha();
-                    foreach (DetalleCedulaModelo item in lista)
+                    ObservableCollection<DetalleCedulaModelo> listaRemision = new ObservableCollection<DetalleCedulaModelo>(lista.OrderBy(x => x.ordendc));
+                    foreach (DetalleCedulaModelo item in listaRemision)
                     {
                         item.idCorrelativo = i;
                         item.fechacreadodc = temporal;
@@ -3742,8 +3767,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         }
                         i++;
                     }
-                    //lista.ForEach(c => c.guardadoBase = true);
-                    return new ObservableCollection<DetalleCedulaModelo>(lista);
+                    return new ObservableCollection<DetalleCedulaModelo>(listaRemision);
                 }
             }
             catch (Exception e)

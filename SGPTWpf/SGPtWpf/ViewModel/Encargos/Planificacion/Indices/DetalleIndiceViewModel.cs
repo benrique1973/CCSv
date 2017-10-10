@@ -2656,7 +2656,11 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                                 switch (currentCedula.idtc)
                                 {
                                     case 1:
-                                        EDDetalleIndiceMainModel.TypeName = "CedulaSumariaVerPDFPreviaView";
+                                        EDDetalleIndiceMainModel.TypeName = "CedulaSumariaAnaliticaVerView";
+                                        enviarMensajeSumaria(currentCedula);
+                                        break;
+                                    case 2:
+                                        EDDetalleIndiceMainModel.TypeName = "CedulaSumariaAnaliticasVerPDFPreviaView";
                                         enviarMensajeSumaria(currentCedula);
                                         break;
                                     case 6:

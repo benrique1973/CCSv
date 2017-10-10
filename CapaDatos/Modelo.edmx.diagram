@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ca953c5aabb42f4b35671010ba87865" Name="Diagram1">
+      <Diagram DiagramId="cb29cb45d7d44cc9b85367050f9a38dc" Name="Diagram1">
         <EntityTypeShape EntityType="SGPTModelo.actividade" Width="1.5" PointX="1.5" PointY="102.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SGPTModelo.agenda" Width="1.5" PointX="14.25" PointY="118.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SGPTModelo.asignacione" Width="1.5" PointX="11.25" PointY="120.5" IsExpanded="true" />
@@ -321,7 +321,7 @@
         <AssociationConnector Association="SGPTModelo.fk_usuarior_requerimi_requerim" ManuallyRouted="false" />
         <AssociationConnector Association="SGPTModelo.fk_reuniones_usuariore_usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="SGPTModelo.fk_reunionew_usuariocr_usuarios" ManuallyRouted="false" />
-        <AssociationConnector Association="SGPTModelo.fk_usuarios_usuariosr_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPTModelo.fk_usuarios_usuarios_roles" ManuallyRouted="false" />
         <AssociationConnector Association="SGPTModelo.fk_simbolos_tipodsimb_tiposdes" ManuallyRouted="false" />
         <AssociationConnector Association="SGPTModelo.fk_telefono_tiposttel_tipostel" ManuallyRouted="false" />
         <AssociationConnector Association="SGPTModelo.fk_tipo_carpeta_to_tipo_carpeta" ManuallyRouted="false" />

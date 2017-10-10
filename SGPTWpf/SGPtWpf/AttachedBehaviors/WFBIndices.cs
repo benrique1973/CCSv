@@ -495,6 +495,15 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MaxHeight = largo;
                             crearVentana.DataContext = new SumariaPresentacionViewModel("IndiceCedulaSumaria");
                             break;
+                        case "CedulaSumariaAnaliticasVerPDFPreviaView":
+                            encabezado = "Cédula analítica";
+                            crearVentana = new SumariaPresentacionView();
+                            crearVentana.MinHeight = largo * 0.15;
+                            crearVentana.MinWidth = ancho * 0.15;
+                            crearVentana.MaxWidth = ancho;
+                            crearVentana.MaxHeight = largo;
+                            crearVentana.DataContext = new SumariaPresentacionViewModel("IndiceCedulaAnaliticas");
+                            break;
                         case "CedulaCentralizadoraPDFPreviaView":
                             encabezado = "Vista de resúmenes de sumarias";
                             crearVentana = new CentralizadoraPresentacionView();

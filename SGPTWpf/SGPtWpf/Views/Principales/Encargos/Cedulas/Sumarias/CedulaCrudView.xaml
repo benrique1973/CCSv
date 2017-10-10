@@ -597,7 +597,7 @@
                                             </DataGridTemplateColumn.CellStyle>
                                         </DataGridTemplateColumn>
 
-                                        <DataGridTextColumn Header="Clase cuenta" Width="200"
+                                        <DataGridTextColumn Header="Clase cuenta" Width="200" IsReadOnly="True"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>
@@ -614,7 +614,7 @@
                                                         </Style>
                                                     </DataGridTextColumn.EditingElementStyle>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Cuenta" Width="250"
+                                                <DataGridTextColumn Header="Cuenta" Width="250" IsReadOnly="True"
                                                 Binding="{Binding nombrecuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>
@@ -631,7 +631,7 @@
                                                         </Style>
                                                     </DataGridTextColumn.EditingElementStyle>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Tipo Saldo" Width="90" 
+                                                <DataGridTextColumn Header="Tipo Saldo" Width="90"
                                                 Binding="{Binding Path= tiposaldocc , 
                                                 UpdateSourceTrigger=PropertyChanged}"
                                                 MinWidth="50"
@@ -676,7 +676,7 @@
                         </GroupBox>
                         <GroupBox Header="Seleccione las cuentas, sub-cuentas a incluir" Width="Auto"
                                   Visibility="{Binding visibilidadBalanceComparativo}" x:Name="grupoContenidoCompara"
-                         HorizontalAlignment="Left"  Margin="0,0,-5,0">
+                                HorizontalAlignment="Left"  Margin="0,0,-5,0">
                                <Grid x:Name="datosConsultaComparativa" HorizontalAlignment="Left" 
                                   IsEnabled="{Binding accesibilidadDetalleBalance}"
                                   VerticalAlignment="Top" Grid.Row="1" >
@@ -778,7 +778,8 @@
                                                 </DataGridTextColumn>
 
                                          
-                                        <DataGridTemplateColumn x:Name="Colcodigocontabledc" MinWidth="150" MaxWidth="150" Width="150" IsReadOnly="True">
+                                        <DataGridTemplateColumn x:Name="Colcodigocontabledc" IsReadOnly="True" 
+                                                                MinWidth="150" MaxWidth="150" Width="150" >
                                             <DataGridTemplateColumn.Header>
                                                 <Grid>
                                                     <StackPanel>
@@ -821,7 +822,7 @@
                                         </DataGridTemplateColumn>
 
 
-                                                <DataGridTextColumn Header="Clase cuenta" Width="200"
+                                        <DataGridTextColumn Header="Clase cuenta" Width="200" IsReadOnly="True"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>
@@ -838,7 +839,7 @@
                                                         </Style>
                                                     </DataGridTextColumn.EditingElementStyle>
                                                 </DataGridTextColumn>
-                                                <DataGridTextColumn Header="Cuenta" Width="250"
+                                        <DataGridTextColumn Header="Cuenta" Width="250" IsReadOnly="True"
                                                 Binding="{Binding nombrecuenta,  UpdateSourceTrigger=PropertyChanged}">
                                                     <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                                     <DataGridTextColumn.ElementStyle>
