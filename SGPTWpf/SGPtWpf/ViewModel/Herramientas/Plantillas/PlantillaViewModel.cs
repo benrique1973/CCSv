@@ -17,8 +17,10 @@ using PowerPoint = NetOffice.PowerPointApi;
 using System.Globalization;
 using System.Collections.Generic;
 using SGPTWpf.Model.Modelo.Plantilla.SGPTWpf.Model.Modelo.Plantilla;
-using System.Windows.Forms;
 using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
+using System.Windows;
+using System.Windows.Forms;
+using System.Linq;
 
 namespace SGPTWpf.ViewModel.Herramientas.Plantillas
 {
@@ -32,6 +34,413 @@ namespace SGPTWpf.ViewModel.Herramientas.Plantillas
         private string tokenRecepcionCierre = "CrudPlantillaCerrada";
         private DialogCoordinator dlg;
         private string fileName = "";//Ruta de archivos creado;
+
+        private MetroDialogSettings configuracionDialogo;
+
+        #endregion
+
+        #region Visibilidad de  botones
+
+        #region visibilidadMCrear
+
+        public const string visibilidadMCrearPropertyName = "visibilidadMCrear";
+
+        private Visibility _visibilidadMCrear = Visibility.Collapsed;
+
+        public Visibility visibilidadMCrear
+        {
+            get
+            {
+                return _visibilidadMCrear;
+            }
+
+            set
+            {
+                if (_visibilidadMCrear == value)
+                {
+                    return;
+                }
+
+                _visibilidadMCrear = value;
+                RaisePropertyChanged(visibilidadMCrearPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMEditar
+
+        public const string visibilidadMEditarPropertyName = "visibilidadMEditar";
+
+        private Visibility _visibilidadMEditar = Visibility.Collapsed;
+
+        public Visibility visibilidadMEditar
+        {
+            get
+            {
+                return _visibilidadMEditar;
+            }
+
+            set
+            {
+                if (_visibilidadMEditar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMEditar = value;
+                RaisePropertyChanged(visibilidadMEditarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMReferenciar
+
+        public const string visibilidadMReferenciarPropertyName = "visibilidadMReferenciar";
+
+        private Visibility _visibilidadMReferenciar = Visibility.Collapsed;
+
+        public Visibility visibilidadMReferenciar
+        {
+            get
+            {
+                return _visibilidadMReferenciar;
+            }
+
+            set
+            {
+                if (_visibilidadMReferenciar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMReferenciar = value;
+                RaisePropertyChanged(visibilidadMReferenciarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMCerrar
+
+        public const string visibilidadMCerrarPropertyName = "visibilidadMCerrar";
+
+        private Visibility _visibilidadMCerrar = Visibility.Collapsed;
+
+        public Visibility visibilidadMCerrar
+        {
+            get
+            {
+                return _visibilidadMCerrar;
+            }
+
+            set
+            {
+                if (_visibilidadMCerrar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMCerrar = value;
+                RaisePropertyChanged(visibilidadMCerrarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMSupervisar
+
+        public const string visibilidadMSupervisarPropertyName = "visibilidadMSupervisar";
+
+        private Visibility _visibilidadMSupervisar = Visibility.Collapsed;
+
+        public Visibility visibilidadMSupervisar
+        {
+            get
+            {
+                return _visibilidadMSupervisar;
+            }
+
+            set
+            {
+                if (_visibilidadMSupervisar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMSupervisar = value;
+                RaisePropertyChanged(visibilidadMSupervisarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMAprobar
+
+        public const string visibilidadMAprobarPropertyName = "visibilidadMAprobar";
+
+        private Visibility _visibilidadMAprobar = Visibility.Collapsed;
+
+        public Visibility visibilidadMAprobar
+        {
+            get
+            {
+                return _visibilidadMAprobar;
+            }
+
+            set
+            {
+                if (_visibilidadMAprobar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMAprobar = value;
+                RaisePropertyChanged(visibilidadMAprobarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMBorrar
+
+        public const string visibilidadMBorrarPropertyName = "visibilidadMBorrar";
+
+        private Visibility _visibilidadMBorrar = Visibility.Collapsed;
+
+        public Visibility visibilidadMBorrar
+        {
+            get
+            {
+                return _visibilidadMBorrar;
+            }
+
+            set
+            {
+                if (_visibilidadMBorrar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMBorrar = value;
+                RaisePropertyChanged(visibilidadMBorrarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMConsulta
+
+        public const string visibilidadMConsultaPropertyName = "visibilidadMConsulta";
+
+        private Visibility _visibilidadMConsulta = Visibility.Collapsed;
+
+        public Visibility visibilidadMConsulta
+        {
+            get
+            {
+                return _visibilidadMConsulta;
+            }
+
+            set
+            {
+                if (_visibilidadMConsulta == value)
+                {
+                    return;
+                }
+
+                _visibilidadMConsulta = value;
+                RaisePropertyChanged(visibilidadMConsultaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMDetalle
+
+        public const string visibilidadMDetallePropertyName = "visibilidadMDetalle";
+
+        private Visibility _visibilidadMDetalle = Visibility.Collapsed;
+
+        public Visibility visibilidadMDetalle
+        {
+            get
+            {
+                return _visibilidadMDetalle;
+            }
+
+            set
+            {
+                if (_visibilidadMDetalle == value)
+                {
+                    return;
+                }
+
+                _visibilidadMDetalle = value;
+                RaisePropertyChanged(visibilidadMDetallePropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMVista
+
+        public const string visibilidadMVistaPropertyName = "visibilidadMVista";
+
+        private Visibility _visibilidadMVista = Visibility.Collapsed;
+
+        public Visibility visibilidadMVista
+        {
+            get
+            {
+                return _visibilidadMVista;
+            }
+
+            set
+            {
+                if (_visibilidadMVista == value)
+                {
+                    return;
+                }
+
+                _visibilidadMVista = value;
+                RaisePropertyChanged(visibilidadMVistaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMRegresar
+
+        public const string visibilidadMRegresarPropertyName = "visibilidadMRegresar";
+
+        private Visibility _visibilidadMRegresar = Visibility.Hidden;
+
+        public Visibility visibilidadMRegresar
+        {
+            get
+            {
+                return _visibilidadMRegresar;
+            }
+
+            set
+            {
+                if (_visibilidadMRegresar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMRegresar = value;
+                RaisePropertyChanged(visibilidadMRegresarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMImportar
+
+        public const string visibilidadMImportarPropertyName = "visibilidadMImportar";
+
+        private Visibility _visibilidadMImportar = Visibility.Collapsed;
+
+        public Visibility visibilidadMImportar
+        {
+            get
+            {
+                return _visibilidadMImportar;
+            }
+
+            set
+            {
+                if (_visibilidadMImportar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMImportar = value;
+                RaisePropertyChanged(visibilidadMImportarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMImprimir
+
+        public const string visibilidadMImprimirPropertyName = "visibilidadMImprimir";
+
+        private Visibility _visibilidadMImprimir = Visibility.Hidden;
+
+        public Visibility visibilidadMImprimir
+        {
+            get
+            {
+                return _visibilidadMImprimir;
+            }
+
+            set
+            {
+                if (_visibilidadMImprimir == value)
+                {
+                    return;
+                }
+
+                _visibilidadMImprimir = value;
+                RaisePropertyChanged(visibilidadMImprimirPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region origenLlamada
+
+        private string _origenLlamada;
+        private string origenLlamada
+        {
+            get { return _origenLlamada; }
+            set { _origenLlamada = value; }
+        }
+
+        #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region ViewModel Properties : accesibilidadWindow
+
+        public const string accesibilidadWindowPropertyName = "accesibilidadWindow";
+
+        private bool _accesibilidadWindow = true;
+
+        public bool accesibilidadWindow
+        {
+            get
+            {
+                return _accesibilidadWindow;
+            }
+
+            set
+            {
+                if (_accesibilidadWindow == value)
+                {
+                    return;
+                }
+
+                _accesibilidadWindow = value;
+                RaisePropertyChanged(accesibilidadWindowPropertyName);
+            }
+        }
+
         #endregion
 
         #region ViewModel Properties publicas
@@ -658,9 +1067,34 @@ namespace SGPTWpf.ViewModel.Herramientas.Plantillas
 
         #region Constructores
 
-        public PlantillaViewModel()
+        public PlantillaViewModel(string origen)//Documentacion/Carpetas
         {
-            
+            _origenLlamada = origen;
+            _menuElegido = "Herramientas";
+            _accesibilidadWindow = false;
+            configuracionDialogo = new MetroDialogSettings()
+            {
+            AnimateShow = false,
+                AnimateHide = false
+            };
+        #region  menu
+
+            _visibilidadMCrear = Visibility.Visible;
+            _visibilidadMEditar = Visibility.Visible;
+            _visibilidadMBorrar = Visibility.Visible;
+            _visibilidadMConsulta = Visibility.Visible;
+            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+            _visibilidadMRegresar = Visibility.Collapsed;
+            _visibilidadMVista = Visibility.Collapsed;
+            _visibilidadMImportar = Visibility.Collapsed;
+            _visibilidadMDetalle = Visibility.Collapsed;
+
+            _visibilidadMCerrar = Visibility.Collapsed;
+            _visibilidadMSupervisar = Visibility.Collapsed;
+            _visibilidadMAprobar = Visibility.Collapsed;
+            _visibilidadMImprimir = Visibility.Collapsed;
+            #endregion
+
             //lista = new ObservableCollection<PlantillaModelo>(PlantillaModelo.GetAll());
             RegisterCommands();
             dlg = new DialogCoordinator();
@@ -671,12 +1105,149 @@ namespace SGPTWpf.ViewModel.Herramientas.Plantillas
             listaArchivosCreados = new ObservableCollection<string>();
         }
 
+        public async System.Threading.Tasks.Task mensajeAutoCerrado(string titulo, string contenido, int segundos)
+        {
+            var dialog = new CustomDialog()
+            {
+                Title = titulo,
+                Content = contenido,
+                DialogMessageFontSize = 10,
+            };
+            await dlg.ShowMetroDialogAsync(this, dialog);
+
+            await System.Threading.Tasks.Task.Delay(segundos * 1000);
+            await dlg.HideMetroDialogAsync(this, dialog);
+        }
+
+        private void permisos()
+        {
+            if (currentUsuarioModelo.listaPermisos != null)
+            {
+                try
+                {
+                    if (currentUsuarioModelo.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()) > 0)
+                    {
+                        #region  permisos asignados
+
+                        permisosrolesusuario permisosAsignados = currentUsuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()
+                        && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                        if (permisosAsignados != null)
+                        {
+
+
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMCrear = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMCrear = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.editarpru)
+                            {
+                                _visibilidadMEditar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMEditar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.consultarpru)
+                            {
+                                _visibilidadMConsulta = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMConsulta = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.eliminarpru)
+                            {
+                                _visibilidadMBorrar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMBorrar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.impresionpru)
+                            {
+                                _visibilidadMVista = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMVista = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMImportar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMImportar = Visibility.Collapsed;
+                            }
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                        }
+                        #endregion fin de region de permisos
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                    }
+                }
+                catch (Exception)
+                {
+                    System.Windows.MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
+                    #region  menu
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Collapsed;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Visible;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                }
+            }
+            else
+            {
+                #region  menu
+                System.Windows.MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                _visibilidadMCrear = Visibility.Collapsed;
+                _visibilidadMEditar = Visibility.Collapsed;
+                _visibilidadMBorrar = Visibility.Collapsed;
+                _visibilidadMConsulta = Visibility.Collapsed;
+                _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                _visibilidadMRegresar = Visibility.Collapsed;
+                _visibilidadMVista = Visibility.Collapsed;
+                _visibilidadMImportar = Visibility.Collapsed;
+                _visibilidadMDetalle = Visibility.Collapsed;
+
+                _visibilidadMCerrar = Visibility.Collapsed;
+                _visibilidadMSupervisar = Visibility.Collapsed;
+                _visibilidadMAprobar = Visibility.Collapsed;
+                _visibilidadMImprimir = Visibility.Collapsed;
+                #endregion
+            }
+
+        }
+
         private void ControlUsuarioMensaje(UsuarioMensaje usuarioMensaje)
         {
             currentUsuario = usuarioMensaje.usuarioMensaje;//Usuario que navega
             currentUsuarioModelo = usuarioMensaje.usuarioModeloMensaje;
+            permisos();
             //Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPrincipal);//El usuario  no puede cambiar a menos que vuelva a ingresar
             actualizarLista();
+            accesibilidadWindow = true;
         }
 
         #endregion
@@ -1485,7 +2056,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Plantillas
                 DialogResult result;
                 // Displays the MessageBox.
 
-                result = MessageBox.Show(message, caption, buttons);
+                result = System.Windows.Forms.MessageBox.Show(message, caption, buttons);
 
                 if (result == DialogResult.Yes)
                 {
@@ -1516,11 +2087,11 @@ namespace SGPTWpf.ViewModel.Herramientas.Plantillas
                 {
                     borrarTemporales();
                     TryDeleteDocument(filename);
-                    MessageBox.Show("Registro actualizado con éxito");
+                    System.Windows.Forms.MessageBox.Show("Registro actualizado con éxito");
                 }
                 else
                 {
-                    MessageBox.Show("Registro actualizado con éxito");
+                    System.Windows.Forms.MessageBox.Show("Registro actualizado con éxito");
                     listaArchivosCreados.Remove(filename);//No debe eliminarse porque no pudo actualizarse el archivo en la base
                 }
             }

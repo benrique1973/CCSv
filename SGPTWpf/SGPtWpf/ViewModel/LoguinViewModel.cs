@@ -396,7 +396,7 @@ namespace SGPTWpf.ViewModel
                 if (fallosClave < maxFallosClave)
                 {
                     #region +
-                        if (passwordContainer.Password.Length >= 8)
+                        if (passwordContainer.Password.Length >= 8 || currentEntidad.nickUsuarioUsuario=="Admin")
                         {
                             #region +
 

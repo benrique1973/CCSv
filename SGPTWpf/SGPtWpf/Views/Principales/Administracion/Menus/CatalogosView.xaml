@@ -49,12 +49,21 @@
                         <DataGridTemplateColumn.CellTemplate >
                             <DataTemplate  >
                                 <Button x:Name="btnCatalogo" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                         Style="{StaticResource AccentedSquareButtonStyle}"       
                                          Margin="5,0,5,0"
                                          MinWidth="50"
                                          Height="35">
                                     <TextBlock Text="{Binding ViewDisplay}" 
                                          TextAlignment="Center" />
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AccentedSquareButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding opcionSeleccionada}" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource GrayBrush8}" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource BlackBrush}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

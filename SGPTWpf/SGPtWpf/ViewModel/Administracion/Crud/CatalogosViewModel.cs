@@ -17,6 +17,7 @@ namespace SGPTWpf.ViewModel.Administracion
 
         #region ViewModel Properties
 
+
         #region opcionSeleccionada
         private int _opcionSeleccionada;
         private int opcionSeleccionada
@@ -286,7 +287,8 @@ namespace SGPTWpf.ViewModel.Administracion
         public CatalogosViewModel()
         {
             RegistrarComandos();
-            _tokenEnvio="CatalogoDatos";
+            _opcionSeleccionada = 0;
+            _tokenEnvio ="CatalogoDatos";
             _tokenCatalogoDatos = "CatalogoDatos";
             _cursorWindow = Cursors.Hand;
             dlg = new DialogCoordinator();
@@ -346,6 +348,7 @@ namespace SGPTWpf.ViewModel.Administracion
             }
             else
             {
+                opcionSeleccionada = currentEntidad.id;
                 tokenCatalogoDatos = currentEntidad.ViewDisplay + "CatalogosViewModel";
                 Messenger.Default.Register<ComandoTerminado>(this, tokenCatalogoDatos, (comandoTerminado) => ControlComandoTerminado(comandoTerminado));
                 cursorWindow = Cursors.Wait;
@@ -353,6 +356,17 @@ namespace SGPTWpf.ViewModel.Administracion
                 enviarMensajeDatos();
                 //Reinicializando
                 listaCatalogo = new ObservableCollection<MenuCatalogoModelo>(MenuCatalogoModelo.GetAll());
+                foreach (MenuCatalogoModelo item in listaCatalogo)
+                {
+                    if (item.id == opcionSeleccionada)
+                    {
+                        item.opcionSeleccionada = true;
+                    }
+                    else
+                    {
+                        item.opcionSeleccionada = false;
+                    }
+                }
             }
         }
         #endregion

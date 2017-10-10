@@ -547,7 +547,7 @@
     <Property Name="salientecorrespondencia" Type="Boolean" Nullable="false" />
     <Property Name="estadocorrespondencia" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="archivocorrespondencia" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-    <Property Name="nombrefilecorrespondencia" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Name="nombrefilecorrespondencia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="idcontactofirmacorrespondencia" Type="Int32" />
     <Property Name="isuso" Type="Int32" />
     <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1916,7 +1916,7 @@
     <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="opcionesroles" Relationship="Self.fk_opciones_rolesopci_roles" FromRole="roles" ToRole="opcionesroles" />
     <NavigationProperty Name="permisosrolesusuarios" Relationship="Self.fk_permisos_rolespe_roles" FromRole="roles" ToRole="permisosrolesusuarios" />
-    <NavigationProperty Name="usuarios" Relationship="Self.fk_usuarios_usuariosr_roles" FromRole="roles" ToRole="usuarios" />
+    <NavigationProperty Name="usuarios" Relationship="Self.fk_usuarios_usuarios_roles" FromRole="roles" ToRole="usuarios" />
   </EntityType>
   <EntityType Name="simbolo">
     <Key>
@@ -2019,7 +2019,7 @@
     <Property Name="sistematei" Type="Boolean" Nullable="false" />
     <Property Name="estadotei" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="imagentet" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-    <Property Name="uuid" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="detalleplantillaindices" Relationship="Self.fk_detallep_tipoeipla_tipoelem" FromRole="tipoelementoindice" ToRole="detalleplantillaindice" />
     <NavigationProperty Name="indices" Relationship="Self.fk_indice_tipo_elemento_indice" FromRole="tipoelementoindice" ToRole="indices" />
   </EntityType>
@@ -2243,7 +2243,7 @@
     <NavigationProperty Name="ratios" Relationship="Self.fk_ratios_usuariora_usuarios" FromRole="usuarios" ToRole="ratios" />
     <NavigationProperty Name="reuniones" Relationship="Self.fk_reuniones_usuariore_usuarios" FromRole="usuarios" ToRole="reuniones" />
     <NavigationProperty Name="reuniones1" Relationship="Self.fk_reunionew_usuariocr_usuarios" FromRole="usuarios" ToRole="reuniones" />
-    <NavigationProperty Name="role" Relationship="Self.fk_usuarios_usuariosr_roles" FromRole="usuarios" ToRole="roles" />
+    <NavigationProperty Name="role" Relationship="Self.fk_usuarios_usuarios_roles" FromRole="usuarios" ToRole="roles" />
     <NavigationProperty Name="usuarioherramientasaccions" Relationship="Self.fk_usuarioh_usuariosu_usuarios" FromRole="usuarios" ToRole="usuarioherramientasaccion" />
     <NavigationProperty Name="usuariomatanalisfinancaccions" Relationship="Self.fk_usuariom_usuarious_usuarios" FromRole="usuarios" ToRole="usuariomatanalisfinancaccion" />
     <NavigationProperty Name="usuarioprogramasaccions" Relationship="Self.fk_usuariop_usuarious_usuarios" FromRole="usuarios" ToRole="usuarioprogramasaccion" />
@@ -5198,7 +5198,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_usuarios_usuariosr_roles">
+  <Association Name="fk_usuarios_usuarios_roles">
     <End Role="roles" Type="Self.role" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -6267,7 +6267,7 @@
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="reuniones" EntitySet="reuniones" />
     </AssociationSet>
-    <AssociationSet Name="fk_usuarios_usuariosr_roles" Association="Self.fk_usuarios_usuariosr_roles">
+    <AssociationSet Name="fk_usuarios_usuarios_roles" Association="Self.fk_usuarios_usuarios_roles">
       <End Role="roles" EntitySet="roles" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>

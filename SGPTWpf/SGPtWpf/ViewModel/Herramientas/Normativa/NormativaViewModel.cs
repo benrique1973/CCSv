@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using CapaDatos;
+using GalaSoft.MvvmLight.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using SGPTWpf.Command;
 using SGPTWpf.Messages.Administracion.Usuario;
@@ -13,6 +14,9 @@ using SGPTWpf.SGPtWpf.Messages.Genericos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SGPTWpf.ViewModel.Herramientas
@@ -20,6 +24,8 @@ namespace SGPTWpf.ViewModel.Herramientas
     public sealed class NormativaViewModel : ViewModeloBase
     {
         #region Propiedades privadas de control
+
+        private MetroDialogSettings configuracionDialogo;
 
         #region token
 
@@ -80,17 +86,6 @@ namespace SGPTWpf.ViewModel.Herramientas
 
         #endregion
 
-        #region origenLlamada
-
-        private string _origenLlamada;
-        private string origenLlamada
-        {
-            get { return _origenLlamada; }
-            set { _origenLlamada = value; }
-        }
-
-        #endregion
-
         #region Properties : cursorWindow
 
         public const string cursorWindowPropertyName = "cursorWindow";
@@ -140,6 +135,383 @@ namespace SGPTWpf.ViewModel.Herramientas
                 // Update bindings, no broadcast
                 RaisePropertyChanged(currentUsuarioPropertyName);
             }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Visibilidad de  botones
+
+        #region visibilidadMCrear
+
+        public const string visibilidadMCrearPropertyName = "visibilidadMCrear";
+
+        private Visibility _visibilidadMCrear = Visibility.Collapsed;
+
+        public Visibility visibilidadMCrear
+        {
+            get
+            {
+                return _visibilidadMCrear;
+            }
+
+            set
+            {
+                if (_visibilidadMCrear == value)
+                {
+                    return;
+                }
+
+                _visibilidadMCrear = value;
+                RaisePropertyChanged(visibilidadMCrearPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMEditar
+
+        public const string visibilidadMEditarPropertyName = "visibilidadMEditar";
+
+        private Visibility _visibilidadMEditar = Visibility.Collapsed;
+
+        public Visibility visibilidadMEditar
+        {
+            get
+            {
+                return _visibilidadMEditar;
+            }
+
+            set
+            {
+                if (_visibilidadMEditar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMEditar = value;
+                RaisePropertyChanged(visibilidadMEditarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMReferenciar
+
+        public const string visibilidadMReferenciarPropertyName = "visibilidadMReferenciar";
+
+        private Visibility _visibilidadMReferenciar = Visibility.Collapsed;
+
+        public Visibility visibilidadMReferenciar
+        {
+            get
+            {
+                return _visibilidadMReferenciar;
+            }
+
+            set
+            {
+                if (_visibilidadMReferenciar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMReferenciar = value;
+                RaisePropertyChanged(visibilidadMReferenciarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMCerrar
+
+        public const string visibilidadMCerrarPropertyName = "visibilidadMCerrar";
+
+        private Visibility _visibilidadMCerrar = Visibility.Collapsed;
+
+        public Visibility visibilidadMCerrar
+        {
+            get
+            {
+                return _visibilidadMCerrar;
+            }
+
+            set
+            {
+                if (_visibilidadMCerrar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMCerrar = value;
+                RaisePropertyChanged(visibilidadMCerrarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMSupervisar
+
+        public const string visibilidadMSupervisarPropertyName = "visibilidadMSupervisar";
+
+        private Visibility _visibilidadMSupervisar = Visibility.Collapsed;
+
+        public Visibility visibilidadMSupervisar
+        {
+            get
+            {
+                return _visibilidadMSupervisar;
+            }
+
+            set
+            {
+                if (_visibilidadMSupervisar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMSupervisar = value;
+                RaisePropertyChanged(visibilidadMSupervisarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMAprobar
+
+        public const string visibilidadMAprobarPropertyName = "visibilidadMAprobar";
+
+        private Visibility _visibilidadMAprobar = Visibility.Collapsed;
+
+        public Visibility visibilidadMAprobar
+        {
+            get
+            {
+                return _visibilidadMAprobar;
+            }
+
+            set
+            {
+                if (_visibilidadMAprobar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMAprobar = value;
+                RaisePropertyChanged(visibilidadMAprobarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMBorrar
+
+        public const string visibilidadMBorrarPropertyName = "visibilidadMBorrar";
+
+        private Visibility _visibilidadMBorrar = Visibility.Collapsed;
+
+        public Visibility visibilidadMBorrar
+        {
+            get
+            {
+                return _visibilidadMBorrar;
+            }
+
+            set
+            {
+                if (_visibilidadMBorrar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMBorrar = value;
+                RaisePropertyChanged(visibilidadMBorrarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMConsulta
+
+        public const string visibilidadMConsultaPropertyName = "visibilidadMConsulta";
+
+        private Visibility _visibilidadMConsulta = Visibility.Collapsed;
+
+        public Visibility visibilidadMConsulta
+        {
+            get
+            {
+                return _visibilidadMConsulta;
+            }
+
+            set
+            {
+                if (_visibilidadMConsulta == value)
+                {
+                    return;
+                }
+
+                _visibilidadMConsulta = value;
+                RaisePropertyChanged(visibilidadMConsultaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMDetalle
+
+        public const string visibilidadMDetallePropertyName = "visibilidadMDetalle";
+
+        private Visibility _visibilidadMDetalle = Visibility.Collapsed;
+
+        public Visibility visibilidadMDetalle
+        {
+            get
+            {
+                return _visibilidadMDetalle;
+            }
+
+            set
+            {
+                if (_visibilidadMDetalle == value)
+                {
+                    return;
+                }
+
+                _visibilidadMDetalle = value;
+                RaisePropertyChanged(visibilidadMDetallePropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMVista
+
+        public const string visibilidadMVistaPropertyName = "visibilidadMVista";
+
+        private Visibility _visibilidadMVista = Visibility.Collapsed;
+
+        public Visibility visibilidadMVista
+        {
+            get
+            {
+                return _visibilidadMVista;
+            }
+
+            set
+            {
+                if (_visibilidadMVista == value)
+                {
+                    return;
+                }
+
+                _visibilidadMVista = value;
+                RaisePropertyChanged(visibilidadMVistaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMRegresar
+
+        public const string visibilidadMRegresarPropertyName = "visibilidadMRegresar";
+
+        private Visibility _visibilidadMRegresar = Visibility.Hidden;
+
+        public Visibility visibilidadMRegresar
+        {
+            get
+            {
+                return _visibilidadMRegresar;
+            }
+
+            set
+            {
+                if (_visibilidadMRegresar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMRegresar = value;
+                RaisePropertyChanged(visibilidadMRegresarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMImportar
+
+        public const string visibilidadMImportarPropertyName = "visibilidadMImportar";
+
+        private Visibility _visibilidadMImportar = Visibility.Collapsed;
+
+        public Visibility visibilidadMImportar
+        {
+            get
+            {
+                return _visibilidadMImportar;
+            }
+
+            set
+            {
+                if (_visibilidadMImportar == value)
+                {
+                    return;
+                }
+
+                _visibilidadMImportar = value;
+                RaisePropertyChanged(visibilidadMImportarPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMImprimir
+
+        public const string visibilidadMImprimirPropertyName = "visibilidadMImprimir";
+
+        private Visibility _visibilidadMImprimir = Visibility.Hidden;
+
+        public Visibility visibilidadMImprimir
+        {
+            get
+            {
+                return _visibilidadMImprimir;
+            }
+
+            set
+            {
+                if (_visibilidadMImprimir == value)
+                {
+                    return;
+                }
+
+                _visibilidadMImprimir = value;
+                RaisePropertyChanged(visibilidadMImprimirPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region origenLlamada
+
+        private string _origenLlamada;
+        private string origenLlamada
+        {
+            get { return _origenLlamada; }
+            set { _origenLlamada = value; }
+        }
+
+        #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
         }
 
         #endregion
@@ -531,34 +903,6 @@ namespace SGPTWpf.ViewModel.Herramientas
         #endregion
 
 
-        public NormativaViewModel(string origen)
-        {
-            _origenLlamada = origen;
-            RegistrarComandos();
-            _token = "MenuPrincipal";
-            _idln = 0;
-            _origenNormas = false;
-            _cursorWindow = Cursors.Hand;
-            _tokenRecepcionPrincipal = "Normas";
-            dlg = new DialogCoordinator();
-            ListaVista = new ObservableCollection<LegalNormaModelo>(LegalNormaModelo.GetAll());
-            List<MenuLegalNorma> opcion = new List<MenuLegalNorma>
-            { new MenuLegalNorma() { ViewDisplay=""}};//Es generico el view display es cualquier string
-            ListaPrincipal = opcion;
-            currentEntidadNormativa = NormativaModelo.Clear(currentEntidadNormativa);
-            currentEntidadItem = LegalNormaModelo.Clear(currentEntidadItem);
-            //Messenger.Default.Register<TabItemMensaje>(this, (tabItemMensaje) => ControlTabitemMensaje(tabItemMensaje));
-            Messenger.Default.Register<HerramientasMensajesInicio>(this, (herramientasMensajesInicio) => ControlHerramientasMensajesInicio(herramientasMensajesInicio));
-            Messenger.Default.Register<SeleccionRadioButtonHerramientas>(this, (seleccionRadioButtonHerramientas) => ControlSeleccionRadioButtonHerramientas(seleccionRadioButtonHerramientas));
-            //Mensaje para actualizar el listado
-            Messenger.Default.Register<NormaLegalCrearActualizarMensaje>(this, (normaLegalCrearActualizarMensaje) => ControlNormaLegalCrearActualizarMensaje(normaLegalCrearActualizarMensaje));
-            Messenger.Default.Register<NavegacionSgpt>(this, token, (navegacionMenu) => ControlNavegacionMenuMensaje(navegacionMenu));
-            //Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPrincipal, (herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
-            Messenger.Default.Register<PrincipalUsuarioValidadoMensaje>(this, tokenRecepcionPrincipal, (principalUsuarioValidadoMensaje) => ControlPrincipalUsuarioValidadoMensaje(principalUsuarioValidadoMensaje));
-
-            _tokeNormativaDatos = "finCargaNormativaVista";//Para determinar que se termino la carga
-        }
-
         private void ControlPrincipalUsuarioValidadoMensaje(PrincipalUsuarioValidadoMensaje principalUsuarioValidadoMensaje)
         {
             //Recibe al usuario que se ha validado
@@ -567,35 +911,225 @@ namespace SGPTWpf.ViewModel.Herramientas
             Messenger.Default.Unregister<PrincipalUsuarioValidadoMensaje>(this, tokenRecepcionPrincipal);
         }
 
-        public NormativaViewModel()
+        public NormativaViewModel(string origen)//Documentacion/Carpetas
         {
-            _origenLlamada = "";
-            _token = "MenuPrincipal";
-            _idln = 0;
-            _origenNormas = false;
-            RegistrarComandos();
-            _cursorWindow = Cursors.Hand;
-            _tokenRecepcionPrincipal = "Normativa" + "Herramientas";
+            _origenLlamada = origen;
             dlg = new DialogCoordinator();
             ListaVista = new ObservableCollection<LegalNormaModelo>(LegalNormaModelo.GetAll());
             List<MenuLegalNorma> opcion = new List<MenuLegalNorma>
-            { new MenuLegalNorma() { ViewDisplay=""}};//Es generico el view display es cualquier string
-            ListaPrincipal = opcion;
-            currentEntidadNormativa = NormativaModelo.Clear(currentEntidadNormativa);
-            currentEntidadItem = LegalNormaModelo.Clear(currentEntidadItem);
-            //Messenger.Default.Register<TabItemMensaje>(this, (tabItemMensaje) => ControlTabitemMensaje(tabItemMensaje));
-            Messenger.Default.Register<HerramientasMensajesInicio>(this, (herramientasMensajesInicio) => ControlHerramientasMensajesInicio(herramientasMensajesInicio));
-            Messenger.Default.Register<SeleccionRadioButtonHerramientas>(this, (seleccionRadioButtonHerramientas) => ControlSeleccionRadioButtonHerramientas(seleccionRadioButtonHerramientas));
-            //Mensaje para actualizar el listado
-            Messenger.Default.Register<NormaLegalCrearActualizarMensaje>(this, (normaLegalCrearActualizarMensaje) => ControlNormaLegalCrearActualizarMensaje(normaLegalCrearActualizarMensaje));
-            Messenger.Default.Register<NavegacionSgpt>(this,token, (navegacionMenu) => ControlNavegacionMenuMensaje(navegacionMenu));
-            Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPrincipal,(herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
-            _tokeNormativaDatos = "finCargaNormativaVista";//Para determinar que se termino la carga
+            { new MenuLegalNorma() { ViewDisplay = "" }};//Es generico el view display es cualquier string
+
+            switch (origen)
+                { 
+                case "Principal":
+                    _origenLlamada = origen;
+                    _menuElegido = "Herramientas";
+                    RegistrarComandos();
+                    _token = "MenuPrincipal";
+                    _idln = 0;
+                    _origenNormas = false;
+                    _cursorWindow = Cursors.Hand;
+                    _tokenRecepcionPrincipal = "Normas";
+                    ListaPrincipal = opcion;
+                    currentEntidadNormativa = NormativaModelo.Clear(currentEntidadNormativa);
+                    currentEntidadItem = LegalNormaModelo.Clear(currentEntidadItem);
+                    //Messenger.Default.Register<TabItemMensaje>(this, (tabItemMensaje) => ControlTabitemMensaje(tabItemMensaje));
+                    Messenger.Default.Register<HerramientasMensajesInicio>(this, (herramientasMensajesInicio) => ControlHerramientasMensajesInicio(herramientasMensajesInicio));
+                    Messenger.Default.Register<SeleccionRadioButtonHerramientas>(this, (seleccionRadioButtonHerramientas) => ControlSeleccionRadioButtonHerramientas(seleccionRadioButtonHerramientas));
+                    //Mensaje para actualizar el listado
+                    Messenger.Default.Register<NormaLegalCrearActualizarMensaje>(this, (normaLegalCrearActualizarMensaje) => ControlNormaLegalCrearActualizarMensaje(normaLegalCrearActualizarMensaje));
+                    Messenger.Default.Register<NavegacionSgpt>(this, token, (navegacionMenu) => ControlNavegacionMenuMensaje(navegacionMenu));
+                    //Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPrincipal, (herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
+                    Messenger.Default.Register<PrincipalUsuarioValidadoMensaje>(this, tokenRecepcionPrincipal, (principalUsuarioValidadoMensaje) => ControlPrincipalUsuarioValidadoMensaje(principalUsuarioValidadoMensaje));
+
+                    _tokeNormativaDatos = "finCargaNormativaVista";//Para determinar que se termino la carga
+                    break;
+                case "Normativa" :
+                    menuElegido = "Herramientas";
+                    _token = "MenuPrincipal";
+                    _idln = 0;
+                    _origenNormas = false;
+                    RegistrarComandos();
+                    _cursorWindow = Cursors.Hand;
+                    _tokenRecepcionPrincipal = "Normativa" + "Herramientas";
+                    ListaPrincipal = opcion;
+                    currentEntidadNormativa = NormativaModelo.Clear(currentEntidadNormativa);
+                    currentEntidadItem = LegalNormaModelo.Clear(currentEntidadItem);
+                    //Messenger.Default.Register<TabItemMensaje>(this, (tabItemMensaje) => ControlTabitemMensaje(tabItemMensaje));
+                    Messenger.Default.Register<HerramientasMensajesInicio>(this, (herramientasMensajesInicio) => ControlHerramientasMensajesInicio(herramientasMensajesInicio));
+                    Messenger.Default.Register<SeleccionRadioButtonHerramientas>(this, (seleccionRadioButtonHerramientas) => ControlSeleccionRadioButtonHerramientas(seleccionRadioButtonHerramientas));
+                    //Mensaje para actualizar el listado
+                    Messenger.Default.Register<NormaLegalCrearActualizarMensaje>(this, (normaLegalCrearActualizarMensaje) => ControlNormaLegalCrearActualizarMensaje(normaLegalCrearActualizarMensaje));
+                    Messenger.Default.Register<NavegacionSgpt>(this, token, (navegacionMenu) => ControlNavegacionMenuMensaje(navegacionMenu));
+                    Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPrincipal, (herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
+                    _tokeNormativaDatos = "finCargaNormativaVista";//Para determinar que se termino la carga
+                    break;
+            }
+            configuracionDialogo = new MetroDialogSettings()
+            {
+                AnimateShow = false,
+                AnimateHide = false
+            };
+            #region  menu
+
+            _visibilidadMCrear = Visibility.Visible;
+            _visibilidadMEditar = Visibility.Visible;
+            _visibilidadMBorrar = Visibility.Visible;
+            _visibilidadMConsulta = Visibility.Visible;
+            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+            _visibilidadMRegresar = Visibility.Collapsed;
+            _visibilidadMVista = Visibility.Collapsed;
+            _visibilidadMImportar = Visibility.Collapsed;
+            _visibilidadMDetalle = Visibility.Collapsed;
+
+            _visibilidadMCerrar = Visibility.Collapsed;
+            _visibilidadMSupervisar = Visibility.Collapsed;
+            _visibilidadMAprobar = Visibility.Collapsed;
+            _visibilidadMImprimir = Visibility.Collapsed;
+            #endregion
+
         }
+
+        public async Task mensajeAutoCerrado(string titulo, string contenido, int segundos)
+        {
+            var dialog = new CustomDialog()
+            {
+                Title = titulo,
+                Content = contenido,
+                DialogMessageFontSize = 10,
+            };
+            await dlg.ShowMetroDialogAsync(this, dialog);
+
+            await System.Threading.Tasks.Task.Delay(segundos * 1000);
+            await dlg.HideMetroDialogAsync(this, dialog);
+        }
+
+        private void permisos()
+        {
+            if (currentUsuario.listaPermisos != null)
+            {
+                try
+                {
+                    if (currentUsuario.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()) > 0)
+                    {
+                        #region  permisos asignados
+
+                        permisosrolesusuario permisosAsignados = currentUsuario.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()
+                        && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                        if (permisosAsignados != null)
+                        {
+
+
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMCrear = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMCrear = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.editarpru)
+                            {
+                                _visibilidadMEditar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMEditar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.consultarpru)
+                            {
+                                _visibilidadMConsulta = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMConsulta = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.eliminarpru)
+                            {
+                                _visibilidadMBorrar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMBorrar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.impresionpru)
+                            {
+                                _visibilidadMVista = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMVista = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMImportar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMImportar = Visibility.Collapsed;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                        }
+                        #endregion fin de region de permisos
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
+                    #region  menu
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Collapsed;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Visible;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                }
+            }
+            else
+            {
+                #region  menu
+                MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                _visibilidadMCrear = Visibility.Collapsed;
+                _visibilidadMEditar = Visibility.Collapsed;
+                _visibilidadMBorrar = Visibility.Collapsed;
+                _visibilidadMConsulta = Visibility.Collapsed;
+                _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                _visibilidadMRegresar = Visibility.Collapsed;
+                _visibilidadMVista = Visibility.Collapsed;
+                _visibilidadMImportar = Visibility.Collapsed;
+                _visibilidadMDetalle = Visibility.Collapsed;
+
+                _visibilidadMCerrar = Visibility.Collapsed;
+                _visibilidadMSupervisar = Visibility.Collapsed;
+                _visibilidadMAprobar = Visibility.Collapsed;
+                _visibilidadMImprimir = Visibility.Collapsed;
+                #endregion
+            }
+
+        }
+
 
         private void ControlHerramientaUsuarioValidadoMensaje(UsuarioMensaje herramientaUsuarioValidadoMensaje)
         {
             currentUsuario = herramientaUsuarioValidadoMensaje.usuarioModeloMensaje;
+            permisos();
             Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPrincipal);//El usuario  no puede cambiar a menos que vuelva a ingresar
             inicializacionTerminada();
         }

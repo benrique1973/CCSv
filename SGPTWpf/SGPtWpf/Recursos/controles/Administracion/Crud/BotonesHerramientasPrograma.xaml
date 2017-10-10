@@ -40,7 +40,7 @@
 
         <StackPanel Orientation="Horizontal">
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMCrear}"
                 Command="{Binding NuevoCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -55,7 +55,7 @@
                 </StackPanel>
             </Button>
             <Button
-                 Style="{StaticResource AccentedSquareButtonStyle}"
+                 Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMEditar}"
                 Command="{Binding EditarCommand, Mode=TwoWay}">
                 <StackPanel Style="{StaticResource StackPanelEstilo}">
                     <Rectangle Width="45"
@@ -69,7 +69,7 @@
                 </StackPanel>
             </Button>
             <Button
-               Style="{StaticResource AccentedSquareButtonStyle}"
+               Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMBorrar}"
                 Command="{Binding BorrarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -84,7 +84,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}"  Visibility="{Binding visibilidadMConsulta}"
                 Command="{Binding ConsultarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -99,7 +99,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}"  Visibility="{Binding visibilidadMVista}"
                 Command="{Binding VistaProgramaCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 

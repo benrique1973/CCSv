@@ -38,7 +38,7 @@
             <Grid x:Name="datosConsulta" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" IsEnabled="{Binding accesibilidadWindow}" >
                 <Border BorderThickness="1" BorderBrush="Transparent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <DataGrid 
-                        AutoGenerateColumns="False"  SelectionMode="Extended"
+                        AutoGenerateColumns="False"  SelectionMode="Single"
                         Margin="1,0,0,0"
                         Name="dataGrid"
                         ScrollViewer.CanContentScroll="True" 

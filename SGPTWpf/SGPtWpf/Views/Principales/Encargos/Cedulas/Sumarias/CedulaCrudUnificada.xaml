@@ -786,7 +786,7 @@
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
-                                        <DataGridTextColumn  Header="#"
+                                        <DataGridTextColumn  Header="#" IsReadOnly="True"
                                                 Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -846,7 +846,7 @@
                                             </DataGridTemplateColumn.CellStyle>
                                         </DataGridTemplateColumn>
 
-                                        <DataGridTextColumn Header="Clase cuenta" Width="200"
+                                        <DataGridTextColumn Header="Clase cuenta" Width="200" IsReadOnly="True"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -863,7 +863,7 @@
                                                 </Style>
                                             </DataGridTextColumn.EditingElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Cuenta" Width="250"
+                                        <DataGridTextColumn Header="Cuenta" Width="250" IsReadOnly="True"
                                                 Binding="{Binding nombrecuenta,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -1008,7 +1008,7 @@
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
-                                        <DataGridTextColumn  Header="#"
+                                        <DataGridTextColumn  Header="#" IsReadOnly="True"
                                                 Binding="{Binding idCorrelativo,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -1026,7 +1026,7 @@
                                             </DataGridTextColumn.EditingElementStyle>
                                         </DataGridTextColumn>
 
-                                        <DataGridTextColumn  Header="Reg"
+                                        <DataGridTextColumn  Header="Reg" IsReadOnly="True"
                                                 Binding="{Binding idcc,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -1043,7 +1043,7 @@
                                                 </Style>
                                             </DataGridTextColumn.EditingElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn  Header="Padre"
+                                        <DataGridTextColumn  Header="Padre" IsReadOnly="True"
                                                 Binding="{Binding catidcc,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -1061,7 +1061,7 @@
                                             </DataGridTextColumn.EditingElementStyle>
                                         </DataGridTextColumn>
 
-                                        <DataGridTextColumn  Header="PadreSumaria"
+                                        <DataGridTextColumn  Header="PadreSumaria" IsReadOnly="True"
                                                 Binding="{Binding padreiddc,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -1121,7 +1121,7 @@
                                         </DataGridTemplateColumn>
 
 
-                                        <DataGridTextColumn Header="Clase cuenta" Width="200"
+                                        <DataGridTextColumn Header="Clase cuenta" Width="200" IsReadOnly="True"
                                                 Binding="{Binding nombreClaseCuenta,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
@@ -1138,7 +1138,7 @@
                                                 </Style>
                                             </DataGridTextColumn.EditingElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Cuenta" Width="250"
+                                        <DataGridTextColumn Header="Cuenta" Width="250" IsReadOnly="True"
                                                 Binding="{Binding nombrecuenta,  UpdateSourceTrigger=PropertyChanged}">
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>

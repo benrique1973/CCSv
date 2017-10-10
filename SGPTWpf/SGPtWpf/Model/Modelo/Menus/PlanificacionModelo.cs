@@ -148,7 +148,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo
                         break;
                     case "Materialidad":
                         ViewModelType = typeof(MaterialidadViewModel);
-                        Contexto = new MaterialidadViewModel();
+                        Contexto = new MaterialidadViewModel("Criterios  de  materialidad");
                         break;
                     default:
                         //MessageDialog("Error en el switch");
