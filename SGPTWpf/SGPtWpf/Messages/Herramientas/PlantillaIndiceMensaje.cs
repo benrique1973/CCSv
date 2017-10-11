@@ -7,7 +7,7 @@ namespace SGPTWpf.Messages.Herramientas
     {
         public PlantillaIndiceModelo elementoMensaje { get; set; }
         public ObservableCollection<PlantillaIndiceModelo> listaMensaje { get; set; }
-        public int numeroProcesoCrudEnviado { get; set; }
+        //public int numeroProcesoCrudEnviado { get; set; }
         public int comandoCrud { get; set; }
     }
 }

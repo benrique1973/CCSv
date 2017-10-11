@@ -73,16 +73,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
         #endregion
 
-        #region numeroProcesoCrudRecibido
-
-        private int _numeroProcesoCrudRecibido;
-        private int numeroProcesoCrudRecibido
-        {
-            get { return _numeroProcesoCrudRecibido; }
-            set { _numeroProcesoCrudRecibido = value; }
-        }
-
-        #endregion
 
         #region origen
 
@@ -1619,7 +1609,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
             _origen = origenLlamada;
             _cerradoFinalVentana = false;//Controla el cierre de la ventana
             _maxDescripcion = 40;
-            _numeroProcesoCrudRecibido = 0;
             _opcionMenu = 0;
             _fuenteCierre = 0;
             _resultadoProceso = 0;
@@ -1630,7 +1619,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
             //Messenger.Default.Register<PlantillaIndiceMensaje>(this, tokenRecepcion, (plantillaIndiceMensaje) => ControlPlantillaIndiceMensaje(plantillaIndiceMensaje));
             RegisterCommandsDocumentacion();
             //Recibe un numero para procesar solo el último mensaje
-            numeroProcesoCrudRecibido = PlantillaIndiceViewModel.numeroProcesoCrud;
             dlg = new DialogCoordinator();
             accesibilidadWindow = false;
 
@@ -2005,7 +1993,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
         {
             currentEntidad = plantillaIndiceMensaje.elementoMensaje;
             listaEntidad = plantillaIndiceMensaje.listaMensaje;
-            numeroProcesoCrudRecibido = plantillaIndiceMensaje.numeroProcesoCrudEnviado + 1;
             switch (plantillaIndiceMensaje.comandoCrud)
             {
                 case 1:
@@ -2718,8 +2705,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
         {
             //Se crea el mensaje
             mensajeDeCierreCrud mensaje = new mensajeDeCierreCrud();
-            mensaje.numeroProcesoCrud = numeroProcesoCrudRecibido;
-            numeroProcesoCrudRecibido++;
             Messenger.Default.Send(mensaje, tokenEnvio);
         }
 

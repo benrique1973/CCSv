@@ -1857,7 +1857,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             //Messenger.Default.Register<PlantillaIndiceMensaje>(this, tokenRecepcion, (plantillaIndiceMensaje) => ControlPlantillaIndiceMensaje(plantillaIndiceMensaje));
             RegisterCommands();
             //Recibe un numero para procesar solo el último mensaje
-            numeroProcesoCrudRecibido = PlantillaIndiceViewModel.numeroProcesoCrud;
+
             dlg = new DialogCoordinator();
             _accesibilidadWindow = false;
             _accesibilidadCuerpo = false;
