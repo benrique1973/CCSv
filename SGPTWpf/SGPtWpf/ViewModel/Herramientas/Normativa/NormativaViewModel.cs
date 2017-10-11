@@ -921,9 +921,9 @@ namespace SGPTWpf.ViewModel.Herramientas
 
             switch (origen)
                 { 
-                case "Principal":
+                case "Normas":
                     _origenLlamada = origen;
-                    _menuElegido = "Herramientas";
+                    _menuElegido = "Normas";
                     RegistrarComandos();
                     _token = "MenuPrincipal";
                     _idln = 0;

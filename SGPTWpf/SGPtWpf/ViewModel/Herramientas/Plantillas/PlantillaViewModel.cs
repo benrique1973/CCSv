@@ -1077,7 +1077,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Plantillas
             AnimateShow = false,
                 AnimateHide = false
             };
-        #region  menu
+            #region  menu
 
             _visibilidadMCrear = Visibility.Visible;
             _visibilidadMEditar = Visibility.Visible;

@@ -1177,7 +1177,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             Messenger.Default.Register<PlantillaIndiceMensaje>(this, tokenRecepcionEntidadSeleccionada, (plantillaIndiceModelo) => ControlPlantillaIndiceModelo(plantillaIndiceModelo));
             indiceProcedimientos=0;
             accesibilidadWindow = true;
-            numeroProcesoCrudRecibido = PlantillaIndiceViewModel.numeroProcesoCrud;
+
             //Inicializar el contenido del frame con el detalle de procedimientos
             dlg = new DialogCoordinator();
             RegisterCommands();

@@ -1667,6 +1667,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                          usuariocreo = entidad.usuario.inicialesusuario,
                          guardadoBase = true,
                          IsSelected = false,
+                         
                          //Lista filtrada de elementos que fueron eliminados
                      }).OrderBy(o => o.idnotaspt).Where(x => x.estadonota == "A" && x.idencargo == encargo.idencargo && x.idcedula == idcedula).ToList();
                     //La ordena por el idPrograma notar la notacion

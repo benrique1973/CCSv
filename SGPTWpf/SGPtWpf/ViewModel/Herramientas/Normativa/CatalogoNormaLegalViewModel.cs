@@ -1116,33 +1116,63 @@ namespace SGPTWpf.ViewModel.Crud.CatalogoNormaLegalIndice
         #region Constructores
 
 
-        public CatalogoNormaLegalViewModel()
+        public CatalogoNormaLegalViewModel(string origen)
         {
-            _origenLlamada = "";
-            _menuElegido = "Herramientas";
             configuracionDialogo = new MetroDialogSettings()
             {
                 AnimateShow = false,
                 AnimateHide = false
             };
 
-            #region  menu
+            switch (origen)
+            {
+                case "Normas":
+                    _origenLlamada = origen;
+                    _menuElegido = "Normas";
+                    #region  menu
 
-            _visibilidadMCrear = Visibility.Visible;
-            _visibilidadMEditar = Visibility.Visible;
-            _visibilidadMBorrar = Visibility.Visible;
-            _visibilidadMConsulta = Visibility.Visible;
-            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
-            _visibilidadMRegresar = Visibility.Collapsed;
-            _visibilidadMVista = Visibility.Visible;
-            _visibilidadMImportar = Visibility.Collapsed;
-            _visibilidadMDetalle = Visibility.Collapsed;
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Visible;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Collapsed;
+                    _visibilidadMDetalle = Visibility.Collapsed;
 
-            _visibilidadMCerrar = Visibility.Collapsed;
-            _visibilidadMSupervisar = Visibility.Collapsed;
-            _visibilidadMAprobar = Visibility.Collapsed;
-            _visibilidadMImprimir = Visibility.Collapsed;
-            #endregion
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                    break;
+                case "Normativa":
+                     menuElegido = "Herramientas";
+                    _origenLlamada = origen;
+                    #region  menu
+
+                    _visibilidadMCrear = Visibility.Visible;
+                    _visibilidadMEditar = Visibility.Visible;
+                    _visibilidadMBorrar = Visibility.Visible;
+                    _visibilidadMConsulta = Visibility.Visible;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Collapsed;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                    break;
+            }
+
+
+
+
             if (!(currentEntidadNorma == null))
             {
                 if (!((NormativaModelo.ContarRegistros(currentEntidadNorma.id) == 0)))
