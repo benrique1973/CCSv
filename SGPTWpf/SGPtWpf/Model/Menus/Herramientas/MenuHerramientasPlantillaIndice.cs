@@ -53,7 +53,7 @@ namespace SGPTWpf.Model.Menus.Herramientas
             {
                 View = (UserControl)Activator.CreateInstance(ViewType);
                 ViewModelType = typeof(DetallePlantillaIndiceViewModel);
-                Contexto = new DetallePlantillaIndiceViewModel();
+                Contexto = new DetallePlantillaIndiceViewModel("Indice");
             }
             var msg = new NavegacionSgpt { View = View, ViewModelType = ViewModelType, ViewType = ViewType, Contexto = Contexto };
             Messenger.Default.Send(msg, token);

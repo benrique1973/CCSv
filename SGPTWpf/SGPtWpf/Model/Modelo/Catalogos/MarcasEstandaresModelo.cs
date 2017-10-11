@@ -49,7 +49,7 @@ namespace SGPTWpf.Model.Modelo
             get { return GetValue(() => inicialesusuario); }
             set { SetValue(() => inicialesusuario, value); }
         }
-        public virtual usuario usuario
+        public virtual UsuarioModelo usuario
         {
             get { return GetValue(() => usuario); }
             set { SetValue(() => usuario, value); }

@@ -9,6 +9,7 @@ using SGPTWpf.Model.Menus.Herramientas;
 using SGPTWpf.Model.Modelo.Indice;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace SGPTWpf.ViewModel.Herramientas.Indice
@@ -16,75 +17,74 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
     public sealed class PlantillaIndiceViewModel : ViewModeloBase
     {
         #region Propiedades privadas de control
+
         private MetroDialogSettings configuracionDialogo;
 
-        private string tokenRecepcionPrincipal = "Indice" + "Herramientas";
         private MenuHerramientasPlantillaIndice detallePlantillaIndice;//Es generico el view display es cualquier string
-        private string tokenRecepcion = "PlantillaIndiceController";//Identifica la fuente de un mensaje generico
-        private string tokenEnvio = "DatosElementoADetalle";//Identifica la fuente de un mensaje generico
-        private string tokenEnvioEntidadSeleccionada = "DatosEntidadSeleccionadaADetalle";//Identifica la fuente de un mensaje generico
-        private string tokenEnvioEntidadSeleccionadaPreview = "DatosEntidadSeleccionadaADetallePreview";//Identifica la fuente de un mensaje generico
 
-        private static int comando = 0;
+        #region tokenRecepcionPadre
+
+        private string _tokenRecepcionPadre;
+        private string tokenRecepcionPadre
+        {
+            get { return _tokenRecepcionPadre; }
+            set { _tokenRecepcionPadre = value; }
+        }
+
+        #endregion
+
+        #region tokenRecepcion
+
+        private string _tokenRecepcion;
+        private string tokenRecepcion
+        {
+            get { return _tokenRecepcion; }
+            set { _tokenRecepcion = value; }
+        }
+
+        #endregion
+
+        #region tokenEnvio
+        private string _tokenEnvio;
+        private string tokenEnvio
+        {
+            get { return _tokenEnvio; }
+            set { _tokenEnvio = value; }
+        }
+        #endregion
+
+        #region tokenEnvioEntidadSeleccionada
+
+        private string _tokenEnvioEntidadSeleccionada;
+        private string tokenEnvioEntidadSeleccionada
+        {
+            get { return _tokenEnvioEntidadSeleccionada; }
+            set { _tokenEnvioEntidadSeleccionada = value; }
+        }
+
+        #endregion
+
+        #region tokenEnvioEntidadSeleccionadaPreview
+        private string _tokenEnvioEntidadSeleccionadaPreview;
+        private string tokenEnvioEntidadSeleccionadaPreview
+        {
+            get { return _tokenEnvioEntidadSeleccionadaPreview; }
+            set { _tokenEnvioEntidadSeleccionadaPreview = value; }
+        }
+        #endregion
+
+        #region comando
+
+        private int _comando;
+        private int comando
+        {
+            get { return _comando; }
+            set { _comando = value; }
+        }
+
+        #endregion
+
         private DialogCoordinator dlg;
-        public static int numeroProcesoCrud { get; set; }//Para control de mensajes enviados y recibidos
-
-        #region ViewModel Property : currentUsuario usuario
-
-        public const string currentUsuarioPropertyName = "currentUsuario";
-
-        private usuario _currentUsuario;
-
-        public usuario currentUsuario
-        {
-            get
-            {
-                return _currentUsuario;
-            }
-
-            set
-            {
-                if (_currentUsuario == value) return;
-
-                _currentUsuario = value;
-
-                // Update bindings, no broadcast
-                RaisePropertyChanged(currentUsuarioPropertyName);
-            }
-        }
-
-
-
-        #endregion
-
-        #region ViewModel Property : currentUsuarioModelo usuario
-
-        public const string currentUsuarioModeloPropertyName = "currentUsuarioModelo";
-
-        private UsuarioModelo _currentUsuarioModelo;
-
-        public UsuarioModelo currentUsuarioModelo
-        {
-            get
-            {
-                return _currentUsuarioModelo;
-            }
-
-            set
-            {
-                if (_currentUsuarioModelo == value) return;
-
-                _currentUsuarioModelo = value;
-
-                // Update bindings, no broadcast
-                RaisePropertyChanged(currentUsuarioModeloPropertyName);
-            }
-        }
-
-
-        #endregion
-
-        #endregion
 
         #region Visibilidad de  botones
 
@@ -449,7 +449,77 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
         }
 
         #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
+        }
+
         #endregion
+
+        #endregion
+
+        #region ViewModel Property : currentUsuario usuario
+
+        public const string currentUsuarioPropertyName = "currentUsuario";
+
+        private usuario _currentUsuario;
+
+        public usuario currentUsuario
+        {
+            get
+            {
+                return _currentUsuario;
+            }
+
+            set
+            {
+                if (_currentUsuario == value) return;
+
+                _currentUsuario = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentUsuarioPropertyName);
+            }
+        }
+
+
+
+        #endregion
+
+        #region ViewModel Property : currentUsuarioModelo usuario
+
+        public const string currentUsuarioModeloPropertyName = "currentUsuarioModelo";
+
+        private UsuarioModelo _currentUsuarioModelo;
+
+        public UsuarioModelo currentUsuarioModelo
+        {
+            get
+            {
+                return _currentUsuarioModelo;
+            }
+
+            set
+            {
+                if (_currentUsuarioModelo == value) return;
+
+                _currentUsuarioModelo = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(currentUsuarioModeloPropertyName);
+            }
+        }
+
+
+        #endregion
+
+        #endregion
+
 
         #region ViewModel Properties
 
@@ -777,16 +847,27 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
 
         public PlantillaIndiceViewModel(string origen)//Documentacion/Carpetas
         {
+            _comando = 0;
             _origenLlamada = origen;
-
+            _menuElegido = "Herramientas";
             configuracionDialogo = new MetroDialogSettings()
             {
                 AnimateShow = false,
                 AnimateHide = false
             };
-            #region  menu
+            #region tokens
 
-            _visibilidadMCrear = Visibility.Visible;
+            tokenRecepcionPadre = "Indice" + "Herramientas";
+            tokenRecepcion = "PlantillaIndiceController";//Identifica la fuente de un mensaje generico            
+            tokenEnvio = "DatosElementoADetalle";//Identifica la fuente de un mensaje generico
+            tokenEnvioEntidadSeleccionada = "DatosEntidadSeleccionadaADetalle";//Identifica la fuente de un mensaje generico
+            tokenEnvioEntidadSeleccionadaPreview = "DatosEntidadSeleccionadaADetallePreview";//Identifica la fuente de un mensaje generico
+
+            #endregion tokens
+
+        #region  menu
+
+        _visibilidadMCrear = Visibility.Visible;
             _visibilidadMEditar = Visibility.Visible;
             _visibilidadMBorrar = Visibility.Visible;
             _visibilidadMConsulta = Visibility.Visible;
@@ -801,9 +882,9 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             _visibilidadMAprobar = Visibility.Collapsed;
             _visibilidadMImprimir = Visibility.Collapsed;
             #endregion
+
             detallePlantillaIndice = new MenuHerramientasPlantillaIndice();//Es generico el view display es cualquier string
             RegistrarComandos();
-            numeroProcesoCrud = 500;
             listaIndices = new ObservableCollection<PlantillaIndiceModelo>(PlantillaIndiceModelo.GetAll());
             if (listaIndices.Count >= 1)
             {
@@ -817,7 +898,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
                 currentEntidad = null;
             }
                 dlg = new DialogCoordinator();
-            Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPrincipal,(herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
+            Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPadre,(herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
             //Controla cuando  se lanza una  ventana esta avise  que se ha cerrado
             Messenger.Default.Register<mensajeDeCierreCrud>(this,tokenRecepcion, (mensajeDeCierreCrud => ControlPlantillaIndiceCierreMensaje(mensajeDeCierreCrud)));
 
@@ -831,41 +912,174 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
         {
             //TypeName = null;
             PlantillaIndiceMainModel.TypeName = null;
-            if (plantillaIndiceCierreMensaje.numeroProcesoCrud == numeroProcesoCrud)
+            switch (comando)
             {
-                switch (comando)
-                {
-                    case 1:
-                        currentEntidad = null;
-                        actualizarLista();
-                        break;
-                    case 2:
-                        actualizarLista();
-                        break;
-                    case 3:
-                        //activarVentanaConsulta = true;
-                        break;
-                    case 4:
-                        currentEntidad = null;
-                        actualizarLista();
-                        break;
-                    case 5:
-                        currentEntidad = null;
-                        actualizarLista();
-                        break;
-                    default:
-                        break;
-                }
-                comando = 0;
-                numeroProcesoCrud++;
+                case 1:
+                    currentEntidad = null;
+                    actualizarLista();
+                    break;
+                case 2:
+                    actualizarLista();
+                    break;
+                case 3:
+                    //activarVentanaConsulta = true;
+                    break;
+                case 4:
+                    currentEntidad = null;
+                    actualizarLista();
+                    break;
+                case 5:
+                    currentEntidad = null;
+                    actualizarLista();
+                    break;
+                default:
+                    break;
             }
+                comando = 0;
+        }
+
+
+        public async System.Threading.Tasks.Task mensajeAutoCerrado(string titulo, string contenido, int segundos)
+        {
+            var dialog = new CustomDialog()
+            {
+                Title = titulo,
+                Content = contenido,
+                DialogMessageFontSize = 10,
+            };
+            await dlg.ShowMetroDialogAsync(this, dialog);
+
+            await System.Threading.Tasks.Task.Delay(segundos * 1000);
+            await dlg.HideMetroDialogAsync(this, dialog);
+        }
+
+        private void permisos()
+        {
+            if (currentUsuarioModelo.listaPermisos != null)
+            {
+                try
+                {
+                    if (currentUsuarioModelo.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()) > 0)
+                    {
+                        #region  permisos asignados
+
+                        permisosrolesusuario permisosAsignados = currentUsuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()
+                        && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                        if (permisosAsignados != null)
+                        {
+
+
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMCrear = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMCrear = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.editarpru)
+                            {
+                                _visibilidadMEditar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMEditar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.consultarpru)
+                            {
+                                _visibilidadMConsulta = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMConsulta = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.eliminarpru)
+                            {
+                                _visibilidadMBorrar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMBorrar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.impresionpru)
+                            {
+                                _visibilidadMVista = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMVista = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMImportar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMImportar = Visibility.Collapsed;
+                            }
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                        }
+                        #endregion fin de region de permisos
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                    }
+                }
+                catch (Exception)
+                {
+                    System.Windows.MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
+                    #region  menu
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Collapsed;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Visible;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                }
+            }
+            else
+            {
+                #region  menu
+                System.Windows.MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                _visibilidadMCrear = Visibility.Collapsed;
+                _visibilidadMEditar = Visibility.Collapsed;
+                _visibilidadMBorrar = Visibility.Collapsed;
+                _visibilidadMConsulta = Visibility.Collapsed;
+                _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                _visibilidadMRegresar = Visibility.Collapsed;
+                _visibilidadMVista = Visibility.Collapsed;
+                _visibilidadMImportar = Visibility.Collapsed;
+                _visibilidadMDetalle = Visibility.Collapsed;
+
+                _visibilidadMCerrar = Visibility.Collapsed;
+                _visibilidadMSupervisar = Visibility.Collapsed;
+                _visibilidadMAprobar = Visibility.Collapsed;
+                _visibilidadMImprimir = Visibility.Collapsed;
+                #endregion
+            }
+
         }
 
         private void ControlHerramientaUsuarioValidadoMensaje(UsuarioMensaje herramientaUsuarioValidadoMensaje)
         {
             currentUsuario = herramientaUsuarioValidadoMensaje.usuarioMensaje;//Usuario que navega
-            currentUsuarioModelo = herramientaUsuarioValidadoMensaje.usuarioModeloMensaje; ;
-            //Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPrincipal);//El usuario  no puede cambiar a menos que vuelva a ingresar
+            currentUsuarioModelo = herramientaUsuarioValidadoMensaje.usuarioModeloMensaje;
+            permisos();
+            //Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPadre);//El usuario  no puede cambiar a menos que vuelva a ingresar
         }
 
 
@@ -1101,9 +1315,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             PlantillaIndiceMensaje elemento = new PlantillaIndiceMensaje();
             elemento.elementoMensaje = currentEntidad;
             elemento.listaMensaje = listaIndices;
-            elemento.numeroProcesoCrudEnviado = numeroProcesoCrud;
             elemento.comandoCrud = comando;
-            numeroProcesoCrud = numeroProcesoCrud + 1;//Se incrementa para  proximo envio
             Messenger.Default.Send(elemento,tokenEnvio);
         }
 
@@ -1113,9 +1325,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             PlantillaIndiceMensaje elemento = new PlantillaIndiceMensaje();
             elemento.elementoMensaje = temporal;
             elemento.listaMensaje = listaIndices;
-            elemento.numeroProcesoCrudEnviado = numeroProcesoCrud;
             elemento.comandoCrud = comando;
-            numeroProcesoCrud = numeroProcesoCrud + 1;//Se incrementa para  proximo envio
             Messenger.Default.Send(elemento, tokenEnvio);
         }
 
@@ -1126,9 +1336,7 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             PlantillaIndiceMensaje elemento = new PlantillaIndiceMensaje();
             elemento.elementoMensaje = currentEntidad;
             elemento.listaMensaje = listaIndices;
-            elemento.numeroProcesoCrudEnviado = numeroProcesoCrud;
             elemento.comandoCrud = comando;
-            numeroProcesoCrud = numeroProcesoCrud + 1;//Se incrementa para  proximo envio
             Messenger.Default.Send(elemento, tokenEnvioEntidadSeleccionadaPreview);
         }
         #endregion

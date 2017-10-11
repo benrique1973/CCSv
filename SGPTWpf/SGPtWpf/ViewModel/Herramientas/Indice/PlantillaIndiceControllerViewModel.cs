@@ -64,17 +64,6 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
 
         #endregion
 
-        #region numeroProcesoCrudRecibido
-
-        private int _numeroProcesoCrudRecibido;
-        private int numeroProcesoCrudRecibido
-        {
-            get { return _numeroProcesoCrudRecibido; }
-            set { _numeroProcesoCrudRecibido = value; }
-        }
-
-        #endregion
-
         #region origen
 
         private string _origen;
@@ -712,7 +701,6 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             _tokenEnvio = "PlantillaIndiceController";
             _tokenRecepcion = "DatosElementoADetalle";//Identifica la fuente de un mensaje generico
             _maxDescripcion = 40;
-            _numeroProcesoCrudRecibido = 0;
             //Suscribiendo el mensaje
             listaTiposAuditoria = new ObservableCollection<TipoAuditoriaModelo>(TipoAuditoriaModelo.GetAllCombo());
             listaTipoCarpeta = new ObservableCollection<tipocarpeta>(TipoCarpetaModelo.GetAllCapaDatosSeleccion());//Lista de carpeta
@@ -720,7 +708,6 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
             Messenger.Default.Register<PlantillaIndiceMensaje>(this, tokenRecepcion,(plantillaIndiceMensaje) => ControlPlantillaIndiceMensaje(plantillaIndiceMensaje));
             RegisterCommands();
             //Recibe un numero para procesar solo el último mensaje
-            numeroProcesoCrudRecibido = PlantillaIndiceViewModel.numeroProcesoCrud;
             dlg = new DialogCoordinator();
             accesibilidadWindow = false;
             _visibilidadCrear = Visibility.Collapsed;
@@ -737,7 +724,6 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
         {
             currentEntidad = plantillaIndiceMensaje.elementoMensaje;
             listaEntidad = plantillaIndiceMensaje.listaMensaje;
-            numeroProcesoCrudRecibido = plantillaIndiceMensaje.numeroProcesoCrudEnviado + 1;
             switch (plantillaIndiceMensaje.comandoCrud)
             {
                 case 1:
@@ -1009,8 +995,6 @@ namespace SGPTWpf.ViewModel.Herramientas.Indice
         {
             //Se crea el mensaje
             mensajeDeCierreCrud mensaje = new mensajeDeCierreCrud();
-            mensaje.numeroProcesoCrud = numeroProcesoCrudRecibido;
-            numeroProcesoCrudRecibido++;
             Messenger.Default.Send(mensaje,tokenEnvio);
         }
         #endregion

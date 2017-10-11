@@ -728,11 +728,18 @@ namespace SGPTWpf.Model
         public static string FindNombreById(int? id)
         {
             string nombre = string.Empty;
-            if (!(id == 0))
+            if (id != null)
             {
-                using (_context = new SGPTEntidades())
+                if (!(id == 0))
                 {
-                    return nombre = _context.visitas.Find(id).descripcionvisita;
+                    using (_context = new SGPTEntidades())
+                    {
+                        return nombre = _context.visitas.Find(id).descripcionvisita;
+                    }
+                }
+                else
+                {
+                    return nombre;
                 }
             }
             else

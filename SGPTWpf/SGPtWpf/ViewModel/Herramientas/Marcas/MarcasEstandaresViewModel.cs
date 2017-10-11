@@ -1,18 +1,15 @@
 ﻿using CapaDatos;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using SGPTWpf.Command;
-using SGPTWpf.Messages;
 using SGPTWpf.Messages.Administracion.MarcasEstandares;
-using SGPTWpf.Messages.Administracion.Usuario;
 using SGPTWpf.Messages.Genericos;
 using SGPTWpf.Model;
 using SGPTWpf.Model.Modelo;
 using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
+using System.Linq;
 using System.Windows;
 
 namespace SGPTWpf.ViewModel.Herramientas
@@ -24,14 +21,24 @@ namespace SGPTWpf.ViewModel.Herramientas
 
         private MetroDialogSettings configuracionDialogo;
 
-        private string tokenRecepcionPrincipal = "Marcas" + "Herramientas";
+        #region tokenRecepcionPadre
+
+        private string _tokenRecepcionPadre;
+        private string tokenRecepcionPadre
+        {
+            get { return _tokenRecepcionPadre; }
+            set { _tokenRecepcionPadre = value; }
+        }
+
+        #endregion
+
         #region ViewModel Property : currentUsuario usuario
 
         public const string currentUsuarioPropertyName = "currentUsuario";
 
-        private usuario _currentUsuario;
+        private UsuarioModelo _currentUsuario;
 
-        public usuario currentUsuario
+        public UsuarioModelo currentUsuario
         {
             get
             {
@@ -51,9 +58,20 @@ namespace SGPTWpf.ViewModel.Herramientas
 
         #endregion
 
-        private static int comando = 0;
+        #region comando
+
+        private int _comando;
+        private int comando
+        {
+            get { return _comando; }
+            set { _comando = value; }
+        }
+
+        #endregion
+
         private DialogCoordinator dlg;
-        public static int numeroProcesoCrud = 0;
+
+
 
         #endregion
 
@@ -420,6 +438,18 @@ namespace SGPTWpf.ViewModel.Herramientas
         }
 
         #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
+        }
+
+        #endregion
+
         #endregion
 
         #region ViewModel Properties publicas
@@ -743,12 +773,16 @@ namespace SGPTWpf.ViewModel.Herramientas
         public MarcasEstandaresViewModel(string origen)//Documentacion/Carpetas
         {
             _origenLlamada = origen;
-
+            _menuElegido = "Herramientas";
+            _comando = 0;
             configuracionDialogo = new MetroDialogSettings()
             {
                 AnimateShow = false,
                 AnimateHide = false
             };
+
+            tokenRecepcionPadre = "Marcas" + "Herramientas";
+            
             #region  menu
 
             _visibilidadMCrear = Visibility.Visible;
@@ -771,7 +805,7 @@ namespace SGPTWpf.ViewModel.Herramientas
             dlg = new DialogCoordinator();
             //Suscribiendo al tipo de mensaje
             //Messenger.Default.Register<VentanaViewMensaje>(this, (controlVentanaMensaje) => ControlVentanaMensaje(controlVentanaMensaje));
-            Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPrincipal,(herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
+            Messenger.Default.Register<UsuarioMensaje>(this, tokenRecepcionPadre,(herramientaUsuarioValidadoMensaje) => ControlHerramientaUsuarioValidadoMensaje(herramientaUsuarioValidadoMensaje));
             Messenger.Default.Register<MarcasEstandaresCierreMensaje>(this, (marcasEstandaresCierreMensaje) => ControlMarcasEstandaresCierreMensaje(marcasEstandaresCierreMensaje));
 
             MarcasEstandaresMainModel = new MainModel();
@@ -787,9 +821,7 @@ namespace SGPTWpf.ViewModel.Herramientas
             MarcasEstandaresMensaje elemento = new MarcasEstandaresMensaje();
             elemento.elementoMensaje = currentEntidad;
             elemento.listaMensaje = lista;
-            elemento.numeroProcesoCrudEnviado = numeroProcesoCrud;
             elemento.comandoCrud = comando;
-            numeroProcesoCrud = numeroProcesoCrud + 1;//Se incrementa para  proximo envio
             Messenger.Default.Send(elemento);
         }
 
@@ -797,40 +829,171 @@ namespace SGPTWpf.ViewModel.Herramientas
 
         #region Receptor de mensajes
 
-        private void ControlHerramientaUsuarioValidadoMensaje(UsuarioMensaje herramientaUsuarioValidadoMensaje)
+        public async System.Threading.Tasks.Task mensajeAutoCerrado(string titulo, string contenido, int segundos)
         {
-            currentUsuario = herramientaUsuarioValidadoMensaje.usuarioMensaje;
-            //Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPrincipal);//El usuario  no puede cambiar a menos que vuelva a ingresar
-            actualizarLista();
+            var dialog = new CustomDialog()
+            {
+                Title = titulo,
+                Content = contenido,
+                DialogMessageFontSize = 10,
+            };
+            await dlg.ShowMetroDialogAsync(this, dialog);
+
+            await System.Threading.Tasks.Task.Delay(segundos * 1000);
+            await dlg.HideMetroDialogAsync(this, dialog);
         }
 
-        private async void ControlMarcasEstandaresCierreMensaje(MarcasEstandaresCierreMensaje marcasEstandaresCierreMensaje)
+        private void permisos()
         {
-            //TypeName = null;
-            MarcasEstandaresMainModel.TypeName = null;
-            if (marcasEstandaresCierreMensaje.numeroProcesoCrud == numeroProcesoCrud)
+            if (currentUsuario.listaPermisos != null)
             {
-                switch (comando)
+                try
                 {
-                    case 1:
-                        currentEntidad = null;
-                        actualizarLista();
-                        break;
-                    case 2:
-                        actualizarLista();
-                        break;
-                    case 3:
-                        //activarVentanaConsulta = true;
-                        break;
-                    default:
-                        break;
+                    if (currentUsuario.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()) > 0)
+                    {
+                        #region  permisos asignados
+
+                        permisosrolesusuario permisosAsignados = currentUsuario.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == origenLlamada.ToUpper()
+                        && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                        if (permisosAsignados != null)
+                        {
+
+
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMCrear = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMCrear = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.editarpru)
+                            {
+                                _visibilidadMEditar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMEditar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.consultarpru)
+                            {
+                                _visibilidadMConsulta = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMConsulta = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.eliminarpru)
+                            {
+                                _visibilidadMBorrar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMBorrar = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.impresionpru)
+                            {
+                                _visibilidadMVista = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMVista = Visibility.Collapsed;
+                            }
+                            if (permisosAsignados.crearpru)
+                            {
+                                _visibilidadMImportar = Visibility.Visible;
+                            }
+                            else
+                            {
+                                _visibilidadMImportar = Visibility.Collapsed;
+                            }
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                        }
+                        #endregion fin de region de permisos
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                    }
                 }
-                comando = 0;
+                catch (Exception)
+                {
+                    System.Windows.MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
+                    #region  menu
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Collapsed;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Visible;
+                    _visibilidadMDetalle = Visibility.Collapsed;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                }
             }
             else
             {
-                await dlg.ShowMessageAsync(this, "Error en cuenta de mensajes de cierre", "");
+                #region  menu
+                System.Windows.MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                _visibilidadMCrear = Visibility.Collapsed;
+                _visibilidadMEditar = Visibility.Collapsed;
+                _visibilidadMBorrar = Visibility.Collapsed;
+                _visibilidadMConsulta = Visibility.Collapsed;
+                _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                _visibilidadMRegresar = Visibility.Collapsed;
+                _visibilidadMVista = Visibility.Collapsed;
+                _visibilidadMImportar = Visibility.Collapsed;
+                _visibilidadMDetalle = Visibility.Collapsed;
+
+                _visibilidadMCerrar = Visibility.Collapsed;
+                _visibilidadMSupervisar = Visibility.Collapsed;
+                _visibilidadMAprobar = Visibility.Collapsed;
+                _visibilidadMImprimir = Visibility.Collapsed;
+                #endregion
             }
+
+        }
+
+
+        private void ControlHerramientaUsuarioValidadoMensaje(UsuarioMensaje herramientaUsuarioValidadoMensaje)
+        {
+            currentUsuario = herramientaUsuarioValidadoMensaje.usuarioModeloMensaje;
+            //Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPadre);//El usuario  no puede cambiar a menos que vuelva a ingresar
+            permisos();
+            actualizarLista();
+        }
+
+        private void ControlMarcasEstandaresCierreMensaje(MarcasEstandaresCierreMensaje marcasEstandaresCierreMensaje)
+        {
+            //TypeName = null;
+            MarcasEstandaresMainModel.TypeName = null;
+
+            switch (comando)
+            {
+                case 1:
+                    currentEntidad = null;
+                    actualizarLista();
+                    break;
+                case 2:
+                    actualizarLista();
+                    break;
+                case 3:
+                    //activarVentanaConsulta = true;
+                    break;
+                default:
+                    break;
+            }
+            comando = 0;
 
         }
         #endregion
@@ -843,7 +1006,7 @@ namespace SGPTWpf.ViewModel.Herramientas
             currentEntidad.idMe = 0;
             currentEntidad.fechahoyme = MetodosModelo.homologacionFecha();// DateTime.Now.ToString("d", CultureInfo.CurrentCulture);
             currentEntidad.fechahoymeDate = DateTime.Now;
-            currentEntidad.idusuario = currentUsuario.idusuario;
+            currentEntidad.idusuario = currentUsuario.idUsuario;
             currentEntidad.marcame = "";
             currentEntidad.significadoMe = "";
             currentEntidad.sistema = false;

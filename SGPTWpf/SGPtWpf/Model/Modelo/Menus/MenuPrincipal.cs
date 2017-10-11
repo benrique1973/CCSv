@@ -142,7 +142,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         //ViewModelType = typeof(NormasViewModel);
                         //Contexto = new NormasViewModel(DialogCoordinator.Instance);
                         ViewModelType = typeof(NormativaViewModel);
-                        Contexto = new NormativaViewModel("Principal");
+                        Contexto = new NormativaViewModel("Normas");
                         break;
                     case "Documentos":
                         ViewModelType = typeof(DocumentosViewModel);
@@ -208,7 +208,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         //ViewModelType = typeof(NormasViewModel);
                         //Contexto = new NormasViewModel(DialogCoordinator.Instance);
                         ViewModelType = typeof(NormativaViewModel);
-                        Contexto = new NormativaViewModel("Principal");
+                        Contexto = new NormativaViewModel("Normas");
                         break;
                     case "Documentos":
                         ViewModelType = typeof(DocumentosViewModel);

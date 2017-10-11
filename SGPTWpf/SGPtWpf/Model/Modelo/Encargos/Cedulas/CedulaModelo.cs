@@ -2695,7 +2695,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Cedulas
                         entidad.idbalanceanterior = modelo.idbalanceanterior;
                         entidad.ordencedula = modelo.ordencedula;
                         entidad.padreidcedula = modelo.padreidcedula;
-
+                        entidad.descripcionvisita = VisitaModelo.FindNombreById(entidad.idvisita);
                         int i = 1;
                         var listaBitacora = BitacoraModelo.GetAllByTabla("CEDULAS");
                         if (listaBitacora.Count > 0)

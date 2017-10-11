@@ -57,7 +57,7 @@ namespace SGPTWpf.Model.Menus.Herramientas
                 View = (UserControl)Activator.CreateInstance(ViewType);
 
                         ViewModelType = typeof(CatalogoNormaLegalViewModel);
-                        Contexto = new CatalogoNormaLegalViewModel();
+                        Contexto = new CatalogoNormaLegalViewModel("Normativa");
             }
             var msg = new NavegacionSgpt { View = View, ViewModelType = ViewModelType, ViewType = ViewType, Contexto = Contexto };
             Messenger.Default.Send(msg, token);
@@ -75,7 +75,7 @@ namespace SGPTWpf.Model.Menus.Herramientas
                 View = (UserControl)Activator.CreateInstance(ViewType);
 
                 ViewModelType = typeof(CatalogoNormaLegalViewModel);
-                Contexto = new CatalogoNormaLegalViewModel();
+                Contexto = new CatalogoNormaLegalViewModel("Normas");
             }
             var msg = new NavegacionSgpt { View = View, ViewModelType = ViewModelType, ViewType = ViewType, Contexto = Contexto };
             Messenger.Default.Send(msg, token);
