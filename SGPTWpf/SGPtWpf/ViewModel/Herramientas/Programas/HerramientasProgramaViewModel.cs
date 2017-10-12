@@ -29,7 +29,9 @@ namespace SGPTWpf.ViewModel.Herramientas.Programas
         private MetroDialogSettings configuracionDialogo;
         private readonly IDialogCoordinator _dialogCoordinator;
         private string tokenRecepcionPrincipal = "Programas"+ "Herramientas";
-        private static int comando = 0;
+
+
+
         private DialogCoordinator dlg;
         private int opcionHerramienta = 1; //Por ser  programas
 
@@ -65,6 +67,17 @@ namespace SGPTWpf.ViewModel.Herramientas.Programas
         #endregion
 
         #region Visibilidad de  botones
+
+        #region comando
+
+        private int _comando;
+        private int comando
+        {
+            get { return _comando; }
+            set { _comando = value; }
+        }
+
+        #endregion
 
         #region visibilidadMCrear
 

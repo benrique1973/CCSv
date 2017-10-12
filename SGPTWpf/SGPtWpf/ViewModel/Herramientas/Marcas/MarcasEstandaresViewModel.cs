@@ -32,6 +32,33 @@ namespace SGPTWpf.ViewModel.Herramientas
 
         #endregion
 
+        #region ViewModel Properties : accesibilidadWindow
+
+        public const string accesibilidadWindowPropertyName = "accesibilidadWindow";
+
+        private bool _accesibilidadWindow;
+
+        public bool accesibilidadWindow
+        {
+            get
+            {
+                return _accesibilidadWindow;
+            }
+
+            set
+            {
+                if (_accesibilidadWindow == value)
+                {
+                    return;
+                }
+
+                _accesibilidadWindow = value;
+                RaisePropertyChanged(accesibilidadWindowPropertyName);
+            }
+        }
+
+        #endregion
+
         #region ViewModel Property : currentUsuario usuario
 
         public const string currentUsuarioPropertyName = "currentUsuario";
@@ -775,6 +802,7 @@ namespace SGPTWpf.ViewModel.Herramientas
             _origenLlamada = origen;
             _menuElegido = "Herramientas";
             _comando = 0;
+            _accesibilidadWindow = false;
             configuracionDialogo = new MetroDialogSettings()
             {
                 AnimateShow = false,
@@ -971,6 +999,7 @@ namespace SGPTWpf.ViewModel.Herramientas
             //Messenger.Default.Unregister<UsuarioMensaje>(this, tokenRecepcionPadre);//El usuario  no puede cambiar a menos que vuelva a ingresar
             permisos();
             actualizarLista();
+            accesibilidadWindow = true;
         }
 
         private void ControlMarcasEstandaresCierreMensaje(MarcasEstandaresCierreMensaje marcasEstandaresCierreMensaje)

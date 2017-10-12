@@ -11,6 +11,7 @@ using SGPTWpf.SGPtWpf.Messages.Genericos;
 using SGPTWpf.SGPtWpf.Model.Modelo.Menus;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -22,6 +23,115 @@ namespace SGPTWpf.ViewModel.Documentos
 
 
         #region Propiedades privadas
+
+        #region control de Acceso
+
+        #region origenLlamada
+
+        private string _origenLlamada;
+        private string origenLlamada
+        {
+            get { return _origenLlamada; }
+            set { _origenLlamada = value; }
+        }
+
+        #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
+        }
+
+        #endregion
+
+
+        #region ViewModel Properties : enableMConsulta
+
+        public const string enableMConsultaPropertyName = "enableMConsulta";
+
+        private bool _enableMConsulta = true;
+
+        public bool enableMConsulta
+        {
+            get
+            {
+                return _enableMConsulta;
+            }
+
+            set
+            {
+                if (_enableMConsulta == value)
+                {
+                    return;
+                }
+
+                _enableMConsulta = value;
+                RaisePropertyChanged(enableMConsultaPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : enableMImpresion
+
+        public const string enableMImpresionPropertyName = "enableMImpresion";
+
+        private bool _enableMImpresion = true;
+
+        public bool enableMImpresion
+        {
+            get
+            {
+                return _enableMImpresion;
+            }
+
+            set
+            {
+                if (_enableMImpresion == value)
+                {
+                    return;
+                }
+
+                _enableMImpresion = value;
+                RaisePropertyChanged(enableMImpresionPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : accesibilidadWindow
+
+        public const string accesibilidadWindowPropertyName = "accesibilidadWindow";
+
+        private bool _accesibilidadWindow = true;
+
+        public bool accesibilidadWindow
+        {
+            get
+            {
+                return _accesibilidadWindow;
+            }
+
+            set
+            {
+                if (_accesibilidadWindow == value)
+                {
+                    return;
+                }
+
+                _accesibilidadWindow = value;
+                RaisePropertyChanged(accesibilidadWindowPropertyName);
+            }
+        }
+
+        #endregion
+
+        #endregion propiedades de acceso
+
         #region opcionSeleccionada
         private int _opcionSeleccionada;
         private int opcionSeleccionada
@@ -40,6 +150,7 @@ namespace SGPTWpf.ViewModel.Documentos
             set { _tokenRecepcionPrincipal = value; }
         }
         #endregion
+        
         #region tokenEnvio
 
         private string _tokenEnvio;
@@ -426,11 +537,19 @@ namespace SGPTWpf.ViewModel.Documentos
         }
 
         #endregion
+
         #region Constructores
 
-        public DocumentosViewModel()
+        public DocumentosViewModel(string origen)
         {
-            tokenRecepcionPrincipal = "Documentos";
+            _accesibilidadWindow = false;
+            _enableMConsulta = false;
+            _enableMImpresion = false;
+
+            _origenLlamada = origen;
+            _menuElegido = "Documentos";
+
+            _tokenRecepcionPrincipal = "Documentos";
             _tokenRecepcionSeleccionCliente = "Documentos" + "ClienteSeleccionado"; //Proviene de  EncargosControllerViewModel;
             _visibilidadCliente = Visibility.Collapsed;
             _nombreEncargo = string.Empty;
@@ -470,12 +589,90 @@ namespace SGPTWpf.ViewModel.Documentos
             elemento.encargoModelo = currentEncargo;
             Messenger.Default.Send(elemento, tokenEnvio);
         }
+
+        public async System.Threading.Tasks.Task mensajeAutoCerrado(string titulo, string contenido, int segundos)
+        {
+            var dialog = new CustomDialog()
+            {
+                Title = titulo,
+                Content = contenido,
+                DialogMessageFontSize = 10,
+            };
+            await dlg.ShowMetroDialogAsync(this, dialog);
+
+            await System.Threading.Tasks.Task.Delay(segundos * 1000);
+            await dlg.HideMetroDialogAsync(this, dialog);
+        }
+
+        private void permisos()
+        {
+            if (usuarioModelo.listaPermisos != null)
+            {
+                try
+                {
+                    if (usuarioModelo.listaPermisos.Count(x => x.menupru.ToUpper() == origenLlamada.ToUpper()) > 0)
+                    {
+                        #region  permisos asignados
+
+                        permisosrolesusuario permisosAsignadosConsulta = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Consulta".ToUpper()
+                        && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                        permisosrolesusuario permisosAsignadosImpresion = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Impresion".ToUpper()
+                        && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                        if (permisosAsignadosConsulta != null)
+                        {
+
+                            if (permisosAsignadosConsulta.consultarpru)
+                            {
+                                enableMConsulta = true;
+                            }
+                            else
+                            {
+                                enableMConsulta = false;
+                            }
+                            if (permisosAsignadosImpresion != null)
+                            {
+
+                                if (permisosAsignadosImpresion.exportacionpru)
+                                {
+                                    enableMImpresion = true;
+                                }
+                                else
+                                {
+                                    enableMImpresion = false;
+                                }
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                            }
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                        }
+                        #endregion fin de region de permisos
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                    }
+                }
+                catch (Exception)
+                {
+                    System.Windows.MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
+                }
+            }
+        }
+
         private void ControlPrincipalUsuarioValidadoMensaje(PrincipalUsuarioValidadoMensaje principalUsuarioValidadoMensaje)
         {
             //Recibe al usuario que se ha validado
             currentUsuario = principalUsuarioValidadoMensaje.elementoMensaje;
             usuarioModelo = principalUsuarioValidadoMensaje.usuarioModelo;
             Messenger.Default.Unregister<PrincipalUsuarioValidadoMensaje>(this, tokenRecepcionPrincipal);
+            permisos();
             inicializacionTerminada();
         }
         public void inicializacionTerminada()
@@ -483,6 +680,7 @@ namespace SGPTWpf.ViewModel.Documentos
             //Se crea el mensaje
             ComandoTerminado cursor = new ComandoTerminado();
             cursor.cursorWindow = Cursors.Hand;
+            accesibilidadWindow = true;
             Messenger.Default.Send<ComandoTerminado>(cursor, tokenRecepcionPrincipal);
         }
 

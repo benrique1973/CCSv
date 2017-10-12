@@ -86,11 +86,11 @@ namespace SGPTWpf.Model.Menus.Encargos
                         break;
                     case "Programas":
                         ViewModelType = typeof(ProgramasViewModel);
-                        Contexto = new ProgramasViewModel();
+                        Contexto = new ProgramasViewModel("Programas");
                         break;
                     case "Cuestionarios":
                         ViewModelType = typeof(CuestionariosViewModel);
-                        Contexto = new CuestionariosViewModel();
+                        Contexto = new CuestionariosViewModel("Cuestionarios");
                         break;
                     default:
                         //MessageDialog("Error en el switch");

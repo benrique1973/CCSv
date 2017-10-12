@@ -146,7 +146,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         break;
                     case "Documentos":
                         ViewModelType = typeof(DocumentosViewModel);
-                        Contexto = new DocumentosViewModel();
+                        Contexto = new DocumentosViewModel("Documentos");
                         break;
                     default:
                         //MessageDialog("Error en el switch");
@@ -212,7 +212,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         break;
                     case "Documentos":
                         ViewModelType = typeof(DocumentosViewModel);
-                        Contexto = new DocumentosViewModel();
+                        Contexto = new DocumentosViewModel("Documentos");
                         break;
                     default:
                         //MessageDialog("Error en el switch");
