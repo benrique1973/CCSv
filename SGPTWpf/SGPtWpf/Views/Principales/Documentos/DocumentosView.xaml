@@ -26,7 +26,7 @@
                 <usrControl:menuDocumentos
                             Grid.Row="0"/>
             </Grid>
-            <Grid x:Name="gPantalla"  Height="Auto" Width="Auto" Margin="0" VerticalAlignment="Top" Grid.Row="1" >
+            <Grid x:Name="gPantalla"  Height="Auto" Width="Auto" Margin="0" VerticalAlignment="Top" Grid.Row="1" IsEnabled="{Binding accesibilidadWindow}" >
                 <Frame x:Name="PantallaFrame" 
                        BorderBrush="{DynamicResource AccentColorBrush}" 
                        BorderThickness="1"  Height="Auto" Margin="0" Width="Auto"  

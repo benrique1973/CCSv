@@ -64,7 +64,7 @@ namespace SGPTWpf.SGPtWpf.Model.Menus.Encargos
             {
                 View = (UserControl)Activator.CreateInstance(ViewType);
                 ViewModelType = typeof(DetalleCuestionarioViewModel);
-                Contexto = new DetalleCuestionarioViewModel();
+                Contexto = new DetalleCuestionarioViewModel("Cuestionarios");
             }
             var msg = new NavegacionSgpt { View = View, ViewModelType = ViewModelType, ViewType = ViewType, Contexto = Contexto };
             Messenger.Default.Send(msg, tokenEnvio);

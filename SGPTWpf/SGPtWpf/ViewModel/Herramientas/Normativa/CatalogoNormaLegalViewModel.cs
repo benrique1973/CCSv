@@ -1296,13 +1296,15 @@ namespace SGPTWpf.ViewModel.Crud.CatalogoNormaLegalIndice
                                 }
                                 else
                                 {
+                                    if(menuElegido != "Normas")
                                     MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
                                 }
                                 #endregion fin de region de permisos
                             }
                             else
                             {
-                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                                if (menuElegido != "Normas")
+                                    MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
                             }
                         }
                         else
@@ -1327,7 +1329,8 @@ namespace SGPTWpf.ViewModel.Crud.CatalogoNormaLegalIndice
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
+                        if (menuElegido != "Normas")
+                            MessageBox.Show("Error al identificar los permisos\nRevise la opción programada");
                         #region  menu
                         _visibilidadMCrear = Visibility.Collapsed;
                         _visibilidadMEditar = Visibility.Collapsed;
@@ -1349,7 +1352,8 @@ namespace SGPTWpf.ViewModel.Crud.CatalogoNormaLegalIndice
                 else
                 {
                     #region  menu
-                    MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                    if (menuElegido != "Normas")
+                        MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
                     _visibilidadMCrear = Visibility.Collapsed;
                     _visibilidadMEditar = Visibility.Collapsed;
                     _visibilidadMBorrar = Visibility.Collapsed;

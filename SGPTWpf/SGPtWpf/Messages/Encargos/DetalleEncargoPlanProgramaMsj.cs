@@ -14,5 +14,7 @@ namespace SGPTWpf.SGPtWpf.Messages.Encargos
 
         public EncargoModelo currentEncargo { get; set; }
 
+        public string tokenRespuesta { get; set; }
+
     }
 }
