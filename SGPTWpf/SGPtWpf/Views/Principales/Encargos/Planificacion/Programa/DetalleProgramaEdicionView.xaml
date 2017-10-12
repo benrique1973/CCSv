@@ -52,7 +52,13 @@
                         
                         CanUserResizeRows="True"
                         CanUserSortColumns="True"
-                        CanUserAddRows="False">
+                        CanUserAddRows="False"
+
+                        BorderThickness="1"
+                        BorderBrush="{DynamicResource AccentColorBrush}"   
+                        VerticalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                        HorizontalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                        GridLinesVisibility="All">
                     <DataGrid.RowStyle>
                         <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
                             <Style.Triggers>

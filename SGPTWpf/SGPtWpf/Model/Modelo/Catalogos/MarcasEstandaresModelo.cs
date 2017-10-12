@@ -4,6 +4,7 @@ using SGPTWpf.SGPtWpf.Support.Validaciones.Metodos;
 using SGPTWpf.Support;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -811,13 +812,13 @@ namespace SGPTWpf.Model.Modelo
             }
         }
 
-        public static List<MarcasEstandaresModelo> GetAll()
+        public static ObservableCollection<MarcasEstandaresModelo> GetAll()
         {
             try
             {
                 using (_context = new SGPTEntidades())
                 {
-                    return _context.marcasestandares.Select(entidad =>
+                    var lista= _context.marcasestandares.Select(entidad =>
                     new MarcasEstandaresModelo
                     {
                         idMe = entidad.idme,
@@ -830,28 +831,38 @@ namespace SGPTWpf.Model.Modelo
                         estado = entidad.estadome,
                         fechahoyme = entidad.fechahoyme,
                         inicialesusuario=entidad.usuario.inicialesusuario,
-                        usuarioModelo = new UsuarioModelo
-                        {
-                            idUsuario = entidad.usuario.idusuario,
-                            idDuiPersona = entidad.usuario.idduipersona,
-                            idPista = entidad.usuario.idpista,
-                            usuIdUsuario = entidad.usuario.usuidusuario,
-                            idRol = entidad.usuario.idrol,
-                            fechaRegistroUsuarioString = entidad.usuario.fecharegistrousuario,
-                            fechaDeBajaString = entidad.usuario.fechadebaja,
-                            fechaContratacionString = entidad.usuario.fechacontratacion,
-                            nickUsuarioUsuario = entidad.usuario.nickusuariousuario,
-                            inicialesusuario = entidad.usuario.inicialesusuario,
-                            respuestaPistaUsuario = entidad.usuario.respuestapistausuario,
-                            numeroCvpaUsuario = entidad.usuario.numerocvpausuario,
-                            fechaCvpaUsuarioString = entidad.usuario.fechacvpausuario,
-                            estadoUsuario = entidad.usuario.estadousuario,
-                            contraseniaUsuario = entidad.usuario.contraseniausuario,
-                        }
+                        //usuarioModelo = new UsuarioModelo
+                        //{
+                        //    idUsuario = entidad.usuario.idusuario,
+                        //    idDuiPersona = entidad.usuario.idduipersona,
+                        //    idPista = entidad.usuario.idpista,
+                        //    usuIdUsuario = entidad.usuario.usuidusuario,
+                        //    idRol = entidad.usuario.idrol,
+                        //    fechaRegistroUsuarioString = entidad.usuario.fecharegistrousuario,
+                        //    fechaDeBajaString = entidad.usuario.fechadebaja,
+                        //    fechaContratacionString = entidad.usuario.fechacontratacion,
+                        //    nickUsuarioUsuario = entidad.usuario.nickusuariousuario,
+                        //    inicialesusuario = entidad.usuario.inicialesusuario,
+                        //    respuestaPistaUsuario = entidad.usuario.respuestapistausuario,
+                        //    numeroCvpaUsuario = entidad.usuario.numerocvpausuario,
+                        //    fechaCvpaUsuarioString = entidad.usuario.fechacvpausuario,
+                        //    estadoUsuario = entidad.usuario.estadousuario,
+                        //    contraseniaUsuario = entidad.usuario.contraseniausuario,
+                        //}
                         //Lista filtrada de elementos que fueron eliminados y de valores que no son sistema
-                    }).OrderBy(o => o.idMe).Where(x => x.estado == "A").Where(x => x.sistema == false).ToList();
+                    }).OrderBy(o => o.idMe).Where(x => x.estado == "A").ToList();
                     //La ordena por el idMe notar la notacion
+                    if (lista.Count > 0)
+
+                    {
+                        return (new ObservableCollection<MarcasEstandaresModelo>(lista));
+                    }
+                    else
+                    {
+                        return (new ObservableCollection<MarcasEstandaresModelo>());
+                    }
                 }
+
             }
             catch (Exception e)
             {

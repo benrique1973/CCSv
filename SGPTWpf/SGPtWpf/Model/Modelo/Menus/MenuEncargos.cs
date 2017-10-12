@@ -136,7 +136,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                 {
                     case "Edición":
                         ViewModelType = typeof(EdicionViewModel);
-                        Contexto = new EdicionViewModel();
+                        Contexto = new EdicionViewModel("Edición");
                         break;
                     case "Planificación":
                         ViewModelType = typeof(PlanificacionViewModel);
@@ -173,7 +173,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
             {
                 case "Edición":
                     ViewModelType = typeof(EdicionViewModel);
-                    Contexto = new EdicionViewModel();
+                    Contexto = new EdicionViewModel("Edición");
                     break;
                 case "Planificación":
                     ViewModelType = typeof(PlanificacionViewModel);
@@ -213,7 +213,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                 {
                     case "Edición":
                         ViewModelType = typeof(EdicionViewModel);
-                        Contexto = new EdicionViewModel();
+                        Contexto = new EdicionViewModel("Edición");
                         break;
                     case "Planificación":
                         ViewModelType = typeof(PlanificacionViewModel);

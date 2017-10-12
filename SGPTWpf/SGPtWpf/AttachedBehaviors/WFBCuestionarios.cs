@@ -81,7 +81,7 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = 300;
                             crearVentana.Width = 640;
                             crearVentana.Height = 360;
-                            crearVentana.DataContext = new CuestionarioControllerViewModel();
+                            crearVentana.DataContext = new CuestionarioControllerViewModel("Cuestionarios");
                             break;
                         case "CuestionarioCopiarView":
                             encabezado = "Copia de cuestionario de auditoría";
@@ -90,7 +90,7 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = 300;
                             crearVentana.Width = 640;
                             crearVentana.Height = 400;
-                            crearVentana.DataContext = new CuestionarioControllerViewModel();
+                            crearVentana.DataContext = new CuestionarioControllerViewModel("Cuestionarios");
                             break;
                         case "CuestionarioModeloEditarView":
                             //Temporal
@@ -102,7 +102,7 @@ namespace SGPTWpf.AttachedBehaviors
                             //crearVentana.Height = largo;
                             crearVentana.MaxWidth = ancho;
                             crearVentana.MaxHeight = largo;
-                            crearVentana.DataContext = new CuestionarioControllerViewModel();
+                            crearVentana.DataContext = new CuestionarioControllerViewModel("Cuestionarios");
                             break;
                         case "CuestionarioModeloImportarPlantillaView":
                             //Temporal
@@ -132,7 +132,7 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = ancho * 0.20;
                             crearVentana.Width = ancho;
                             crearVentana.Height = largo;
-                            crearVentana.DataContext = new CuestionarioControllerViewModel();
+                            crearVentana.DataContext = new CuestionarioControllerViewModel("Cuestionarios");
                             break;
                         case "CuestionarioModeloVerCuestionarioView":
                             encabezado = "Vista preliminar del cuestionario de auditoría";

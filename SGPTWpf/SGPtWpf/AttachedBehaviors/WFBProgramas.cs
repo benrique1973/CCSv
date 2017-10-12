@@ -82,7 +82,7 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = 300;
                             crearVentana.Width = 640;
                             crearVentana.Height = 360;
-                            crearVentana.DataContext = new ProgramaControllerViewModel();
+                            crearVentana.DataContext = new ProgramaControllerViewModel("Programas");
                             break;
                         case "ProgramaCopiarView":
                             encabezado = "Copia de programa de auditoría";
@@ -91,7 +91,7 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = 300;
                             crearVentana.Width = 640;
                             crearVentana.Height = 400;
-                            crearVentana.DataContext = new ProgramaControllerViewModel();
+                            crearVentana.DataContext = new ProgramaControllerViewModel("Programas");
                             break;
                         case "ProgramaModeloEditarView":
                             //Temporal
@@ -103,7 +103,7 @@ namespace SGPTWpf.AttachedBehaviors
                             //crearVentana.Height = largo;
                             crearVentana.MaxWidth = ancho;
                             crearVentana.MaxHeight = largo;
-                            crearVentana.DataContext = new ProgramaControllerViewModel();
+                            crearVentana.DataContext = new ProgramaControllerViewModel("Programas");
                             break;
                         case "ProgramaModeloImportarPlantillaView":
                             //Temporal
@@ -133,7 +133,7 @@ namespace SGPTWpf.AttachedBehaviors
                             crearVentana.MinWidth = ancho * 0.20;
                             crearVentana.Width = ancho;
                             crearVentana.Height = largo;
-                            crearVentana.DataContext = new ProgramaControllerViewModel();
+                            crearVentana.DataContext = new ProgramaControllerViewModel("Programas");
                             break;
                         case "ProgramaModeloVerProgramaView":
                             encabezado = "Vista preliminar del programa de auditoría";

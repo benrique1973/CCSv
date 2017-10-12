@@ -136,11 +136,11 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo
                         break;
                     case "Programas":
                         ViewModelType = typeof(ProgramasViewModel);
-                        Contexto = new ProgramasViewModel();
+                        Contexto = new ProgramasViewModel("Programas");
                         break;
                     case "Cuestionarios":
                         ViewModelType = typeof(CuestionariosViewModel);
-                        Contexto = new CuestionariosViewModel();
+                        Contexto = new CuestionariosViewModel("Cuestionarios");
                         break;
                     case "Indices":
                         ViewModelType = typeof(IndiceViewModel);
