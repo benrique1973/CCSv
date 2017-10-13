@@ -380,6 +380,7 @@
     <Compile Include="SGPtmvvm\Model\EncabezadosPiesReportesIndiceCarpetas.cs" />
     <Compile Include="SGPtmvvm\Model\EncabezadosPiesReportesPortadasCarpetas.cs" />
     <Compile Include="SGPtmvvm\Model\EncabezadosPiesReportesProgramasCuestionarios.cs" />
+    <Compile Include="SGPtmvvm\Model\EncabezadosPiesReportesSumarias.cs" />
     <Compile Include="SGPtmvvm\Model\EncabezadosSinpiesCedulaAjustesReclasificaciones.cs" />
     <Compile Include="SGPtmvvm\Model\EncabezadosSinPiesReporteCedulaHallazgos.cs" />
     <Compile Include="SGPtmvvm\Model\EncabezadosSinPiesReporteCedulaNotas.cs" />

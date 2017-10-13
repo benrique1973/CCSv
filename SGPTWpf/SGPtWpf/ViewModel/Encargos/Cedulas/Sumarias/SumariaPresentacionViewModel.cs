@@ -1584,7 +1584,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             {
                 AffirmativeButtonText = "Acepto",
                 NegativeButtonText = "Cancelar",
-
             };
             MessageDialogResult resultk = await dlg.ShowMessageAsync(this, "El documento sera enviado a impresion.", "Desea continuar?", MessageDialogStyle.AffirmativeAndNegative, mySettingsk);
             if (resultk == MessageDialogResult.Affirmative)
