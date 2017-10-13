@@ -55,7 +55,8 @@
                             </Grid>
                     </Grid>
                     <!--Cuerpo-->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1"
+                          x:Name="datosConsulta" >
                         <Border BorderThickness="1"
                         Grid.Row="1"
                         BorderBrush="{DynamicResource AccentColorBrush}">
@@ -180,7 +181,8 @@
                             </Grid>
                     </Grid>
                     <!--Cuerpo-->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1"
+                           x:Name="datosConsultaEncargo" >
                         <Border BorderThickness="1"
                             Grid.Row="1"
                             BorderBrush="{DynamicResource AccentColorBrush}">

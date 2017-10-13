@@ -711,7 +711,7 @@ namespace SGPTWpf.ViewModel.Administracion
             if (AsignacionModelo.ContarRegistrosUsuario(usuarioModelo.idUsuario) == 0)
             {
                 //Si el rol del usuario es socio  o gerente tiene opcion de crear encargos
-                if (usuarioModelo.idRol == 1 || usuarioModelo.idRol == 2)
+                if (usuarioModelo.idRol == 7 || usuarioModelo.idRol == 6)
                 {
                     var mySettings = new MetroDialogSettings()
                     {

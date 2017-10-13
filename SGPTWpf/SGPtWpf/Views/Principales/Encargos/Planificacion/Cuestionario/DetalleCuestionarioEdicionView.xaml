@@ -60,7 +60,14 @@
                         
                                 CanUserResizeRows="True"
                                 CanUserSortColumns="True"
-                                CanUserAddRows="False">
+                                CanUserAddRows="False"
+
+                                VerticalScrollBarVisibility="Auto"
+                                BorderThickness="1"
+                                BorderBrush="{DynamicResource AccentColorBrush}"   
+                                VerticalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                                HorizontalGridLinesBrush="{DynamicResource AccentColorBrush}"
+                                GridLinesVisibility="All" >
                                     <DataGrid.RowStyle>
                                         <Style BasedOn="{StaticResource AzureDataGridRow}" TargetType="{x:Type DataGridRow}">
                                             <Style.Triggers>
@@ -107,12 +114,12 @@
                                 MaxWidth="200"
                                 IsReadOnly="True" />
                                         <DataGridTextColumn 
-                                Binding="{Binding Path= descripciondp , UpdateSourceTrigger=PropertyChanged}"
-                                x:Name="datosProcedimiento" Header="Preguntas" 
-                                MinWidth="50"
-                                Width="450"
-                                MaxWidth="840"
-                                IsReadOnly="True" >
+                                        Binding="{Binding Path= descripciondp , UpdateSourceTrigger=PropertyChanged}"
+                                        x:Name="datosProcedimiento" Header="Preguntas" 
+                                        MinWidth="50"
+                                        Width="450"
+                                        MaxWidth="840"
+                                        IsReadOnly="True" >
                                             <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="TextBlock">

@@ -48,7 +48,7 @@
                 </Button.Style>            
             </Button>-->
             <Button 
-                Command="{Binding ConsultaCommand, Mode=TwoWay}"
+                Command="{Binding ConsultaCommand, Mode=TwoWay}" IsEnabled="{Binding enableMConsulta}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
@@ -71,7 +71,7 @@
             </Button>
 
             <Button 
-                Command="{Binding GeneracionCommand, Mode=TwoWay}"
+                Command="{Binding GeneracionCommand, Mode=TwoWay}"  IsEnabled="{Binding enableMImpresion}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
