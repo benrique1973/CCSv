@@ -1597,3 +1597,6 @@ C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\obj\Debug\SGPtWpf\Views\
 C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\obj\Debug\SGPTWpf.g.resources
 C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\obj\Debug\SGPTWpf.Properties.Resources.resources
 C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\obj\Debug\SGPTWpf.csproj.GenerateResource.Cache
+F:\SGPt\CCSv\SGPTWpf\bin\Debug\SGPTWpf.exe.config
+F:\SGPt\CCSv\SGPTWpf\obj\Debug\SGPTWpf.exe
+F:\SGPt\CCSv\SGPTWpf\obj\Debug\SGPTWpf.pdb
