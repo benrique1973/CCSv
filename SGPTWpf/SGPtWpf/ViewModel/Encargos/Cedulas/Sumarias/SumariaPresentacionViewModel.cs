@@ -1588,8 +1588,12 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
             MessageDialogResult resultk = await dlg.ShowMessageAsync(this, "El documento sera enviado a impresion.", "Desea continuar?", MessageDialogStyle.AffirmativeAndNegative, mySettingsk);
             if (resultk == MessageDialogResult.Affirmative)
             {
+                //listaCedulaSumaria
+                //EncabezadosPiesReportesSumarias
+
                 //CargarArchivosMensajeModal msj = new CargarArchivosMensajeModal();
-                EncabezadosPiesReportesProgramasCuestionarios ep = new EncabezadosPiesReportesProgramasCuestionarios();
+                //EncabezadosPiesReportesProgramasCuestionarios ep = new EncabezadosPiesReportesProgramasCuestionarios();
+                EncabezadosPiesReportesSumarias ep = new SGPTmvvm.Model.EncabezadosPiesReportesSumarias();
 
                 ep.logofirma = logoFirma;
                 ep.razonsocialfirma = razonSocialFirma;
@@ -1605,6 +1609,9 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
                 ep.usuarioaprobo = usuarioAprobo;
                 ep.fechaaprobo = fechaaprobo;
 
+                ep.objetivocedula = currentEntidad.objetivocedula;
+                ep.alcancecedula = currentEntidad.alcancecedula;
+                ep.conclusioncedula = currentEntidad.conclusioncedula;
                 //pie de pagina.
                 //ep.cantidadprocedplan = (decimal)currentEntidad.cantidadProcedimientosPlan;//(decimal)evaluacioninherentedmrAlto;
                 //ep.cantidadprocedejecucion = (decimal)currentEntidad.cantidadProcedimientosEjecucion;//(decimal)evaluacioncontroldmrAlto;
@@ -1616,16 +1623,18 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Cedulas.Sumarias
 
 
                 GenerarReporteMensajeModal msj = new GenerarReporteMensajeModal();
-                msj.TipoReporteAGenerar = TipoReporteAGenerar.ReportePrograma;
+                msj.TipoReporteAGenerar = TipoReporteAGenerar.CedulaSumaria;
                 //public ObservableCollection<DetalleProgramaModelo> listaObjetivos
                 //public ObservableCollection<DetalleProgramaModelo> listaAlcances
                 //public ObservableCollection<DetalleProgramaModelo> listaDetalleProcedimientos
-                msj.EncabezadosPiesReportesProgramasCuestionarios = ep;
+                //msj.EncabezadosPiesReportesProgramasCuestionarios = ep;
+                msj.EncabezadosPiesReportesSumarias = ep;
+                msj.listaCedulaSumaria = lista;
                 //msj.listaObjetivos = listaObjetivos;
                 //msj.listaAlcances = listaAlcances;
                 //msj.listaDetalleProcedimientos = listaDetalleProcedimientos;
 
-                ReportesAImpresionMainModel.TypeName = "ReportePrograma";
+                ReportesAImpresionMainModel.TypeName = "ReporteCedulaSumarias";
                 Messenger.Default.Send<GenerarReporteMensajeModal>(msj, "GenerameUnReporte");
                 CloseWindow();
             }
