@@ -435,6 +435,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCedulaNotas.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SGPtmvvm\Reportes\DSCedulaSumariaa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCedulaSumariaa.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SGPtmvvm\Reportes\DSIndiceCarpetas.cs">
       <DependentUpon>DSIndiceCarpetas.xsd</DependentUpon>
     </Compile>
@@ -442,6 +447,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSIndiceCarpetas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SGPtmvvm\Reportes\DSCedulaSumaria.cs">
+      <DependentUpon>DSCedulaSumaria.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SGPtmvvm\Reportes\DSCedulaSumaria.Designer.cs">
+      <DependentUpon>DSCedulaSumaria.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SGPtmvvm\Reportes\DSPortadasCarpetas.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -3657,6 +3670,17 @@
     <None Include="SGPtmvvm\Reportes\DSCedulaNotas.xss">
       <DependentUpon>DSCedulaNotas.xsd</DependentUpon>
     </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumariaa.xsc">
+      <DependentUpon>DSCedulaSumariaa.xsd</DependentUpon>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumariaa.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCedulaSumariaa.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumariaa.xss">
+      <DependentUpon>DSCedulaSumariaa.xsd</DependentUpon>
+    </None>
     <None Include="SGPtmvvm\Reportes\DSIndiceCarpetas.xsc">
       <DependentUpon>DSIndiceCarpetas.xsd</DependentUpon>
     </None>
@@ -3667,6 +3691,18 @@
     </None>
     <None Include="SGPtmvvm\Reportes\DSIndiceCarpetas.xss">
       <DependentUpon>DSIndiceCarpetas.xsd</DependentUpon>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumaria.xsc">
+      <DependentUpon>DSCedulaSumaria.xsd</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumaria.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCedulaSumaria.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumaria.xss">
+      <DependentUpon>DSCedulaSumaria.xsd</DependentUpon>
     </None>
     <None Include="SGPtmvvm\Reportes\DSMRiesgos.xsc">
       <DependentUpon>DSMRiesgos.xsd</DependentUpon>
