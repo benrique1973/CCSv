@@ -110,9 +110,6 @@ namespace SGPTWpf.AttachedBehaviors
                         case "ReporteCedulaSumarias":
                             encabezado = "Reporte de Cedula de Sumarias";
                             break;
-                        case "ReporteCedulaSumariaDetalle":
-                            encabezado = "Reporte de Cedula Sumaria Detalle";
-                            break;
                         case "ReporteCedulaAjustesReclasificaciones":
                             encabezado = "Reporte de Cedula de Ajustes y Reclasificaciones";
                             break;
