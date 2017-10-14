@@ -570,67 +570,6 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                     }
                     #endregion
             }
-
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaSumaria)
-            {
-                #region +
-                var crv = new CrystalReportsViewer();
-                if (crv != null)
-                {
-
-                        //DSCedulaNotas ds = new Reportes.DSCedulaNotas();
-                        DSCedulaAjustesReclasificaciones ds = new DSCedulaAjustesReclasificaciones();
-                        DSCedulaSumaria ds = new DSCedulaSumaria();
-                        
-
-                    var b = msj.EncabezadosSinpiesCedulaAjustesReclasificaciones;
-                    ds.DataTableEncabezado.Rows.Add
-                    (
-                    #region +
-                    new object[]
-                        {
-                        b.logofirma,
-                        b.referencia,
-                        b.razonsocialfirma,
-                        b.encabezadopantalla,
-                        b.descripciontipoauditoria,
-                        b.razonsocialcliente,
-                        b.usuarioejecuto,
-                        b.fechaejecuto,
-                        b.fechainiperauditencargo,
-                        b.fechafinperauditencargo,
-                        b.usuariosuperviso,
-                        b.fechasuperviso,
-                        b.usuarioaprobo,
-                        b.fechaaprobo,
-                        7
-                        }
-                        #endregion
-                    );
-
-
-
-                    foreach (var aa in msj.listaAjustesReclasificaciones)
-                    {
-                        var aaa = aa.idCorrelativo;
-                        var bb = aa.clasepartida;
-                        var c = aa.claseRegistro;
-                        var d = aa.referencia;
-                        var e = aa.codigo;
-                        var f = aa.concepto;
-                        var g = aa.cargos;
-                        var h = aa.abonos;
-                        var i = 7;
-                        ds.DataTableCuerpo.Rows.Add(new object[] { aaa, bb, c, d, e, f, g, h, i });
-                    }
-
-                    //ReporteCedulaNotas rpt = new ReporteCedulaNotas();
-                    ReporteCedulaAjustesReclasificaciones rpt = new ReporteCedulaAjustesReclasificaciones();
-                    rpt.SetDataSource(ds);
-                    crystalReportsViewer1.ViewerCore.ReportSource = rpt;
-                }
-                #endregion
-            }
                 #endregion
             }
         catch (Exception e)

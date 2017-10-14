@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\bin\Debug\SGPTWpf.exe">
+   <Modules>
+    <Module Name="sgptwpf.exe">
+     <Namespaces>
+      <Namespace Name="ExtendedGrid.Classes">
+       <Types>
+        <Type Name="ExportToExcelService" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#EnumChildWindows(System.Int32,ExtendedGrid.Classes.ExportToExcelService+EnumChildCallback,System.Int32&amp;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'ExportToExcelService.EnumChildWindows(int, ExportToExcelService.EnumChildCallback, ref int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetClassName(System.Int32,System.Text.StringBuilder,System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'ExportToExcelService.GetClassName(int, StringBuilder, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reducir el riesgo de la seguridad, calcule las referencias del parámetro 'lpClassName' como Unicode, estableciendo DllImport.CharSet en CharSet.Unicode, o bien calculando las referencias del parámetro de forma explícita como UnmanagedType.LPWStr. Si necesita calcular las referencias de esta cadena como ANSI o dependiente del sistema, especifique MarshalAs de forma explícita y establezca BestFitMapping=false. Para mayor seguridad, establezca también ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="ExtendedGrid.ExtendedGridControl">
+       <Types>
+        <Type Name="ExtendedDataGrid" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ExtendedDataGrid' porque crea miembros de los tipos IDisposable siguientes: 'DataTable'. Si ya se había distribuido 'ExtendedDataGrid', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTmvvm.Modales">
+       <Types>
+        <Type Name="AprobacionFirmaCorrespondenciaView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'AprobacionFirmaCorrespondenciaView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'AprobacionFirmaCorrespondenciaView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AprobacionFirmaCorrespondenciaViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'AprobacionFirmaCorrespondenciaViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'AprobacionFirmaCorrespondenciaViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="AprobacionFirmaReunionesView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'AprobacionFirmaReunionesView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'AprobacionFirmaReunionesView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AprobacionFirmaReunionesViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'AprobacionFirmaReunionesViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'AprobacionFirmaReunionesViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="AprobacionInformesTiempoViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'AprobacionInformesTiempoViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'AprobacionInformesTiempoViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDfirmaCorrespondenciaView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDfirmaCorrespondenciaView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDfirmaCorrespondenciaView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CRUDfirmaCorrespondenciaViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDfirmaCorrespondenciaViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades', 'WebBrowser'. Si ya se había distribuido 'CRUDfirmaCorrespondenciaViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDfirmaInformeTiemposView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDfirmaInformeTiemposView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDfirmaInformeTiemposView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CRUDfirmaInformeTiempoviewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDfirmaInformeTiempoviewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDfirmaInformeTiempoviewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDfirmaReunionesView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDfirmaReunionesView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDfirmaReunionesView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CRUDfirmaReunioneViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDfirmaReunioneViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDfirmaReunioneViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDpermisosRolesviewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDpermisosRolesviewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDpermisosRolesviewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDRolesView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDRolesView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDRolesView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CRUDRolesviewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDRolesviewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDRolesviewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDusuariosViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDusuariosViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDusuariosViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTmvvm.Modales.AdmonClientes">
+       <Types>
+        <Type Name="AsigPersClientesEncargosCronograma" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'AsigPersClientesEncargosCronograma.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'AsigPersClientesEncargosCronograma.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AsigPersClientesEncargosCronogramaViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'AsigPersClientesEncargosCronogramaViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'AsigPersClientesEncargosCronogramaViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CargarCatalogoClientesExpedientes" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CargarCatalogoClientesExpedientes.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CargarCatalogoClientesExpedientes.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CargarCatalogoClientesExptesViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CargarCatalogoClientesExptesViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades', 'DataTable'. Si ya se había distribuido 'CargarCatalogoClientesExptesViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDclientesContactosContactoView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDclientesContactosContactoView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDclientesContactosContactoView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CRUDclientesContactosContactoViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDclientesContactosContactoViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDclientesContactosContactoViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="CRUDclientesContactosEstructuraView" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetWindowLong(System.IntPtr,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDclientesContactosEstructuraView.GetWindowLong(IntPtr, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetWindowLong(System.IntPtr,System.Int32,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Puesto que es un método P/Invoke, se debe definir 'CRUDclientesContactosEstructuraView.SetWindowLong(IntPtr, int, int)' en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CRUDclientesContactosEstructuraViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CRUDclientesContactosEstructuraViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CRUDclientesContactosEstructuraViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTmvvm.Model">
+       <Types>
+        <Type Name="telefonoModelo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="telefonoModelo.cs" Line="12">'telefonoModelo.telefonoModelo()' contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: &#xD;&#xA;&#xD;&#xA;telefonoModelo..ctor()&#xD;&#xA;telefonoModelo.set_clientes(ICollection&lt;cliente&gt;):Void</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="usuariosModelo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#InsertarUsuarios(SGPTmvvm.Model.usuariosModelo)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="usuariosModelo.cs" Line="104">El objeto 'cn' admite Dispose más de una vez en el método 'usuariosModelo.InsertarUsuarios(usuariosModelo)'. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 104</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="usuariosModelo.cs" Line="106">'usuariosModelo.InsertarUsuarios(usuariosModelo)' vuelve a producir una excepción detectada y la especifica explícitamente como un argumento. Utilice 'throw' sin un argumento, para mantener la ubicación de la pila donde se provocó inicialmente la excepción.</Issue>
+             <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="usuariosModelo.cs" Line="107">'usuariosModelo.InsertarUsuarios(usuariosModelo)' vuelve a producir una excepción detectada y la especifica explícitamente como un argumento. Utilice 'throw' sin un argumento, para mantener la ubicación de la pila donde se provocó inicialmente la excepción.</Issue>
+            </Message>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="usuariosModelo.cs" Line="98">La cadena de consulta pasada a 'NpgsqlCommand.NpgsqlCommand(string, NpgsqlConnection)' en 'usuariosModelo.InsertarUsuarios(usuariosModelo)' podría contener las siguientes variables: 'p0', 'usuariosModelo.idduipersonaModelo', 'p2', 'p3', 'p4', 'p5', 'usuariosModelo.fecharegistrousuarioModelo', 'usuariosModelo.fechadebajaModelo', 'usuariosModelo.fechacontratacionModelo', 'usuariosModelo.nickusuariousuarioModelo', 'usuariosModelo.contraseniausuarioModelo', 'usuariosModelo.inicialesusuarioModelo', 'usuariosModelo.respuestapistausuarioModelo', 'usuariosModelo.numerocvpausuarioModelo', 'usuariosModelo.fechacontratacionModelo', 'usuariosModelo.estadousuarioModelo'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="usuariospersonas" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="UsuariosPersonas.cs" Line="14">'usuariospersonas.usuariospersonas()' contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: &#xD;&#xA;&#xD;&#xA;usuariospersonas..ctor()&#xD;&#xA;usuariospersonas.set_correos(ICollection&lt;correo&gt;):Void</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="UsuariosPersonas.cs" Line="14">'usuariospersonas.usuariospersonas()' contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: &#xD;&#xA;&#xD;&#xA;usuariospersonas..ctor()&#xD;&#xA;usuariospersonas.set_telefonos(ICollection&lt;telefono&gt;):Void</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="UsuariosPersonas.cs" Line="14">'usuariospersonas.usuariospersonas()' contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: &#xD;&#xA;&#xD;&#xA;usuariospersonas..ctor()&#xD;&#xA;usuariospersonas.set_usuarios(ICollection&lt;usuario&gt;):Void</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Model" File="UsuariosPersonas.cs" Line="14">'usuariospersonas.usuariospersonas()' contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: &#xD;&#xA;&#xD;&#xA;usuariospersonas..ctor()&#xD;&#xA;usuariospersonas.set_usuarios1(ICollection&lt;usuario&gt;):Void</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTmvvm.Soporte">
+       <Types>
+        <Type Name="CrudVMBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'CrudVMBase' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'CrudVMBase', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Soporte" File="CrudVMBase.cs" Line="10">'CrudVMBase.CrudVMBase()' contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: &#xD;&#xA;&#xD;&#xA;CrudVMBase..ctor()&#xD;&#xA;CrudVMBase.ObtenerDatos():Void</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="NotificacionUIBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#System.ComponentModel.IDataErrorInfo.Error" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#System.ComponentModel.IDataErrorInfo.get_Error()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+               <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Soporte" File="NotificacionUIBase.cs" Line="173">Convierta 'NotificacionUIBase' en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de 'IDataErrorInfo.Error.get()' y que sea visible para clases derivadas.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#System.ComponentModel.IDataErrorInfo.Item[System.String]" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#System.ComponentModel.IDataErrorInfo.get_Item(System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+               <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Soporte" File="NotificacionUIBase.cs" Line="181">Convierta 'NotificacionUIBase' en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de 'IDataErrorInfo.this.get(string)' y que sea visible para clases derivadas.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ViewModeloBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetPropertyName(System.Linq.Expressions.LambdaExpression)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotHideBaseClassMethods" Category="Microsoft.Design" CheckId="CA1061" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Soporte" File="ViewModeloBase.cs" Line="246">Cambie o quite 'ViewModeloBase.GetPropertyName(LambdaExpression)' porque oculta un método de clase base más específico: 'ObservableObject.GetPropertyName&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#System.ComponentModel.IDataErrorInfo.Error" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#System.ComponentModel.IDataErrorInfo.get_Error()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+               <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Soporte" File="ViewModeloBase.cs" Line="228">Convierta 'ViewModeloBase' en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de 'IDataErrorInfo.Error.get()' y que sea visible para clases derivadas.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#System.ComponentModel.IDataErrorInfo.Item[System.String]" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#System.ComponentModel.IDataErrorInfo.get_Item(System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+               <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\Soporte" File="ViewModeloBase.cs" Line="236">Convierta 'ViewModeloBase' en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de 'IDataErrorInfo.this.get(string)' y que sea visible para clases derivadas.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTmvvm.ViewModel">
+       <Types>
+        <Type Name="tabconenedorClienteContactosViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'tabconenedorClienteContactosViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'tabconenedorClienteContactosViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="tabconenedorClienteEncargosViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'tabconenedorClienteEncargosViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'tabconenedorClienteEncargosViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="tabconenedorClienteExpedientesViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'tabconenedorClienteExpedientesViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'tabconenedorClienteExpedientesViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="tabconenedorFirmaConfiguracionViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'tabconenedorFirmaConfiguracionViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades', 'DataView'. Si ya se había distribuido 'tabconenedorFirmaConfiguracionViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Comprobar_Si_Existe(System.String&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Proporcionar argumentos correctos a los métodos de formato" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3225">El método 'tabconenedorFirmaConfiguracionViewModel.Comprobar_Si_Existe(ref string)' llama a 'Console.WriteLine(string, object)' y no proporciona un elemento de formato para el argumento "1". La cadena de formato proporcionada es: '"No tiene Permisos Siga Adelante"'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Comprobar_Si_ExistePostgreSql(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Proporcionar argumentos correctos a los métodos de formato" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3339">El método 'tabconenedorFirmaConfiguracionViewModel.Comprobar_Si_ExistePostgreSql(string)' llama a 'Console.WriteLine(string, object)' y no proporciona un elemento de formato para el argumento "1". La cadena de formato proporcionada es: '"No Permiso Siga A delante"'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Ejecutar_Consulta(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3630">La cadena de consulta pasada a 'NpgsqlCommand.NpgsqlCommand(string, NpgsqlConnection)' en 'tabconenedorFirmaConfiguracionViewModel.Ejecutar_Consulta(string)' podría contener las siguientes variables: 'Accion'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Obtener_Datos(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3538">La cadena de consulta pasada a 'NpgsqlDataAdapter.NpgsqlDataAdapter(string, NpgsqlConnection)' en 'tabconenedorFirmaConfiguracionViewModel.Obtener_Datos(string)' podría contener las siguientes variables: 'Cadenax'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Realizar_Busqueda_Archivo(System.String,System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Proporcionar argumentos correctos a los métodos de formato" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3284">El método 'tabconenedorFirmaConfiguracionViewModel.Realizar_Busqueda_Archivo(string, string)' llama a 'Console.WriteLine(string, object)' y no proporciona un elemento de formato para el argumento "1". La cadena de formato proporcionada es: '"Carpeta No da Permiso, Siga A delante"'</Issue>
+             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3292">El método 'tabconenedorFirmaConfiguracionViewModel.Realizar_Busqueda_Archivo(string, string)' llama a 'Console.WriteLine(string, object)' y no proporciona un elemento de formato para el argumento "1". La cadena de formato proporcionada es: '"No Permiso Siga A delante"'</Issue>
+             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtmvvm\ViewModel" File="tabconenedorFirmaConfiguracionViewModel.cs" Line="3298">El método 'tabconenedorFirmaConfiguracionViewModel.Realizar_Busqueda_Archivo(string, string)' llama a 'Console.WriteLine(string, object)' y no proporciona un elemento de formato para el argumento "1". La cadena de formato proporcionada es: '"No Permiso Siga A delante"'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf">
+       <Types>
+        <Type Name="SGPTDataSet" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'SGPTDataSet'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.SGPtmvvm.Modales.ImportarArchivos">
+       <Types>
+        <Type Name="ImportarArchivosGeneralesViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ImportarArchivosGeneralesViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades', 'DataTable'. Si ya se había distribuido 'ImportarArchivosGeneralesViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.SGPtmvvm.Reportes">
+       <Types>
+        <Type Name="DSCedulaAjustesReclasificaciones" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaAjustesReclasificaciones'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaAjustesReclasificaciones+DataTableCuerpoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaAjustesReclasificaciones.DataTableCuerpoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaAjustesReclasificaciones+DataTableEncabezadoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaAjustesReclasificaciones.DataTableEncabezadoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaHallazgos" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaHallazgos'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaHallazgos+DataTableCuerpoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaHallazgos.DataTableCuerpoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaHallazgos+DataTableEncabezadoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaHallazgos.DataTableEncabezadoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaMarcas" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaMarcas'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaMarcas+DataTableCuerpoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaMarcas.DataTableCuerpoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaMarcas+DataTableEncabezadoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaMarcas.DataTableEncabezadoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaNotas" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaNotas'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaNotas+DataTableCuerpoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaNotas.DataTableCuerpoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSCedulaNotas+DataTableEncabezadoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSCedulaNotas.DataTableEncabezadoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSIndiceCarpetas" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSIndiceCarpetas'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSIndiceCarpetas+DataTableCuerpoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSIndiceCarpetas.DataTableCuerpoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSIndiceCarpetas+DataTableEncabezadoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSIndiceCarpetas.DataTableEncabezadoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSMRiesgos" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSMRiesgos'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSMRiesgos+DataTable1DataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSMRiesgos.DataTable1DataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSMRiesgos+DataTable2DataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSMRiesgos.DataTable2DataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSMRiesgos+DataTable3DataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSMRiesgos.DataTable3DataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSPortadasCarpetas" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSPortadasCarpetas'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSPortadasCarpetas+DataTableEncabezadoCuerpoPortadaDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSPortadasCarpetas.DataTableEncabezadoCuerpoPortadaDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSProgramasYCuestionarios" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSProgramasYCuestionarios'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSProgramasYCuestionarios+DataTableAlcancesDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSProgramasYCuestionarios.DataTableAlcancesDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSProgramasYCuestionarios+DataTableDetalleProcedimientosDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSProgramasYCuestionarios.DataTableDetalleProcedimientosDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSProgramasYCuestionarios+DataTableEncabezadoDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSProgramasYCuestionarios.DataTableEncabezadoDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="DSProgramasYCuestionarios+DataTableObjetivosDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Agregue una implementación de GetObjectData al tipo 'DSProgramasYCuestionarios.DataTableObjetivosDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.SGPtmvvm.Vistas">
+       <Types>
+        <Type Name="DialogoRecuperacionCuentaLoginViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'DialogoRecuperacionCuentaLoginViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'DialogoRecuperacionCuentaLoginViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.SGPtWpf.ViewModel.Encargos.Documentacion.Balances">
+       <Types>
+        <Type Name="ImportarArchivosGeneralesViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ImportarArchivosGeneralesViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades', 'DataTable'. Si ya se había distribuido 'ImportarArchivosGeneralesViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.SGPtWpf.ViewModel.Sincronizacion">
+       <Types>
+        <Type Name="SincronizacionViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Ejecutar_Consulta(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtWpf\ViewModel\Sincronizacion" File="SincronizacionViewModel.cs" Line="780">La cadena de consulta pasada a 'NpgsqlCommand.NpgsqlCommand(string, NpgsqlConnection)' en 'SincronizacionViewModel.Ejecutar_Consulta(string)' podría contener las siguientes variables: 'Accion'. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.Support">
+       <Types>
+        <Type Name="FormattedDbEntityValidationException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+           <Issue Certainty="95" Level="Error">Agregue [Serializable] a 'FormattedDbEntityValidationException', ya que este tipo implementa ISerializable.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="UIBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#System.ComponentModel.IDataErrorInfo.Error" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#System.ComponentModel.IDataErrorInfo.get_Error()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+               <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtWpf\Support" File="NotifyUIBase.cs" Line="169">Convierta 'UIBase' en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de 'IDataErrorInfo.Error.get()' y que sea visible para clases derivadas.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#System.ComponentModel.IDataErrorInfo.Item[System.String]" Kind="Property" Static="False" Accessibility="Private" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#System.ComponentModel.IDataErrorInfo.get_Item(System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="NonBreaking">
+               <Issue Certainty="95" Level="Error" Path="C:\Users\ELIEL\Documents\ProyectoPostEntregaDos\SGPTWpf\SGPtWpf\Support" File="NotifyUIBase.cs" Line="177">Convierta 'UIBase' en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de 'IDataErrorInfo.this.get(string)' y que sea visible para clases derivadas.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SGPTWpf.ViewModel.Administracion.Clientes">
+       <Types>
+        <Type Name="ClientesListadoViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-10-13 02:01:54Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable en 'ClientesListadoViewModel' porque crea miembros de los tipos IDisposable siguientes: 'SGPTEntidades'. Si ya se había distribuido 'ClientesListadoViewModel', agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
+   <Name>No llamar a métodos reemplazables en constructores</Name>
+   <Description>No debe llamar desde los constructores a los métodos virtuales definidos en la clase. Si una clase derivada invalidó el método, se llamará a la versión de la clase derivada (antes de llamar al constructor de la clase derivada).</Description>
+   <Resolution Name="Default">{0} contiene una cadena de llamada que da como resultado un llamada a un método virtual definido por la clase. Revise la siguiente pila de llamadas para comprobar las consecuencias no intencionadas: {1}</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182331.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotHideBaseClassMethods" Category="Microsoft.Design" CheckId="CA1061">
+   <Name>No oculte métodos de clase base</Name>
+   <Description>Si define un método en una clase derivada con el mismo nombre y parámetros que tengan un mayor establecimiento flexible de tipos que el definido en la clase base se obstruirá el acceso al método definido en la clase base.</Description>
+   <Resolution Name="Default">Cambie o quite {0} porque oculta un método de clase base más específico: {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182143.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="designrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240">
+   <Name>Implementar ISerializable correctamente</Name>
+   <Description>Si se puede asignar un tipo a ISerializable, debe implementar GetObjectData. Para tipos unsealed, el método GetObjectData debe ser invocable y reemplazable por tipos derivados.</Description>
+   <Resolution Name="Default">Agregue una implementación de GetObjectData al tipo {0}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182342.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="60">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033">
+   <Name>Los tipos secundarios deberían poder llamar a los métodos de interfaz</Name>
+   <Description>Se definen implementaciones explícitas de método con accesibilidad privada. Las clases que se derivan de clases con implementaciones explícitas de método y que se decide volver a declararlas en la clase no podrán llamar a la implementación de la clase base a menos que ésta tenga un método alternativo con la accesibilidad apropiada. Cuando se invalida un método de clase base que estaba oculto por la implementación de interfaz explícita para llamar a la implementación de clase base, la clase derivada debe convertir el puntero base en la interfaz adecuada. Cuando se realiza la llamada a través de esta referencia, se invocará la implementación de clase derivada que resultará en la recursividad y el desbordamiento de la pila.</Description>
+   <Resolution Name="Default">Convierta {0} en sealed (un cambio rotundo si ya se envió la clase), implemente el método de forma no explícita o implemente un nuevo método que exponga la funcionalidad de {1} y que sea visible para clases derivadas.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182153.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237">
+   <Name>Marcar los tipos ISerializable con SerializableAttribute</Name>
+   <Description>La interfaz System.Runtime.Serialization.ISerializable permite al tipo personalizar su serialización, mientras que el atributo Serializable permite al runtime reconocer el tipo como serializable.</Description>
+   <Resolution Name="Default">Agregue [Serializable] a {0}, ya que este tipo implementa ISerializable.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182350.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060">
+   <Name>Mueva P/Invokes a la clase NativeMethods</Name>
+   <Description>Este tipo contiene miembros con el atributo DllImport. Los miembros con el atributo DllImport deben estar contenidos en clases denominadas NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Description>
+   <Resolution Name="Default">Puesto que es un método P/Invoke, se debe definir {0} en una clase con el nombre NativeMethods, SafeNativeMethods o UnsafeNativeMethods.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182161.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="designrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="No usar Dispose varias veces en objetos" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>No usar Dispose varias veces en objetos</Name>
+   <Description>Un método Dispose correctamente implementado se puede llamar varias veces sin producir ninguna excepción. Sin embargo, esto no está garantizado y, para evitar generar una excepción System.ObjectDisposedException, no debe llamar al método Dispose más de una vez en un objeto.</Description>
+   <Resolution Name="Default">El objeto {0} admite Dispose más de una vez en el método {1}. Para evitar generar una excepción System.ObjectDisposedException, no debe llamar a Dispose más de una vez en un objeto.: Lines: 104</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="Proporcionar argumentos correctos a los métodos de formato" Category="Microsoft.Usage" CheckId="CA2241">
+   <Name>Proporcionar argumentos correctos a los métodos de formato</Name>
+   <Description>Proporcione el número correcto de argumentos a las llamadas a String.Format.</Description>
+   <Resolution Name="MissingFormatItem">El método {0} llama a {1} y no proporciona un elemento de formato para el argumento {2}. La cadena de formato proporcionada es: '{3}'</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182361.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>Reiniciar para mantener los detalles de la pila</Name>
+   <Description>Utilice la instrucción de reinicio IL para mantener los detalles de la pila original cuando vaya a volver a provocar la excepción detectada.</Description>
+   <Resolution Name="Default">{0} vuelve a producir una excepción detectada y la especifica explícitamente como un argumento. Utilice 'throw' sin un argumento, para mantener la ubicación de la pila donde se provocó inicialmente la excepción.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad</Name>
+   <Description>Una cadena de comando SQL compilada a partir de datos proporcionados por el usuario es vulnerable a ataques pon inyección de código SQL. Microsoft SQL Server y otros servidores de bases de datos admiten procedimientos almacenados y consultas SQL parametrizadas, que reducen el riesgo de ataques por inyección.</Description>
+   <Resolution Name="WithNonLiterals">La cadena de consulta pasada a {0} en {1} podría contener las siguientes variables: {2}. Si alguna de estas variables puede proceder de datos proporcionados por el usuario, considere el uso de un procedimiento almacenado o una consulta SQL parametrizada en lugar de compilar la consulta con concatenaciones de cadenas.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101">
+   <Name>Especifique cálculo de referencias para argumentos de cadena P/Invoke</Name>
+   <Description>Cuando se calculan las referencias de cadenas como ANSI (o Auto en Win9x), es posible que cambien algunos caracteres. Si está activada la asignación de ajuste perfecto, en las cadenas que aparecen diferentes en Unicode se calcularán las referencias como cadenas ANSI idénticas, lo que puede dar lugar a decisiones de seguridad incorrectas. Si se desactiva la asignación de ajuste perfecto, se reduce el riesgo, ya que a todos los caracteres sin equivalente se les asigna '?'. Asimismo, tenga en cuenta que CharSet.Ansi es el valor predeterminado para todos los cálculos de referencias de cadenas. El cálculo de referencias Unicode se debe especificar de forma explícita, ya sea con el valor CharSet de DllImport o StructLayout, o bien con el atributo MarshalAs con un tipo Unicode no administrado (o dependiente del sistema).</Description>
+   <Resolution Name="ParameterImplicitAnsi">Para reducir el riesgo de la seguridad, calcule las referencias del parámetro {0} como Unicode, estableciendo DllImport.CharSet en CharSet.Unicode, o bien calculando las referencias del parámetro de forma explícita como UnmanagedType.LPWStr. Si necesita calcular las referencias de esta cadena como ANSI o dependiente del sistema, especifique MarshalAs de forma explícita y establezca BestFitMapping=false. Para mayor seguridad, establezca también ThrowOnUnmappableChar=true.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182319.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Los tipos que poseen campos descartables deben ser descartables</Name>
+   <Description>Los tipos que declaran miembros descartables también deben implementar IDisposable. Si el tipo no posee ningún recurso no administrado, no implementar un finalizador.</Description>
+   <Resolution Name="DependsOnFix">Implemente IDisposable en {0} porque crea miembros de los tipos IDisposable siguientes: {1}. Si ya se había distribuido {0}, agregar nuevos miembros que implementen IDisposable en este tipo se considera un cambio rotundo para los consumidores existentes.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Categoría</String>
+  <String Key="Certainty">Certeza</String>
+  <String Key="CollapseAll">Contraer todo</String>
+  <String Key="CheckId">Comprobar id.</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">errores</String>
+  <String Key="ExpandAll">Expandir todo</String>
+  <String Key="Help">Ayuda</String>
+  <String Key="Line">Línea</String>
+  <String Key="Messages">mensajes</String>
+  <String Key="LocationNotStoredInPdb">[Ubicación no almacenada en Pdb]</String>
+  <String Key="Project">Proyecto</String>
+  <String Key="Resolution">Resolución</String>
+  <String Key="Rule">Regla</String>
+  <String Key="RuleFile">Archivo de regla</String>
+  <String Key="RuleDescription">Descripción de la regla</String>
+  <String Key="Source">Origen</String>
+  <String Key="Status">Estado</String>
+  <String Key="Target">Círculos concéntricos</String>
+  <String Key="Warning">Advertencia</String>
+  <String Key="Warnings">advertencias</String>
+  <String Key="ReportTitle">Informe de análisis del código</String>
+ </Localized>
+</FxCopReport>
