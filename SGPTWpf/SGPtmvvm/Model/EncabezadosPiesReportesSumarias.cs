@@ -22,6 +22,7 @@
         public string fechaaprobo { get; set; }
 
 
+
         //pie de pagina.
         public string objetivocedula { get; set; }
         public string alcancecedula { get; set; }
