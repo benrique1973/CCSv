@@ -579,8 +579,9 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                 {
 
                         //DSCedulaNotas ds = new Reportes.DSCedulaNotas();
-                        //DSCedulaAjustesReclasificaciones ds = new DSCedulaAjustesReclasificaciones();
+                        DSCedulaAjustesReclasificaciones ds = new DSCedulaAjustesReclasificaciones();
                         DSCedulaSumaria ds = new DSCedulaSumaria();
+                        
 
                     var b = msj.EncabezadosSinpiesCedulaAjustesReclasificaciones;
                     ds.DataTableEncabezado.Rows.Add

@@ -435,6 +435,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCedulaNotas.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SGPtmvvm\Reportes\DSCedulaSumariaa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCedulaSumariaa.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SGPtmvvm\Reportes\DSIndiceCarpetas.cs">
       <DependentUpon>DSIndiceCarpetas.xsd</DependentUpon>
     </Compile>
@@ -3664,6 +3669,17 @@
     </None>
     <None Include="SGPtmvvm\Reportes\DSCedulaNotas.xss">
       <DependentUpon>DSCedulaNotas.xsd</DependentUpon>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumariaa.xsc">
+      <DependentUpon>DSCedulaSumariaa.xsd</DependentUpon>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumariaa.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCedulaSumariaa.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SGPtmvvm\Reportes\DSCedulaSumariaa.xss">
+      <DependentUpon>DSCedulaSumariaa.xsd</DependentUpon>
     </None>
     <None Include="SGPtmvvm\Reportes\DSIndiceCarpetas.xsc">
       <DependentUpon>DSIndiceCarpetas.xsd</DependentUpon>
