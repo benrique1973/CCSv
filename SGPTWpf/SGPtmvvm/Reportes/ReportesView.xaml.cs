@@ -26,23 +26,23 @@ namespace SGPTWpf.SGPtmvvm.Reportes
             Messenger.Default.Register<GenerarReporteMensajeModal>(this, "GenerameUnReporte", (recepcionOrdenReportear) => this.IniciarGeneracionReporte(recepcionOrdenReportear));
         }
 
-        
-    private void IniciarGeneracionReporte(GenerarReporteMensajeModal msj) //aqui cae el mensaje del solicitante
-    {
-        try
+
+        private void IniciarGeneracionReporte(GenerarReporteMensajeModal msj) //aqui cae el mensaje del solicitante
         {
-            #region +
-            //usuarioModelo = msj.usuarioModelo;
-            //currentEncargo = msj.currentEncargoModelo;  //El encargo puede estar cambiando.
-            //currentSistemaContable = SistemaContableModelo.GetRegistroByIdEncargo(currentEncargo.idencargo);
-            //tokenAUsar = msj.TokenAUtilizar;
-            //MensajeModalRecibido = msj;
-
-            Messenger.Default.Unregister<GenerarReporteMensajeModal>(this, "GenerameUnReporte");
-
-
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.ReporteMatrizRiesgos)
+            try
             {
+                #region +
+                //usuarioModelo = msj.usuarioModelo;
+                //currentEncargo = msj.currentEncargoModelo;  //El encargo puede estar cambiando.
+                //currentSistemaContable = SistemaContableModelo.GetRegistroByIdEncargo(currentEncargo.idencargo);
+                //tokenAUsar = msj.TokenAUtilizar;
+                //MensajeModalRecibido = msj;
+
+                Messenger.Default.Unregister<GenerarReporteMensajeModal>(this, "GenerameUnReporte");
+
+
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.ReporteMatrizRiesgos)
+                {
                     #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
@@ -51,29 +51,29 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         DSMRiesgos ds = new DSMRiesgos();
 
                         var b = msj.EncabezadosPiesReporteMatrizRiesgos;
-                        ds.DataTable2.Rows.Add
-                        (
-                        #region +
-                        new object[]
-                            {
-                            b.logofirma,
-                            b.razonSocialFirma,
-                            b.encabezadoPantalla,
-                            b.descripcionTipoAuditoria,
-                            b.razonsocialcliente,
-                            b.usuarioEjecuto,
-                            b.fechaejecuto,
-                            b.fechainiperauditencargo,
-                            b.fechafinperauditencargo,
-                            b.usuarioSuperviso,
-                            b.fechasuperviso,
-                            b.usuarioAprobo,
-                            b.fechaaprobo,
-                            b.referencia,
-                            7
-                            }
-                            #endregion
-                    );
+                    //    ds.DataTable2.Rows.Add
+                    //    (
+                    //    #region +
+                    //    new object[]
+                    //        {
+                    //        b.logofirma,
+                    //        b.razonSocialFirma,
+                    //        b.encabezadoPantalla,
+                    //        b.descripcionTipoAuditoria,
+                    //        b.razonsocialcliente,
+                    //        b.usuarioEjecuto,
+                    //        b.fechaejecuto,
+                    //        b.fechainiperauditencargo,
+                    //        b.fechafinperauditencargo,
+                    //        b.usuarioSuperviso,
+                    //        b.fechasuperviso,
+                    //        b.usuarioAprobo,
+                    //        b.fechaaprobo,
+                    //        b.referencia,
+                    //        7
+                    //        }
+                    //        #endregion
+                    //);
 
                         foreach (var aa in msj.listaMatrizRiesgoModelo)
                         {
@@ -95,40 +95,40 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                             ds.Tables[0].Rows.Add(new object[] { aaa, bb, c, d, e, f, g, h, i, j, k, l, m, nn });
                             #endregion
                         }
-                        ds.DataTable3.Rows.Add
-                        (
-                        #region +
-                                //new object[] {1,2,1,2,1,2,1,3,1,7}
-                                new object[]
-                            {
-                                b.evaluacioninherentedmrAlto,
-                                b.evaluacioninherentedmrMedio,
-                                b.evaluacioninherentedmrBajo,
-                                b.evaluacioncontroldmrAlto,
-                                b.evaluacioncontroldmrMedio,
-                                b.evaluacioncontroldmrBajo,
-                                b.evaluacionDetecciondmrAlto,
-                                b.evaluacionDetecciondmrMedio,
-                                b.evaluacionDetecciondmrBajo,
-                                7
-                            }
-                            #endregion
-                    );
+                    //    ds.DataTable3.Rows.Add
+                    //    (
+                    //    #region +
+                    //            //new object[] {1,2,1,2,1,2,1,3,1,7}
+                    //            new object[]
+                    //        {
+                    //            b.evaluacioninherentedmrAlto,
+                    //            b.evaluacioninherentedmrMedio,
+                    //            b.evaluacioninherentedmrBajo,
+                    //            b.evaluacioncontroldmrAlto,
+                    //            b.evaluacioncontroldmrMedio,
+                    //            b.evaluacioncontroldmrBajo,
+                    //            b.evaluacionDetecciondmrAlto,
+                    //            b.evaluacionDetecciondmrMedio,
+                    //            b.evaluacionDetecciondmrBajo,
+                    //            7
+                    //        }
+                    //        #endregion
+                    //);
                         ReporteMatrizRiesgos rpt = new Reportes.ReporteMatrizRiesgos();
                         rpt.SetDataSource(ds);
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
-                    } 
+                    }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.ReportePrograma || msj.TipoReporteAGenerar == TipoReporteAGenerar.ReporteCuestionario)
-            {
-                #region +
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.ReportePrograma || msj.TipoReporteAGenerar == TipoReporteAGenerar.ReporteCuestionario)
+                {
+                    #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
                     {
                         //ReporteMatrizRiesgos rpz = new ReporteMatrizRiesgos();
-                        
+
                         DSProgramasYCuestionarios ds = new DSProgramasYCuestionarios();
                         //DSMRiesgos ds = new DSMRiesgos();
 
@@ -221,7 +221,7 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                                 var e = aa.comentariodp;
                                 var f = 7;
                                 ds.DataTableDetalleProcedimientos.Rows.Add(new object[] { aaa, bb, c, d, e, f });
-                            } 
+                            }
                         }
                         else
                         {
@@ -236,16 +236,16 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                                 ds.DataTableDetalleProcedimientos.Rows.Add(new object[] { aaa, bb, c, d, e, f });
                             }
                         }
-                    //ReporteProgramas rpt = new ReporteProgramas();
-                    RepProgramasCuestionarios rpt = new RepProgramasCuestionarios();
-                    rpt.SetDataSource(ds);
-                    crystalReportsViewer1.ViewerCore.ReportSource = rpt;
-                    } 
+                        //ReporteProgramas rpt = new ReporteProgramas();
+                        RepProgramasCuestionarios rpt = new RepProgramasCuestionarios();
+                        rpt.SetDataSource(ds);
+                        crystalReportsViewer1.ViewerCore.ReportSource = rpt;
+                    }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.PortadaCarpeta)
-            {
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.PortadaCarpeta)
+                {
                     #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
@@ -281,10 +281,10 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                     }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.IndiceCarpeta)
-            {
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.IndiceCarpeta)
+                {
                     #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
@@ -323,16 +323,16 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         );
 
 
-   
-                            foreach (var aa in msj.listaDetalleHerramienta)
-                            {
-                                var aaa = aa.ordenDhPresentacion;  //decimal.Parse(aa.ordenDhPresentacion);//decimal.Parse(aa.idCorrelativo.ToString());
-                                var bb = aa.descripcionPresentacion;
-                                var c = aa.obligatorioindice;
-                                var d = aa.referenciaindice;
-                                var e = 7;
-                                ds.DataTableCuerpo.Rows.Add(new object[] { aaa, bb, c, d, e});
-                            }
+
+                        foreach (var aa in msj.listaDetalleHerramienta)
+                        {
+                            var aaa = aa.ordenDhPresentacion;  //decimal.Parse(aa.ordenDhPresentacion);//decimal.Parse(aa.idCorrelativo.ToString());
+                            var bb = aa.descripcionPresentacion;
+                            var c = aa.obligatorioindice;
+                            var d = aa.referenciaindice;
+                            var e = 7;
+                            ds.DataTableCuerpo.Rows.Add(new object[] { aaa, bb, c, d, e });
+                        }
 
                         //ReporteProgramas rpt = new ReporteProgramas();
                         //RepProgramasCuestionarios rpt = new RepProgramasCuestionarios();
@@ -341,11 +341,11 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                     }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaMarcas)
-            {
-                #region +
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaMarcas)
+                {
+                    #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
                     {
@@ -381,7 +381,7 @@ namespace SGPTWpf.SGPtmvvm.Reportes
 
                         foreach (var aa in msj.listaCedulaMarcas)
                         {
-                            var aaa = aa.idCorrelativo; 
+                            var aaa = aa.idCorrelativo;
                             var bb = aa.marcama;
                             var c = aa.significadoma;
                             var e = 7;
@@ -394,11 +394,11 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                     }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaHallazgos)
-            {
-                #region +
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaHallazgos)
+                {
+                    #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
                     {
@@ -453,11 +453,11 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                     }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaNotas)
-            {
-                #region +
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaNotas)
+                {
+                    #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
                     {
@@ -510,11 +510,11 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                     }
                     #endregion
-            }
+                }
 
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaAjustesReclas)
-            {
-                #region +
+                if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaAjustesReclas)
+                {
+                    #region +
                     var crv = new CrystalReportsViewer();
                     if (crv != null)
                     {
@@ -522,7 +522,7 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         //DSCedulaNotas ds = new Reportes.DSCedulaNotas();
                         DSCedulaAjustesReclasificaciones ds = new DSCedulaAjustesReclasificaciones();
 
-                        var b = msj.EncabezadosSinpiesCedulaAjustesReclasificaciones; 
+                        var b = msj.EncabezadosSinpiesCedulaAjustesReclasificaciones;
                         ds.DataTableEncabezado.Rows.Add
                         (
                         #region +
@@ -569,90 +569,16 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                     }
                     #endregion
-            }
-
-            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaSumaria)
-            {
-                #region +
-                var crv = new CrystalReportsViewer();
-                if (crv != null)
-                {
-
-                        //DSCedulaNotas ds = new Reportes.DSCedulaNotas();
-                        //DSCedulaAjustesReclasificaciones ds = new DSCedulaAjustesReclasificaciones();
-                        //DSCedulaSumaria ds = new DSCedulaSumaria();
-                        DSCedulaSumariaa ds = new Reportes.DSCedulaSumariaa();
-
-                    var b = msj.EncabezadosPiesReportesSumarias;
-                    ds.DataTableEncabezadoypies.Rows.Add
-                    (
-                    #region +
-                    new object[]
-                        {
-                        b.logofirma,
-                        b.razonsocialfirma,
-                        b.encabezadopantalla,
-                        b.descripciontipoauditoria,
-                        b.razonsocialcliente,
-                        b.usuarioejecuto,
-                        b.fechaejecuto,
-                        b.fechainiperauditencargo,
-                        b.fechafinperauditencargo,
-                        b.usuariosuperviso,
-                        b.fechasuperviso,
-                        b.usuarioaprobo,
-                        b.fechaaprobo,
-                        b.referencia,
-                        b.objetivocedula,
-                        b.alcancecedula,
-                        b.conclusioncedula,
-                        7
-                        }
-                        #endregion
-                    );
-
-
-
-                    foreach (var aa in msj.listaCedulaSumaria)
-                    {
-                        var aaa = aa.idCorrelativo;
-                            var bb = aa.referenciapapel;
-                        var c = aa.codigocontabledc;
-                        var d = aa.nombreClaseCuenta;
-                        var e = aa.m1dc;
-                        var f = aa.saldoactualdc;
-                        var g = aa.m2dc;
-                        var h = aa.saldoanteriordc;
-                        var i = aa.m3dc;
-                            var j = aa.aumentodc;
-                            var k = aa.variacionporcentual;
-                            var l = aa.cargosreajusteyreclasificacion;
-                            var m = aa.m4dc;
-                            var n = aa.abonoreajusteyreclasificacion;
-                            var o = aa.m5dc;
-                            var p = aa.saldofinaldc;
-                            var q = aa.m6dc;
-                            var r = aa.m7dc;
-                            var s = 7;
-                        ds.DataTableCuerpo.Rows.Add(new object[] { aaa, bb, c, d, e, f, g, h, i , j , k , l , m , n , o , p , q, r, s});
-                    }
-
-                    //ReporteCedulaNotas rpt = new ReporteCedulaNotas();
-                    ReporteCedulaAjustesReclasificaciones rpt = new ReporteCedulaAjustesReclasificaciones();
-                    rpt.SetDataSource(ds);
-                    crystalReportsViewer1.ViewerCore.ReportSource = rpt;
                 }
                 #endregion
             }
-                #endregion
+            catch (Exception e)
+            {
+                MessageBox.Show("" + e);
             }
-        catch (Exception e)
-        {
-            MessageBox.Show("" + e);
+            Mouse.OverrideCursor = null;
         }
-        Mouse.OverrideCursor = null;
+
+
     }
-
-
-}
 }

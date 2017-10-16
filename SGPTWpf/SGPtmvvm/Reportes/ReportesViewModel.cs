@@ -19,7 +19,7 @@ namespace SGPTWpf.SGPtmvvm.Reportes
 {
     public class ReportesViewModel : ViewModel.ViewModeloBase
     {
-        
+
         private bool _canExecute;
         private DialogCoordinator dlg;
         public SGPTEntidades db = new SGPTEntidades();
@@ -97,29 +97,29 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                         DSMRiesgos ds = new DSMRiesgos();
 
                         var b = msj.EncabezadosPiesReporteMatrizRiesgos;
-                        ds.DataTable2.Rows.Add
-                        (
-                        #region +
-                            new object[]
-                            {
-                                "",
-                                b.razonSocialFirma,
-                                b.encabezadoPantalla,
-                                b.descripcionTipoAuditoria,
-                                b.razonsocialcliente,
-                                b.usuarioEjecuto,
-                                b.fechaejecuto,
-                                b.fechainiperauditencargo,
-                                b.fechafinperauditencargo,
-                                b.usuarioSuperviso,
-                                b.fechasuperviso,
-                                b.usuarioAprobo,
-                                b.fechaaprobo,
-                                b.referencia,
-                                7
-                            }
-                            #endregion
-                    );
+                    //    ds.DataTable2.Rows.Add
+                    //    (
+                    //    #region +
+                    //        new object[]
+                    //        {
+                    //            "",
+                    //            b.razonSocialFirma,
+                    //            b.encabezadoPantalla,
+                    //            b.descripcionTipoAuditoria,
+                    //            b.razonsocialcliente,
+                    //            b.usuarioEjecuto,
+                    //            b.fechaejecuto,
+                    //            b.fechainiperauditencargo,
+                    //            b.fechafinperauditencargo,
+                    //            b.usuarioSuperviso,
+                    //            b.fechasuperviso,
+                    //            b.usuarioAprobo,
+                    //            b.fechaaprobo,
+                    //            b.referencia,
+                    //            7
+                    //        }
+                    //        #endregion
+                    //);
 
                         //foreach (var a in msj.listaMatrizRiesgoModelo)
                         //{
@@ -199,7 +199,7 @@ namespace SGPTWpf.SGPtmvvm.Reportes
             }
             catch (Exception e)
             {
-                MessageBox.Show(""+e);
+                MessageBox.Show("" + e);
             }
             Mouse.OverrideCursor = null;
 
@@ -231,29 +231,29 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                 new PropertyMetadata(ReportSourceChanged)
                 );
 
-            private static void ReportSourceChanged(
-                DependencyObject d,
-                DependencyPropertyChangedEventArgs e)
+        private static void ReportSourceChanged(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
+        {
+            var crviewer = d as CrystalReportsViewer;
+            if (crviewer != null)
             {
-                var crviewer = d as CrystalReportsViewer;
-                if (crviewer != null)
-                {
-                    crviewer.ViewerCore.ReportSource = e.NewValue;
-                }
+                crviewer.ViewerCore.ReportSource = e.NewValue;
             }
+        }
 
-            public static void SetReportSource(DependencyObject target, object value)
-            {
-                target.SetValue(ReportSourceProperty, value);
-            }
+        public static void SetReportSource(DependencyObject target, object value)
+        {
+            target.SetValue(ReportSourceProperty, value);
+        }
 
-            public static object GetReportSource(DependencyObject target)
-            {
-                return target.GetValue(ReportSourceProperty);
-            }
+        public static object GetReportSource(DependencyObject target)
+        {
+            return target.GetValue(ReportSourceProperty);
+        }
 
         //       }
-#endregion
+        #endregion
 
         private void inicializadoresBasicos()
         {
@@ -331,7 +331,7 @@ namespace SGPTWpf.SGPtmvvm.Reportes
         private void Salir()
         {
             //Creando el mensaje de cierre
-            
+
             //Messenger.Default.Send(-1, "RecepcionCargaCatalogo");
             Messenger.Default.Send(-1, tokenAUsar);
             enviarMensajeHabilitar();
