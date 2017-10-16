@@ -16,7 +16,8 @@ using System.Linq;
 using System.ComponentModel;
 using SGPTWpf.SGPtWpf.Model.Modelo.Menus;
 using SGPtmvvm.Mensajes;
-using SGPTWpf.SGPtWpf.Model.Modelo.Encargos.Planificacion;
+using CapaDatos;
+using System.Threading.Tasks;
 
 namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 {
@@ -30,17 +31,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
         private readonly IDialogCoordinator _dialogCoordinator;
         public static int Errors { get; set; }//Para controllar los errores de edición
-
-        #region origenLlamada
-
-        private string _origenLlamada;
-        private string origenLlamada
-        {
-            get { return _origenLlamada; }
-            set { _origenLlamada = value; }
-        }
-
-        #endregion
 
         #region tablaDetalle
 
@@ -137,112 +127,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
         #endregion
 
-        #region tokenEnvioDatosAHijo
-
-        private string _tokenEnvioDatosAHijo;
-        private string tokenEnvioDatosAHijo
-        {
-            get { return _tokenEnvioDatosAHijo; }
-            set { _tokenEnvioDatosAHijo = value; }
-        }
-
-        #endregion
-
-        #region tokenEnvioDatosAVistaPreview
-
-        private string _tokenEnvioDatosAVistaPreview;
-        private string tokenEnvioDatosAVistaPreview
-        {
-            get { return _tokenEnvioDatosAVistaPreview; }
-            set { _tokenEnvioDatosAVistaPreview = value; }
-        }
-
-        #endregion
-
-        #region tokenEnvioDatosCarga
-
-        private string _tokenEnvioDatosCarga;
-        private string tokenEnvioDatosCarga
-        {
-            get { return _tokenEnvioDatosCarga; }
-            set { _tokenEnvioDatosCarga = value; }
-        }
-
-        #endregion
-
-
-        #region tokenRecepcionDatosCarga
-
-        private string _tokenRecepcionDatosCarga;
-        private string tokenRecepcionDatosCarga
-        {
-            get { return _tokenRecepcionDatosCarga; }
-            set { _tokenRecepcionDatosCarga = value; }
-        }
-
-        #endregion
-
-        #region ViewModel Properties : SelectedItems
-
-        public const string SelectedItemsPropertyName = "SelectedItems";
-
-        private ObservableCollection<TipoCarpetaModelo> _SelectedItems;
-
-        public ObservableCollection<TipoCarpetaModelo> SelectedItems
-        {
-            get
-            {
-                return _SelectedItems;
-            }
-            set
-            {
-                if (_SelectedItems == value) return;
-
-                _SelectedItems = value;
-
-                RaisePropertyChanged(SelectedItemsPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region Nombre tipo auditoria
-
-        public const string descripcionPropertyName = "descripcion";
-
-        private string _descripcion = string.Empty;
-
-        public string descripcion
-        {
-            get
-            {
-                return _descripcion;
-            }
-
-            set
-            {
-                if (_descripcion == value)
-                {
-                    return;
-                }
-
-                _descripcion = value;
-                RaisePropertyChanged(descripcionPropertyName);
-            }
-        }
-
-        #endregion
-
-        #region visibilidadMenu
-
-
-
-        #endregion
-
-
         #region Visibilidad de  botones
-
-
 
         #region visibilidadMCrear
 
@@ -514,34 +399,6 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
         #endregion
 
-        #region visibilidadMTask
-
-        public const string visibilidadMTaskPropertyName = "visibilidadMTask";
-
-        private Visibility _visibilidadMTask = Visibility.Collapsed;
-
-        public Visibility visibilidadMTask
-        {
-            get
-            {
-                return _visibilidadMTask;
-            }
-
-            set
-            {
-                if (_visibilidadMTask == value)
-                {
-                    return;
-                }
-
-                _visibilidadMTask = value;
-                RaisePropertyChanged(visibilidadMTaskPropertyName);
-            }
-        }
-
-        #endregion
-
-
         #region visibilidadMRegresar
 
         public const string visibilidadMRegresarPropertyName = "visibilidadMRegresar";
@@ -569,12 +426,11 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
         #endregion
 
-
         #region visibilidadMImportar
 
         public const string visibilidadMImportarPropertyName = "visibilidadMImportar";
 
-        private Visibility _visibilidadMImportar = Visibility.Hidden;
+        private Visibility _visibilidadMImportar = Visibility.Collapsed;
 
         public Visibility visibilidadMImportar
         {
@@ -624,7 +480,170 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
         #endregion
 
+        #region visibilidadMTask
+
+        public const string visibilidadMTaskPropertyName = "visibilidadMTask";
+
+        private Visibility _visibilidadMTask = Visibility.Collapsed;
+
+        public Visibility visibilidadMTask
+        {
+            get
+            {
+                return _visibilidadMTask;
+            }
+
+            set
+            {
+                if (_visibilidadMTask == value)
+                {
+                    return;
+                }
+
+                _visibilidadMTask = value;
+                RaisePropertyChanged(visibilidadMTaskPropertyName);
+            }
+        }
+
         #endregion
+
+        #region origenLlamada
+
+        private string _origenLlamada;
+        private string origenLlamada
+        {
+            get { return _origenLlamada; }
+            set { _origenLlamada = value; }
+        }
+
+        #endregion
+
+        #region nombreopcionor
+
+        private string _nombreopcionor;
+        private string nombreopcionor
+        {
+            get { return _nombreopcionor; }
+            set { _nombreopcionor = value; }
+        }
+
+        #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region tokenEnvioDatosAHijo
+
+        private string _tokenEnvioDatosAHijo;
+        private string tokenEnvioDatosAHijo
+        {
+            get { return _tokenEnvioDatosAHijo; }
+            set { _tokenEnvioDatosAHijo = value; }
+        }
+
+        #endregion
+
+        #region tokenEnvioDatosAVistaPreview
+
+        private string _tokenEnvioDatosAVistaPreview;
+        private string tokenEnvioDatosAVistaPreview
+        {
+            get { return _tokenEnvioDatosAVistaPreview; }
+            set { _tokenEnvioDatosAVistaPreview = value; }
+        }
+
+        #endregion
+
+        #region tokenEnvioDatosCarga
+
+        private string _tokenEnvioDatosCarga;
+        private string tokenEnvioDatosCarga
+        {
+            get { return _tokenEnvioDatosCarga; }
+            set { _tokenEnvioDatosCarga = value; }
+        }
+
+        #endregion
+
+
+        #region tokenRecepcionDatosCarga
+
+        private string _tokenRecepcionDatosCarga;
+        private string tokenRecepcionDatosCarga
+        {
+            get { return _tokenRecepcionDatosCarga; }
+            set { _tokenRecepcionDatosCarga = value; }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : SelectedItems
+
+        public const string SelectedItemsPropertyName = "SelectedItems";
+
+        private ObservableCollection<TipoCarpetaModelo> _SelectedItems;
+
+        public ObservableCollection<TipoCarpetaModelo> SelectedItems
+        {
+            get
+            {
+                return _SelectedItems;
+            }
+            set
+            {
+                if (_SelectedItems == value) return;
+
+                _SelectedItems = value;
+
+                RaisePropertyChanged(SelectedItemsPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region Nombre tipo auditoria
+
+        public const string descripcionPropertyName = "descripcion";
+
+        private string _descripcion = string.Empty;
+
+        public string descripcion
+        {
+            get
+            {
+                return _descripcion;
+            }
+
+            set
+            {
+                if (_descripcion == value)
+                {
+                    return;
+                }
+
+                _descripcion = value;
+                RaisePropertyChanged(descripcionPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region visibilidadMenu
+
+
+
+        #endregion
+
 
         //http://stackoverflow.com/questions/14918602/isselected-binding-in-wpf-datagrid
 
@@ -1421,7 +1440,10 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
             {
                 case "EncargoPlanIndice"://Llamada desde documentacion plan indices
                     #region Configuracion plan
+                        _menuElegido = "Planificacion";
+                        _nombreopcionor = "Indices";
                         tablaDetalle = "Detalle Indices";
+
                         fuenteLlamado = 1;
                         //0 Sin identificar
                         //1 Plan Indices
@@ -1443,6 +1465,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                             _visibilidadMTask = Visibility.Collapsed;
                             _visibilidadMImprimir = Visibility.Collapsed;
                         #endregion
+
                         _tokenRecepcionPadre = "Indices" + "Planificación";//Permite captar los mensajes del  menú planificacion
                         _tokenEnvioDatosAHijo = "datosEDIndices";//Para control de los datos que  remite programas a sub-ventanas
                         _tokenRecepcionHijo = "datosControllerIndices";
@@ -1455,6 +1478,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     #endregion
                     break;
                 case "EncargoDocumentacion"://Documentacion carpetas
+                    _menuElegido = "Documentacion";
+                    _nombreopcionor = "Carpetas";
                     tablaDetalle = "Detalle carpetas";
                       fuenteLlamado = 3;
                     //2 Plan Indices detalle
@@ -1478,6 +1503,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
 
                     #endregion
+
                     #region  tokens
                     _tokenRecepcionPadre = "Carpetas" + "Documentacion";//Permite captar los mensajes del  menú planificacion, corresponde a Indices
                     _tokenEnvioDatosAHijo = "datosEncargoDocumentacionIndices";//Para control de los datos que  remite programas a sub-ventanas
@@ -1492,6 +1518,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     listaVistas = new ObservableCollection<menuIndiceDetalle>(menuIndiceDetalle.GetAllDocumentacion());
                     break;
                 case "EncargoCierre": //Encargos cierre
+                    _menuElegido = "Cierre";
+                    _nombreopcionor = "Revision de papeles";
                     tablaDetalle = "Detalle papeles";
                     fuenteLlamado = 5;
                     //5 Cierre indice
@@ -1530,6 +1558,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     listaVistas = new ObservableCollection<menuIndiceDetalle>(menuIndiceDetalle.GetAllCierre());
                     break;
                 case "SupervisionIndice": //Encargos cierre
+                    _menuElegido = "Supervision";
+                    _nombreopcionor = "Revision de carpetas";
                     tablaDetalle = "Detalle archivos";
                     fuenteLlamado = 5;
                     //5 Cierre indice
@@ -1568,6 +1598,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     listaVistas = new ObservableCollection<menuIndiceDetalle>(menuIndiceDetalle.GetAllSupervision());
                     break;
                 case "Documentos"://Llamada desde el principal documentos consulta
+                    _menuElegido = "Consulta";
+                    _nombreopcionor = "Consulta";
                     tablaDetalle = "Detalle papeles";
                     fuenteLlamado = 5;
                     //5 Cierre indice
@@ -1606,6 +1638,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     listaVistas = new ObservableCollection<menuIndiceDetalle>(menuIndiceDetalle.GetAllConsultaDocumentos());
                     break;
                 case "DocumentosImpresion"://Llamada desde el principal documentos impresion
+                    _menuElegido = "Impresion";
+                    _nombreopcionor = "Impresion";
                     tablaDetalle = "Detalle impresion";
                     fuenteLlamado = 5;
                     //5 Cierre indice
@@ -1725,6 +1759,640 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
             }
         }
 
+        public async Task mensajeAutoCerrado(string titulo, string contenido, int segundos)
+        {
+            var dialog = new CustomDialog()
+            {
+                Title = titulo,
+                Content = contenido,
+                DialogMessageFontSize = 10,
+            };
+            await dlg.ShowMetroDialogAsync(this, dialog);
+
+            await System.Threading.Tasks.Task.Delay(segundos * 1000);
+            await dlg.HideMetroDialogAsync(this, dialog);
+        }
+
+        private void permisos()
+        {
+            if (usuarioModelo.listaPermisos != null)
+            {
+                try
+                {
+                    #region Menu permisos
+                    switch (origenLlamada)
+                    {
+                        case "EncargoPlanIndice"://Llamada desde documentacion plan indices
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                //_menuElegido = "Planificacion";
+                                //_nombreopcionor = "Indices";
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                        _visibilidadMImportar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                        _visibilidadMImportar = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                        _visibilidadMCerrar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                        _visibilidadMCerrar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region No operativos
+
+                                    _visibilidadMEditar = Visibility.Collapsed;
+                                    _visibilidadMTask = Visibility.Collapsed;
+                                    _visibilidadMRegresar = Visibility.Collapsed;
+                                    _visibilidadMImprimir = Visibility.Collapsed;
+                                    
+                                    #endregion
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
+                            #region  menu
+                            //_visibilidadMCrear = Visibility.Visible;
+                            //_visibilidadMBorrar = Visibility.Visible;
+                            //_visibilidadMVista = Visibility.Visible;
+                            //_visibilidadMImportar = Visibility.Visible;
+                            //_visibilidadMDetalle = Visibility.Visible;
+
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            #endregion
+                            break;
+                        case "EncargoDocumentacion"://Documentacion carpetas
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                //_menuElegido = "Planificacion";
+                                //_nombreopcionor = "Indices";
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                        _visibilidadMImportar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                        _visibilidadMImportar = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                        _visibilidadMCerrar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                        _visibilidadMCerrar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region No operativos
+
+                                    _visibilidadMEditar = Visibility.Collapsed;
+                                    _visibilidadMTask = Visibility.Collapsed;
+                                    _visibilidadMRegresar = Visibility.Collapsed;
+                                    _visibilidadMImprimir = Visibility.Collapsed;
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
+                            #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            //_visibilidadMVista = Visibility.Visible;
+                            _visibilidadMImportar = Visibility.Collapsed;
+                            //_visibilidadMDetalle = Visibility.Visible;
+
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            #endregion
+                            break;
+                        case "EncargoCierre": //Encargos cierre
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                //_menuElegido = "Planificacion";
+                                //_nombreopcionor = "Indices";
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                        _visibilidadMImportar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                        _visibilidadMImportar = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                        _visibilidadMCerrar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                        _visibilidadMCerrar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region No operativos
+
+                                    _visibilidadMEditar = Visibility.Collapsed;
+                                    _visibilidadMTask = Visibility.Collapsed;
+                                    _visibilidadMRegresar = Visibility.Collapsed;
+                                    _visibilidadMImprimir = Visibility.Collapsed;
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
+                            #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            //_visibilidadMVista = Visibility.Visible;
+                            _visibilidadMImportar = Visibility.Collapsed;
+                            //_visibilidadMDetalle = Visibility.Visible;
+
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            //_visibilidadMCerrar = Visibility.Visible;
+                            //_visibilidadMSupervisar = Visibility.Visible;
+                            //_visibilidadMAprobar = Visibility.Visible;
+                            _visibilidadMTask = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            #endregion
+                            break;
+                        case "SupervisionIndice": //Encargos cierre
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                //_menuElegido = "Planificacion";
+                                //_nombreopcionor = "Indices";
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                        _visibilidadMImportar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                        _visibilidadMImportar = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                        _visibilidadMCerrar = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                        _visibilidadMCerrar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                        _visibilidadMDetalle = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region No operativos
+
+                                    _visibilidadMEditar = Visibility.Collapsed;
+                                    _visibilidadMTask = Visibility.Collapsed;
+                                    _visibilidadMRegresar = Visibility.Collapsed;
+                                    _visibilidadMImprimir = Visibility.Collapsed;
+
+                                    #endregion
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
+                            #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            //_visibilidadMVista = Visibility.Visible;
+                            _visibilidadMImportar = Visibility.Collapsed;
+                            //_visibilidadMDetalle = Visibility.Visible;
+
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            //_visibilidadMCerrar = Visibility.Visible;
+                            //_visibilidadMSupervisar = Visibility.Visible;
+                            //_visibilidadMAprobar = Visibility.Visible;
+                            _visibilidadMTask = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            #endregion
+                             break;
+                        case "Documentos"://Llamada desde el principal documentos consulta
+                            #region  menu
+
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMVista = Visibility.Collapsed;
+                            _visibilidadMImportar = Visibility.Collapsed;
+                            _visibilidadMDetalle = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+
+
+                            #endregion
+                            break;
+                        case "DocumentosImpresion"://Llamada desde el principal documentos impresion
+                            #region  menu
+
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMVista = Visibility.Collapsed;
+                            _visibilidadMImportar = Visibility.Collapsed;
+                            _visibilidadMDetalle = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+
+
+                            #endregion
+                            break;
+                    }
+                    #endregion permisos
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error al identificar los permisos\nRevise la opción programada\n" + e.ToString());
+                    #region  menu
+                    //Solo permite consulta
+                    _visibilidadMCrear = Visibility.Collapsed;
+                    _visibilidadMEditar = Visibility.Collapsed;
+                    _visibilidadMBorrar = Visibility.Collapsed;
+                    _visibilidadMConsulta = Visibility.Visible;
+                    _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                    _visibilidadMRegresar = Visibility.Collapsed;
+                    _visibilidadMVista = Visibility.Visible;
+                    _visibilidadMImportar = Visibility.Collapsed;
+                    _visibilidadMDetalle = Visibility.Visible;
+
+                    _visibilidadMCerrar = Visibility.Collapsed;
+                    _visibilidadMSupervisar = Visibility.Collapsed;
+                    _visibilidadMAprobar = Visibility.Collapsed;
+                    _visibilidadMTask = Visibility.Collapsed;
+                    _visibilidadMImprimir = Visibility.Collapsed;
+                    #endregion
+                }
+            }
+            else
+            {
+                #region  menu
+                MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                _visibilidadMCrear = Visibility.Collapsed;
+                _visibilidadMEditar = Visibility.Collapsed;
+                _visibilidadMBorrar = Visibility.Collapsed;
+                _visibilidadMConsulta = Visibility.Collapsed;
+                _visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
+                _visibilidadMRegresar = Visibility.Collapsed;
+                _visibilidadMVista = Visibility.Visible;
+                _visibilidadMImportar = Visibility.Collapsed;
+                _visibilidadMDetalle = Visibility.Visible;
+
+                _visibilidadMCerrar = Visibility.Collapsed;
+                _visibilidadMSupervisar = Visibility.Collapsed;
+                _visibilidadMAprobar = Visibility.Collapsed;
+                _visibilidadMTask = Visibility.Collapsed;
+                _visibilidadMImprimir = Visibility.Collapsed;
+                #endregion
+            }
+
+        }
+
+
         private void ControlRecepcionDatos(EncargosDatosMsj msj)
         {
             usuarioModelo = msj.usuarioModelo;
@@ -1743,6 +2411,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
             }
 
             inicializacionTerminada();
+            permisos();
             Messenger.Default.Unregister<EncargosDatosMsj>(this, tokenRecepcionPadre);
 
         }

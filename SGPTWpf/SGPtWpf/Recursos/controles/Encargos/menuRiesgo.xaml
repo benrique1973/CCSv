@@ -189,7 +189,7 @@
                     <TextBlock Margin="1" Width="45"  TextAlignment="Center" VerticalAlignment="Bottom"  HorizontalAlignment="Stretch" Text="Aprobar" />
                 </StackPanel>
             </Button>
-             <Button
+            <Button
                 Style="{StaticResource AccentedSquareButtonStyle}"  Visibility="{Binding visibilidadMTask}"
                 Command="{Binding agendaCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
