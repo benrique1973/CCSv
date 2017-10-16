@@ -26,7 +26,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
 
     public sealed class DetalleIndiceViewModel : ViewModeloBase
     {
-
+        //Prueba de sincronizacion
         #region Propiedades privadas
 
         private MetroDialogSettings configuracionDialogo;
