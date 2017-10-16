@@ -570,6 +570,80 @@ namespace SGPTWpf.SGPtmvvm.Reportes
                     }
                     #endregion
             }
+
+            if (msj.TipoReporteAGenerar == TipoReporteAGenerar.CedulaSumaria)
+            {
+                #region +
+                var crv = new CrystalReportsViewer();
+                if (crv != null)
+                {
+
+                        //DSCedulaNotas ds = new Reportes.DSCedulaNotas();
+                        //DSCedulaAjustesReclasificaciones ds = new DSCedulaAjustesReclasificaciones();
+                        //DSCedulaSumaria ds = new DSCedulaSumaria();
+                        DSCedulaSumariaa ds = new Reportes.DSCedulaSumariaa();
+
+                    var b = msj.EncabezadosPiesReportesSumarias;
+                    ds.DataTableEncabezadoypies.Rows.Add
+                    (
+                    #region +
+                    new object[]
+                        {
+                        b.logofirma,
+                        b.razonsocialfirma,
+                        b.encabezadopantalla,
+                        b.descripciontipoauditoria,
+                        b.razonsocialcliente,
+                        b.usuarioejecuto,
+                        b.fechaejecuto,
+                        b.fechainiperauditencargo,
+                        b.fechafinperauditencargo,
+                        b.usuariosuperviso,
+                        b.fechasuperviso,
+                        b.usuarioaprobo,
+                        b.fechaaprobo,
+                        b.referencia,
+                        b.objetivocedula,
+                        b.alcancecedula,
+                        b.conclusioncedula,
+                        7
+                        }
+                        #endregion
+                    );
+
+
+
+                    foreach (var aa in msj.listaCedulaSumaria)
+                    {
+                        var aaa = aa.idCorrelativo;
+                            var bb = aa.referenciapapel;
+                        var c = aa.codigocontabledc;
+                        var d = aa.nombreClaseCuenta;
+                        var e = aa.m1dc;
+                        var f = aa.saldoactualdc;
+                        var g = aa.m2dc;
+                        var h = aa.saldoanteriordc;
+                        var i = aa.m3dc;
+                            var j = aa.aumentodc;
+                            var k = aa.variacionporcentual;
+                            var l = aa.cargosreajusteyreclasificacion;
+                            var m = aa.m4dc;
+                            var n = aa.abonoreajusteyreclasificacion;
+                            var o = aa.m5dc;
+                            var p = aa.saldofinaldc;
+                            var q = aa.m6dc;
+                            var r = aa.m7dc;
+                            var s = 7;
+                        ds.DataTableCuerpo.Rows.Add(new object[] { aaa, bb, c, d, e, f, g, h, i , j , k , l , m , n , o , p , q, r, s});
+                    }
+
+                    //ReporteCedulaNotas rpt = new ReporteCedulaNotas();
+                    ReporteCedulaAjustesReclasificaciones rpt = new ReporteCedulaAjustesReclasificaciones();
+                    rpt.SetDataSource(ds);
+                    crystalReportsViewer1.ViewerCore.ReportSource = rpt;
+                }
+                #endregion
+            }
                 #endregion
             }
         catch (Exception e)
