@@ -132,7 +132,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo
                 {
                     case "Riesgo":
                         ViewModelType = typeof(MatrizRiesgoViewModel);
-                        Contexto = new MatrizRiesgoViewModel();
+                        Contexto = new MatrizRiesgoViewModel("Riesgo");
                         break;
                     case "Programas":
                         ViewModelType = typeof(ProgramasViewModel);

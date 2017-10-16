@@ -117,11 +117,11 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
             {
                     case "Riesgo":
                         ViewModelType = typeof(MatrizRiesgoViewModel);
-                        Contexto = new MatrizRiesgoViewModel();
+                        Contexto = new MatrizRiesgoViewModel("Riesgo");
                         break;
                     case "Matriz de riesgos":
                     ViewModelType = typeof(DetalleMatrizRiesgoViewModel);
-                    Contexto = new DetalleMatrizRiesgoViewModel();
+                    Contexto = new DetalleMatrizRiesgoViewModel("Matriz de riesgos");
                     break;
                 default:
                     //MessageDialog("Error en el switch");
