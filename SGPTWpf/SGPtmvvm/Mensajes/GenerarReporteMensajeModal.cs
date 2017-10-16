@@ -76,6 +76,10 @@ namespace SGPtmvvm.Mensajes
         public ObservableCollection<CedulaDiarioModelo> listaAjustesReclasificaciones = new ObservableCollection<CedulaDiarioModelo>();
         public EncabezadosSinpiesCedulaAjustesReclasificaciones EncabezadosSinpiesCedulaAjustesReclasificaciones { get; set; }
 
+        //para las cedulas sumarias.
+        public ObservableCollection<DetalleCedulaModelo> listaCedulaSumaria = new ObservableCollection<DetalleCedulaModelo>();
+        public EncabezadosPiesReportesSumarias EncabezadosPiesReportesSumarias { get; set; }
+
         /// <summary>
         /// Esto del final creo que no lo utilizare pq la idea es que todos los datos ya vengan cocinados y solo de mostrar.
         /// asi se cumple que una funcion debe hacerse especificamente para un solo proposito.

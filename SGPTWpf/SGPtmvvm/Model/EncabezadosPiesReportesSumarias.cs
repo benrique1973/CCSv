@@ -9,6 +9,7 @@
         //Encabezado 
         public byte[] logofirma { get; set; }
         public string razonsocialfirma { get; set; }
+        public string referencia { get; set; }
         public string encabezadopantalla { get; set; }
         public string descripciontipoauditoria { get; set; }
         public string razonsocialcliente { get; set; }
