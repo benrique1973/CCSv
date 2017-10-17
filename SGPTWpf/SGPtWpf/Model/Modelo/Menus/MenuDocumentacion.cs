@@ -160,7 +160,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                 {
                     case "Balances":
                         ViewModelType = typeof(BalancesViewModel);
-                        Contexto = new BalancesViewModel();
+                        Contexto = new BalancesViewModel("Balances");
                         break;
                     case "Catalogo cuentas":
                         ViewModelType = typeof(CatalogoCuentasViewModel);

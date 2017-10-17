@@ -113,11 +113,11 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                 {
                     case "Balances":
                         ViewModelType = typeof(BalancesViewModel);
-                        Contexto = new BalancesViewModel();
+                        Contexto = new BalancesViewModel("Balances");
                         break;
                     case "Detalle Balance":
                         ViewModelType = typeof(DetalleBalanceViewModel);
-                        Contexto = new DetalleBalanceViewModel();
+                        Contexto = new DetalleBalanceViewModel("Detalle Balance");
                         break;
                   default:
                         //MessageDialog("Error en el switch");

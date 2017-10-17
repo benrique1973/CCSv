@@ -1618,8 +1618,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     #endregion
                     break;
                 case "EncargoCierreIndiceDetalle":
-                    _menuElegido = "Documentacion";
-                    _nombreopcionor = "Carpetas";
+                    _menuElegido = "Cierre";
+                    _nombreopcionor = "Revision de papeles";
                     #region configuracion
                     #region  menu
 
@@ -1650,8 +1650,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     #endregion
                     break;
                 case "EncargoSupervisionIndiceDetalle":
-                    _menuElegido = "Documentacion";
-                    _nombreopcionor = "Carpetas";
+                    _menuElegido = "Supervision";
+                    _nombreopcionor = "Revision de carpetas";
                     #region configuracion
                     #region  menu
 
@@ -1682,8 +1682,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     #endregion
                     break;
                 case "DocumentosConsultaIndiceDetalle":
-                    _menuElegido = "Documentacion";
-                    _nombreopcionor = "Carpetas";
+                    _menuElegido = "Documentos";
+                    _nombreopcionor = "Consulta";
                     #region configuracion
                     #region  menu
 
@@ -1714,8 +1714,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     #endregion
                     break;
                 case "DocumentosImpresionIndiceDetalle":
-                    _menuElegido = "Documentacion";
-                    _nombreopcionor = "Carpetas";
+                    _menuElegido = "Documentos";
+                    _nombreopcionor = "Impresion";
                     #region configuracion
                     #region  menu
 
@@ -1803,8 +1803,8 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                     {
                         case "EncargoPlanIndiceDetalle":
                             #region configuracion
-                            _menuElegido = "Planificacion";
-                            _nombreopcionor = "Edición índices";
+                            //_menuElegido = "Planificacion";
+                            //_nombreopcionor = "Edición índices";
                             #region configuracion
 
                             if (currentUsuario.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
@@ -1945,91 +1945,464 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Planificacion.Indices
                             #endregion
                             break;
                         case "EncargoDocumentacionIndiceDetalle":
-                            _menuElegido = "Documentacion";
-                            _nombreopcionor = "Carpetas";
                             #region configuracion
+                            //_menuElegido = "Documentacion";
+                            //_nombreopcionor = "Carpetas";
+                            #region configuracion
+
+                            if (currentUsuario.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                permisosrolesusuario permisosAsignados = currentUsuario.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Visible;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region imprimir
+                                    if (permisosAsignados.impresionpru)
+                                    {
+                                        _visibilidadMImprimir = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMImprimir = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
                             #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            //_visibilidadMConsulta = Visibility.Visible;
+                            //_visibilidadMReferenciar = Visibility.Visible;
 
-                            visibilidadMCrear = Visibility.Collapsed;
-                            visibilidadMEditar = Visibility.Collapsed;
-                            visibilidadMBorrar = Visibility.Collapsed;
-                            visibilidadMConsulta = Visibility.Visible;
-                            visibilidadMReferenciar = Visibility.Visible;//Pendiente
-                            visibilidadMRegresar = Visibility.Visible;
-                            visibilidadMVista = Visibility.Visible;
-                            visibilidadMImprimir = Visibility.Collapsed;
+                            _visibilidadMDetalle = Visibility.Collapsed;
+                            _visibilidadMRegresar = Visibility.Visible;
+                            _visibilidadMVista = Visibility.Visible;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            _visibilidadMImportar = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
                             #endregion
 
                             #endregion
+
                             break;
                         case "EncargoCierreIndiceDetalle":
-                            _menuElegido = "Documentacion";
-                            _nombreopcionor = "Carpetas";
                             #region configuracion
+                            //_menuElegido = "Cierre";
+                            //_nombreopcionor = "Revision de papeles";
+                            #region configuracion
+
+                            if (currentUsuario.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                permisosrolesusuario permisosAsignados = currentUsuario.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Visible;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region imprimir
+                                    if (permisosAsignados.impresionpru)
+                                    {
+                                        _visibilidadMImprimir = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMImprimir = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
                             #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;
 
-                            visibilidadMCrear = Visibility.Collapsed;
-                            visibilidadMEditar = Visibility.Collapsed;
-                            visibilidadMBorrar = Visibility.Collapsed;
-                            visibilidadMConsulta = Visibility.Collapsed;
-                            visibilidadMReferenciar = Visibility.Collapsed; //Pendiente
-                            visibilidadMRegresar = Visibility.Visible;
-                            visibilidadMVista = Visibility.Visible;
-                            visibilidadMImprimir = Visibility.Collapsed;
+                            _visibilidadMDetalle = Visibility.Collapsed;
+                            _visibilidadMRegresar = Visibility.Visible;
+                            _visibilidadMVista = Visibility.Visible;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            _visibilidadMImportar = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
                             #endregion
 
                             #endregion
+
                             break;
                         case "EncargoSupervisionIndiceDetalle":
-                            _menuElegido = "Documentacion";
-                            _nombreopcionor = "Carpetas";
                             #region configuracion
+                            //_menuElegido = "Supervision";
+                            //_nombreopcionor = "Revision de carpetas";
+                            #region configuracion
+
+                            if (currentUsuario.listaPermisos.Count(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()) > 0)
+                            {
+                                #region  permisos asignados
+                                permisosrolesusuario permisosAsignados = currentUsuario.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == nombreopcionor.ToUpper()
+                                && x.submenupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru)
+                                    {
+                                        _visibilidadMCrear = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMCrear = Visibility.Collapsed;
+                                    }
+
+                                    #endregion crear
+
+                                    #region editar-referenciar-cerrar-detalle
+                                    if (permisosAsignados.editarpru)
+                                    {
+                                        _visibilidadMEditar = Visibility.Visible;
+                                        _visibilidadMReferenciar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMEditar = Visibility.Collapsed;
+                                        _visibilidadMReferenciar = Visibility.Collapsed;
+                                    }
+                                    #endregion editar
+
+                                    #region consultar-vista-detalle
+                                    if (permisosAsignados.consultarpru)
+                                    {
+                                        _visibilidadMConsulta = Visibility.Visible;
+                                        _visibilidadMVista = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMConsulta = Visibility.Collapsed;
+                                        _visibilidadMVista = Visibility.Collapsed;
+                                    }
+                                    #endregion consultar
+
+                                    #region borrar
+                                    if (permisosAsignados.eliminarpru)
+                                    {
+                                        _visibilidadMBorrar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMBorrar = Visibility.Collapsed;
+                                    }
+                                    #endregion borrar
+
+                                    #region supervisar-aprobar
+                                    if (permisosAsignados.revisarpru)
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMSupervisar = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                    #region imprimir
+                                    if (permisosAsignados.impresionpru)
+                                    {
+                                        _visibilidadMImprimir = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMImprimir = Visibility.Collapsed;
+                                    }
+
+                                    if (permisosAsignados.aprobarpru)
+                                    {
+                                        _visibilidadMAprobar = Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        _visibilidadMAprobar = Visibility.Collapsed;
+                                    }
+                                    #endregion supervisar-aprobar
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                            }
+
+                            #endregion configuracion
                             #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;
 
-                            visibilidadMCrear = Visibility.Collapsed;
-                            visibilidadMEditar = Visibility.Collapsed;
-                            visibilidadMBorrar = Visibility.Collapsed;
-                            visibilidadMConsulta = Visibility.Collapsed;
-                            visibilidadMReferenciar = Visibility.Collapsed; //Pendiente
-                            visibilidadMRegresar = Visibility.Visible;
-                            visibilidadMVista = Visibility.Visible;
-                            visibilidadMImprimir = Visibility.Collapsed;
+                            _visibilidadMDetalle = Visibility.Collapsed;
+                            _visibilidadMRegresar = Visibility.Visible;
+                            _visibilidadMVista = Visibility.Visible;
+                            _visibilidadMImprimir = Visibility.Collapsed;
+                            _visibilidadMImportar = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
                             #endregion
 
                             #endregion
+
                             break;
                         case "DocumentosConsultaIndiceDetalle":
-                            _menuElegido = "Documentacion";
-                            _nombreopcionor = "Carpetas";
-                            #region configuracion
+                            //_menuElegido = "Documentos";
+                            //_nombreopcionor = "Consulta";
                             #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;
 
-                            visibilidadMCrear = Visibility.Collapsed;
-                            visibilidadMEditar = Visibility.Collapsed;
-                            visibilidadMBorrar = Visibility.Collapsed;
-                            visibilidadMConsulta = Visibility.Collapsed;
-                            visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
-                            visibilidadMRegresar = Visibility.Collapsed;
-                            visibilidadMVista = Visibility.Collapsed;
-                            visibilidadMImprimir = Visibility.Visible;
-                            #endregion
+                            _visibilidadMDetalle = Visibility.Collapsed;
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMVista = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Visible;
+                            _visibilidadMImportar = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
                             #endregion
                             break;
                         case "DocumentosImpresionIndiceDetalle":
-                            _menuElegido = "Documentacion";
-                            _nombreopcionor = "Carpetas";
-                            #region configuracion
+                            //_menuElegido = "Documentos";
+                            //_nombreopcionor = "Impresion";
                             #region  menu
+                            _visibilidadMCrear = Visibility.Collapsed;
+                            _visibilidadMEditar = Visibility.Collapsed;
+                            _visibilidadMBorrar = Visibility.Collapsed;
+                            _visibilidadMConsulta = Visibility.Collapsed;
+                            _visibilidadMReferenciar = Visibility.Collapsed;
 
-                            visibilidadMCrear = Visibility.Collapsed;
-                            visibilidadMEditar = Visibility.Collapsed;
-                            visibilidadMBorrar = Visibility.Collapsed;
-                            visibilidadMConsulta = Visibility.Collapsed;
-                            visibilidadMReferenciar = Visibility.Collapsed;//Pendiente
-                            visibilidadMRegresar = Visibility.Collapsed;
-                            visibilidadMVista = Visibility.Collapsed;
-                            visibilidadMImprimir = Visibility.Visible;
-                            #endregion
+                            _visibilidadMDetalle = Visibility.Collapsed;
+                            _visibilidadMRegresar = Visibility.Collapsed;
+                            _visibilidadMVista = Visibility.Collapsed;
+                            _visibilidadMImprimir = Visibility.Visible;
+                            _visibilidadMImportar = Visibility.Collapsed;
+
+                            _visibilidadMCerrar = Visibility.Collapsed;
+                            _visibilidadMSupervisar = Visibility.Collapsed;
+                            _visibilidadMAprobar = Visibility.Collapsed;
+                            _visibilidadMTask = Visibility.Collapsed;
                             #endregion
                             break;
                     }
