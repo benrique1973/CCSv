@@ -54,7 +54,7 @@
                 </StackPanel>
             </Button>-->
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMEditar}"
                 Command="{Binding guardarDetalleCommand, Mode=TwoWay}" ToolTip="Permite guardar los cambios realizados en uno o varios elementos" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -69,7 +69,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMEditarHide}" 
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMReferenciar}" 
                 Command="{Binding completarCommand, Mode=TwoWay}" ToolTip="Complete los valores de cada procedimiento" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -80,11 +80,11 @@
                             <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_checkmark_pencil_top}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Margin="1" Width="45"  TextAlignment="Center" VerticalAlignment="Center" Text="Editar" />
+                    <TextBlock Margin="1" Width="45"  TextAlignment="Center" VerticalAlignment="Center" Text="Ref." />
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMCerrar}"
                 Command="{Binding terminarPapelCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -159,7 +159,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMRegresar}"
                 Command="{Binding irMenuPadreCommand, Mode=TwoWay}" ToolTip="Regresa al listado anterior" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 

@@ -41,7 +41,7 @@
         <StackPanel Orientation="Horizontal">
 
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}"   Visibility="{Binding visibilidadMImportar}"
                 Command="{Binding cmdCargarCatalogo, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -56,7 +56,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMCrear}"
                 Command="{Binding NuevoCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -71,7 +71,7 @@
                 </StackPanel>
             </Button>
             <Button
-                 Style="{StaticResource AccentedSquareButtonStyle}"
+                 Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMEditar}"
                 Command="{Binding EditarCommand, Mode=TwoWay}">
                 <StackPanel Style="{StaticResource StackPanelEstilo}">
                     <Rectangle Width="45"
@@ -85,7 +85,7 @@
                 </StackPanel>
             </Button>
             <Button
-               Style="{StaticResource AccentedSquareButtonStyle}"
+               Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMBorrar}"
                 Command="{Binding BorrarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -100,7 +100,7 @@
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}" Visibility="{Binding visibilidadMConsulta}"
                 Command="{Binding ConsultarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -111,11 +111,11 @@
                             <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_social_amazon_appstore}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Margin="1" Width="48"  TextAlignment="Center" VerticalAlignment="Center" Text="Consulta" />
+                    <TextBlock Margin="1" Width="45"  TextAlignment="Center" VerticalAlignment="Center" Text="Consulta" />
                 </StackPanel>
             </Button>
             <Button
-                Style="{StaticResource AccentedSquareButtonStyle}"
+                Style="{StaticResource AccentedSquareButtonStyle}"  Visibility="{Binding visibilidadMImportar}"
                 Command="{Binding copiarCommand, Mode=TwoWay}" >
                 <StackPanel Style="{StaticResource StackPanelEstilo}" >
                     <Rectangle 
@@ -128,7 +128,7 @@
                     </Rectangle>
                     <TextBlock Margin="1" Width="45"  TextAlignment="Center" VerticalAlignment="Center" Text="Copiar" />
                 </StackPanel>
-            </Button>            
+            </Button>       
         </StackPanel>
     </Grid>
 </UserControl>

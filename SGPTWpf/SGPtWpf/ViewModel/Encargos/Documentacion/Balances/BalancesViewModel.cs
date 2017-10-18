@@ -1340,7 +1340,7 @@ namespace SGPTWpf.SGPtWpf.ViewModel.Encargos.Documentacion.Balances
                 _visibilidadMImprimir = Visibility.Collapsed;
                 #endregion
 
-            _dialogCoordinator = new DialogCoordinator();
+                _dialogCoordinator = new DialogCoordinator();
                 _cursorWindow = Cursors.Hand;//Definición preliminar
 
                 _accesibilidadWindow = false;

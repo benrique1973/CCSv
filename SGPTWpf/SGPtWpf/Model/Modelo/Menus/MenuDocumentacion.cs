@@ -164,7 +164,7 @@ namespace SGPTWpf.SGPtWpf.Model.Modelo.Menus
                         break;
                     case "Catalogo cuentas":
                         ViewModelType = typeof(CatalogoCuentasViewModel);
-                        Contexto = new CatalogoCuentasViewModel();
+                        Contexto = new CatalogoCuentasViewModel("Catalogo cuentas");
                         break;
                     //case "Carga de Datos":
                     //    ViewModelType = typeof(CargaDeDatosViewModel);
