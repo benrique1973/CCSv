@@ -372,18 +372,6 @@
                                 Width="Auto"
                                 MinWidth="100"
                                 IsReadOnly="True" />
-                                <!--<DataGridTextColumn Header="Estado" MinWidth="50"
-                                Binding="{Binding Path= etapapapel , 
-                                UpdateSourceTrigger=PropertyChanged}">
-                                    -->
-                                <!--http://stackoverflow.com/questions/6354694/wpf-datagridtextcolumn-multi-line-input-->
-                                <!--
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="TextWrapping" Value="Wrap" />
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>-->
                             </DataGrid.Columns>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger
