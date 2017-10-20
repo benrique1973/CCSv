@@ -6,7 +6,6 @@ using SGPTWpf.Messages.Administracion.Usuario;
 using SGPTWpf.Messages.Genericos;
 using SGPTWpf.Messages.Navegacion;
 using SGPTWpf.Model;
-using SGPTWpf.Model.Menus.Encargos;
 using System.Collections.Generic;
 using System;
 using SGPTWpf.Model.Modelo.Encargos;
@@ -16,12 +15,14 @@ using System.Windows;
 using SGPTWpf.SGPtWpf.Messages.Genericos;
 using System.Windows.Input;
 using SGPTWpf.SGPtWpf.Model.Modelo.Menus;
+using System.Linq;
 
 namespace SGPTWpf.ViewModel.Administracion
 {
     public sealed class EncargosViewModel : ViewModeloBase
     {
         private DialogCoordinator dlg;
+
         #region opcionSeleccionada
         private int _opcionSeleccionada;
         private int opcionSeleccionada
@@ -29,6 +30,205 @@ namespace SGPTWpf.ViewModel.Administracion
             get { return _opcionSeleccionada; }
             set { _opcionSeleccionada = value; }
         }
+        #endregion
+
+        #region menu
+
+        #region ViewModel Properties : enableMEdicion
+
+        public const string enableMEdicionPropertyName = "enableMEdicion";
+
+        private bool _enableMEdicion = true;
+
+        public bool enableMEdicion
+        {
+            get
+            {
+                return _enableMEdicion;
+            }
+
+            set
+            {
+                if (_enableMEdicion == value)
+                {
+                    return;
+                }
+
+                _enableMEdicion = value;
+                RaisePropertyChanged(enableMEdicionPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : enableMPlanificacion
+
+        public const string enableMPlanificacionPropertyName = "enableMPlanificacion";
+
+        private bool _enableMPlanificacion = true;
+
+        public bool enableMPlanificacion
+        {
+            get
+            {
+                return _enableMPlanificacion;
+            }
+
+            set
+            {
+                if (_enableMPlanificacion == value)
+                {
+                    return;
+                }
+
+                _enableMPlanificacion = value;
+                RaisePropertyChanged(enableMPlanificacionPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : enableMDocumentacion
+
+        public const string enableMDocumentacionPropertyName = "enableMDocumentacion";
+
+        private bool _enableMDocumentacion = true;
+
+        public bool enableMDocumentacion
+        {
+            get
+            {
+                return _enableMDocumentacion;
+            }
+
+            set
+            {
+                if (_enableMDocumentacion == value)
+                {
+                    return;
+                }
+
+                _enableMDocumentacion = value;
+                RaisePropertyChanged(enableMDocumentacionPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : enableMCedulas
+
+        public const string enableMCedulasPropertyName = "enableMCedulas";
+
+        private bool _enableMCedulas = true;
+
+        public bool enableMCedulas
+        {
+            get
+            {
+                return _enableMCedulas;
+            }
+
+            set
+            {
+                if (_enableMCedulas == value)
+                {
+                    return;
+                }
+
+                _enableMCedulas = value;
+                RaisePropertyChanged(enableMCedulasPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : enableMSupervision
+
+        public const string enableMSupervisionPropertyName = "enableMSupervision";
+
+        private bool _enableMSupervision = true;
+
+        public bool enableMSupervision
+        {
+            get
+            {
+                return _enableMSupervision;
+            }
+
+            set
+            {
+                if (_enableMSupervision == value)
+                {
+                    return;
+                }
+
+                _enableMSupervision = value;
+                RaisePropertyChanged(enableMSupervisionPropertyName);
+            }
+        }
+
+        #endregion
+
+        #region ViewModel Properties : enableMCierre
+
+        public const string enableMCierrePropertyName = "enableMCierre";
+
+        private bool _enableMCierre = true;
+
+        public bool enableMCierre
+        {
+            get
+            {
+                return _enableMCierre;
+            }
+
+            set
+            {
+                if (_enableMCierre == value)
+                {
+                    return;
+                }
+
+                _enableMCierre = value;
+                RaisePropertyChanged(enableMCierrePropertyName);
+            }
+        }
+
+        #endregion
+
+        #region nombreopcionor
+
+        private string _nombreopcionor;
+        private string nombreopcionor
+        {
+            get { return _nombreopcionor; }
+            set { _nombreopcionor = value; }
+        }
+
+        #endregion
+
+        #region menuElegido
+
+        private string _menuElegido;
+        private string menuElegido
+        {
+            get { return _menuElegido; }
+            set { _menuElegido = value; }
+        }
+
+        #endregion
+
+        #region origenMenu
+
+        private string _origenMenu;
+        private string origenMenu
+        {
+            get { return _origenMenu; }
+            set { _origenMenu = value; }
+        }
+
+        #endregion
+
         #endregion
 
         #region Propiedades privadas
@@ -59,7 +259,6 @@ namespace SGPTWpf.ViewModel.Administracion
         }
 
         #endregion
-
 
         #region tokenRecepcionPrincipal
 
@@ -104,7 +303,16 @@ namespace SGPTWpf.ViewModel.Administracion
         }
         #endregion
 
-        private int comando = 0;
+        #region comando
+
+        private int _comando;
+        private int comando
+        {
+            get { return _comando; }
+            set { _comando = value; }
+        }
+
+        #endregion
 
         #region ViewModel Property : currentUsuario usuario
 
@@ -539,7 +747,6 @@ namespace SGPTWpf.ViewModel.Administracion
 
         #endregion
 
-
         #region ViewModel Public Methods
 
         #region ViewModel Property : currentEntidad
@@ -592,11 +799,11 @@ namespace SGPTWpf.ViewModel.Administracion
 
         #endregion
 
-
         #region Constructores
 
         public EncargosViewModel()
         {
+            _comando = 0;
             _tokenRecepcionSeleccionCliente = string.Empty;
             //_tokenRecepcionSeleccionCliente ="Encargos"+ "ClienteSeleccionado";//Recepcion de  EncargosControllerViewModel
             _tokenRecepcionPrincipal = "Encargos";//Para recepcion de menu principal
@@ -614,6 +821,18 @@ namespace SGPTWpf.ViewModel.Administracion
             visibilidadCliente = Visibility.Collapsed;
             currentEncargo = null;
             nombreEncargo = "";
+            #region menu
+            _enableMEdicion = true;
+            _enableMCedulas = true;
+            _enableMPlanificacion = true;
+            _enableMDocumentacion = true;
+            _enableMSupervision = true;
+            _enableMCierre = true;
+
+            _menuElegido = "Encargos";
+            _nombreopcionor = "";
+            _origenMenu = "";
+            #endregion menu
         }
 
         private void ControlEncargoMensaje(EncargoMensaje encargoMensaje)
@@ -649,8 +868,413 @@ namespace SGPTWpf.ViewModel.Administracion
             //Recibe al usuario que se ha validado
             currentUsuario = principalUsuarioValidadoMensaje.elementoMensaje;
             usuarioModelo = principalUsuarioValidadoMensaje.usuarioModelo;
+            permisos();
             inicializacionTerminada();
         }
+
+        private void permisos()
+        {
+            if (usuarioModelo.listaPermisos != null)
+            {
+                try
+                {
+                    switch (usuarioModelo.basadoenrol)
+                        {
+                        case 1://Administrador
+                            #region menu
+                            _enableMEdicion = true;
+                            _enableMCedulas = true;
+                            _enableMPlanificacion = true;
+                            _enableMDocumentacion = true;
+                            _enableMSupervision = false;
+                            _enableMCierre = false;
+                            #endregion menu
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.menupru.ToUpper() == menuElegido.ToUpper()) > 0)
+                            {
+                                #region  permisos supervision
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Supervisión".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                                #region  permisos cierre
+                                permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Cierre".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                                #region menu
+                                _enableMEdicion = false;
+                                _enableMCedulas = false;
+                                _enableMPlanificacion = false;
+                                _enableMDocumentacion = false;
+                                _enableMSupervision = false;
+                                _enableMCierre = false;
+                                #endregion menu
+                            }
+
+                            #endregion configuracion
+                            break;
+                        case 2://Socio
+                            #region menu
+                            _enableMEdicion = true;
+                            _enableMCedulas = true;
+                            _enableMPlanificacion = true;
+                            _enableMDocumentacion = true;
+                            _enableMSupervision = true;
+                            _enableMCierre = true;
+                            #endregion menu
+                            break;
+                        case 3://Gerente
+                            #region menu
+                            _enableMEdicion = true;
+                            _enableMCedulas = true;
+                            _enableMPlanificacion = true;
+                            _enableMDocumentacion = true;
+                            _enableMSupervision = true;
+                            _enableMCierre = true;
+                            #endregion menu
+                            break;
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.menupru.ToUpper() == menuElegido.ToUpper()) > 0)
+                            {
+                                #region  permisos supervision
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Supervisión".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                                #region  permisos cierre
+                                permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Cierre".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                                #region menu
+                                _enableMEdicion = false;
+                                _enableMCedulas = false;
+                                _enableMPlanificacion = false;
+                                _enableMDocumentacion = false;
+                                _enableMSupervision = false;
+                                _enableMCierre = false;
+                                #endregion menu
+                            }
+
+                        #endregion configuracion
+                        case 4://Encargado
+                            #region menu
+                            _enableMEdicion = false;
+                            _enableMCedulas = true;
+                            _enableMPlanificacion = true;
+                            _enableMDocumentacion = true;
+                            _enableMSupervision = true;
+                            _enableMCierre = false;
+                            #endregion menu
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.menupru.ToUpper() == menuElegido.ToUpper()) > 0)
+                            {
+                                #region  permisos supervision
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Supervisión".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                                #region  permisos cierre
+                                permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Cierre".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                                #region menu
+                                _enableMEdicion = false;
+                                _enableMCedulas = false;
+                                _enableMPlanificacion = false;
+                                _enableMDocumentacion = false;
+                                _enableMSupervision = false;
+                                _enableMCierre = false;
+                                #endregion menu
+                            }
+
+                            #endregion configuracion
+                            break;
+                        case 5://Asistente
+                            #region menu
+                            _enableMEdicion = false;
+                            _enableMCedulas = true;
+                            _enableMPlanificacion = false;
+                            _enableMDocumentacion = true;
+                            _enableMSupervision = false;
+                            _enableMCierre = false;
+                            #endregion menu
+                            #region configuracion
+
+                            if (usuarioModelo.listaPermisos.Count(x => x.menupru.ToUpper() == menuElegido.ToUpper()) > 0)
+                            {
+                                #region  permisos supervision
+                                permisosrolesusuario permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Supervisión".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                                #region  permisos cierre
+                                permisosAsignados = usuarioModelo.listaPermisos.Single(x => x.nombreopcionpru.ToUpper() == "Cierre".ToUpper()
+                                && x.menupru.ToUpper() == menuElegido.ToUpper());
+
+                                if (permisosAsignados != null)
+                                {
+                                    #region crear-importar-detalle
+
+                                    if (permisosAsignados.crearpru || permisosAsignados.editarpru)
+                                    {
+                                        _enableMSupervision = true;
+                                    }
+                                    else
+                                    {
+                                        _enableMSupervision = false;
+                                    }
+
+                                    #endregion crear
+
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error en opción y la base de datos de la entidad\nRevise la opción programada");
+                                }
+                                #endregion fin de region de permisos
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error en opción y la base de datos\nRevise la opción programada");
+                                #region menu
+                                _enableMEdicion = false;
+                                _enableMCedulas = false;
+                                _enableMPlanificacion = false;
+                                _enableMDocumentacion = false;
+                                _enableMSupervision = false;
+                                _enableMCierre = false;
+                                #endregion menu
+                            }
+
+                            #endregion configuracion
+                            break;
+                        case 6://Secretaria
+                            #region menu
+                            _enableMEdicion = false;
+                            _enableMCedulas = false;
+                            _enableMPlanificacion = false;
+                            _enableMDocumentacion = false;
+                            _enableMSupervision = false;
+                            _enableMCierre = false;
+                            #endregion menu
+                            break;
+                        default:
+                            MessageBox.Show("No se identificó el perfil base\nVuelva a crear el usuario");
+                            #region menu
+                            _enableMEdicion = false;
+                            _enableMCedulas = false;
+                            _enableMPlanificacion = false;
+                            _enableMDocumentacion = false;
+                            _enableMSupervision = false;
+                            _enableMCierre = false;
+                            #endregion menu
+                            break;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error al identificar los permisos\nRevise la opción programada\n" + e.ToString());
+                    #region menu
+                    _enableMEdicion = false;
+                    _enableMCedulas = false;
+                    _enableMPlanificacion = false;
+                    _enableMDocumentacion = false;
+                    _enableMSupervision = false;
+                    _enableMCierre = false;
+                    #endregion menu
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No están definidos los permisos\nRevise los permisos del usuario");
+                #region menu
+                _enableMEdicion = false;
+                _enableMCedulas = false;
+                _enableMPlanificacion = false;
+                _enableMDocumentacion = false;
+                _enableMSupervision = false;
+                _enableMCierre = false;
+                #endregion menu
+            }
+
+        }
+
         public void inicializacionTerminada()
         {
             //Se crea el mensaje

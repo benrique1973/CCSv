@@ -14,6 +14,12 @@ namespace CapaDatos
     
     public partial class herramienta
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public herramienta()
+        {
+            this.detalleherramientas = new HashSet<detalleherramienta>();
+        }
+    
         public int idherramienta { get; set; }
         public Nullable<int> idtp { get; set; }
         public Nullable<int> idth { get; set; }
@@ -26,6 +32,8 @@ namespace CapaDatos
         public Nullable<int> isuso { get; set; }
         public string uuid { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleherramienta> detalleherramientas { get; set; }
         public virtual tiposprograma tiposprograma { get; set; }
         public virtual tiposherramienta tiposherramienta { get; set; }
     }

@@ -26,7 +26,7 @@
                 <conv:StyleConverter  x:Key="StyleConverter"/>
             </WrapPanel.Resources>
             <Button 
-                Command="{Binding EdicionCommand, Mode=TwoWay}" 
+                Command="{Binding EdicionCommand, Mode=TwoWay}"   IsEnabled="{Binding enableMEdicion}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
@@ -48,7 +48,7 @@
                 </Button.Style>
             </Button>
             <Button 
-                Command="{Binding PlanificacionCommand, Mode=TwoWay}" 
+                Command="{Binding PlanificacionCommand, Mode=TwoWay}"  IsEnabled="{Binding enableMPlanificacion}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
@@ -70,7 +70,7 @@
                 </Button.Style>
             </Button>
             <Button 
-                Command="{Binding DocumentacionCommand, Mode=TwoWay}"
+                Command="{Binding DocumentacionCommand, Mode=TwoWay}" IsEnabled="{Binding enableMDocumentacion}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
@@ -93,7 +93,7 @@
             </Button>
 
             <Button 
-                Command="{Binding CedulasCommand, Mode=TwoWay}"
+                Command="{Binding CedulasCommand, Mode=TwoWay}" IsEnabled="{Binding enableMCedulas}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
@@ -116,7 +116,7 @@
             </Button>
 
             <Button 
-                Command="{Binding SupervisionCommand, Mode=TwoWay}"
+                Command="{Binding SupervisionCommand, Mode=TwoWay}" IsEnabled="{Binding enableMSupervision}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 
@@ -138,7 +138,7 @@
                 </Button.Style>                
             </Button>
             <Button 
-                Command="{Binding CierreCommand, Mode=TwoWay}"
+                Command="{Binding CierreCommand, Mode=TwoWay}" IsEnabled="{Binding enableMCierre}"
                 HorizontalAlignment="Left" VerticalAlignment="Bottom" MinWidth="80" Width="120" MinHeight="10" Height="40" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <Rectangle Width="20" 

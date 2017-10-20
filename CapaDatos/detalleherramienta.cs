@@ -42,5 +42,6 @@ namespace CapaDatos
         public virtual tipoprocedimiento tipoprocedimiento { get; set; }
         public virtual usuario usuario { get; set; }
         public virtual visita visita { get; set; }
+        public virtual herramienta herramienta { get; set; }
     }
 }

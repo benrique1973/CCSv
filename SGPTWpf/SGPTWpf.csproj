@@ -3774,7 +3774,6 @@
   <ItemGroup>
     <Folder Include="SGPtWpf\Messages\Normas\" />
     <Folder Include="SGPtWpf\Recursos\Imagenes\Mvvm\" />
-    <Folder Include="SGPtWpf\ViewModel\Encargos\Cedulas\Agenda\" />
     <Folder Include="SGPtWpf\ViewModel\Encargos\Cedulas\PreElaboradas\Reuniones\" />
     <Folder Include="SGPtWpf\Views\Ayuda\" />
     <Folder Include="SGPtWpf\Views\Principales\Administracion\Roles\" />
