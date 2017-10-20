@@ -14,6 +14,12 @@ namespace CapaDatos
     
     public partial class plantillaindice
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public plantillaindice()
+        {
+            this.detalleplantillaindices = new HashSet<detalleplantillaindice>();
+        }
+    
         public int idpi { get; set; }
         public Nullable<int> idusuario { get; set; }
         public Nullable<int> idta { get; set; }
@@ -25,6 +31,8 @@ namespace CapaDatos
         public Nullable<int> isuso { get; set; }
         public string uuid { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleplantillaindice> detalleplantillaindices { get; set; }
         public virtual tiposauditoria tiposauditoria { get; set; }
         public virtual usuario usuario { get; set; }
         public virtual tipocarpeta tipocarpeta { get; set; }

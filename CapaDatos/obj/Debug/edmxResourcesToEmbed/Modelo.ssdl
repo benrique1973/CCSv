@@ -3652,6 +3652,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_herramientas_detalle_herramienta">
+    <End Role="herramientas" Type="Self.herramientas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detalleherramientas" Type="Self.detalleherramientas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="herramientas">
+        <PropertyRef Name="idherramienta" />
+      </Principal>
+      <Dependent Role="detalleherramientas">
+        <PropertyRef Name="idherramienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_historic_usuarioco_usuarios">
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -4247,6 +4261,20 @@
       </Principal>
       <Dependent Role="plantillaindice">
         <PropertyRef Name="idtcpi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_plantillaIndice_detallePlantilla">
+    <End Role="plantillaindice" Type="Self.plantillaindice" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detalleplantillaindice" Type="Self.detalleplantillaindice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plantillaindice">
+        <PropertyRef Name="idpi" />
+      </Principal>
+      <Dependent Role="detalleplantillaindice">
+        <PropertyRef Name="idpi" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5499,6 +5527,10 @@
       <End Role="tiposherramientas" EntitySet="tiposherramientas" />
       <End Role="herramientas" EntitySet="herramientas" />
     </AssociationSet>
+    <AssociationSet Name="fk_herramientas_detalle_herramienta" Association="Self.fk_herramientas_detalle_herramienta">
+      <End Role="herramientas" EntitySet="herramientas" />
+      <End Role="detalleherramientas" EntitySet="detalleherramientas" />
+    </AssociationSet>
     <AssociationSet Name="fk_historic_usuarioco_usuarios" Association="Self.fk_historic_usuarioco_usuarios">
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="historicoscontrasenias" EntitySet="historicoscontrasenias" />
@@ -5674,6 +5706,10 @@
     <AssociationSet Name="fk_plantilla_tipocarpeta" Association="Self.fk_plantilla_tipocarpeta">
       <End Role="tipocarpeta" EntitySet="tipocarpeta" />
       <End Role="plantillaindice" EntitySet="plantillaindice" />
+    </AssociationSet>
+    <AssociationSet Name="fk_plantillaIndice_detallePlantilla" Association="Self.fk_plantillaIndice_detallePlantilla">
+      <End Role="plantillaindice" EntitySet="plantillaindice" />
+      <End Role="detalleplantillaindice" EntitySet="detalleplantillaindice" />
     </AssociationSet>
     <AssociationSet Name="fk_programa_detallematrizriesgo" Association="Self.fk_programa_detallematrizriesgo">
       <End Role="programas" EntitySet="programas" />

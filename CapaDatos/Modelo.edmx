@@ -3657,6 +3657,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_herramientas_detalle_herramienta">
+          <End Role="herramientas" Type="Self.herramientas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalleherramientas" Type="Self.detalleherramientas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="herramientas">
+              <PropertyRef Name="idherramienta" />
+            </Principal>
+            <Dependent Role="detalleherramientas">
+              <PropertyRef Name="idherramienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_historic_usuarioco_usuarios">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -4252,6 +4266,20 @@
             </Principal>
             <Dependent Role="plantillaindice">
               <PropertyRef Name="idtcpi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_plantillaIndice_detallePlantilla">
+          <End Role="plantillaindice" Type="Self.plantillaindice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalleplantillaindice" Type="Self.detalleplantillaindice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plantillaindice">
+              <PropertyRef Name="idpi" />
+            </Principal>
+            <Dependent Role="detalleplantillaindice">
+              <PropertyRef Name="idpi" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5504,6 +5532,10 @@
             <End Role="tiposherramientas" EntitySet="tiposherramientas" />
             <End Role="herramientas" EntitySet="herramientas" />
           </AssociationSet>
+          <AssociationSet Name="fk_herramientas_detalle_herramienta" Association="Self.fk_herramientas_detalle_herramienta">
+            <End Role="herramientas" EntitySet="herramientas" />
+            <End Role="detalleherramientas" EntitySet="detalleherramientas" />
+          </AssociationSet>
           <AssociationSet Name="fk_historic_usuarioco_usuarios" Association="Self.fk_historic_usuarioco_usuarios">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="historicoscontrasenias" EntitySet="historicoscontrasenias" />
@@ -5679,6 +5711,10 @@
           <AssociationSet Name="fk_plantilla_tipocarpeta" Association="Self.fk_plantilla_tipocarpeta">
             <End Role="tipocarpeta" EntitySet="tipocarpeta" />
             <End Role="plantillaindice" EntitySet="plantillaindice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_plantillaIndice_detallePlantilla" Association="Self.fk_plantillaIndice_detallePlantilla">
+            <End Role="plantillaindice" EntitySet="plantillaindice" />
+            <End Role="detalleplantillaindice" EntitySet="detalleplantillaindice" />
           </AssociationSet>
           <AssociationSet Name="fk_programa_detallematrizriesgo" Association="Self.fk_programa_detallematrizriesgo">
             <End Role="programas" EntitySet="programas" />
@@ -6690,6 +6726,7 @@
           <NavigationProperty Name="tipoprocedimiento" Relationship="Self.fk_detalleh_tipopdeta_tipoproc" FromRole="detalleherramientas" ToRole="tipoprocedimiento" />
           <NavigationProperty Name="usuario" Relationship="Self.fk_detalleh_tipopdeta_usuario" FromRole="detalleherramientas" ToRole="usuarios" />
           <NavigationProperty Name="visita" Relationship="Self.fk_detalleh_visitas" FromRole="detalleherramientas" ToRole="visitas" />
+          <NavigationProperty Name="herramienta" Relationship="Self.fk_herramientas_detalle_herramienta" FromRole="detalleherramientas" ToRole="herramientas" />
         </EntityType>
         <EntityType Name="detallematrizriesgo">
           <Key>
@@ -6745,6 +6782,7 @@
           <NavigationProperty Name="detalleplantillaindice1" Relationship="Self.fk_detallep_contenedo_detallep" FromRole="detalleplantillaindice" ToRole="detalleplantillaindice1" />
           <NavigationProperty Name="detalleplantillaindice2" Relationship="Self.fk_detallep_contenedo_detallep" FromRole="detalleplantillaindice1" ToRole="detalleplantillaindice" />
           <NavigationProperty Name="tipoelementoindice" Relationship="Self.fk_detallep_tipoeipla_tipoelem" FromRole="detalleplantillaindice" ToRole="tipoelementoindice" />
+          <NavigationProperty Name="plantillaindice" Relationship="Self.fk_plantillaIndice_detallePlantilla" FromRole="detalleplantillaindice" ToRole="plantillaindice" />
         </EntityType>
         <EntityType Name="detalleprograma">
           <Key>
@@ -7061,6 +7099,7 @@
           <Property Name="sistemaherramienta" Type="Boolean" Nullable="false" />
           <Property Name="isuso" Type="Int32" />
           <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="detalleherramientas" Relationship="Self.fk_herramientas_detalle_herramienta" FromRole="herramientas" ToRole="detalleherramientas" />
           <NavigationProperty Name="tiposprograma" Relationship="Self.fk_herramie_programah_tipospro" FromRole="herramientas" ToRole="tiposprograma" />
           <NavigationProperty Name="tiposherramienta" Relationship="Self.fk_herramie_tiposhher_tiposher" FromRole="herramientas" ToRole="tiposherramientas" />
         </EntityType>
@@ -7591,6 +7630,7 @@
           <Property Name="idtcpi" Type="Int32" />
           <Property Name="isuso" Type="Int32" />
           <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="detalleplantillaindices" Relationship="Self.fk_plantillaIndice_detallePlantilla" FromRole="plantillaindice" ToRole="detalleplantillaindice" />
           <NavigationProperty Name="tiposauditoria" Relationship="Self.fk_plantill_tiposapla_tiposaud" FromRole="plantillaindice" ToRole="tiposauditoria" />
           <NavigationProperty Name="usuario" Relationship="Self.fk_plantill_usuariopl_usuarios" FromRole="plantillaindice" ToRole="usuarios" />
           <NavigationProperty Name="tipocarpeta" Relationship="Self.fk_plantilla_tipocarpeta" FromRole="plantillaindice" ToRole="tipocarpeta" />
@@ -9836,6 +9876,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_herramientas_detalle_herramienta">
+          <End Role="herramientas" Type="Self.herramienta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalleherramientas" Type="Self.detalleherramienta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="herramientas">
+              <PropertyRef Name="idherramienta" />
+            </Principal>
+            <Dependent Role="detalleherramientas">
+              <PropertyRef Name="idherramienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_detalle_programa_matriz_riesgo">
           <End Role="detalleprogramas" Type="Self.detalleprograma" Multiplicity="0..1" />
           <End Role="detallematrizriesgos" Type="Self.detallematrizriesgo" Multiplicity="*" />
@@ -9913,6 +9967,20 @@
             </Principal>
             <Dependent Role="detalleplantillaindice">
               <PropertyRef Name="idtei" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_plantillaIndice_detallePlantilla">
+          <End Role="plantillaindice" Type="Self.plantillaindice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalleplantillaindice" Type="Self.detalleplantillaindice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plantillaindice">
+              <PropertyRef Name="idpi" />
+            </Principal>
+            <Dependent Role="detalleplantillaindice">
+              <PropertyRef Name="idpi" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11773,6 +11841,10 @@
             <End Role="visitas" EntitySet="visitas" />
             <End Role="detalleherramientas" EntitySet="detalleherramientas" />
           </AssociationSet>
+          <AssociationSet Name="fk_herramientas_detalle_herramienta" Association="Self.fk_herramientas_detalle_herramienta">
+            <End Role="herramientas" EntitySet="herramientas" />
+            <End Role="detalleherramientas" EntitySet="detalleherramientas" />
+          </AssociationSet>
           <AssociationSet Name="fk_detalle_programa_matriz_riesgo" Association="Self.fk_detalle_programa_matriz_riesgo">
             <End Role="detalleprogramas" EntitySet="detalleprogramas" />
             <End Role="detallematrizriesgos" EntitySet="detallematrizriesgos" />
@@ -11795,6 +11867,10 @@
           </AssociationSet>
           <AssociationSet Name="fk_detallep_tipoeipla_tipoelem" Association="Self.fk_detallep_tipoeipla_tipoelem">
             <End Role="tipoelementoindice" EntitySet="tipoelementoindices" />
+            <End Role="detalleplantillaindice" EntitySet="detalleplantillaindices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_plantillaIndice_detallePlantilla" Association="Self.fk_plantillaIndice_detallePlantilla">
+            <End Role="plantillaindice" EntitySet="plantillaindices" />
             <End Role="detalleplantillaindice" EntitySet="detalleplantillaindices" />
           </AssociationSet>
           <AssociationSet Name="fk_detallep_tipopdeta_tipoproc" Association="Self.fk_detallep_tipopdeta_tipoproc">

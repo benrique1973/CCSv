@@ -37,5 +37,6 @@ namespace CapaDatos
         public virtual ICollection<detalleplantillaindice> detalleplantillaindice1 { get; set; }
         public virtual detalleplantillaindice detalleplantillaindice2 { get; set; }
         public virtual tipoelementoindice tipoelementoindice { get; set; }
+        public virtual plantillaindice plantillaindice { get; set; }
     }
 }
